@@ -22,7 +22,7 @@ const courses = [
     href: "/za-trenere/coerver-intro",
     level: "Početni",
     levelNum: 1,
-    image: "/images/photoshoot/Coerver_Kustosija-10.jpg",
+    image: "/images/photoshoot/Coerver_Kustosija-10.webp",
   },
   {
     id: "yd1",
@@ -34,7 +34,7 @@ const courses = [
     href: "/za-trenere/youth-diploma-1",
     level: "Srednji",
     levelNum: 2,
-    image: "/images/photoshoot/Coerver_Kustosija-60.jpg",
+    image: "/images/photoshoot/Coerver_Kustosija-60.webp",
   },
   {
     id: "yd2",
@@ -46,7 +46,7 @@ const courses = [
     href: "/za-trenere/youth-diploma-2",
     level: "Napredni",
     levelNum: 3,
-    image: "/images/photoshoot/Coerver_Kustosija-70.jpg",
+    image: "/images/photoshoot/Coerver_Kustosija-70.webp",
   },
 ];
 
@@ -79,14 +79,14 @@ const testimonials = [
     role: "Trener NK Osijek U15",
     content:
       "Coerver diploma je promijenila način na koji pristupam treningu. Moji igrači su napredovali brže nego ikad.",
-    image: "/images/photoshoot/Coerver_Kustosija-25.jpg",
+    image: "/images/photoshoot/Coerver_Kustosija-25.webp",
   },
   {
     name: "Ana Bašić",
     role: "Trenerica NK Hajduk U12",
     content:
       "Strukturirani pristup Ball Masteryju dao mi je alate koje koristim svakodnevno. Nezamjenjivo iskustvo.",
-    image: "/images/photoshoot/Coerver_Kustosija-45.jpg",
+    image: "/images/photoshoot/Coerver_Kustosija-45.webp",
   },
 ];
 
@@ -128,7 +128,7 @@ export default function ZaTrenerePage() {
       <section className="relative min-h-[90vh] flex items-center bg-coerver-dark overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-45.jpg"
+            src="/images/photoshoot/Coerver_Kustosija-45.webp"
             alt="Coerver trener"
             fill
             className="object-cover"

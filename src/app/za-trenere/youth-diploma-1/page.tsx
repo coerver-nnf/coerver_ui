@@ -132,7 +132,7 @@ export default function YouthDiploma1Page() {
       <section className="relative min-h-[80vh] flex items-center bg-coerver-dark overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-60.jpg"
+            src="/images/photoshoot/Coerver_Kustosija-60.webp"
             alt="Youth Diploma 1"
             fill
             className="object-cover"
@@ -341,7 +341,7 @@ export default function YouthDiploma1Page() {
             {/* Image */}
             <div className="animate-on-scroll relative aspect-[4/3] rounded-3xl overflow-hidden">
               <Image
-                src="/images/photoshoot/Coerver_Kustosija-70.jpg"
+                src="/images/photoshoot/Coerver_Kustosija-70.webp"
                 alt="Coerver edukacija"
                 fill
                 className="object-cover"

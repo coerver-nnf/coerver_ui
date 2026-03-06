@@ -24,7 +24,7 @@ const audienceCards: AudienceCard[] = [
     title: "IGRAČI",
     description:
       "Coerver® Coaching Performance Akademije namijenjene su igračima od 7 do 14 godina starosti koji već treniraju u klubovima, a žele poboljšati svoju izvedbu dodatno trenirajući po jedinstvenoj Coerver® metodi.",
-    image: "/images/photoshoot/Miami-128.png",
+    image: "/images/photoshoot/Miami-128.webp",
     href: "/za-igrace",
   },
   {
@@ -32,7 +32,7 @@ const audienceCards: AudienceCard[] = [
     title: "TRENERI",
     description:
       "Cilj Coerver® edukacija je pružiti trenerima teoretski i praktični pregled evolucije Coerver® metode od njenog osnivanja 1984. godine.",
-    image: "/images/photoshoot/Miami-146.png",
+    image: "/images/photoshoot/Miami-146.webp",
     href: "/za-trenere",
   },
   {
@@ -40,7 +40,7 @@ const audienceCards: AudienceCard[] = [
     title: "KLUBOVI",
     description:
       "Coerver® Coaching nudi poseban partnerski program svim klubovima od amaterske do profesionalne razine. Ovim programom pokrivaju se četiri temeljne komponente.",
-    image: "/images/photoshoot/Miami-143.png",
+    image: "/images/photoshoot/Miami-143.webp",
     href: "/klubovi",
   },
   {
@@ -48,7 +48,7 @@ const audienceCards: AudienceCard[] = [
     title: "INDIVIDUALNI TRENINZI",
     description:
       "Coerver® Coaching ima poseban program za individualne treninge i rad u manjim grupama, koji su ključni za razvoj svih sportaša.",
-    image: "/images/photoshoot/Miami-138.png",
+    image: "/images/photoshoot/Miami-138.webp",
     href: "/za-igrace/individualni-treninzi",
   },
   {
@@ -56,7 +56,7 @@ const audienceCards: AudienceCard[] = [
     title: "KAMPOVI",
     description:
       "Coerver® Coaching organizira kampove u trajanju od jednoga do pet dana na kojima kombinacijom učenja vještina i zabave želimo svakom polazniku pružiti nezaboravno iskustvo.",
-    image: "/images/photoshoot/Miami-125.png",
+    image: "/images/photoshoot/Miami-125.webp",
     href: "/za-igrace/kampovi",
   },
 ];

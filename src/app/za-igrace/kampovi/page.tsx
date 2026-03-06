@@ -24,7 +24,7 @@ const upcomingCamps = [
     spots: 12,
     totalSpots: 24,
     description: "5 dana intenzivnog treninga, profesionalnih natjecanja i nogometne zabave.",
-    image: "/images/photoshoot/Coerver_Kustosija-15.jpg",
+    image: "/images/photoshoot/Coerver_Kustosija-15.webp",
   },
   {
     id: "summer-2024-split",
@@ -37,7 +37,7 @@ const upcomingCamps = [
     spots: 8,
     totalSpots: 20,
     description: "Coerver kamp na sunčanoj obali Dalmacije. Nogomet + plaža!",
-    image: "/images/photoshoot/Coerver_Kustosija-45.jpg",
+    image: "/images/photoshoot/Coerver_Kustosija-45.webp",
   },
   {
     id: "autumn-2024",
@@ -50,7 +50,7 @@ const upcomingCamps = [
     spots: 20,
     totalSpots: 24,
     description: "4 dana treninga tijekom jesenskih praznika.",
-    image: "/images/photoshoot/Coerver_Kustosija-70.jpg",
+    image: "/images/photoshoot/Coerver_Kustosija-70.webp",
   },
 ];
 
@@ -128,7 +128,7 @@ export default function KampoviPage() {
       <section className="relative min-h-[80vh] flex items-center bg-coerver-dark overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-45.jpg"
+            src="/images/photoshoot/Coerver_Kustosija-45.webp"
             alt="Nogometni kamp"
             fill
             className="object-cover"
@@ -377,7 +377,7 @@ export default function KampoviPage() {
                 <div className="space-y-4">
                   <div className="aspect-square rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-60.jpg"
+                      src="/images/photoshoot/Coerver_Kustosija-60.webp"
                       alt="Trening na kampu"
                       fill
                       className="object-cover"
@@ -385,7 +385,7 @@ export default function KampoviPage() {
                   </div>
                   <div className="aspect-video rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-25.jpg"
+                      src="/images/photoshoot/Coerver_Kustosija-25.webp"
                       alt="Kamp aktivnosti"
                       fill
                       className="object-cover"
@@ -395,7 +395,7 @@ export default function KampoviPage() {
                 <div className="space-y-4 pt-8">
                   <div className="aspect-video rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-10.jpg"
+                      src="/images/photoshoot/Coerver_Kustosija-10.webp"
                       alt="Grupni trening"
                       fill
                       className="object-cover"
@@ -403,7 +403,7 @@ export default function KampoviPage() {
                   </div>
                   <div className="aspect-square rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-70.jpg"
+                      src="/images/photoshoot/Coerver_Kustosija-70.webp"
                       alt="Zabava na kampu"
                       fill
                       className="object-cover"

@@ -31,7 +31,7 @@ const campsData: Record<string, CampDetails> = {
     earlyBirdDeadline: "2024-05-24",
     spots: 12,
     totalSpots: 24,
-    heroImage: "/images/photoshoot/Coerver_Kustosija-15.jpg",
+    heroImage: "/images/photoshoot/Coerver_Kustosija-15.webp",
     description: `
       Ljetni Coerver kamp u Zagrebu je savršen način da vaše dijete provede tjedan dana
       školskih praznika. Pet dana intenzivnog treninga pod vodstvom certificiranih Coerver
@@ -106,12 +106,12 @@ const campsData: Record<string, CampDetails> = {
       "Osobne higijenske potrepštine",
     ],
     gallery: [
-      "/images/photoshoot/Coerver_Kustosija-10.jpg",
-      "/images/photoshoot/Coerver_Kustosija-25.jpg",
-      "/images/photoshoot/Coerver_Kustosija-45.jpg",
-      "/images/photoshoot/Coerver_Kustosija-60.jpg",
-      "/images/photoshoot/Coerver_Kustosija-70.jpg",
-      "/images/photoshoot/Coerver_Kustosija-15.jpg",
+      "/images/photoshoot/Coerver_Kustosija-10.webp",
+      "/images/photoshoot/Coerver_Kustosija-25.webp",
+      "/images/photoshoot/Coerver_Kustosija-45.webp",
+      "/images/photoshoot/Coerver_Kustosija-60.webp",
+      "/images/photoshoot/Coerver_Kustosija-70.webp",
+      "/images/photoshoot/Coerver_Kustosija-15.webp",
     ],
     faq: [
       {
@@ -145,13 +145,13 @@ const campsData: Record<string, CampDetails> = {
         name: "Marko P.",
         role: "Roditelj",
         text: "Luka se vratio kući pun entuzijazma! Svaki dan je jedva čekao novi trening. Vidimo napredak u tehnici, ali još važnije - ljubav prema nogometu.",
-        image: "/images/photoshoot/Coerver_Kustosija-25.jpg",
+        image: "/images/photoshoot/Coerver_Kustosija-25.webp",
       },
       {
         name: "Ana K.",
         role: "Roditelj",
         text: "Organizacija je bila besprijekorna. Treneri su profesionalni ali i jako pristupačni djeci. Preporuka!",
-        image: "/images/photoshoot/Coerver_Kustosija-60.jpg",
+        image: "/images/photoshoot/Coerver_Kustosija-60.webp",
       },
     ],
   },
@@ -171,7 +171,7 @@ const campsData: Record<string, CampDetails> = {
     earlyBirdDeadline: "2024-06-01",
     spots: 8,
     totalSpots: 20,
-    heroImage: "/images/photoshoot/Coerver_Kustosija-45.jpg",
+    heroImage: "/images/photoshoot/Coerver_Kustosija-45.webp",
     description: `
       Coerver kamp u Splitu kombinira vrhunski nogometni trening s predivnim dalmatinskim okruženjem.
       Pet dana intenzivnog rada na tehnici uz mogućnost uživanja u morskom ambijentu.
@@ -218,10 +218,10 @@ const campsData: Record<string, CampDetails> = {
       "Kapu ili šiltericu",
     ],
     gallery: [
-      "/images/photoshoot/Coerver_Kustosija-45.jpg",
-      "/images/photoshoot/Coerver_Kustosija-60.jpg",
-      "/images/photoshoot/Coerver_Kustosija-70.jpg",
-      "/images/photoshoot/Coerver_Kustosija-25.jpg",
+      "/images/photoshoot/Coerver_Kustosija-45.webp",
+      "/images/photoshoot/Coerver_Kustosija-60.webp",
+      "/images/photoshoot/Coerver_Kustosija-70.webp",
+      "/images/photoshoot/Coerver_Kustosija-25.webp",
     ],
     faq: [
       { question: "Što ako moje dijete nema iskustva u nogometu?", answer: "Naši kampovi su prilagođeni svim razinama. Grupe formiramo po dobi i razini znanja." },
@@ -229,7 +229,7 @@ const campsData: Record<string, CampDetails> = {
       { question: "Što ako pada kiša?", answer: "Imamo pristup natkrivenim terenima." },
     ],
     testimonials: [
-      { name: "Ivan M.", role: "Roditelj", text: "Odlična organizacija i sjajni treneri. Dijete je bilo oduševljeno!", image: "/images/photoshoot/Coerver_Kustosija-70.jpg" },
+      { name: "Ivan M.", role: "Roditelj", text: "Odlična organizacija i sjajni treneri. Dijete je bilo oduševljeno!", image: "/images/photoshoot/Coerver_Kustosija-70.webp" },
     ],
   },
   "jesenski-kamp-zagreb-2024": {
@@ -246,7 +246,7 @@ const campsData: Record<string, CampDetails> = {
     price: 200,
     spots: 20,
     totalSpots: 24,
-    heroImage: "/images/photoshoot/Coerver_Kustosija-70.jpg",
+    heroImage: "/images/photoshoot/Coerver_Kustosija-70.webp",
     description: `
       Iskoristite jesenske praznike za napredak u nogometu! Četiri dana intenzivnog
       Coerver treninga u modernom sportskom centru.
@@ -287,9 +287,9 @@ const campsData: Record<string, CampDetails> = {
       "Rezervnu odjeću",
     ],
     gallery: [
-      "/images/photoshoot/Coerver_Kustosija-70.jpg",
-      "/images/photoshoot/Coerver_Kustosija-15.jpg",
-      "/images/photoshoot/Coerver_Kustosija-60.jpg",
+      "/images/photoshoot/Coerver_Kustosija-70.webp",
+      "/images/photoshoot/Coerver_Kustosija-15.webp",
+      "/images/photoshoot/Coerver_Kustosija-60.webp",
     ],
     faq: [
       { question: "Za koje uzraste je kamp?", answer: "Kamp je namijenjen djeci od 7 do 15 godina." },
@@ -632,7 +632,7 @@ export default function CampDetailsPage() {
                 <div className="space-y-4">
                   <div className="aspect-square rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-60.jpg"
+                      src="/images/photoshoot/Coerver_Kustosija-60.webp"
                       alt="Trening na kampu"
                       fill
                       className="object-cover"
@@ -640,7 +640,7 @@ export default function CampDetailsPage() {
                   </div>
                   <div className="aspect-video rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-25.jpg"
+                      src="/images/photoshoot/Coerver_Kustosija-25.webp"
                       alt="Kamp aktivnosti"
                       fill
                       className="object-cover"
@@ -650,7 +650,7 @@ export default function CampDetailsPage() {
                 <div className="space-y-4 pt-8">
                   <div className="aspect-video rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-10.jpg"
+                      src="/images/photoshoot/Coerver_Kustosija-10.webp"
                       alt="Grupni trening"
                       fill
                       className="object-cover"
@@ -658,7 +658,7 @@ export default function CampDetailsPage() {
                   </div>
                   <div className="aspect-square rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-70.jpg"
+                      src="/images/photoshoot/Coerver_Kustosija-70.webp"
                       alt="Zabava na kampu"
                       fill
                       className="object-cover"
@@ -878,7 +878,7 @@ export default function CampDetailsPage() {
             {/* Map placeholder with image */}
             <div className="animate-on-scroll relative aspect-video lg:aspect-square rounded-3xl overflow-hidden">
               <Image
-                src="/images/photoshoot/Coerver_Kustosija-45.jpg"
+                src="/images/photoshoot/Coerver_Kustosija-45.webp"
                 alt="Lokacija kampa"
                 fill
                 className="object-cover"

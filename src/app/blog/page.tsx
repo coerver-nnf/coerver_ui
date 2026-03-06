@@ -16,7 +16,7 @@ const samplePosts: Post[] = [
     content: "",
     excerpt:
       "Jednostavne vježbe koje možeš raditi kod kuće za poboljšanje kontrole lopte. Ove vježbe su temelj Coerver metodologije.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-70.jpg",
+    featured_image: "/images/photoshoot/Coerver_Kustosija-70.webp",
     author_id: "1",
     category_id: "1",
     published: true,
@@ -31,7 +31,7 @@ const samplePosts: Post[] = [
     content: "",
     excerpt:
       "Vodič za roditelje koji traže najbolju opciju za svoje dijete. Saznajte na što obratiti pažnju.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-60.jpg",
+    featured_image: "/images/photoshoot/Coerver_Kustosija-60.webp",
     author_id: "1",
     category_id: "2",
     published: true,
@@ -46,7 +46,7 @@ const samplePosts: Post[] = [
     content: "",
     excerpt:
       "Naši mladi nogometaši osvojili su drugo mjesto na regionalnom turniru u konkurenciji od 24 ekipe.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-15.jpg",
+    featured_image: "/images/photoshoot/Coerver_Kustosija-15.webp",
     author_id: "1",
     category_id: "3",
     published: true,
@@ -61,7 +61,7 @@ const samplePosts: Post[] = [
     content: "",
     excerpt:
       "Što jesti prije, tijekom i nakon treninga za optimalne performanse i brži oporavak.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-25.jpg",
+    featured_image: "/images/photoshoot/Coerver_Kustosija-25.webp",
     author_id: "1",
     category_id: "2",
     published: true,
@@ -76,7 +76,7 @@ const samplePosts: Post[] = [
     content: "",
     excerpt:
       "Prijave za najpopularnije nogometne kampove u Hrvatskoj su službeno otvorene! Osigurajte mjesto na vrijeme.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-45.jpg",
+    featured_image: "/images/photoshoot/Coerver_Kustosija-45.webp",
     author_id: "1",
     category_id: "3",
     published: true,
@@ -91,7 +91,7 @@ const samplePosts: Post[] = [
     content: "",
     excerpt:
       "Kako pomoći djetetu da se nosi s pritiskom i razvije mentalnu snagu potrebnu za uspjeh.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-5.jpg",
+    featured_image: "/images/photoshoot/Coerver_Kustosija-5.webp",
     author_id: "1",
     category_id: "2",
     published: true,
@@ -148,7 +148,7 @@ export default function BlogPage() {
         {/* Background */}
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-55.jpg"
+            src="/images/photoshoot/Coerver_Kustosija-55.webp"
             alt=""
             fill
             className="object-cover opacity-20"
@@ -502,7 +502,7 @@ export default function BlogPage() {
                   <div className="space-y-4">
                     <div className="aspect-square rounded-2xl overflow-hidden">
                       <Image
-                        src="/images/photoshoot/Coerver_Kustosija-40.jpg"
+                        src="/images/photoshoot/Coerver_Kustosija-40.webp"
                         alt="Coerver Training"
                         width={300}
                         height={300}
@@ -511,7 +511,7 @@ export default function BlogPage() {
                     </div>
                     <div className="aspect-[4/3] rounded-2xl overflow-hidden">
                       <Image
-                        src="/images/photoshoot/Coerver_Kustosija-20.jpg"
+                        src="/images/photoshoot/Coerver_Kustosija-20.webp"
                         alt="Coerver Training"
                         width={300}
                         height={225}
@@ -522,7 +522,7 @@ export default function BlogPage() {
                   <div className="space-y-4 pt-8">
                     <div className="aspect-[4/3] rounded-2xl overflow-hidden">
                       <Image
-                        src="/images/photoshoot/Coerver_Kustosija-65.jpg"
+                        src="/images/photoshoot/Coerver_Kustosija-65.webp"
                         alt="Coerver Training"
                         width={300}
                         height={225}
@@ -531,7 +531,7 @@ export default function BlogPage() {
                     </div>
                     <div className="aspect-square rounded-2xl overflow-hidden">
                       <Image
-                        src="/images/photoshoot/Coerver_Kustosija-50.jpg"
+                        src="/images/photoshoot/Coerver_Kustosija-50.webp"
                         alt="Coerver Training"
                         width={300}
                         height={300}

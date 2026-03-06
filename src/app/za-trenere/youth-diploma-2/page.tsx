@@ -123,7 +123,7 @@ export default function YouthDiploma2Page() {
       <section className="relative min-h-[80vh] flex items-center bg-coerver-dark overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-70.jpg"
+            src="/images/photoshoot/Coerver_Kustosija-70.webp"
             alt="Youth Diploma 2"
             fill
             className="object-cover"

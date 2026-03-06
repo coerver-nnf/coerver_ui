@@ -16,7 +16,7 @@ export default function PrijavaPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Miami-146.png"
+            src="/images/photoshoot/Miami-146.webp"
             alt="Coerver Training"
             fill
             className="object-cover opacity-30"

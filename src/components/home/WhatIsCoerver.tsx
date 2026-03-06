@@ -140,7 +140,7 @@ export function WhatIsCoerver() {
           <div className="animate-on-scroll relative group">
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden">
               <Image
-                src="/images/photoshoot/Coerver_Kustosija-20.jpg"
+                src="/images/photoshoot/Coerver_Kustosija-20.webp"
                 alt="Coerver Training"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"

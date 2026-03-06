@@ -101,14 +101,14 @@ const testimonials = [
       "Coerver partnerstvo je transformiralo našu omladinsku školu. Naši igrači su tehnički superiorniji od konkurencije.",
     author: "Marko Babić",
     role: "Direktor omladinske škole, NK Dinamo Zagreb",
-    image: "/images/photoshoot/Coerver_Kustosija-25.jpg",
+    image: "/images/photoshoot/Coerver_Kustosija-25.webp",
   },
   {
     quote:
       "Strukturirani pristup i kvalitetni materijali su olakšali rad našim trenerima i podigli kvalitetu treninga.",
     author: "Ivan Leko",
     role: "Sportski direktor, NK Hajduk Split",
-    image: "/images/photoshoot/Coerver_Kustosija-60.jpg",
+    image: "/images/photoshoot/Coerver_Kustosija-60.webp",
   },
 ];
 
@@ -177,7 +177,7 @@ export default function KluboviPage() {
       <section className="relative min-h-[90vh] flex items-center bg-coerver-dark overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-60.jpg"
+            src="/images/photoshoot/Coerver_Kustosija-60.webp"
             alt="Profesionalni trening"
             fill
             className="object-cover"

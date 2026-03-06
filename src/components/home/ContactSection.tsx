@@ -112,7 +112,7 @@ export function ContactSection() {
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-1/2 h-full opacity-10">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-55.jpg"
+            src="/images/photoshoot/Coerver_Kustosija-55.webp"
             alt=""
             fill
             className="object-cover"

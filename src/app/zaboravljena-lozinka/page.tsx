@@ -43,7 +43,7 @@ export default function ForgotPasswordPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Miami-141.png"
+            src="/images/photoshoot/Miami-141.webp"
             alt="Coerver Training"
             fill
             className="object-cover opacity-20"

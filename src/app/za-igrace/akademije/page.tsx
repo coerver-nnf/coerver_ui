@@ -125,7 +125,7 @@ export default function AkademijePage() {
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-coerver-dark overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-60.jpg"
+            src="/images/photoshoot/Coerver_Kustosija-60.webp"
             alt="Coerver akademija"
             fill
             className="object-cover opacity-30"

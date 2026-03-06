@@ -10,7 +10,7 @@ const countries = [
     coaches: "1000+",
     players: "5000+",
     cities: ["Zagreb", "Split", "Varaždin"],
-    image: "/images/photoshoot/Coerver_Kustosija-10.jpg",
+    image: "/images/photoshoot/Coerver_Kustosija-10.webp",
   },
   {
     name: "Slovenija",
@@ -18,7 +18,7 @@ const countries = [
     coaches: "500+",
     players: "1000+",
     cities: ["Ljubljana", "Kranj"],
-    image: "/images/photoshoot/Coerver_Kustosija-30.jpg",
+    image: "/images/photoshoot/Coerver_Kustosija-30.webp",
   },
   {
     name: "Bosna i Hercegovina",
@@ -26,7 +26,7 @@ const countries = [
     coaches: "100+",
     players: "1000+",
     cities: ["Široki Brijeg", "Sarajevo"],
-    image: "/images/photoshoot/Coerver_Kustosija-50.jpg",
+    image: "/images/photoshoot/Coerver_Kustosija-50.webp",
   },
 ];
 

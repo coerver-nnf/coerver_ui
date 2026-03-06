@@ -135,7 +135,7 @@ export default function CoerverIntroPage() {
       <section className="relative min-h-[80vh] flex items-center bg-coerver-dark overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-10.jpg"
+            src="/images/photoshoot/Coerver_Kustosija-10.webp"
             alt="Coerver Intro tečaj"
             fill
             className="object-cover"
@@ -316,7 +316,7 @@ export default function CoerverIntroPage() {
                 <div className="space-y-4">
                   <div className="aspect-square rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-25.jpg"
+                      src="/images/photoshoot/Coerver_Kustosija-25.webp"
                       alt="Coerver trening"
                       fill
                       className="object-cover"
@@ -324,7 +324,7 @@ export default function CoerverIntroPage() {
                   </div>
                   <div className="aspect-video rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-60.jpg"
+                      src="/images/photoshoot/Coerver_Kustosija-60.webp"
                       alt="Coerver edukacija"
                       fill
                       className="object-cover"
@@ -334,7 +334,7 @@ export default function CoerverIntroPage() {
                 <div className="space-y-4 pt-8">
                   <div className="aspect-video rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-45.jpg"
+                      src="/images/photoshoot/Coerver_Kustosija-45.webp"
                       alt="Grupni trening"
                       fill
                       className="object-cover"
@@ -342,7 +342,7 @@ export default function CoerverIntroPage() {
                   </div>
                   <div className="aspect-square rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-70.jpg"
+                      src="/images/photoshoot/Coerver_Kustosija-70.webp"
                       alt="Coerver metodologija"
                       fill
                       className="object-cover"

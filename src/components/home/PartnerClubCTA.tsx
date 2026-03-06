@@ -10,7 +10,7 @@ export function PartnerClubCTA() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/photoshoot/Miami-144.png"
+          src="/images/photoshoot/Miami-144.webp"
           alt="Coerver Partner Club"
           fill
           className="object-cover"

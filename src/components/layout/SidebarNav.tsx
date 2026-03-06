@@ -336,7 +336,7 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
                 )}
               >
                 <Image
-                  src="/images/photoshoot/Coerver_Kustosija-60.jpg"
+                  src="/images/photoshoot/Coerver_Kustosija-60.webp"
                   alt="Coerver Training"
                   fill
                   className="object-cover"

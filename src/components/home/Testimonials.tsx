@@ -96,7 +96,7 @@ export function Testimonials() {
               {/* Background image */}
               <div className="absolute inset-0 opacity-20">
                 <Image
-                  src="/images/photoshoot/Coerver_Kustosija-60.jpg"
+                  src="/images/photoshoot/Coerver_Kustosija-60.webp"
                   alt="Background"
                   fill
                   className="object-cover"

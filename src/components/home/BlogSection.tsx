@@ -13,7 +13,7 @@ const samplePosts: Post[] = [
     content: "",
     excerpt:
       "ZAPOČINJU RAD COERVER® PERFORMANCE AKADEMIJE – OTKLJUČAJTE PUNI POTENCIJAL VAŠE IGRE! Dragi roditelji i mladi nogometaši, s velikim uzbuđenjem najavljujemo početak nove sezone.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-70.jpg",
+    featured_image: "/images/photoshoot/Coerver_Kustosija-70.webp",
     author_id: "1",
     category_id: "1",
     published: true,
@@ -28,7 +28,7 @@ const samplePosts: Post[] = [
     content: "",
     excerpt:
       "Nogometni klubovi diljem svijeta sve više prepoznaju važnost implementacije suvremenih metoda.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-60.jpg",
+    featured_image: "/images/photoshoot/Coerver_Kustosija-60.webp",
     author_id: "1",
     category_id: "1",
     published: true,
@@ -43,7 +43,7 @@ const samplePosts: Post[] = [
     content: "",
     excerpt:
       "Coerver Coaching ove zime organizira božićni nogometni kamp u Makarskoj.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-15.jpg",
+    featured_image: "/images/photoshoot/Coerver_Kustosija-15.webp",
     author_id: "1",
     category_id: "1",
     published: true,
@@ -58,7 +58,7 @@ const samplePosts: Post[] = [
     content: "",
     excerpt:
       "Jednostavne vježbe koje možeš raditi kod kuće za poboljšanje kontrole lopte.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-25.jpg",
+    featured_image: "/images/photoshoot/Coerver_Kustosija-25.webp",
     author_id: "1",
     category_id: "1",
     published: true,
@@ -143,7 +143,7 @@ export function BlogSection({ posts = samplePosts }: BlogSectionProps) {
             <article className="relative h-full min-h-[500px] lg:min-h-[600px] rounded-3xl overflow-hidden">
               {/* Image */}
               <Image
-                src={featuredPost.featured_image || "/images/photoshoot/Coerver_Kustosija-70.jpg"}
+                src={featuredPost.featured_image || "/images/photoshoot/Coerver_Kustosija-70.webp"}
                 alt={featuredPost.title}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -210,7 +210,7 @@ export function BlogSection({ posts = samplePosts }: BlogSectionProps) {
                   {/* Image */}
                   <div className="relative w-32 h-32 lg:w-40 lg:h-40 flex-shrink-0 rounded-xl overflow-hidden">
                     <Image
-                      src={post.featured_image || "/images/photoshoot/Coerver_Kustosija-60.jpg"}
+                      src={post.featured_image || "/images/photoshoot/Coerver_Kustosija-60.webp"}
                       alt={post.title}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"

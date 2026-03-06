@@ -104,7 +104,7 @@ export default function ContactPage() {
         {/* Background */}
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-55.jpg"
+            src="/images/photoshoot/Coerver_Kustosija-55.webp"
             alt=""
             fill
             className="object-cover opacity-20"
