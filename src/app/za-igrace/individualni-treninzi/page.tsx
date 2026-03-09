@@ -29,30 +29,30 @@ const benefits = [
     icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6",
   },
   {
-    title: "Video Analiza",
-    description: "Snimanje i analiza tvojih treninga za dodatnu povratnu informaciju.",
-    icon: "M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z",
+    title: "Kontinuirano Praćenje",
+    description: "Praćenje igrača kroz utakmice i evaluacije.",
+    icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
   },
 ];
 
 const coaches = [
   {
-    name: "Ivan Perić",
-    title: "Coerver Master Coach",
-    specialization: "Ball Mastery, 1v1",
-    experience: "15+ godina",
+    name: "Ante Bašić",
+    title: "Direktor Coerver Hrvatska, Slovenija i BiH",
+    licence: "UEFA A",
+    experience: "16+ godina",
   },
   {
-    name: "Marko Horvat",
-    title: "Coerver Youth Coach",
-    specialization: "Brzina, Agilnost",
-    experience: "10+ godina",
+    name: "Toni Volarević",
+    title: "Direktor Coerver Split",
+    licence: "UEFA B",
+    experience: "11+ godina",
   },
   {
-    name: "Ana Kovačević",
-    title: "Coerver Youth Coach",
-    specialization: "Tehnika, Završnica",
-    experience: "8+ godina",
+    name: "Tomislav Jelenski",
+    title: "Direktor Coerver Varaždin",
+    licence: "Nacionalna Pro Licenca",
+    experience: "20+ godina",
   },
 ];
 
@@ -74,7 +74,7 @@ const pricing = [
     name: "Paket 5",
     price: "225",
     period: "5 treninga",
-    features: ["Ušteda 25€", "Fleksibilna valjanost", "Video analiza"],
+    features: ["Ušteda 25€", "Fleksibilna valjanost", "Kontinuirano praćenje"],
     highlighted: true,
     badge: "Najpopularnije",
   },
@@ -223,7 +223,7 @@ export default function IndividualniTreninziPage() {
                 className="animate-on-scroll bg-white rounded-3xl p-8 text-center shadow-sm hover:shadow-xl transition-all duration-300"
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <div className="w-24 h-24 mx-auto bg-gradient-to-br from-coerver-green to-emerald-600 rounded-full flex items-center justify-center text-white text-3xl font-black mb-6">
+                <div className="w-20 h-20 mx-auto bg-gradient-to-br from-coerver-green to-emerald-600 rounded-full flex items-center justify-center text-white text-2xl font-black mb-5">
                   {coach.name.charAt(0)}
                 </div>
                 <h3 className="text-xl font-bold text-coerver-dark mb-1">
@@ -232,15 +232,9 @@ export default function IndividualniTreninziPage() {
                 <p className="text-coerver-green font-medium text-sm mb-4">
                   {coach.title}
                 </p>
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center justify-center gap-2 text-gray-600">
-                    <span className="font-medium">Specijalizacija:</span>
-                    {coach.specialization}
-                  </div>
-                  <div className="flex items-center justify-center gap-2 text-gray-600">
-                    <span className="font-medium">Iskustvo:</span>
-                    {coach.experience}
-                  </div>
+                <div className="text-sm text-gray-600 space-y-1">
+                  <p className="font-semibold">{coach.licence}</p>
+                  <p>{coach.experience} iskustva</p>
                 </div>
               </div>
             ))}
@@ -286,7 +280,7 @@ export default function IndividualniTreninziPage() {
         </div>
       </section>
 
-      {/* Pricing Section */}
+      {/* Pricing Section - commented out for now, will be used in a month or two
       <section className="py-24 lg:py-32 bg-gray-50">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="animate-on-scroll text-center max-w-3xl mx-auto mb-16">
@@ -354,6 +348,7 @@ export default function IndividualniTreninziPage() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Contact Section */}
       <section id="prijava" className="py-24 lg:py-32 bg-white">

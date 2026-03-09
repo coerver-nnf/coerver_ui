@@ -66,11 +66,10 @@ const dailySchedule = [
 
 const included = [
   { item: "Profesionalni Coerver treneri", icon: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" },
-  { item: "Coerver majica i shorts", icon: "M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" },
-  { item: "Ručak i užine", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
+  { item: "Coerver dres", icon: "M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" },
+  { item: "Ručak i/ili užine", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
   { item: "Osiguranje", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
   { item: "Certifikat sudjelovanja", icon: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" },
-  { item: "Video snimke treninga", icon: "M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" },
   { item: "Završno natjecanje s nagradama", icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" },
   { item: "Fotografije s kampa", icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" },
 ];
@@ -78,15 +77,15 @@ const included = [
 const faqs = [
   {
     question: "Što dijete treba ponijeti na kamp?",
-    answer: "Nogometne kopačke ili tenisice, štucne, štitnike, bocu vode i dobru volju! Coerver opremu dobivate na kampu.",
+    answer: "Nogometne kopačke ili tenisice, štitnike, bocu vode, potrepštine za osobnu higijenu i dobru volju! Coerver opremu dobivate na kampu.",
   },
   {
     question: "Je li uključen ručak?",
-    answer: "Da, svi obroci i užine su uključeni u cijenu kampa. Molimo vas da nas obavijestite o eventualnim alergijama.",
+    answer: "Ovisno o vremenskom trajanju kampa igrači imaju uključen obrok odnosno ručak i/ili užinu",
   },
   {
     question: "Što ako dijete nema prethodnog iskustva?",
-    answer: "Naši kampovi su prilagođeni svim razinama - od potpunih početnika do naprednih igrača. Grupe se formiraju po dobi i razini.",
+    answer: "Naši kampovi su prilagođeni svim razinama - od potpunih početnika do naprednih igrača. Grupe se formiraju po dobi i sposobnosti igrača.",
   },
   {
     question: "Kako mogu otkazati prijavu?",

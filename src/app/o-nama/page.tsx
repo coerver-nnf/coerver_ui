@@ -415,67 +415,77 @@ export default function ONamaPage() {
       {/* Pyramid System Section */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Content */}
-            <div>
-              <div className="animate-on-scroll">
-                <div className="inline-flex items-center gap-2 bg-coerver-green/10 rounded-full px-4 py-2 mb-6">
-                  <span className="text-coerver-green text-sm font-semibold">Coerver® sustav</span>
-                </div>
-                <h2 className="text-4xl lg:text-5xl font-black text-coerver-dark leading-tight mb-6">
-                  Piramida<br />razvoja igrača
-                </h2>
-                <p className="text-lg text-gray-600 mb-8">
-                  Progresivni sustav koji gradi tehničku izvrsnost od temelja.
-                  Svaka razina nadograđuje prethodnu, stvarajući kompletnog igrača.
-                </p>
-              </div>
-
-              {/* Pyramid levels */}
-              <div className="space-y-3">
-                {pyramidLevels.map((level, index) => (
-                  <div
-                    key={index}
-                    className="animate-on-scroll flex items-center gap-4 group"
-                  >
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${level.color} flex items-center justify-center text-white font-bold flex-shrink-0`}>
-                      {level.level}
-                    </div>
-                    <div className="flex-1 bg-gray-50 rounded-xl p-4 group-hover:bg-coerver-green/5 transition-colors">
-                      <h4 className="font-bold text-coerver-dark">{level.title}</h4>
-                      <p className="text-sm text-gray-500">{level.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          {/* Header */}
+          <div className="animate-on-scroll text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 bg-coerver-green/10 rounded-full px-4 py-2 mb-6">
+              <span className="text-coerver-green text-sm font-semibold">Coerver® sustav</span>
             </div>
+            <h2 className="text-4xl lg:text-5xl font-black text-coerver-dark leading-tight mb-6">
+              Piramida razvoja igrača
+            </h2>
+            <p className="text-lg text-gray-600">
+              Progresivni sustav koji gradi tehničku izvrsnost od temelja.
+              Svaka razina nadograđuje prethodnu, stvarajući kompletnog igrača.
+            </p>
+          </div>
 
-            {/* Visual */}
-            <div className="animate-on-scroll relative">
-              <div className="relative aspect-square max-w-lg mx-auto">
+          {/* Pyramid Images - 3 columns */}
+          <div className="animate-on-scroll grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
+            <div className="bg-gray-50 rounded-2xl p-6 flex flex-col items-center">
+              <div className="relative w-full aspect-square mb-4">
                 <Image
-                  src="/images/photoshoot/Coerver_Kustosija-25.webp"
-                  alt="Coerver Training"
+                  src="/images/pyramid-2.JPG"
+                  alt="Coerver Piramida - 6 razina razvoja"
                   fill
-                  className="object-cover rounded-3xl"
+                  className="object-contain"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-coerver-dark/60 via-transparent to-transparent rounded-3xl" />
+              </div>
+              <h3 className="font-bold text-coerver-dark text-center">Coerver® Piramida</h3>
+              <p className="text-sm text-gray-500 text-center">6 razina tehničkog razvoja</p>
+            </div>
+            <div className="bg-gray-50 rounded-2xl p-6 flex flex-col items-center">
+              <div className="relative w-full aspect-square mb-4">
+                <Image
+                  src="/images/pyramid-1.JPG"
+                  alt="1v1 Piramida - potezi i fintiranje"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <h3 className="font-bold text-coerver-dark text-center">1v1 Piramida</h3>
+              <p className="text-sm text-gray-500 text-center">Potezi i fintiranje</p>
+            </div>
+            <div className="bg-gray-50 rounded-2xl p-6 flex flex-col items-center">
+              <div className="relative w-full aspect-square mb-4">
+                <Image
+                  src="/images/pyramid-3.JPG"
+                  alt="Razine igrača - od početnika do majstora"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <h3 className="font-bold text-coerver-dark text-center">Razine Igrača</h3>
+              <p className="text-sm text-gray-500 text-center">Od početnika do majstora</p>
+            </div>
+          </div>
 
-                {/* Floating badge */}
-                <div className="absolute bottom-6 left-6 right-6 bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-white/60 text-sm">Razina napretka</div>
-                      <div className="text-white font-bold text-lg">6 koraka do izvrsnosti</div>
-                    </div>
-                    <div className="w-14 h-14 rounded-full bg-coerver-green flex items-center justify-center">
-                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                      </svg>
-                    </div>
+          {/* Pyramid levels list */}
+          <div className="max-w-3xl mx-auto">
+            <div className="grid sm:grid-cols-2 gap-4">
+              {pyramidLevels.map((level, index) => (
+                <div
+                  key={index}
+                  className="animate-on-scroll flex items-center gap-4 group"
+                >
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${level.color} flex items-center justify-center text-white font-bold flex-shrink-0`}>
+                    {level.level}
+                  </div>
+                  <div className="flex-1 bg-gray-50 rounded-xl p-4 group-hover:bg-coerver-green/5 transition-colors">
+                    <h4 className="font-bold text-coerver-dark">{level.title}</h4>
+                    <p className="text-sm text-gray-500">{level.description}</p>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

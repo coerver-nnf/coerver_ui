@@ -38,7 +38,7 @@ const curriculum = [
   },
   {
     time: "13:30 - 15:00",
-    topic: "1v1 Potezi - Osnove",
+    topic: "1v1 - Teorija i Praksa",
     description: "Uvod u temeljne driblinške poteze i metodiku učenja.",
     icon: "M13 10V3L4 14h7v7l9-11h-7z",
   },
@@ -50,8 +50,8 @@ const curriculum = [
   },
   {
     time: "15:15 - 17:00",
-    topic: "Praktična Radionica",
-    description: "Praktična primjena naučenog u simuliranom treningu.",
+    topic: "Zaključak",
+    description: "Recap cijelog dana predavanja.",
     icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
   },
 ];
@@ -79,26 +79,25 @@ const upcomingDates = [
 
 const whatYouGet = [
   { item: "Coerver Intro certifikat", icon: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" },
-  { item: "Pristup online video biblioteci (3 mjeseca)", icon: "M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" },
+  { item: "15+ vježbi i igara sa varijacijama", icon: "M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" },
   { item: "Coerver priručnik", icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" },
-  { item: "Ručak i osvježenja", icon: "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" },
   { item: "Networking s drugim trenerima", icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" },
 ];
 
 const whatYoullLearn = [
   {
-    title: "Coerver Filozofija",
-    description: "Razumijevanje temeljnih principa koji čine Coerver metodologiju jedinstvenom.",
+    title: "Coerver Evolucija",
+    description: "Evolucija Coerver vježbi i igara.",
     icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
   },
   {
-    title: "Ball Mastery Osnove",
-    description: "Temeljne vježbe kontrole lopte i kako ih implementirati u svoje treninge.",
+    title: "Ball Mastery",
+    description: "Vježbe kontrole lopte za sve dobi i razine, i kako ih implementirati u svoje treninge.",
     icon: "M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z",
   },
   {
-    title: "1v1 Uvod",
-    description: "Osnovni driblinški potezi i metodika njihovog učenja mladim igračima.",
+    title: "1v1",
+    description: "Vještine za svakog igrača, change of directions, starts & stops i feints potezi za sve situacije u igri.",
     icon: "M13 10V3L4 14h7v7l9-11h-7z",
   },
 ];
@@ -165,14 +164,13 @@ export default function CoerverIntroPage() {
 
             <p className="text-xl text-white/70 mb-8 max-w-xl">
               Jednodnevni uvod u Coerver metodologiju. Savršen prvi korak za trenere
-              koji žele upoznati osnove najpoznatije metode individualnog razvoja igrača.
+              koji žele upoznati Coerver ball mastery i 1v1 kurikulum.
             </p>
 
             {/* Quick info cards */}
             <div className="flex flex-wrap gap-4 mb-10">
               {[
-                { label: "Trajanje", value: "1 dan (8 sati)" },
-                { label: "Cijena", value: "150€" },
+                { label: "Trajanje", value: "1 dan" },
                 { label: "Razina", value: "Početni" },
               ].map((item) => (
                 <div
@@ -465,7 +463,6 @@ export default function CoerverIntroPage() {
                 <h4 className="font-bold text-lg mb-6">Informacije o tečaju:</h4>
                 <div className="space-y-4">
                   {[
-                    { label: "Cijena: 150€", sublabel: "uključuje sve materijale" },
                     { label: "Max. 20 polaznika", sublabel: "po terminu" },
                     { label: "Nema preduvjeta", sublabel: "otvoren za sve trenere" },
                   ].map((item) => (

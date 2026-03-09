@@ -13,43 +13,33 @@ if (typeof window !== "undefined") {
 
 const modules = [
   {
-    title: "Ball Mastery Napredni",
-    description: "Kompletan Ball Mastery kurikulum s progresijom od početne do napredne razine.",
-    topics: [
-      "40+ vježbi kontrole lopte",
-      "Progresije po dobi i razini",
-      "Integracija u trening",
-    ],
+    title: "Zagrijavanje",
+    description: "Vježbe kako koristiti ball mastery u zagrijavanju.",
+    topics: [],
     icon: "M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z",
   },
   {
-    title: "1v1 Potezi",
-    description: "Svi temeljni i napredni 1v1 potezi s metodikom učenja.",
-    topics: [
-      "15+ driblinških poteza",
-      "Situacijska primjena",
-      "Coaching points",
-    ],
+    title: "Brzina",
+    description: "Vježbe brzine s loptom.",
+    topics: [],
     icon: "M13 10V3L4 14h7v7l9-11h-7z",
   },
   {
-    title: "Receiving & Turning",
-    description: "Tehnike primanja lopte i okretanja u različitim situacijama.",
-    topics: [
-      "Primanje pod pritiskom",
-      "Okretanje s loptom",
-      "Prostorna svjesnost",
-    ],
+    title: "1v1",
+    description: "1v1 potezi i 1v1 i 2v2 igre.",
+    topics: [],
     icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15",
   },
   {
-    title: "Passing",
-    description: "Tehnika dodavanja i vizija igre.",
-    topics: [
-      "Tehnika kratkih i dugih dodavanja",
-      "Kombinacije",
-      "Igra u trokutu",
-    ],
+    title: "Small Group Play",
+    description: "Igre u manjim grupama. Vježbe igre usmjerene na primanja, dodavanja, suradnju i završnicu.",
+    topics: [],
+    icon: "M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4",
+  },
+  {
+    title: "Igre na Skraćenom Prostoru",
+    description: "Tematske i slobodne igre za razvoj svih vještina pod punim pritiskom.",
+    topics: [],
     icon: "M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4",
   },
 ];
@@ -92,12 +82,9 @@ const upcomingDates = [
 
 const whatYouGet = [
   "Youth Diploma 1 certifikat",
-  "Pristup Coerver online platformi (12 mjeseci)",
   "Komplet priručnika i materijala",
-  "Video biblioteka s 100+ vježbi",
-  "Ručak i osvježenja oba dana",
-  "Coerver polo majica",
-  "Pristup Alumni mreži",
+  "Ručak i osvježenja",
+  "25 vježbi sa varijacijama",
 ];
 
 export default function YouthDiploma1Page() {
@@ -165,16 +152,13 @@ export default function YouthDiploma1Page() {
             </h1>
 
             <p className="text-xl text-white/70 mb-8 max-w-xl">
-              Prva razina Coerver certifikacije. Dvodnevni intenzivni program koji
-              pokriva Ball Mastery, 1v1 poteze i tehniku primanja i dodavanja.
+              Dvodnevni intenzivni program u kojem će treneri naučiti kako kreirati Coerver trening uz pomoć Coerver trening planera.
             </p>
 
             {/* Quick info cards */}
             <div className="flex flex-wrap gap-4 mb-10">
               {[
-                { label: "Trajanje", value: "2 dana (16 sati)" },
-                { label: "Cijena", value: "350€" },
-                { label: "Preduvjet", value: "Coerver Intro" },
+                { label: "Trajanje", value: "2 dana" },
               ].map((item) => (
                 <div
                   key={item.label}
@@ -210,7 +194,7 @@ export default function YouthDiploma1Page() {
               Što ćeš naučiti?
             </h2>
             <p className="text-lg text-gray-600">
-              YD1 pokriva četiri ključna modula Coerver metodologije.
+              Youth Diploma 1 pokriva pet ključnih modula Coerver metodologije.
             </p>
           </div>
 

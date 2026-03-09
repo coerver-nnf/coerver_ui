@@ -13,47 +13,27 @@ if (typeof window !== "undefined") {
 
 const modules = [
   {
-    title: "Speed & Agility",
-    description: "Nogometno-specifični razvoj brzine i agilnosti.",
-    topics: [
-      "Eksplozivnost i ubrzanje",
-      "Promjena smjera",
-      "Brzina s loptom",
-      "Periodizacija treninga brzine",
-    ],
+    title: "Box/Trap foundation",
+    description: "Coerver timski ball mastery, brzina, 1v1.",
+    topics: [],
     icon: "M13 10V3L4 14h7v7l9-11h-7z",
   },
   {
-    title: "Finishing",
-    description: "Kompletna metodologija treninga završnice.",
-    topics: [
-      "Tehnike udarca",
-      "Završnica 1v1",
-      "Udarci iz daljine",
-      "Igra glavom",
-    ],
+    title: "Box/Trap defense",
+    description: "Sprečavanje napda i započinjanje napada.",
+    topics: [],
     icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
   },
   {
-    title: "Group Attack",
-    description: "Koordinirani napad u malim grupama.",
-    topics: [
-      "Kombinacije u trokutu",
-      "Probijanje linija",
-      "Treći čovjek",
-      "Igra u širinu i dubinu",
-    ],
+    title: "Box/Trap transition",
+    description: "Komibatorika na malom prostoru, brzi protunapad, dubinsko dodavanje",
+    topics: [],
     icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
   },
   {
-    title: "Periodizacija i Planiranje",
-    description: "Dugoročno planiranje razvoja igrača.",
-    topics: [
-      "Godišnji ciklusi",
-      "Progresije po dobi",
-      "Integracija svih elemenata",
-      "Evaluacija napretka",
-    ],
+    title: "Box/Trap finishing",
+    description: "Kreiranje šansi za pogodak i realizacija.",
+    topics: [],
     icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
   },
 ];
@@ -81,13 +61,9 @@ const upcomingDates = [
 
 const whatYouGet = [
   "Youth Diploma 2 certifikat",
-  "Status licenciranog Coerver trenera",
-  "Doživotni pristup online platformi",
-  "Komplet naprednih materijala",
-  "Video biblioteka s 200+ vježbi",
-  "Ručak i osvježenja oba dana",
-  "Coerver premium komplet opreme",
+  "Ručak i osvježenja",
   "Poziv na godišnju konferenciju",
+  "70+ Coerver vježbi sa varijacijama",
   "Mogućnost rada na Coerver programima",
 ];
 
@@ -157,16 +133,13 @@ export default function YouthDiploma2Page() {
             </h1>
 
             <p className="text-xl text-white/70 mb-8 max-w-xl">
-              Napredna razina Coerver certifikacije. Kompletan kurikulum koji
-              pokriva brzinu, agilnost, završnicu i grupni napad.
+              Napredna razina Coerver edukacije. Razvoj Coerver ekipnog stila igara (box/trap).
             </p>
 
             {/* Quick info cards */}
             <div className="flex flex-wrap gap-4 mb-10">
               {[
-                { label: "Trajanje", value: "2 dana (16 sati)" },
-                { label: "Cijena", value: "450€" },
-                { label: "Preduvjet", value: "Youth Diploma 1" },
+                { label: "Trajanje", value: "2 dana" },
               ].map((item) => (
                 <div
                   key={item.label}
@@ -251,10 +224,10 @@ export default function YouthDiploma2Page() {
         <div className="container mx-auto px-6 lg:px-8 relative">
           <div className="animate-on-scroll text-center max-w-3xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 bg-coerver-green/20 rounded-full px-4 py-2 mb-6">
-              <span className="text-coerver-green text-sm font-semibold">Kompletna certifikacija</span>
+              <span className="text-coerver-green text-sm font-semibold">Kompletna edukacija</span>
             </div>
             <h2 className="text-4xl lg:text-5xl font-black text-white mb-4">
-              Tvoj Coerver put
+              Tvoj Coerver Pathway
             </h2>
           </div>
 
@@ -300,8 +273,7 @@ export default function YouthDiploma2Page() {
 
           <div className="animate-on-scroll text-center">
             <p className="text-white/60 text-lg max-w-2xl mx-auto">
-              Nakon YD2 postajete potpuno certificirani Coerver trener s pristupom
-              svim materijalima i globalnoj mreži.
+              Nakon Youth Diploma 2 dobivate kompletan uvid u Coerver sustav razvoja igrača.
             </p>
           </div>
         </div>
@@ -316,7 +288,7 @@ export default function YouthDiploma2Page() {
                 <span className="text-coerver-green text-sm font-semibold">Što dobivaš</span>
               </div>
               <h2 className="text-4xl lg:text-5xl font-black text-coerver-dark mb-6">
-                Kompletna certifikacija
+                Kompletna edukacija
               </h2>
 
               <div className="space-y-3">
@@ -349,13 +321,13 @@ export default function YouthDiploma2Page() {
                     COERVER COACHING
                   </div>
                   <div className="text-gray-500 mb-6">
-                    Licencirani Trener
+                    
                   </div>
                   <div className="text-xl font-bold text-coerver-dark mb-2">
-                    Youth Diploma 1 & 2
+                    Coerver Intro, Youth Diploma 1 & 2
                   </div>
                   <div className="text-gray-500 text-sm">
-                    Potpuna certifikacija
+                    Potpuna edukacija
                   </div>
 
                   <div className="mt-8 pt-6 border-t border-gray-100">
@@ -363,7 +335,7 @@ export default function YouthDiploma2Page() {
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      Priznato u 50+ zemalja
+                      Priznato u cijelom svijetu
                     </div>
                   </div>
                 </div>

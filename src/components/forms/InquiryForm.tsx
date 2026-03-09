@@ -28,6 +28,8 @@ export function InquiryForm({
     phone: "",
     message: "",
     childAge: "",
+    club: "",
+    position: "",
   });
 
   const handleChange = (
@@ -47,12 +49,25 @@ export function InquiryForm({
     try {
       const supabase = createClient();
 
+      // Build message with club and position info
+      let fullMessage = formData.message;
+      if (type === "camp") {
+        const extras = [];
+        if (formData.club) extras.push(`Klub: ${formData.club}`);
+        if (formData.position) extras.push(`Pozicija: ${formData.position}`);
+        if (extras.length > 0) {
+          fullMessage = `${extras.join(", ")}\n\n${formData.message}`;
+        }
+      } else if ((type === "course" || type === "club") && formData.club) {
+        fullMessage = `Klub: ${formData.club}\n\n${formData.message}`;
+      }
+
       const { error: submitError } = await supabase.from("inquiries").insert({
         type,
         name: formData.name,
         email: formData.email,
         phone: formData.phone || null,
-        message: formData.message,
+        message: fullMessage,
         program_id: programId || null,
       });
 
@@ -65,6 +80,8 @@ export function InquiryForm({
         phone: "",
         message: "",
         childAge: "",
+        club: "",
+        position: "",
       });
     } catch {
       setError("Došlo je do greške. Molimo pokušajte ponovno.");
@@ -156,6 +173,53 @@ export function InquiryForm({
               { value: "13-14", label: "13-14 godina" },
               { value: "15+", label: "15+ godina" },
             ]}
+          />
+        )}
+
+        {type === "camp" && (
+          <>
+            <Input
+              label="Klub"
+              name="club"
+              value={formData.club}
+              onChange={handleChange}
+              placeholder="Naziv kluba u kojem igra"
+            />
+
+            <Select
+              label="Pozicija"
+              name="position"
+              value={formData.position}
+              onChange={handleChange}
+              options={[
+                { value: "", label: "Odaberite poziciju" },
+                { value: "Golman", label: "Golman" },
+                { value: "Branič", label: "Branič" },
+                { value: "Vezni", label: "Vezni" },
+                { value: "Napadač", label: "Napadač" },
+              ]}
+            />
+          </>
+        )}
+
+        {type === "course" && (
+          <Input
+            label="Klub"
+            name="club"
+            value={formData.club}
+            onChange={handleChange}
+            placeholder="Naziv kluba iz kojeg se prijavljujete"
+          />
+        )}
+
+        {type === "club" && (
+          <Input
+            label="Naziv kluba *"
+            name="club"
+            value={formData.club}
+            onChange={handleChange}
+            placeholder="Naziv vašeg kluba"
+            required
           />
         )}
 

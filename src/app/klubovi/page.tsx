@@ -82,6 +82,11 @@ const benefits = [
     description: "Pridružite se mreži od 3000+ partnerskih klubova.",
     icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
   },
+  {
+    title: "Pristup Coerver Croatia Platformi",
+    description: "Ekskluzivan pristup digitalnoj platformi s vježbama i materijalima.",
+    icon: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+  },
 ];
 
 const currentPartners = [
@@ -140,8 +145,8 @@ const processSteps = [
 ];
 
 const stats = [
-  { value: "3,000+", label: "Partnerskih klubova" },
-  { value: "50+", label: "Zemalja" },
+  { value: "1,000+", label: "Partnerskih klubova" },
+  { value: "60+", label: "Zemalja" },
   { value: "40+", label: "Godina iskustva" },
 ];
 
@@ -205,7 +210,7 @@ export default function KluboviPage() {
             </h1>
 
             <p className="text-xl text-white/70 mb-10 max-w-xl">
-              Pridružite se mreži od preko 3000 partnerskih klubova diljem svijeta.
+              Pridružite se mreži od preko 1000 partnerskih klubova diljem svijeta.
               Implementirajte provjerenu Coerver metodologiju u vašu omladinsku školu.
             </p>
 
@@ -244,11 +249,11 @@ export default function KluboviPage() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {benefits.map((benefit, index) => (
               <div
                 key={benefit.title}
-                className="animate-on-scroll group bg-gray-50 hover:bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300"
+                className="animate-on-scroll group bg-gray-50 hover:bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="w-14 h-14 rounded-2xl bg-coerver-green/10 flex items-center justify-center mb-6 group-hover:bg-coerver-green group-hover:scale-110 transition-all duration-300">
@@ -266,14 +271,13 @@ export default function KluboviPage() {
         </div>
       </section>
 
-      {/* Partnership Types */}
+      {/* Partnership Types - commented out for now
       <section className="py-24 lg:py-32 bg-coerver-dark relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-coerver-green/10 rounded-full blur-[150px]" />
           <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-coerver-green/5 rounded-full blur-[120px]" />
         </div>
 
-        {/* Grid pattern */}
         <div className="absolute inset-0 opacity-[0.02]" style={{
           backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
           backgroundSize: '60px 60px'
@@ -401,6 +405,7 @@ export default function KluboviPage() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Current Partners */}
       <section className="py-24 lg:py-32 bg-white">
@@ -561,7 +566,7 @@ export default function KluboviPage() {
                   </div>
                   <div>
                     <div className="text-white/60 text-sm">Email</div>
-                    <div className="text-white font-medium">partnerships@coerver.hr</div>
+                    <div className="text-white font-medium">info@coervercroatia.com</div>
                   </div>
                 </div>
 
@@ -573,7 +578,7 @@ export default function KluboviPage() {
                   </div>
                   <div>
                     <div className="text-white/60 text-sm">Telefon</div>
-                    <div className="text-white font-medium">+385 91 234 5678</div>
+                    <div className="text-white font-medium">+385 98 1873 228</div>
                   </div>
                 </div>
               </div>
@@ -582,7 +587,7 @@ export default function KluboviPage() {
               <div className="mt-10 pt-10 border-t border-white/20">
                 <div className="text-white/60 text-sm mb-4">Pridružite se vodećim klubovima</div>
                 <div className="flex flex-wrap gap-4">
-                  {["3000+ partnera", "50+ zemalja", "40+ godina"].map((badge) => (
+                  {["1000+ partnera", "60+ zemalja", "40+ godina"].map((badge) => (
                     <div key={badge} className="flex items-center gap-2 bg-white/10 rounded-full px-4 py-2">
                       <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />

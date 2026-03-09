@@ -47,35 +47,42 @@ const programs = [
   },
 ];
 
-const ageGroups = [
-  { age: "5-6", name: "Mini Coerver", description: "Uvod u nogomet kroz igru", level: 1 },
-  { age: "7-8", name: "Coerver Basics", description: "Temelji Ball Mastery", level: 2 },
-  { age: "9-10", name: "Coerver Skills", description: "Napredne tehnike", level: 3 },
-  { age: "11-12", name: "Coerver Advanced", description: "1v1 i završnica", level: 4 },
-  { age: "13-14", name: "Coerver Elite", description: "Natjecateljska razina", level: 5 },
-  { age: "15+", name: "Coerver Pro", description: "Seniorska priprema", level: 6 },
-];
-
-const skills = [
+const pyramidLevels = [
   {
+    level: 1,
     title: "Ball Mastery",
-    description: "Potpuna kontrola lopte u svim situacijama kroz tisuće ponavljanja tehničkih vježbi.",
-    icon: "M12 6v6m0 0v6m0-6h6m-6 0H6",
+    description: "Temelj svega - potpuna kontrola lopte u svim dijelovima stopala s obje noge.",
+    color: "from-emerald-500 to-emerald-600",
   },
   {
-    title: "1v1 Potezi",
-    description: "Repertoar efikasnih poteza za nadmudriti bilo kojeg braniča u duelu.",
-    icon: "M13 10V3L4 14h7v7l9-11h-7z",
+    level: 2,
+    title: "Primanje & Dodavanja",
+    description: "Prvi dodir - ekipne vještine.",
+    color: "from-coerver-green to-emerald-500",
   },
   {
-    title: "Brzina & Agilnost",
-    description: "Eksplozivnost i brza promjena smjera specifična za nogometne situacije.",
-    icon: "M13 10V3L4 14h7v7l9-11h-7z",
+    level: 3,
+    title: "1v1 - napad i obrana",
+    description: "Change of directions, stops & starts i faints.",
+    color: "from-green-600 to-coerver-green",
   },
   {
+    level: 4,
+    title: "Brzina",
+    description: "Brzina sa i bez lopte - brzina donošenja odluka.",
+    color: "from-lime-500 to-green-500",
+  },
+  {
+    level: 5,
     title: "Završnica",
-    description: "Preciznost i hladnokrvnost pred golom - udarci obje noge, glavom.",
-    icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
+    description: "Kreiranje šansi za pogodak i realizacija.",
+    color: "from-yellow-500 to-lime-500",
+  },
+  {
+    level: 6,
+    title: "Grupni Napad",
+    description: "Napad i obrana u manjim grupama.",
+    color: "from-amber-500 to-yellow-500",
   },
 ];
 
@@ -300,27 +307,15 @@ export default function ZaIgracePage() {
             </p>
           </div>
 
-          {/* Age Groups Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {ageGroups.map((group, index) => (
-              <div
-                key={group.age}
-                className="animate-on-scroll group bg-white/5 hover:bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/10 hover:border-coerver-green/50 transition-all duration-300"
-                style={{ transitionDelay: `${index * 50}ms` }}
-              >
-                <div className="w-10 h-10 rounded-full bg-coerver-green/20 flex items-center justify-center mx-auto mb-3">
-                  <span className="text-coerver-green font-bold">{group.level}</span>
-                </div>
-                <div className="text-3xl font-black text-coerver-green mb-1">
-                  {group.age}
-                </div>
-                <div className="text-white/40 text-xs uppercase tracking-wider mb-3">godina</div>
-                <h4 className="font-bold text-white text-sm mb-1">
-                  {group.name}
-                </h4>
-                <p className="text-white/50 text-xs">{group.description}</p>
-              </div>
-            ))}
+          {/* Player Pathway Image */}
+          <div className="animate-on-scroll flex justify-center">
+            <Image
+              src="/images/Player Pathway.png"
+              alt="Coerver Player Pathway - program za svaku dob"
+              width={1200}
+              height={600}
+              className="w-full max-w-5xl h-auto"
+            />
           </div>
         </div>
       </section>
@@ -344,23 +339,19 @@ export default function ZaIgracePage() {
                 </p>
               </div>
 
-              <div className="space-y-6">
-                {skills.map((skill, index) => (
+              <div className="space-y-3">
+                {pyramidLevels.map((level, index) => (
                   <div
-                    key={skill.title}
-                    className="animate-on-scroll flex gap-5 group"
+                    key={level.title}
+                    className="animate-on-scroll flex items-center gap-4 group"
                     style={{ transitionDelay: `${index * 100}ms` }}
                   >
-                    <div className="w-14 h-14 rounded-2xl bg-coerver-green flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={skill.icon} />
-                      </svg>
+                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${level.color} flex items-center justify-center text-white font-bold flex-shrink-0`}>
+                      {level.level}
                     </div>
-                    <div>
-                      <h4 className="text-xl font-bold text-coerver-dark mb-1">
-                        {skill.title}
-                      </h4>
-                      <p className="text-gray-600">{skill.description}</p>
+                    <div className="flex-1 bg-gray-50 rounded-xl p-4 group-hover:bg-coerver-green/5 transition-colors">
+                      <h4 className="font-bold text-coerver-dark">{level.title}</h4>
+                      <p className="text-sm text-gray-500">{level.description}</p>
                     </div>
                   </div>
                 ))}
@@ -380,14 +371,14 @@ export default function ZaIgracePage() {
               </div>
 
               {/* Floating stats card */}
-              <div className="absolute -bottom-8 -left-8 bg-white rounded-2xl shadow-2xl p-6 max-w-xs">
+              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-2xl p-5 max-w-xs">
                 <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-2xl bg-coerver-green flex items-center justify-center">
-                    <span className="text-3xl font-black text-white">98%</span>
+                  <div className="w-14 h-14 rounded-xl bg-coerver-green flex items-center justify-center flex-shrink-0">
+                    <span className="text-2xl font-black text-white">98%</span>
                   </div>
                   <div>
-                    <p className="font-bold text-coerver-dark">Roditelja preporučuje</p>
-                    <p className="text-gray-500 text-sm">Coerver programe</p>
+                    <p className="font-bold text-coerver-dark text-sm">Roditelja preporučuje</p>
+                    <p className="text-gray-500 text-xs">Coerver programe</p>
                   </div>
                 </div>
               </div>
@@ -397,7 +388,7 @@ export default function ZaIgracePage() {
                 <div className="flex items-center gap-3">
                   <div className="flex -space-x-2">
                     {[1, 2, 3].map((i) => (
-                      <div key={i} className="w-8 h-8 rounded-full bg-white/20 border-2 border-white flex items-center justify-center text-xs font-bold text-white">
+                      <div key={i} className="w-7 h-7 rounded-full bg-white/20 border-2 border-white flex items-center justify-center text-xs font-bold text-white">
                         {String.fromCharCode(64 + i)}
                       </div>
                     ))}

@@ -9,22 +9,22 @@ const contactInfo = [
   {
     icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
     label: "Email",
-    value: "info@coerver.hr",
+    value: "info@coervercroatia.com",
     href: "mailto:info@coerver.hr",
     description: "Pišite nam bilo kada",
   },
   {
     icon: "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z",
     label: "Telefon",
-    value: "+385 91 123 4567",
-    href: "tel:+385911234567",
+    value: "+385 98 1873 228",
+    href: "tel:+385981873228",
     description: "Pon - Pet, 9:00 - 17:00",
   },
   {
     icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z",
     label: "Adresa",
-    value: "Ulica grada Vukovara 271",
-    href: "https://maps.google.com/?q=Ulica+grada+Vukovara+271+Zagreb",
+    value: "Zagreb",
+    href: "",
     description: "10000 Zagreb, Hrvatska",
   },
 ];
@@ -32,7 +32,7 @@ const contactInfo = [
 const faqs = [
   {
     question: "Za koje uzraste su namijenjeni Coerver programi?",
-    answer: "Naši programi su prilagođeni igračima od 5 do 16 godina. Svaka dobna skupina ima posebno dizajniran program koji odgovara njihovom razvojnom stupnju.",
+    answer: "Naši programi su prilagođeni svim uzrastima, i odraslima i mlađima. Svaka dobna skupina ima posebno dizajniran program koji odgovara njihovom razvojnom stupnju.",
   },
   {
     question: "Koliko traju treninzi?",
@@ -44,7 +44,7 @@ const faqs = [
   },
   {
     question: "Trebam li donijeti vlastitu opremu?",
-    answer: "Igrači trebaju donijeti kopačke ili tenisice, štucne i shin guardove. Lopte i drugu opremu osiguravamo mi.",
+    answer: "Ovisno o progamu treneri će naponenuti je li oprema vlastita ili je pružamo mi.",
   },
 ];
 

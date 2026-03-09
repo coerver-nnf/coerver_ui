@@ -16,9 +16,9 @@ const courses = [
     id: "intro",
     name: "Coerver Intro",
     description:
-      "Uvodni tečaj u Coerver metodologiju. Idealan za trenere koji žele upoznati osnove.",
-    duration: "1 dan (8 sati)",
-    price: "150€",
+      "Uvodni tečaj u Coerver metodologiju u kojoj dobivate uvod u ball mastery i 1v1 kurikulum",
+    duration: "1 dan",
+    price: null,
     href: "/za-trenere/coerver-intro",
     level: "Početni",
     levelNum: 1,
@@ -28,9 +28,9 @@ const courses = [
     id: "yd1",
     name: "Youth Diploma 1",
     description:
-      "Prva razina Coerver diplome. Dubinski uvid u Ball Mastery i 1v1 metodologiju.",
-    duration: "2 dana (16 sati)",
-    price: "350€",
+      "Tema je kreiranje treninga po Coerver® planeru treninga",
+    duration: "2 dana",
+    price: null,
     href: "/za-trenere/youth-diploma-1",
     level: "Srednji",
     levelNum: 2,
@@ -40,9 +40,9 @@ const courses = [
     id: "yd2",
     name: "Youth Diploma 2",
     description:
-      "Napredna razina diplome. Kompletan Coerver kurikulum za sve dobne skupine.",
-    duration: "2 dana (16 sati)",
-    price: "450€",
+      "Coerver box/trap kurikulum, kako razvijati ekipni stil igre baziran na posjedu i napadačkom stilu igre.",
+    duration: "2 dana",
+    price: null,
     href: "/za-trenere/youth-diploma-2",
     level: "Napredni",
     levelNum: 3,
@@ -52,23 +52,23 @@ const courses = [
 
 const benefits = [
   {
-    title: "Globalno Priznata Licenca",
-    description: "Coerver certifikat prepoznat u preko 50 zemalja svijeta.",
+    title: "Globalno Priznata Metoda",
+    description: "Coerver® certifikat za stečeno znanje prepoznat u cijelom svijetu.",
     icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
   },
   {
     title: "Pristup Materijalima",
-    description: "Ekskluzivni video sadržaji, vježbe i planovi treninga.",
+    description: "Praktična predavanja i Coerver priručnik sa vježbama",
     icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253",
   },
   {
     title: "Mreža Trenera",
-    description: "Postani dio globalne mreže Coerver trenera.",
+    description: "Postani dio globalne mreže Coerver educiranih trenera.",
     icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
   },
   {
     title: "Kontinuirani Razvoj",
-    description: "Pristup godišnjim konferencijama i radionicama.",
+    description: "Pathway koji kreće od temelja i završava s razvojem ekipe.",
     icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6",
   },
 ];
@@ -91,8 +91,8 @@ const testimonials = [
 ];
 
 const stats = [
-  { value: "30,000+", label: "Certificiranih trenera" },
-  { value: "50+", label: "Zemalja svijeta" },
+  { value: "1000+", label: "Educiranih trenera" },
+  { value: "3", label: "Zemalje" },
   { value: "40+", label: "Godina tradicije" },
 ];
 
@@ -150,15 +150,15 @@ export default function ZaTrenerePage() {
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[0.95] mb-6">
-              Postani
+            Nauči tajne
               <br />
-              <span className="text-coerver-green">Coerver</span> Trener
+              <span className="text-coerver-green">Coerver®</span> metode
             </h1>
 
             <p className="text-xl text-white/70 mb-10 max-w-xl">
-              Stekni globalno priznatu Coerver licencu i podigne svoje trenerske
-              vještine na novu razinu. Pridruži se mreži od preko 30,000 certificiranih
-              Coerver trenera diljem svijeta.
+              Educiraj se po svjetski priznatoj Coerver® metodi i podigne svoje trenerske
+              vještine na novu razinu. Pridruži se mreži od preko 1000+ educiranih
+              trenera u Hrvatskoj, Sloveniji i BiH.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -175,7 +175,7 @@ export default function ZaTrenerePage() {
                 href="#benefits"
                 className="inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 border border-white/20"
               >
-                Zašto Coerver?
+                Zašto Coerver®?
               </a>
             </div>
           </div>
@@ -200,11 +200,11 @@ export default function ZaTrenerePage() {
               <span className="text-coerver-green text-sm font-semibold">Put do diplome</span>
             </div>
             <h2 className="text-4xl lg:text-5xl font-black text-coerver-dark mb-4">
-              Coerver Diploma Pathway
+            Coerver® Diploma Pathway
             </h2>
             <p className="text-lg text-gray-600">
               Progresivan sustav edukacije koji te vodi od osnova do ekspertize u
-              Coerver metodologiji.
+              Coerver® metodologiji.
             </p>
           </div>
 
@@ -296,7 +296,7 @@ export default function ZaTrenerePage() {
               <span className="text-coerver-green text-sm font-semibold">Prednosti</span>
             </div>
             <h2 className="text-4xl lg:text-5xl font-black text-white mb-4">
-              Zašto postati <span className="text-coerver-green">Coerver</span> trener?
+              Zašto se educirati po <span className="text-coerver-green">Coerver®</span> metodologiji?
             </h2>
           </div>
 
