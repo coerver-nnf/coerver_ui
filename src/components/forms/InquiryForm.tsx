@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
 import { createClient } from "@/lib/supabase/client";
+import { getAcademies, Academy } from "@/lib/api/academies";
+import { getCamps, Camp } from "@/lib/api/camps";
+import { getCourses, Course } from "@/lib/api/courses";
 
 interface InquiryFormProps {
   type: "academy" | "camp" | "course" | "club" | "individual" | "general";
@@ -21,6 +24,11 @@ export function InquiryForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [academies, setAcademies] = useState<Academy[]>([]);
+  const [camps, setCamps] = useState<Camp[]>([]);
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [selectedProgramId, setSelectedProgramId] = useState(programId || "");
+  const [loadingPrograms, setLoadingPrograms] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -31,6 +39,32 @@ export function InquiryForm({
     club: "",
     position: "",
   });
+
+  // Fetch programs based on type
+  useEffect(() => {
+    async function fetchPrograms() {
+      if (programId) return; // Skip if programId is already provided
+
+      setLoadingPrograms(true);
+      try {
+        if (type === "academy") {
+          const data = await getAcademies({ status: "active" });
+          setAcademies(data);
+        } else if (type === "camp") {
+          const data = await getCamps({ status: "published" });
+          setCamps(data);
+        } else if (type === "course") {
+          const data = await getCourses({ status: "published" });
+          setCourses(data);
+        }
+      } catch (err) {
+        console.error("Error fetching programs:", err);
+      } finally {
+        setLoadingPrograms(false);
+      }
+    }
+    fetchPrograms();
+  }, [type, programId]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -68,7 +102,7 @@ export function InquiryForm({
         email: formData.email,
         phone: formData.phone || null,
         message: fullMessage,
-        program_id: programId || null,
+        program_id: selectedProgramId || programId || null,
       });
 
       if (submitError) throw submitError;
@@ -157,6 +191,69 @@ export function InquiryForm({
           onChange={handleChange}
           placeholder="+385 91 123 4567"
         />
+
+        {type === "academy" && !programId && (
+          <Select
+            label="Odaberite akademiju *"
+            name="academy"
+            value={selectedProgramId}
+            onChange={(e) => setSelectedProgramId(e.target.value)}
+            options={
+              loadingPrograms
+                ? [{ value: "", label: "Učitavanje..." }]
+                : academies.length > 0
+                ? [
+                    { value: "", label: "Odaberite akademiju" },
+                    ...academies.map((a) => ({ value: a.id, label: a.name + (a.location ? ` - ${a.location}` : "") })),
+                  ]
+                : [{ value: "", label: "Nema dostupnih akademija" }]
+            }
+            required
+            disabled={loadingPrograms || academies.length === 0}
+          />
+        )}
+
+        {type === "camp" && !programId && (
+          <Select
+            label="Odaberite kamp *"
+            name="camp"
+            value={selectedProgramId}
+            onChange={(e) => setSelectedProgramId(e.target.value)}
+            options={
+              loadingPrograms
+                ? [{ value: "", label: "Učitavanje..." }]
+                : camps.length > 0
+                ? [
+                    { value: "", label: "Odaberite kamp" },
+                    ...camps.map((c) => ({ value: c.id, label: c.title + (c.location ? ` - ${c.location}` : "") })),
+                  ]
+                : [{ value: "", label: "Nema dostupnih kampova" }]
+            }
+            required
+            disabled={loadingPrograms || camps.length === 0}
+          />
+        )}
+
+        {type === "course" && !programId && (
+          <Select
+            label="Odaberite tečaj *"
+            name="course"
+            value={selectedProgramId}
+            onChange={(e) => setSelectedProgramId(e.target.value)}
+            options={
+              loadingPrograms
+                ? [{ value: "", label: "Učitavanje..." }]
+                : courses.length > 0
+                ? [
+                    { value: "", label: "Odaberite tečaj" },
+                    ...courses.map((c) => ({ value: c.id, label: c.title + (c.location ? ` - ${c.location}` : "") })),
+                  ]
+                : [{ value: "", label: "Nema dostupnih tečajeva" }]
+            }
+            required
+            disabled={loadingPrograms || courses.length === 0}
+          />
+        )}
 
         {(type === "academy" || type === "camp" || type === "individual") && (
           <Select

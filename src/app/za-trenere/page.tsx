@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
@@ -11,6 +11,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+// These are the fixed course types in the Coerver Diploma Pathway
 const courses = [
   {
     id: "intro",
@@ -22,7 +23,9 @@ const courses = [
     href: "/za-trenere/coerver-intro",
     level: "Početni",
     levelNum: 1,
-    image: "/images/photoshoot/Coerver_Kustosija-10.webp",
+    image: "/images/training/training-03.webp",
+    logo: "/images/logo-variations/coerver-intro-white.jpg",
+    type: "coerver-intro" as const,
   },
   {
     id: "yd1",
@@ -34,7 +37,9 @@ const courses = [
     href: "/za-trenere/youth-diploma-1",
     level: "Srednji",
     levelNum: 2,
-    image: "/images/photoshoot/Coerver_Kustosija-60.webp",
+    image: "/images/training/training-01.webp",
+    logo: "/images/logo-variations/youth-diploma-1-white.jpg",
+    type: "youth-diploma-1" as const,
   },
   {
     id: "yd2",
@@ -46,7 +51,9 @@ const courses = [
     href: "/za-trenere/youth-diploma-2",
     level: "Napredni",
     levelNum: 3,
-    image: "/images/photoshoot/Coerver_Kustosija-70.webp",
+    image: "/images/training/training-13.webp",
+    logo: "/images/logo-variations/youth-diploma-2-white.jpg",
+    type: "youth-diploma-2" as const,
   },
 ];
 
@@ -79,14 +86,14 @@ const testimonials = [
     role: "Trener NK Osijek U15",
     content:
       "Coerver diploma je promijenila način na koji pristupam treningu. Moji igrači su napredovali brže nego ikad.",
-    image: "/images/photoshoot/Coerver_Kustosija-25.webp",
+    image: "/images/training/training-05.webp",
   },
   {
     name: "Ana Bašić",
     role: "Trenerica NK Hajduk U12",
     content:
       "Strukturirani pristup Ball Masteryju dao mi je alate koje koristim svakodnevno. Nezamjenjivo iskustvo.",
-    image: "/images/photoshoot/Coerver_Kustosija-45.webp",
+    image: "/images/training/training-09.webp",
   },
 ];
 
@@ -128,7 +135,7 @@ export default function ZaTrenerePage() {
       <section className="relative min-h-[90vh] flex items-center bg-coerver-dark overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-45.webp"
+            src="/images/training/training-09.webp"
             alt="Coerver trener"
             fill
             className="object-cover"
@@ -237,6 +244,16 @@ export default function ZaTrenerePage() {
                           className="object-cover group-hover:scale-105 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                        {/* Course Logo */}
+                        <div className="absolute top-4 left-4 bg-white rounded-lg p-2 shadow-lg">
+                          <Image
+                            src={course.logo}
+                            alt={course.name}
+                            width={90}
+                            height={36}
+                            className="object-contain"
+                          />
+                        </div>
                         <div className="absolute bottom-4 left-4">
                           <span className="px-4 py-2 bg-coerver-green text-white text-sm font-bold rounded-full">
                             {course.level}

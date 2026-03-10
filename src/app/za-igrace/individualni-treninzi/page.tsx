@@ -118,7 +118,7 @@ export default function IndividualniTreninziPage() {
       <section className="relative min-h-[80vh] flex items-center bg-coerver-dark overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-20.webp"
+            src="/images/training/training-06.webp"
             alt="Individualni trening"
             fill
             className="object-cover"

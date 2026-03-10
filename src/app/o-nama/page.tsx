@@ -61,25 +61,25 @@ const historyTimeline = [
     year: "1984",
     title: "Osnivanje Coerver® Coachinga",
     description: "Wiel Coerver, legendarni nizozemski trener, razvija revolucionarnu metodologiju treninga fokusiranu na individualnu tehniku. Njegovi suradnici Alf Galustian i Charlie Cooke, osnivaju ono što danas znamo kao Coerver® Coaching.",
-    image: "/images/photoshoot/Coerver_Kustosija-5.webp",
+    image: "/images/training/training-05.webp",
   },
   {
     year: "1990",
     title: "Globalna Ekspanzija",
     description: "Coerver® metodologija se širi na sve kontinente, postajući zlatni standard razvoja mladih igrača. S vremenom Coerver® Coaching se razvija od jednostavne ideje do strukturiranog kurikuluma.",
-    image: "/images/photoshoot/Coerver_Kustosija-15.webp",
+    image: "/images/training/training-08.webp",
   },
   {
     year: "2015",
     title: "Dolazak u Hrvatsku",
     description: "Coerver® Coaching službeno dolazi u Hrvatsku, Sloveniju i BiH donoseći vrhunsku metodologiju našim mladim talentima i trenerima.",
-    image: "/images/photoshoot/Coerver_Kustosija-45.webp",
+    image: "/images/training/training-09.webp",
   },
   {
     year: "Danas",
     title: "Kontinuirani Rast",
     description: "Više od 500 aktivnih igrača i 30+ certificiranih trenera u Hrvatskoj, Sloveniji i BiH.",
-    image: "/images/photoshoot/Coerver_Kustosija-65.webp",
+    image: "/images/training/training-11.webp",
   },
 ];
 
@@ -144,7 +144,7 @@ export default function ONamaPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-55.webp"
+            src="/images/training/training-10.webp"
             alt="Coerver Coaching"
             fill
             className="object-cover opacity-20"
@@ -245,7 +245,7 @@ export default function ONamaPage() {
             <div className="animate-on-scroll relative">
               <div className="relative aspect-[4/3] rounded-3xl overflow-hidden">
                 <Image
-                  src="/images/photoshoot/Coerver_Kustosija-20.webp"
+                  src="/images/training/training-06.webp"
                   alt="Coerver trening"
                   fill
                   className="object-cover"
@@ -533,7 +533,7 @@ export default function ONamaPage() {
               {/* Right - Image */}
               <div className="relative min-h-[300px] lg:min-h-0">
                 <Image
-                  src="/images/photoshoot/Coerver_Kustosija-40.webp"
+                  src="/images/training/training-07.webp"
                   alt="Coerver Training"
                   fill
                   className="object-cover"

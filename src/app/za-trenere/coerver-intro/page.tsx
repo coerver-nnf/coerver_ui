@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { InquiryForm } from "@/components/forms/InquiryForm";
+import { getCourses, Course } from "@/lib/api/courses";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -56,26 +57,14 @@ const curriculum = [
   },
 ];
 
-const upcomingDates = [
-  {
-    date: "15.03.2024",
-    location: "Zagreb",
-    venue: "Hotel Westin",
-    spots: 8,
-  },
-  {
-    date: "12.04.2024",
-    location: "Split",
-    venue: "Hotel Le Meridien",
-    spots: 12,
-  },
-  {
-    date: "10.05.2024",
-    location: "Osijek",
-    venue: "Hotel Waldinger",
-    spots: 15,
-  },
-];
+function formatDateForDisplay(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("hr-HR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+}
 
 const whatYouGet = [
   { item: "Coerver Intro certifikat", icon: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" },
@@ -103,7 +92,30 @@ const whatYoullLearn = [
 ];
 
 export default function CoerverIntroPage() {
+  const [upcomingCourses, setUpcomingCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
+    async function loadCourses() {
+      try {
+        const data = await getCourses({
+          status: "published",
+          type: "coerver-intro",
+          upcoming: true
+        });
+        setUpcomingCourses(data);
+      } catch (error) {
+        console.error("Error loading courses:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadCourses();
+  }, []);
+
+  useEffect(() => {
+    if (loading) return;
+
     const elements = document.querySelectorAll(".animate-on-scroll");
 
     elements.forEach((el) => {
@@ -126,7 +138,7 @@ export default function CoerverIntroPage() {
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, []);
+  }, [loading]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -134,7 +146,7 @@ export default function CoerverIntroPage() {
       <section className="relative min-h-[80vh] flex items-center bg-coerver-dark overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-10.webp"
+            src="/images/training/training-03.webp"
             alt="Coerver Intro tečaj"
             fill
             className="object-cover"
@@ -284,6 +296,16 @@ export default function CoerverIntroPage() {
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
             <div className="animate-on-scroll">
+              {/* Course Logo */}
+              <div className="mb-8">
+                <Image
+                  src="/images/logo-variations/coerver-intro-white.jpg"
+                  alt="Coerver Intro"
+                  width={220}
+                  height={90}
+                  className="object-contain rounded-xl shadow-lg"
+                />
+              </div>
               <div className="inline-flex items-center gap-2 bg-coerver-green/10 rounded-full px-4 py-2 mb-6">
                 <span className="text-coerver-green text-sm font-semibold">Što dobivaš</span>
               </div>
@@ -314,7 +336,7 @@ export default function CoerverIntroPage() {
                 <div className="space-y-4">
                   <div className="aspect-square rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-25.webp"
+                      src="/images/training/training-05.webp"
                       alt="Coerver trening"
                       fill
                       className="object-cover"
@@ -322,7 +344,7 @@ export default function CoerverIntroPage() {
                   </div>
                   <div className="aspect-video rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-60.webp"
+                      src="/images/training/training-01.webp"
                       alt="Coerver edukacija"
                       fill
                       className="object-cover"
@@ -332,7 +354,7 @@ export default function CoerverIntroPage() {
                 <div className="space-y-4 pt-8">
                   <div className="aspect-video rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-45.webp"
+                      src="/images/training/training-09.webp"
                       alt="Grupni trening"
                       fill
                       className="object-cover"
@@ -340,7 +362,7 @@ export default function CoerverIntroPage() {
                   </div>
                   <div className="aspect-square rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-70.webp"
+                      src="/images/training/training-13.webp"
                       alt="Coerver metodologija"
                       fill
                       className="object-cover"
@@ -365,38 +387,66 @@ export default function CoerverIntroPage() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {upcomingDates.map((date, index) => (
-              <div
-                key={date.date}
-                className="animate-on-scroll group bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300"
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
-                <div className="text-3xl font-black text-coerver-dark mb-2">
-                  {date.date}
-                </div>
-                <div className="text-coerver-green font-bold text-lg mb-4">
-                  {date.location}
-                </div>
-                <div className="text-gray-500 text-sm mb-6">
-                  {date.venue}
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-coerver-green rounded-full animate-pulse" />
-                    <span className="text-sm text-gray-500">{date.spots} mjesta</span>
-                  </div>
-                  <a
-                    href="#prijava"
-                    className="text-coerver-green font-semibold text-sm hover:underline"
-                  >
-                    Prijavi se
-                  </a>
-                </div>
+          {loading ? (
+            <div className="flex justify-center py-12">
+              <div className="w-12 h-12 border-4 border-coerver-green border-t-transparent rounded-full animate-spin" />
+            </div>
+          ) : upcomingCourses.length === 0 ? (
+            <div className="text-center py-12 max-w-xl mx-auto">
+              <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
               </div>
-            ))}
-          </div>
+              <h3 className="text-lg font-bold text-coerver-dark mb-2">Trenutno nema zakazanih termina</h3>
+              <p className="text-gray-500 text-sm mb-4">
+                Kontaktirajte nas za informacije o sljedećim terminima.
+              </p>
+              <a
+                href="#prijava"
+                className="inline-flex items-center gap-2 text-coerver-green font-semibold hover:underline"
+              >
+                Pošalji upit
+              </a>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {upcomingCourses.map((course, index) => (
+                <div
+                  key={course.id}
+                  className="animate-on-scroll group bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300"
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <div className="text-3xl font-black text-coerver-dark mb-2">
+                    {course.start_date && formatDateForDisplay(course.start_date)}
+                  </div>
+                  <div className="text-coerver-green font-bold text-lg mb-4">
+                    {course.location || "TBD"}
+                  </div>
+                  {course.price && (
+                    <div className="text-gray-500 text-sm mb-6">
+                      {course.price}€
+                    </div>
+                  )}
+
+                  <div className="flex items-center justify-between">
+                    {course.capacity && (
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-coerver-green rounded-full animate-pulse" />
+                        <span className="text-sm text-gray-500">{course.capacity} mjesta</span>
+                      </div>
+                    )}
+                    <a
+                      href="#prijava"
+                      className="text-coerver-green font-semibold text-sm hover:underline"
+                    >
+                      Prijavi se
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

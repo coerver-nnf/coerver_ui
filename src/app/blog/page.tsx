@@ -1,112 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import type { Metadata } from "next";
-import type { Post, Category } from "@/types";
 import { cn } from "@/lib/utils";
-
-// Sample blog posts data (will be replaced with Supabase data)
-const samplePosts: Post[] = [
-  {
-    id: "1",
-    title: "5 Ball Mastery Vježbi Za Svaki Dan",
-    slug: "5-ball-mastery-vjezbi-za-svaki-dan",
-    content: "",
-    excerpt:
-      "Jednostavne vježbe koje možeš raditi kod kuće za poboljšanje kontrole lopte. Ove vježbe su temelj Coerver metodologije.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-70.webp",
-    author_id: "1",
-    category_id: "1",
-    published: true,
-    created_at: "2024-02-15T10:00:00Z",
-    author: { id: "1", role: "admin", full_name: "Ivan Perić", phone: null, approved: true, created_at: "" },
-    category: { id: "1", name: "Treninzi", slug: "treninzi" },
-  },
-  {
-    id: "2",
-    title: "Kako Odabrati Pravu Nogometnu Akademiju",
-    slug: "kako-odabrati-pravu-nogometnu-akademiju",
-    content: "",
-    excerpt:
-      "Vodič za roditelje koji traže najbolju opciju za svoje dijete. Saznajte na što obratiti pažnju.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-60.webp",
-    author_id: "1",
-    category_id: "2",
-    published: true,
-    created_at: "2024-02-10T10:00:00Z",
-    author: { id: "1", role: "admin", full_name: "Ana Kovačević", phone: null, approved: true, created_at: "" },
-    category: { id: "2", name: "Savjeti", slug: "savjeti" },
-  },
-  {
-    id: "3",
-    title: "Uspjeh Naših Polaznika na Regionalnom Natjecanju",
-    slug: "uspjeh-nasih-polaznika-na-regionalnom-natjecanju",
-    content: "",
-    excerpt:
-      "Naši mladi nogometaši osvojili su drugo mjesto na regionalnom turniru u konkurenciji od 24 ekipe.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-15.webp",
-    author_id: "1",
-    category_id: "3",
-    published: true,
-    created_at: "2024-02-05T10:00:00Z",
-    author: { id: "1", role: "admin", full_name: "Coerver Tim", phone: null, approved: true, created_at: "" },
-    category: { id: "3", name: "Vijesti", slug: "vijesti" },
-  },
-  {
-    id: "4",
-    title: "Prehrana Mladog Nogometaša",
-    slug: "prehrana-mladog-nogometasa",
-    content: "",
-    excerpt:
-      "Što jesti prije, tijekom i nakon treninga za optimalne performanse i brži oporavak.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-25.webp",
-    author_id: "1",
-    category_id: "2",
-    published: true,
-    created_at: "2024-01-28T10:00:00Z",
-    author: { id: "1", role: "admin", full_name: "Dr. Marko Horvat", phone: null, approved: true, created_at: "" },
-    category: { id: "2", name: "Savjeti", slug: "savjeti" },
-  },
-  {
-    id: "5",
-    title: "Coerver Ljetni Kamp 2024 - Prijave Otvorene",
-    slug: "coerver-ljetni-kamp-2024-prijave-otvorene",
-    content: "",
-    excerpt:
-      "Prijave za najpopularnije nogometne kampove u Hrvatskoj su službeno otvorene! Osigurajte mjesto na vrijeme.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-45.webp",
-    author_id: "1",
-    category_id: "3",
-    published: true,
-    created_at: "2024-01-20T10:00:00Z",
-    author: { id: "1", role: "admin", full_name: "Coerver Tim", phone: null, approved: true, created_at: "" },
-    category: { id: "3", name: "Vijesti", slug: "vijesti" },
-  },
-  {
-    id: "6",
-    title: "Mentalna Priprema Mladih Igrača",
-    slug: "mentalna-priprema-mladih-igraca",
-    content: "",
-    excerpt:
-      "Kako pomoći djetetu da se nosi s pritiskom i razvije mentalnu snagu potrebnu za uspjeh.",
-    featured_image: "/images/photoshoot/Coerver_Kustosija-5.webp",
-    author_id: "1",
-    category_id: "2",
-    published: true,
-    created_at: "2024-01-15T10:00:00Z",
-    author: { id: "1", role: "admin", full_name: "Ana Kovačević", phone: null, approved: true, created_at: "" },
-    category: { id: "2", name: "Savjeti", slug: "savjeti" },
-  },
-];
-
-const categories: Category[] = [
-  { id: "1", name: "Treninzi", slug: "treninzi" },
-  { id: "2", name: "Savjeti", slug: "savjeti" },
-  { id: "3", name: "Vijesti", slug: "vijesti" },
-  { id: "4", name: "Uspjesi", slug: "uspjesi" },
-];
+import { getPosts, getBlogCategories, Post, BlogCategory } from "@/lib/api/posts";
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
@@ -128,8 +26,28 @@ function formatDateShort(dateString: string): string {
 export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [categories, setCategories] = useState<BlogCategory[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const posts = samplePosts;
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const [postsData, categoriesData] = await Promise.all([
+          getPosts({ status: "published" }),
+          getBlogCategories(),
+        ]);
+        setPosts(postsData);
+        setCategories(categoriesData);
+      } catch (error) {
+        console.error("Error loading blog data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, []);
+
   const featuredPost = posts[0];
   const regularPosts = posts.slice(1);
 
@@ -148,7 +66,7 @@ export default function BlogPage() {
         {/* Background */}
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-55.webp"
+            src="/images/training/training-10.webp"
             alt=""
             fill
             className="object-cover opacity-20"
@@ -183,139 +101,162 @@ export default function BlogPage() {
       {/* Featured Post */}
       <section className="py-16 lg:py-20 bg-gray-50">
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-coerver-dark">Istaknuto</h2>
-            <div className="h-px flex-1 bg-gray-200 ml-6" />
-          </div>
-
-          <Link href={`/blog/${featuredPost.slug}`} className="group block">
-            <div className="grid lg:grid-cols-2 gap-8 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300">
-              {/* Image */}
-              <div className="relative aspect-[4/3] lg:aspect-auto overflow-hidden">
-                {featuredPost.featured_image ? (
-                  <Image
-                    src={featuredPost.featured_image}
-                    alt={featuredPost.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-coerver-green to-emerald-700" />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent lg:hidden" />
+          {loading ? (
+            <div className="flex justify-center py-12">
+              <div className="w-12 h-12 border-4 border-coerver-green border-t-transparent rounded-full animate-spin" />
+            </div>
+          ) : posts.length === 0 ? (
+            <div className="text-center py-16 max-w-xl mx-auto">
+              <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-6">
+                <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-coerver-dark mb-2">Trenutno nema objavljenih članaka</h3>
+              <p className="text-gray-500">
+                Pratite nas za nove sadržaje i vijesti iz svijeta Coerver treninga.
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-2xl font-bold text-coerver-dark">Istaknuto</h2>
+                <div className="h-px flex-1 bg-gray-200 ml-6" />
               </div>
 
-              {/* Content */}
-              <div className="p-8 lg:p-12 flex flex-col justify-center">
-                {featuredPost.category && (
-                  <span className="inline-flex items-center gap-2 text-coerver-green text-sm font-semibold mb-4">
-                    <span className="w-8 h-px bg-coerver-green" />
-                    {featuredPost.category.name}
-                  </span>
-                )}
+              <Link href={`/blog/${featuredPost.slug}`} className="group block">
+                <div className="grid lg:grid-cols-2 gap-8 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300">
+                  {/* Image */}
+                  <div className="relative aspect-[4/3] lg:aspect-auto overflow-hidden">
+                    {featuredPost.featured_image ? (
+                      <Image
+                        src={featuredPost.featured_image}
+                        alt={featuredPost.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-coerver-green to-emerald-700" />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent lg:hidden" />
+                  </div>
 
-                <h3 className="text-2xl lg:text-3xl xl:text-4xl font-black text-coerver-dark mb-4 group-hover:text-coerver-green transition-colors">
-                  {featuredPost.title}
-                </h3>
+                  {/* Content */}
+                  <div className="p-8 lg:p-12 flex flex-col justify-center">
+                    {featuredPost.category && (
+                      <span className="inline-flex items-center gap-2 text-coerver-green text-sm font-semibold mb-4">
+                        <span className="w-8 h-px bg-coerver-green" />
+                        {featuredPost.category.name}
+                      </span>
+                    )}
 
-                <p className="text-gray-600 text-lg mb-6 line-clamp-3">
-                  {featuredPost.excerpt}
-                </p>
+                    <h3 className="text-2xl lg:text-3xl xl:text-4xl font-black text-coerver-dark mb-4 group-hover:text-coerver-green transition-colors">
+                      {featuredPost.title}
+                    </h3>
 
-                <div className="flex items-center gap-4">
-                  {featuredPost.author && (
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-coerver-green flex items-center justify-center text-white font-bold">
-                        {featuredPost.author.full_name?.charAt(0) || "C"}
-                      </div>
-                      <div>
-                        <p className="text-coerver-dark font-medium text-sm">
-                          {featuredPost.author.full_name || "Coerver Tim"}
-                        </p>
-                        <p className="text-gray-500 text-sm">
-                          {formatDate(featuredPost.created_at)}
-                        </p>
+                    <p className="text-gray-600 text-lg mb-6 line-clamp-3">
+                      {featuredPost.excerpt}
+                    </p>
+
+                    <div className="flex items-center gap-4">
+                      {featuredPost.author && (
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-coerver-green flex items-center justify-center text-white font-bold">
+                            {featuredPost.author.full_name?.charAt(0) || "C"}
+                          </div>
+                          <div>
+                            <p className="text-coerver-dark font-medium text-sm">
+                              {featuredPost.author.full_name || "Coerver Tim"}
+                            </p>
+                            <p className="text-gray-500 text-sm">
+                              {formatDate(featuredPost.created_at)}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="ml-auto">
+                        <span className="inline-flex items-center gap-2 text-coerver-green font-semibold group-hover:gap-3 transition-all">
+                          Pročitaj više
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </span>
                       </div>
                     </div>
-                  )}
-
-                  <div className="ml-auto">
-                    <span className="inline-flex items-center gap-2 text-coerver-green font-semibold group-hover:gap-3 transition-all">
-                      Pročitaj više
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </span>
                   </div>
                 </div>
-              </div>
-            </div>
-          </Link>
+              </Link>
+            </>
+          )}
         </div>
       </section>
 
-      {/* Search and Filters */}
-      <section className="py-8 bg-white border-b border-gray-100 sticky top-0 z-30 backdrop-blur-xl bg-white/90">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
-            {/* Search */}
-            <div className="w-full lg:w-96 relative">
-              <input
-                type="search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Pretraži članke..."
-                className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-full text-coerver-dark placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-coerver-green/20 focus:border-coerver-green transition-all"
-              />
-              <svg
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+      {/* Search and Filters - only show when posts exist */}
+      {!loading && posts.length > 0 && (
+        <section className="py-8 bg-white border-b border-gray-100 sticky top-0 z-30 backdrop-blur-xl bg-white/90">
+          <div className="container mx-auto px-6 lg:px-8">
+            <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
+              {/* Search */}
+              <div className="w-full lg:w-96 relative">
+                <input
+                  type="search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Pretraži članke..."
+                  className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-full text-coerver-dark placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-coerver-green/20 focus:border-coerver-green transition-all"
                 />
-              </svg>
-            </div>
+                <svg
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </div>
 
-            {/* Categories */}
-            <div className="flex flex-wrap justify-center lg:justify-end gap-2">
-              <button
-                onClick={() => setActiveCategory(null)}
-                className={cn(
-                  "px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
-                  !activeCategory
-                    ? "bg-coerver-green text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                )}
-              >
-                Sve
-              </button>
-              {categories.map((category) => (
+              {/* Categories */}
+              <div className="flex flex-wrap justify-center lg:justify-end gap-2">
                 <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.slug)}
+                  onClick={() => setActiveCategory(null)}
                   className={cn(
                     "px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
-                    activeCategory === category.slug
+                    !activeCategory
                       ? "bg-coerver-green text-white"
                       : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   )}
                 >
-                  {category.name}
+                  Sve
                 </button>
-              ))}
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveCategory(category.slug)}
+                    className={cn(
+                      "px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
+                      activeCategory === category.slug
+                        ? "bg-coerver-green text-white"
+                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    )}
+                  >
+                    {category.name}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Posts Grid */}
-      <section className="py-16 lg:py-24 bg-white">
+      {/* Posts Grid - only show when posts exist */}
+      {!loading && posts.length > 0 && (
+        <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between mb-12">
             <h2 className="text-2xl font-bold text-coerver-dark">Svi članci</h2>
@@ -416,6 +357,7 @@ export default function BlogPage() {
           )}
         </div>
       </section>
+      )}
 
       {/* Newsletter Section */}
       <section className="py-20 lg:py-28 bg-coerver-dark relative overflow-hidden">
@@ -502,7 +444,7 @@ export default function BlogPage() {
                   <div className="space-y-4">
                     <div className="aspect-square rounded-2xl overflow-hidden">
                       <Image
-                        src="/images/photoshoot/Coerver_Kustosija-40.webp"
+                        src="/images/training/training-07.webp"
                         alt="Coerver Training"
                         width={300}
                         height={300}
@@ -511,7 +453,7 @@ export default function BlogPage() {
                     </div>
                     <div className="aspect-[4/3] rounded-2xl overflow-hidden">
                       <Image
-                        src="/images/photoshoot/Coerver_Kustosija-20.webp"
+                        src="/images/training/training-06.webp"
                         alt="Coerver Training"
                         width={300}
                         height={225}
@@ -522,7 +464,7 @@ export default function BlogPage() {
                   <div className="space-y-4 pt-8">
                     <div className="aspect-[4/3] rounded-2xl overflow-hidden">
                       <Image
-                        src="/images/photoshoot/Coerver_Kustosija-65.webp"
+                        src="/images/training/training-11.webp"
                         alt="Coerver Training"
                         width={300}
                         height={225}
@@ -531,7 +473,7 @@ export default function BlogPage() {
                     </div>
                     <div className="aspect-square rounded-2xl overflow-hidden">
                       <Image
-                        src="/images/photoshoot/Coerver_Kustosija-50.webp"
+                        src="/images/training/training-12.webp"
                         alt="Coerver Training"
                         width={300}
                         height={300}

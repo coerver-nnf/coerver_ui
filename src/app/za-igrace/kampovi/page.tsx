@@ -7,52 +7,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 import { InquiryForm } from "@/components/forms/InquiryForm";
+import { getCamps, Camp } from "@/lib/api/camps";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
-
-const upcomingCamps = [
-  {
-    id: "summer-2024",
-    slug: "ljetni-kamp-zagreb-2024",
-    name: "Ljetni Kamp Zagreb",
-    dates: "24.06. - 28.06.2024",
-    location: "SC Mladost, Zagreb",
-    ageGroups: ["7-9", "10-12", "13-15"],
-    price: "250",
-    spots: 12,
-    totalSpots: 24,
-    description: "5 dana intenzivnog treninga, profesionalnih natjecanja i nogometne zabave.",
-    image: "/images/photoshoot/Coerver_Kustosija-15.webp",
-  },
-  {
-    id: "summer-2024-split",
-    slug: "ljetni-kamp-split-2024",
-    name: "Ljetni Kamp Split",
-    dates: "01.07. - 05.07.2024",
-    location: "SC Gripe, Split",
-    ageGroups: ["7-9", "10-12"],
-    price: "250",
-    spots: 8,
-    totalSpots: 20,
-    description: "Coerver kamp na sunčanoj obali Dalmacije. Nogomet + plaža!",
-    image: "/images/photoshoot/Coerver_Kustosija-45.webp",
-  },
-  {
-    id: "autumn-2024",
-    slug: "jesenski-kamp-zagreb-2024",
-    name: "Jesenski Kamp Zagreb",
-    dates: "28.10. - 01.11.2024",
-    location: "SC Mladost, Zagreb",
-    ageGroups: ["7-9", "10-12", "13-15"],
-    price: "200",
-    spots: 20,
-    totalSpots: 24,
-    description: "4 dana treninga tijekom jesenskih praznika.",
-    image: "/images/photoshoot/Coerver_Kustosija-70.webp",
-  },
-];
 
 const dailySchedule = [
   { time: "08:30 - 09:00", activity: "Dolazak i registracija", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" },
@@ -93,10 +52,39 @@ const faqs = [
   },
 ];
 
+function formatDateRange(startDate: string, endDate: string): string {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const startDay = start.getDate().toString().padStart(2, "0");
+  const startMonth = (start.getMonth() + 1).toString().padStart(2, "0");
+  const endDay = end.getDate().toString().padStart(2, "0");
+  const endMonth = (end.getMonth() + 1).toString().padStart(2, "0");
+  const year = end.getFullYear();
+  return `${startDay}.${startMonth}. - ${endDay}.${endMonth}.${year}`;
+}
+
 export default function KampoviPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [camps, setCamps] = useState<Camp[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    async function loadCamps() {
+      try {
+        const data = await getCamps({ status: "published" });
+        setCamps(data);
+      } catch (error) {
+        console.error("Error loading camps:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadCamps();
+  }, []);
+
+  useEffect(() => {
+    if (loading) return;
+
     const elements = document.querySelectorAll(".animate-on-scroll");
 
     elements.forEach((el) => {
@@ -119,7 +107,7 @@ export default function KampoviPage() {
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, []);
+  }, [loading]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -127,7 +115,7 @@ export default function KampoviPage() {
       <section className="relative min-h-[80vh] flex items-center bg-coerver-dark overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-45.webp"
+            src="/images/training/training-09.webp"
             alt="Nogometni kamp"
             fill
             className="object-cover"
@@ -202,98 +190,136 @@ export default function KampoviPage() {
             </p>
           </div>
 
-          <div className="space-y-6 max-w-5xl mx-auto">
-            {upcomingCamps.map((camp, index) => (
-              <div
-                key={camp.id}
-                className="animate-on-scroll group bg-gray-50 hover:bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
-                style={{ transitionDelay: `${index * 100}ms` }}
+          {loading ? (
+            <div className="flex justify-center py-12">
+              <div className="w-12 h-12 border-4 border-coerver-green border-t-transparent rounded-full animate-spin" />
+            </div>
+          ) : camps.length === 0 ? (
+            <div className="text-center py-16 max-w-xl mx-auto">
+              <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-6">
+                <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-coerver-dark mb-2">Trenutno nema nadolazećih kampova</h3>
+              <p className="text-gray-500 mb-6">
+                Pratite nas za informacije o novim kampovima ili se prijavite na našu mailing listu.
+              </p>
+              <a
+                href="#prijava"
+                className="inline-flex items-center gap-2 bg-coerver-green text-white font-semibold px-6 py-3 rounded-full hover:bg-coerver-green/90 transition-colors"
               >
-                <div className="grid lg:grid-cols-3">
-                  {/* Image */}
-                  <div className="relative aspect-video lg:aspect-auto overflow-hidden">
-                    <Image
-                      src={camp.image}
-                      alt={camp.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                    <div className="absolute bottom-4 left-4">
-                      <span className="px-4 py-2 bg-coerver-green text-white text-sm font-bold rounded-full">
-                        {camp.price}€
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="lg:col-span-2 p-8">
-                    <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
-                      <div>
-                        <h3 className="text-2xl font-black text-coerver-dark mb-2 group-hover:text-coerver-green transition-colors">
-                          {camp.name}
-                        </h3>
-                        <p className="text-gray-600">{camp.description}</p>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                      <div>
-                        <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Datum</div>
-                        <div className="font-semibold text-coerver-dark">{camp.dates}</div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Lokacija</div>
-                        <div className="font-semibold text-coerver-dark">{camp.location}</div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Dob</div>
-                        <div className="font-semibold text-coerver-dark">{camp.ageGroups.join(", ")} god</div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Slobodna mjesta</div>
-                        <div className="font-semibold text-coerver-dark">{camp.spots} / {camp.totalSpots}</div>
-                      </div>
+                Kontaktirajte nas
+              </a>
+            </div>
+          ) : (
+            <div className="space-y-6 max-w-5xl mx-auto">
+              {camps.map((camp, index) => (
+                <div
+                  key={camp.id}
+                  className="animate-on-scroll group bg-gray-50 hover:bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <div className="grid lg:grid-cols-3">
+                    {/* Image */}
+                    <div className="relative aspect-video lg:aspect-auto overflow-hidden">
+                      <Image
+                        src={camp.image_url || "/images/training/training-08.webp"}
+                        alt={camp.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                      {camp.price && (
+                        <div className="absolute bottom-4 left-4">
+                          <span className="px-4 py-2 bg-coerver-green text-white text-sm font-bold rounded-full">
+                            {camp.price}€
+                          </span>
+                        </div>
+                      )}
                     </div>
 
-                    {/* Progress bar */}
-                    <div className="mb-6">
-                      <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-coerver-green to-emerald-400 rounded-full transition-all"
-                          style={{ width: `${((camp.totalSpots - camp.spots) / camp.totalSpots) * 100}%` }}
-                        />
+                    {/* Content */}
+                    <div className="lg:col-span-2 p-8">
+                      <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
+                        <div>
+                          <h3 className="text-2xl font-black text-coerver-dark mb-2 group-hover:text-coerver-green transition-colors">
+                            {camp.title}
+                          </h3>
+                          {camp.description && (
+                            <p className="text-gray-600">{camp.description}</p>
+                          )}
+                        </div>
                       </div>
-                      <div className="text-xs text-gray-500 mt-1">
-                        {Math.round(((camp.totalSpots - camp.spots) / camp.totalSpots) * 100)}% popunjeno
-                      </div>
-                    </div>
 
-                    <div className="flex flex-wrap gap-3">
-                      <Link
-                        href={`/za-igrace/kampovi/${camp.slug}`}
-                        className="inline-flex items-center gap-2 bg-coerver-dark text-white font-semibold px-6 py-3 rounded-full hover:bg-coerver-dark/90 transition-colors"
-                      >
-                        Saznaj više
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                      </Link>
-                      <a
-                        href="#prijava"
-                        className="inline-flex items-center gap-2 bg-coerver-green text-white font-semibold px-6 py-3 rounded-full hover:bg-coerver-green/90 transition-colors"
-                      >
-                        Prijavi se
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </a>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                        <div>
+                          <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Datum</div>
+                          <div className="font-semibold text-coerver-dark">
+                            {formatDateRange(camp.start_date, camp.end_date)}
+                          </div>
+                        </div>
+                        {camp.location && (
+                          <div>
+                            <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Lokacija</div>
+                            <div className="font-semibold text-coerver-dark">{camp.location}</div>
+                          </div>
+                        )}
+                        {camp.age_groups && camp.age_groups.length > 0 && (
+                          <div>
+                            <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Dob</div>
+                            <div className="font-semibold text-coerver-dark">{camp.age_groups.join(", ")} god</div>
+                          </div>
+                        )}
+                        {camp.spots !== null && camp.total_spots !== null && (
+                          <div>
+                            <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Slobodna mjesta</div>
+                            <div className="font-semibold text-coerver-dark">{camp.spots} / {camp.total_spots}</div>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Progress bar */}
+                      {camp.spots !== null && camp.total_spots !== null && camp.total_spots > 0 && (
+                        <div className="mb-6">
+                          <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-gradient-to-r from-coerver-green to-emerald-400 rounded-full transition-all"
+                              style={{ width: `${((camp.total_spots - camp.spots) / camp.total_spots) * 100}%` }}
+                            />
+                          </div>
+                          <div className="text-xs text-gray-500 mt-1">
+                            {Math.round(((camp.total_spots - camp.spots) / camp.total_spots) * 100)}% popunjeno
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="flex flex-wrap gap-3">
+                        <Link
+                          href={`/za-igrace/kampovi/${camp.slug}`}
+                          className="inline-flex items-center gap-2 bg-coerver-dark text-white font-semibold px-6 py-3 rounded-full hover:bg-coerver-dark/90 transition-colors"
+                        >
+                          Saznaj više
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </Link>
+                        <a
+                          href="#prijava"
+                          className="inline-flex items-center gap-2 bg-coerver-green text-white font-semibold px-6 py-3 rounded-full hover:bg-coerver-green/90 transition-colors"
+                        >
+                          Prijavi se
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -305,6 +331,16 @@ export default function KampoviPage() {
 
         <div className="container mx-auto px-6 lg:px-8 relative">
           <div className="animate-on-scroll text-center max-w-3xl mx-auto mb-16">
+            {/* Camps Logo */}
+            <div className="mb-8 flex justify-center">
+              <Image
+                src="/images/logo-variations/Camps_White.png"
+                alt="Coerver Camps"
+                width={400}
+                height={140}
+                className="object-contain"
+              />
+            </div>
             <div className="inline-flex items-center gap-2 bg-coerver-green/20 rounded-full px-4 py-2 mb-6">
               <span className="text-coerver-green text-sm font-semibold">Dnevni raspored</span>
             </div>
@@ -376,7 +412,7 @@ export default function KampoviPage() {
                 <div className="space-y-4">
                   <div className="aspect-square rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-60.webp"
+                      src="/images/training/training-01.webp"
                       alt="Trening na kampu"
                       fill
                       className="object-cover"
@@ -384,7 +420,7 @@ export default function KampoviPage() {
                   </div>
                   <div className="aspect-video rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-25.webp"
+                      src="/images/training/training-05.webp"
                       alt="Kamp aktivnosti"
                       fill
                       className="object-cover"
@@ -394,7 +430,7 @@ export default function KampoviPage() {
                 <div className="space-y-4 pt-8">
                   <div className="aspect-video rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-10.webp"
+                      src="/images/training/training-03.webp"
                       alt="Grupni trening"
                       fill
                       className="object-cover"
@@ -402,7 +438,7 @@ export default function KampoviPage() {
                   </div>
                   <div className="aspect-square rounded-3xl overflow-hidden relative">
                     <Image
-                      src="/images/photoshoot/Coerver_Kustosija-70.webp"
+                      src="/images/training/training-13.webp"
                       alt="Zabava na kampu"
                       fill
                       className="object-cover"

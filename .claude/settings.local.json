@@ -24,7 +24,11 @@
       "Bash(git push:*)",
       "Bash(find:*)",
       "Bash(grep:*)",
-      "Bash(node -e:*)"
+      "Bash(node -e:*)",
+      "Bash(ipconfig getifaddr:*)",
+      "Bash(ipconfig:*)",
+      "Bash(npx depcheck:*)",
+      "Bash(npm uninstall:*)"
     ]
   }
 }

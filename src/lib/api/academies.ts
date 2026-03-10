@@ -7,6 +7,8 @@ export interface Academy {
   description: string | null;
   location: string | null;
   address: string | null;
+  schedule: string | null;
+  age_groups: string[] | null;
   contact_email: string | null;
   contact_phone: string | null;
   image_url: string | null;
@@ -21,6 +23,8 @@ export interface CreateAcademyInput {
   description?: string;
   location?: string;
   address?: string;
+  schedule?: string;
+  age_groups?: string[];
   contact_email?: string;
   contact_phone?: string;
   image_url?: string;

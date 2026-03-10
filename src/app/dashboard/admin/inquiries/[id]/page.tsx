@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
@@ -14,17 +14,21 @@ import {
   InquiryStatus,
   INQUIRY_TYPE_LABELS,
 } from "@/lib/api/inquiries";
+import { getAcademyById } from "@/lib/api/academies";
+import { getCampById } from "@/lib/api/camps";
+import { getCourseById } from "@/lib/api/courses";
 import { formatDate } from "@/lib/utils";
 
 export default function InquiryDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }) {
-  const { id } = use(params);
+  const { id } = params;
   const router = useRouter();
 
   const [inquiry, setInquiry] = useState<Inquiry | null>(null);
+  const [programName, setProgramName] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [notes, setNotes] = useState("");
@@ -41,6 +45,27 @@ export default function InquiryDetailPage({
       const data = await getInquiryById(id);
       setInquiry(data);
       setNotes(data.admin_notes || "");
+
+      // Fetch program name if program_id exists
+      if (data.program_id) {
+        try {
+          let name = null;
+          if (data.type === "academy") {
+            const academy = await getAcademyById(data.program_id);
+            name = academy?.name || null;
+          } else if (data.type === "camp") {
+            const camp = await getCampById(data.program_id);
+            name = camp?.title || null;
+          } else if (data.type === "course") {
+            const course = await getCourseById(data.program_id);
+            name = course?.title || null;
+          }
+          setProgramName(name);
+        } catch (err) {
+          console.error("Error loading program:", err);
+          setProgramName(null);
+        }
+      }
     } catch (error) {
       console.error("Error loading inquiry:", error);
     } finally {
@@ -150,6 +175,14 @@ export default function InquiryDetailPage({
             <p className="text-sm text-coerver-gray-500">Tip upita</p>
             <p className="font-medium text-coerver-gray-900">{INQUIRY_TYPE_LABELS[inquiry.type]}</p>
           </div>
+          {programName && (
+            <div>
+              <p className="text-sm text-coerver-gray-500">
+                {inquiry.type === "academy" ? "Akademija" : inquiry.type === "camp" ? "Kamp" : "Tečaj"}
+              </p>
+              <p className="font-medium text-coerver-gray-900">{programName}</p>
+            </div>
+          )}
           {inquiry.child_name && (
             <div>
               <p className="text-sm text-coerver-gray-500">Ime djeteta</p>

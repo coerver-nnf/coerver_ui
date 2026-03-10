@@ -7,6 +7,3 @@ export {
   BlogCardMinimal,
   BlogCardOverlay,
 } from "./BlogCards";
-
-// Post List Component
-export { PostList } from "./PostList";

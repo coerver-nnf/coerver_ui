@@ -121,6 +121,16 @@ export function WhatIsCoerver() {
       <div className="container mx-auto px-6 lg:px-8 relative">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-16 lg:mb-20">
+          {/* World's No.1 Badge */}
+          <div className="animate-on-scroll flex justify-center mb-6">
+            <Image
+              src="/images/logo-variations/Worlds No1 Black (2).svg"
+              alt="World's No.1 Soccer Skills Teaching Method"
+              width={180}
+              height={50}
+              className="object-contain"
+            />
+          </div>
           <div className="animate-on-scroll inline-flex items-center gap-2 bg-coerver-green/10 rounded-full px-4 py-2 mb-6">
             <span className="w-2 h-2 bg-coerver-green rounded-full" />
             <span className="text-coerver-green text-sm font-semibold">Globalna metoda #1</span>
@@ -140,7 +150,7 @@ export function WhatIsCoerver() {
           <div className="animate-on-scroll relative group">
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden">
               <Image
-                src="/images/photoshoot/Coerver_Kustosija-20.webp"
+                src="/images/training/training-06.webp"
                 alt="Coerver Training"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -212,6 +222,17 @@ export function WhatIsCoerver() {
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 right-0 w-64 h-64 bg-coerver-green rounded-full blur-[100px]" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-coerver-green rounded-full blur-[80px]" />
+          </div>
+
+          {/* 39 Year Anniversary Badge */}
+          <div className="absolute top-6 right-6 lg:top-8 lg:right-8 hidden md:block">
+            <Image
+              src="/images/logo-variations/39 year logo full colour rgb 1000px@300ppi.png"
+              alt="39 Years of Excellence"
+              width={100}
+              height={100}
+              className="object-contain"
+            />
           </div>
 
           <div className="relative grid md:grid-cols-3 gap-8 lg:gap-12">

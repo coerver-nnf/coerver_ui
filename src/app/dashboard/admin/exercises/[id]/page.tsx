@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -39,9 +39,9 @@ type ExerciseFormData = z.infer<typeof exerciseSchema>;
 export default function EditExercisePage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }) {
-  const { id } = use(params);
+  const { id } = params;
   const router = useRouter();
   const [categories, setCategories] = useState<ExerciseCategory[]>([]);
   const [subcategories, setSubcategories] = useState<ExerciseSubcategory[]>([]);

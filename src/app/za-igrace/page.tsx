@@ -19,7 +19,7 @@ const programs = [
     description:
       "Redovni grupni treninzi u vašem gradu. Strukturirani programi za sve dobne skupine od 7 do 14 godina.",
     href: "/za-igrace/akademije",
-    image: "/images/photoshoot/Coerver_Kustosija-60.webp",
+    image: "/images/training/training-01.webp",
     features: ["Male grupe", "Svi gradovi"],
     color: "from-emerald-500 to-coerver-green",
   },
@@ -30,7 +30,7 @@ const programs = [
     description:
       "Personalizirani treninzi prilagođeni specifičnim potrebama i ciljevima svakog igrača.",
     href: "/za-igrace/individualni-treninzi",
-    image: "/images/photoshoot/Coerver_Kustosija-20.webp",
+    image: "/images/training/training-06.webp",
     features: ["Fleksibilno", "Brži napredak", "Osobni plan"],
     color: "from-blue-500 to-indigo-600",
   },
@@ -41,7 +41,7 @@ const programs = [
     description:
       "Intenzivni nogometni kampovi tijekom školskih praznika. Višednevni programi puni nogometa i zabave.",
     href: "/za-igrace/kampovi",
-    image: "/images/photoshoot/Coerver_Kustosija-45.webp",
+    image: "/images/training/training-09.webp",
     features: ["Ljeto & Zima", "Cjelodnevno", "Prijateljstva"],
     color: "from-orange-500 to-red-500",
   },
@@ -131,7 +131,7 @@ export default function ZaIgracePage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Coerver_Kustosija-70.webp"
+            src="/images/training/training-13.webp"
             alt="Mladi igrač u akciji"
             fill
             className="object-cover"
@@ -362,7 +362,7 @@ export default function ZaIgracePage() {
             <div className="animate-on-scroll relative">
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden">
                 <Image
-                  src="/images/photoshoot/Coerver_Kustosija-25.webp"
+                  src="/images/training/training-05.webp"
                   alt="Coerver trening"
                   fill
                   className="object-cover"
@@ -411,7 +411,7 @@ export default function ZaIgracePage() {
             {/* Background */}
             <div className="absolute inset-0">
               <Image
-                src="/images/photoshoot/Coerver_Kustosija-15.webp"
+                src="/images/training/training-08.webp"
                 alt=""
                 fill
                 className="object-cover opacity-30"

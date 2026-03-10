@@ -20,21 +20,21 @@ const slides: Slide[] = [
     title: "Champions",
     subtitle: "Start Here",
     accent: "Prisutna u preko 60 zemalja",
-    image: "/images/photoshoot/Coerver_Kustosija-70.webp",
+    image: "/images/photoshoot/Miami-141.webp",
   },
   {
     id: 2,
     title: "Develop",
     subtitle: "Your Skills",
     accent: "Osnovana 1984. godine",
-    image: "/images/photoshoot/Coerver_Kustosija-60.webp",
+    image: "/images/photoshoot/Miami-133.webp",
   },
   {
     id: 3,
     title: "Train Like",
     subtitle: "The Pros",
     accent: "Razvijamo buduće prvake",
-    image: "/images/photoshoot/Coerver_Kustosija-10.webp",
+    image: "/images/photoshoot/Miami-138.webp",
   },
 ];
 

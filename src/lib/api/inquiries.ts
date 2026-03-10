@@ -7,6 +7,7 @@ export interface Inquiry {
   id: string;
   type: InquiryType;
   reference_id: string | null;
+  program_id: string | null;
   name: string;
   email: string;
   phone: string | null;

@@ -16,6 +16,7 @@ interface AudienceCard {
   description: string;
   image: string;
   href: string;
+  logo?: string;
 }
 
 const audienceCards: AudienceCard[] = [
@@ -26,6 +27,7 @@ const audienceCards: AudienceCard[] = [
       "Coerver® Coaching Performance Akademije namijenjene su igračima od 7 do 14 godina starosti koji već treniraju u klubovima, a žele poboljšati svoju izvedbu dodatno trenirajući po jedinstvenoj Coerver® metodi.",
     image: "/images/photoshoot/Miami-128.webp",
     href: "/za-igrace",
+    logo: "/images/logo-variations/performance-logo.jpg",
   },
   {
     id: "coaches",
@@ -50,6 +52,7 @@ const audienceCards: AudienceCard[] = [
       "Coerver® Coaching ima poseban program za individualne treninge i rad u manjim grupama, koji su ključni za razvoj svih sportaša.",
     image: "/images/photoshoot/Miami-138.webp",
     href: "/za-igrace/individualni-treninzi",
+    logo: "/images/logo-variations/Ball Mastery.png",
   },
   {
     id: "camps",
@@ -58,6 +61,7 @@ const audienceCards: AudienceCard[] = [
       "Coerver® Coaching organizira kampove u trajanju od jednoga do pet dana na kojima kombinacijom učenja vještina i zabave želimo svakom polazniku pružiti nezaboravno iskustvo.",
     image: "/images/photoshoot/Miami-125.webp",
     href: "/za-igrace/kampovi",
+    logo: "/images/logo-variations/Camps.png",
   },
 ];
 
@@ -157,6 +161,19 @@ export function AudienceCarousel() {
 
                 {/* Dark Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+                {/* Logo Badge */}
+                {card.logo && (
+                  <div className="absolute top-4 left-4">
+                    <Image
+                      src={card.logo}
+                      alt={card.title}
+                      width={80}
+                      height={35}
+                      className="object-contain rounded"
+                    />
+                  </div>
+                )}
 
                 {/* Content */}
                 <div className="absolute inset-0 p-5 flex flex-col justify-end">

@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
-import { ImageUpload } from "@/components/admin/forms";
+import { ImageUpload, ArrayInput } from "@/components/admin/forms";
 import { createAcademy } from "@/lib/api/academies";
 import { slugify } from "@/lib/utils";
 
@@ -18,6 +18,7 @@ const academySchema = z.object({
   description: z.string().optional(),
   location: z.string().optional(),
   address: z.string().optional(),
+  schedule: z.string().optional(),
   contact_email: z.string().email("Neispravna email adresa").optional().or(z.literal("")),
   contact_phone: z.string().optional(),
   image_url: z.string().optional(),
@@ -29,6 +30,7 @@ type AcademyFormData = z.infer<typeof academySchema>;
 export default function NewAcademyPage() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [ageGroups, setAgeGroups] = useState<string[]>([]);
 
   const {
     register,
@@ -58,6 +60,7 @@ export default function NewAcademyPage() {
       await createAcademy({
         ...data,
         contact_email: data.contact_email || undefined,
+        age_groups: ageGroups.length > 0 ? ageGroups : undefined,
       });
       router.push("/dashboard/admin/academies");
     } catch (error) {
@@ -134,6 +137,26 @@ export default function NewAcademyPage() {
             label="Adresa"
             {...register("address")}
             placeholder="Puna adresa..."
+          />
+        </div>
+
+        {/* Schedule & Age Groups */}
+        <div className="bg-white rounded-xl border border-coerver-gray-200 p-6 space-y-4">
+          <h2 className="text-lg font-semibold text-coerver-gray-900">Raspored i dobne skupine</h2>
+
+          <Textarea
+            label="Raspored"
+            {...register("schedule")}
+            placeholder="npr. Ponedjeljak i srijeda 17:00-18:30, Subota 10:00-12:00"
+            rows={3}
+          />
+
+          <ArrayInput
+            label="Dobne skupine"
+            value={ageGroups}
+            onChange={setAgeGroups}
+            placeholder='npr. "5-7", "8-10", "11-13"'
+            helperText="Dodajte dobne skupine koje akademija prima"
           />
         </div>
 

@@ -8,23 +8,47 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
-import { ImageUpload, DateRangePicker } from "@/components/admin/forms";
-import { createCamp } from "@/lib/api/camps";
+import {
+  ImageUpload,
+  DateRangePicker,
+  SingleDatePicker,
+  ArrayInput,
+  DailyScheduleEditor,
+  WeeklyProgramEditor,
+  IncludedItemsEditor,
+  FaqEditor,
+  TestimonialsEditor,
+} from "@/components/admin/forms";
+import {
+  createCamp,
+  DailyScheduleItem,
+  WeeklyProgramItem,
+  IncludedItem,
+  FaqItem,
+  TestimonialItem,
+} from "@/lib/api/camps";
 import { slugify } from "@/lib/utils";
 
 const campSchema = z.object({
   title: z.string().min(1, "Naziv je obavezan"),
   slug: z.string().min(1, "Slug je obavezan"),
+  subtitle: z.string().optional(),
   description: z.string().optional(),
   location: z.string().optional(),
   address: z.string().optional(),
+  map_url: z.string().optional(),
   start_date: z.string().min(1, "Datum početka je obavezan"),
   end_date: z.string().min(1, "Datum završetka je obavezan"),
   price: z.number().optional(),
+  early_bird_price: z.number().optional(),
+  early_bird_deadline: z.string().optional(),
   capacity: z.number().optional(),
+  spots: z.number().optional(),
+  total_spots: z.number().optional(),
   age_min: z.number().optional(),
   age_max: z.number().optional(),
   image_url: z.string().optional(),
+  hero_image: z.string().optional(),
   status: z.enum(["draft", "published", "cancelled", "completed"]),
 });
 
@@ -35,6 +59,18 @@ export default function NewCampPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [startDate, setStartDate] = useState<string | null>(null);
   const [endDate, setEndDate] = useState<string | null>(null);
+  const [earlyBirdDeadline, setEarlyBirdDeadline] = useState<string | null>(null);
+
+  // Array/JSON state
+  const [gallery, setGallery] = useState<string[]>([]);
+  const [highlights, setHighlights] = useState<string[]>([]);
+  const [ageGroups, setAgeGroups] = useState<string[]>([]);
+  const [whatToBring, setWhatToBring] = useState<string[]>([]);
+  const [dailySchedule, setDailySchedule] = useState<DailyScheduleItem[]>([]);
+  const [weeklyProgram, setWeeklyProgram] = useState<WeeklyProgramItem[]>([]);
+  const [included, setIncluded] = useState<IncludedItem[]>([]);
+  const [faq, setFaq] = useState<FaqItem[]>([]);
+  const [testimonials, setTestimonials] = useState<TestimonialItem[]>([]);
 
   const {
     register,
@@ -51,6 +87,7 @@ export default function NewCampPage() {
 
   const title = watch("title");
   const imageUrl = watch("image_url");
+  const heroImage = watch("hero_image");
 
   useEffect(() => {
     if (title) {
@@ -61,12 +98,24 @@ export default function NewCampPage() {
   useEffect(() => {
     if (startDate) setValue("start_date", startDate);
     if (endDate) setValue("end_date", endDate);
-  }, [startDate, endDate, setValue]);
+    if (earlyBirdDeadline) setValue("early_bird_deadline", earlyBirdDeadline);
+  }, [startDate, endDate, earlyBirdDeadline, setValue]);
 
   async function onSubmit(data: CampFormData) {
     setIsSubmitting(true);
     try {
-      await createCamp(data);
+      await createCamp({
+        ...data,
+        gallery,
+        highlights,
+        age_groups: ageGroups,
+        what_to_bring: whatToBring,
+        daily_schedule: dailySchedule,
+        weekly_program: weeklyProgram,
+        included,
+        faq,
+        testimonials,
+      });
       router.push("/dashboard/admin/camps");
     } catch (error) {
       console.error("Error creating camp:", error);
@@ -83,7 +132,7 @@ export default function NewCampPage() {
   ];
 
   return (
-    <div className="max-w-3xl space-y-6">
+    <div className="max-w-4xl space-y-6">
       {/* Header */}
       <div className="flex items-center gap-4">
         <Link
@@ -106,7 +155,7 @@ export default function NewCampPage() {
             label="Naziv"
             {...register("title")}
             error={errors.title?.message}
-            placeholder="Npr. Ljetni kamp 2024"
+            placeholder="Npr. Ljetni kamp Zagreb 2024"
           />
 
           <Input
@@ -116,10 +165,16 @@ export default function NewCampPage() {
             helperText="URL putanja (automatski generirana)"
           />
 
+          <Input
+            label="Podnaslov"
+            {...register("subtitle")}
+            placeholder="npr. 5 dana intenzivnog nogometnog treninga"
+          />
+
           <Textarea
             label="Opis"
             {...register("description")}
-            placeholder="Opišite kamp..."
+            placeholder="Detaljni opis kampa..."
             rows={4}
           />
 
@@ -137,13 +192,19 @@ export default function NewCampPage() {
           <Input
             label="Grad/Mjesto"
             {...register("location")}
-            placeholder="Npr. Zagreb"
+            placeholder="npr. SC Mladost, Zagreb"
           />
 
           <Input
             label="Adresa"
             {...register("address")}
-            placeholder="Puna adresa..."
+            placeholder="npr. Jarunska ul. 5, 10000 Zagreb"
+          />
+
+          <Input
+            label="Google Maps URL"
+            {...register("map_url")}
+            placeholder="https://maps.google.com/..."
           />
         </div>
 
@@ -161,9 +222,9 @@ export default function NewCampPage() {
           />
         </div>
 
-        {/* Details */}
+        {/* Pricing */}
         <div className="bg-white rounded-xl border border-coerver-gray-200 p-6 space-y-4">
-          <h2 className="text-lg font-semibold text-coerver-gray-900">Detalji</h2>
+          <h2 className="text-lg font-semibold text-coerver-gray-900">Cijene</h2>
 
           <div className="grid grid-cols-2 gap-4">
             <Input
@@ -171,14 +232,49 @@ export default function NewCampPage() {
               type="number"
               step="0.01"
               {...register("price", { valueAsNumber: true })}
-              placeholder="0.00"
+              placeholder="250.00"
             />
 
             <Input
-              label="Kapacitet"
+              label="Early Bird cijena (€)"
+              type="number"
+              step="0.01"
+              {...register("early_bird_price", { valueAsNumber: true })}
+              placeholder="220.00"
+            />
+          </div>
+
+          <SingleDatePicker
+            label="Early Bird rok"
+            value={earlyBirdDeadline}
+            onChange={setEarlyBirdDeadline}
+          />
+        </div>
+
+        {/* Capacity */}
+        <div className="bg-white rounded-xl border border-coerver-gray-200 p-6 space-y-4">
+          <h2 className="text-lg font-semibold text-coerver-gray-900">Kapacitet</h2>
+
+          <div className="grid grid-cols-3 gap-4">
+            <Input
+              label="Ukupni kapacitet"
               type="number"
               {...register("capacity", { valueAsNumber: true })}
-              placeholder="Broj sudionika"
+              placeholder="24"
+            />
+
+            <Input
+              label="Ukupna mjesta"
+              type="number"
+              {...register("total_spots", { valueAsNumber: true })}
+              placeholder="24"
+            />
+
+            <Input
+              label="Preostala mjesta"
+              type="number"
+              {...register("spots", { valueAsNumber: true })}
+              placeholder="24"
             />
           </div>
 
@@ -187,30 +283,115 @@ export default function NewCampPage() {
               label="Minimalna dob"
               type="number"
               {...register("age_min", { valueAsNumber: true })}
-              placeholder="6"
+              placeholder="7"
             />
 
             <Input
               label="Maksimalna dob"
               type="number"
               {...register("age_max", { valueAsNumber: true })}
-              placeholder="16"
+              placeholder="15"
             />
           </div>
+
+          <ArrayInput
+            label="Dobne skupine"
+            value={ageGroups}
+            onChange={setAgeGroups}
+            placeholder='npr. "7-9", "10-12", "13-15"'
+          />
         </div>
 
-        {/* Image */}
-        <div className="bg-white rounded-xl border border-coerver-gray-200 p-6">
+        {/* Images */}
+        <div className="bg-white rounded-xl border border-coerver-gray-200 p-6 space-y-6">
+          <h2 className="text-lg font-semibold text-coerver-gray-900">Slike</h2>
+
           <ImageUpload
-            label="Slika kampa"
+            label="Glavna slika (thumbnail)"
             value={imageUrl}
             onChange={(url) => setValue("image_url", url || "")}
             folder="camps"
           />
+
+          <ImageUpload
+            label="Hero slika (pozadina)"
+            value={heroImage}
+            onChange={(url) => setValue("hero_image", url || "")}
+            folder="camps"
+          />
+
+          <ArrayInput
+            label="Galerija slika"
+            value={gallery}
+            onChange={setGallery}
+            placeholder="URL slike..."
+            helperText="Dodajte URL-ove slika za galeriju"
+          />
+        </div>
+
+        {/* Highlights */}
+        <div className="bg-white rounded-xl border border-coerver-gray-200 p-6 space-y-4">
+          <h2 className="text-lg font-semibold text-coerver-gray-900">Istaknuto</h2>
+
+          <ArrayInput
+            label="Prednosti kampa"
+            value={highlights}
+            onChange={setHighlights}
+            placeholder='npr. "5 dana profesionalnog treninga"'
+            helperText="Dodajte ključne prednosti i karakteristike kampa"
+          />
+        </div>
+
+        {/* Program */}
+        <div className="bg-white rounded-xl border border-coerver-gray-200 p-6 space-y-6">
+          <h2 className="text-lg font-semibold text-coerver-gray-900">Program</h2>
+
+          <DailyScheduleEditor
+            value={dailySchedule}
+            onChange={setDailySchedule}
+          />
+
+          <WeeklyProgramEditor
+            value={weeklyProgram}
+            onChange={setWeeklyProgram}
+          />
+        </div>
+
+        {/* What's Included */}
+        <div className="bg-white rounded-xl border border-coerver-gray-200 p-6 space-y-6">
+          <h2 className="text-lg font-semibold text-coerver-gray-900">Uključeno u cijenu</h2>
+
+          <IncludedItemsEditor
+            value={included}
+            onChange={setIncluded}
+          />
+
+          <ArrayInput
+            label="Što ponijeti"
+            value={whatToBring}
+            onChange={setWhatToBring}
+            placeholder='npr. "Nogometne kopačke"'
+          />
+        </div>
+
+        {/* FAQ */}
+        <div className="bg-white rounded-xl border border-coerver-gray-200 p-6">
+          <FaqEditor
+            value={faq}
+            onChange={setFaq}
+          />
+        </div>
+
+        {/* Testimonials */}
+        <div className="bg-white rounded-xl border border-coerver-gray-200 p-6">
+          <TestimonialsEditor
+            value={testimonials}
+            onChange={setTestimonials}
+          />
         </div>
 
         {/* Submit */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 sticky bottom-4 bg-white p-4 rounded-xl border border-coerver-gray-200 shadow-lg">
           <Button type="submit" variant="primary" isLoading={isSubmitting}>
             Spremi kamp
           </Button>

@@ -230,6 +230,7 @@ export function RichTextEditor({
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML());
     },
+    immediatelyRender: false,
   });
 
   return (
@@ -241,7 +242,7 @@ export function RichTextEditor({
       )}
       <div
         className={cn(
-          "border rounded-lg overflow-hidden",
+          "border rounded-lg overflow-hidden relative",
           error ? "border-red-500" : "border-coerver-gray-300",
           "focus-within:ring-2 focus-within:ring-coerver-green focus-within:border-coerver-green"
         )}
