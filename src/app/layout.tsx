@@ -57,17 +57,18 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Coerver Coaching Croatia" }],
   creator: "Coerver Coaching Croatia",
+  metadataBase: new URL("https://coervercroatia.com"),
   openGraph: {
     type: "website",
     locale: "hr_HR",
-    url: "https://coerver.hr",
+    url: "https://coervercroatia.com",
     siteName: "Coerver Coaching Croatia",
     title: "Coerver Coaching Croatia | Nogometna Akademija",
     description:
       "Razvijamo vrhunske nogometaše kroz provjerenu Coerver metodologiju.",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/og-image",
         width: 1200,
         height: 630,
         alt: "Coerver Coaching Croatia",
@@ -79,7 +80,7 @@ export const metadata: Metadata = {
     title: "Coerver Coaching Croatia | Nogometna Akademija",
     description:
       "Razvijamo vrhunske nogometaše kroz provjerenu Coerver metodologiju.",
-    images: ["/images/og-image.jpg"],
+    images: ["/og-image"],
   },
   robots: {
     index: true,
@@ -94,6 +95,59 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SportsActivityLocation",
+  name: "Coerver Coaching Croatia",
+  description:
+    "Razvijamo vrhunske nogometaše kroz provjerenu Coerver metodologiju. Akademije, kampovi, individualni treninzi i edukacija trenera.",
+  url: "https://coervercroatia.com",
+  logo: "https://coervercroatia.com/images/coerver-logo.png",
+  image: "https://coervercroatia.com/og-image",
+  telephone: "+385 98 1873 228",
+  email: "info@coervercroatia.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Zagreb",
+    addressCountry: "HR",
+  },
+  sameAs: [
+    "https://www.facebook.com/coervercroatia",
+    "https://www.instagram.com/coervercroatia",
+  ],
+  sport: "Soccer",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Coerver Programs",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Coerver Akademije",
+          description: "Redovni grupni treninzi po provjerenoj Coerver metodologiji",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Nogometni Kampovi",
+          description: "Intenzivni višednevni programi tijekom školskih praznika",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Coerver Diploma Pathway",
+          description: "Edukacija trenera po Coerver metodologiji",
+        },
+      },
+    ],
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -101,6 +155,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="hr" className={messinaSans.variable}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col antialiased">
         <Header />
         <main className="flex-grow">{children}</main>
