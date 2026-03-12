@@ -90,14 +90,32 @@ const benefits = [
 ];
 
 const currentPartners = [
-  { name: "GNK Dinamo Zagreb", type: "Elite Partner", image: "/images/clubs/Dinamov-grb.png" },
-  { name: "NK Olimpija Ljubljana", type: "Premium Partner", image: "/images/clubs/NK_Olimpija_Ljubljana.png" },
-  { name: "FC Lugano", type: "Premium Partner", image: "/images/clubs/FC-Lugano-new-1.png" },
-  { name: "NK Rudeš", type: "Partner Klub", image: "/images/clubs/NK-RUDES.png" },
-  { name: "NK Triglav Kranj", type: "Partner Klub", image: "/images/clubs/NK-Triglav-Kranj.png" },
-  { name: "NK Zelina", type: "Partner Klub", image: "/images/clubs/NK-Zelina.png" },
-  { name: "NK Novi Marof", type: "Partner Klub", image: "/images/clubs/Novi-Marof-png.png" },
-  { name: "ŠN Maksimir", type: "Partner Klub", image: "/images/clubs/SN-Maksimir.jpg" },
+  { name: "GNK Dinamo Zagreb", image: "/images/clubs/Dinamov-grb.png" },
+  { name: "NK Olimpija Ljubljana", image: "/images/clubs/NK_Olimpija_Ljubljana.png" },
+  { name: "FC Lugano", image: "/images/clubs/FC-Lugano-new-1.png" },
+  { name: "NK Rudeš", image: "/images/clubs/NK-RUDES.png" },
+  { name: "NK Triglav Kranj", image: "/images/clubs/NK-Triglav-Kranj.png" },
+  { name: "NK Zelina", image: "/images/clubs/NK-Zelina.png" },
+  { name: "NK Novi Marof", image: "/images/clubs/Novi-Marof-png.png" },
+  { name: "ŠN Maksimir", image: "/images/clubs/SN-Maksimir.jpg" },
+  { name: "Alfa Academy", image: "/images/clubs/alfa academy.jpg" },
+  { name: "Deportivo Alavés", image: "/images/clubs/Deportivo Alaves.png" },
+  { name: "Hornets Warriors", image: "/images/clubs/Hornets Warriors.jpeg" },
+  { name: "Lumen", image: "/images/clubs/Lumen.jpg" },
+  { name: "NK Graničar Đurđevac", image: "/images/clubs/NK Graničar Đurđevac.jpg" },
+  { name: "NK Hvar", image: "/images/clubs/NK Hvar 1.png" },
+  { name: "NK Kralj Tomislav", image: "/images/clubs/NK Kralj Tomislav.jpg" },
+  { name: "NK Kustošija", image: "/images/clubs/NK Kustošija.png" },
+  { name: "NK Lio Osijek", image: "/images/clubs/NK Lio Osijek.jpg" },
+  { name: "NK Ljubuški", image: "/images/clubs/NK Ljubuški.jpg" },
+  { name: "NK Lokomotiva Rijeka", image: "/images/clubs/NK Lokomotiva Rijeka.png" },
+  { name: "NK Sesvete", image: "/images/clubs/NK Sesvete.png" },
+  { name: "NK Špansko", image: "/images/clubs/NK Špansko.png" },
+  { name: "NK Studentski Grad", image: "/images/clubs/NK Studentski grad.png" },
+  { name: "NK Vis", image: "/images/clubs/NK Vis.jpg" },
+  { name: "NK Šmartno", image: "/images/clubs/NK_Smartno.png" },
+  { name: "RNK Split", image: "/images/clubs/RNK Split.jpeg" },
+  { name: "ŠF Šampion", image: "/images/clubs/ŠF Šampion.jpg" },
 ];
 
 const testimonials = [
@@ -434,10 +452,9 @@ export default function KluboviPage() {
                     className="object-contain group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
-                <div className="font-bold text-coerver-dark text-sm mb-1">
+                <div className="font-bold text-coerver-dark text-sm">
                   {partner.name}
                 </div>
-                <div className="text-xs text-coerver-green font-medium">{partner.type}</div>
               </div>
             ))}
           </div>

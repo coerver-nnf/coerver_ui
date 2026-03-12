@@ -224,11 +224,11 @@ export function WhatIsCoerver() {
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-coerver-green rounded-full blur-[80px]" />
           </div>
 
-          {/* 39 Year Anniversary Badge */}
+          {/* Since 1984 Badge */}
           <div className="absolute top-6 right-6 lg:top-8 lg:right-8 hidden md:block">
             <Image
-              src="/images/logo-variations/39 year logo full colour rgb 1000px@300ppi.png"
-              alt="39 Years of Excellence"
+              src="/images/logo-variations/SINCE 1984 BLACK.png"
+              alt="Coerver Coaching Since 1984"
               width={100}
               height={100}
               className="object-contain"

@@ -116,7 +116,7 @@ export default function ResetPasswordPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/photoshoot/Miami-133.webp"
+            src="/images/photoshoot/Miami-082.webp"
             alt="Coerver Training"
             fill
             className="object-cover opacity-20"

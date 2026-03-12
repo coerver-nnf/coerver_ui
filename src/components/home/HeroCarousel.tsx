@@ -27,14 +27,14 @@ const slides: Slide[] = [
     title: "Develop",
     subtitle: "Your Skills",
     accent: "Osnovana 1984. godine",
-    image: "/images/photoshoot/Miami-133.webp",
+    image: "/images/photoshoot/Miami-081.webp",
   },
   {
     id: 3,
     title: "Train Like",
     subtitle: "The Pros",
     accent: "Razvijamo buduće prvake",
-    image: "/images/photoshoot/Miami-138.webp",
+    image: "/images/photoshoot/Miami-083.webp",
   },
 ];
 

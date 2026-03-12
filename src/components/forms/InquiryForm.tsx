@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
-import { createClient } from "@/lib/supabase/client";
 import { getAcademies, Academy } from "@/lib/api/academies";
 import { getCamps, Camp } from "@/lib/api/camps";
 import { getCourses, Course } from "@/lib/api/courses";
@@ -81,8 +80,6 @@ export function InquiryForm({
     setError(null);
 
     try {
-      const supabase = createClient();
-
       // Build message with club and position info
       let fullMessage = formData.message;
       if (type === "camp") {
@@ -96,16 +93,25 @@ export function InquiryForm({
         fullMessage = `Klub: ${formData.club}\n\n${formData.message}`;
       }
 
-      const { error: submitError } = await supabase.from("inquiries").insert({
-        type,
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone || null,
-        message: fullMessage,
-        program_id: selectedProgramId || programId || null,
+      const response = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          type,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || null,
+          message: fullMessage,
+          program_id: selectedProgramId || programId || null,
+          childAge: formData.childAge || null,
+        }),
       });
 
-      if (submitError) throw submitError;
+      if (!response.ok) {
+        throw new Error("Failed to submit inquiry");
+      }
 
       setIsSubmitted(true);
       setFormData({

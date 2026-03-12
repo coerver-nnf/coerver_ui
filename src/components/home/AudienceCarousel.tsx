@@ -25,7 +25,7 @@ const audienceCards: AudienceCard[] = [
     title: "IGRAČI",
     description:
       "Coerver® Coaching Performance Akademije namijenjene su igračima od 7 do 14 godina starosti koji već treniraju u klubovima, a žele poboljšati svoju izvedbu dodatno trenirajući po jedinstvenoj Coerver® metodi.",
-    image: "/images/photoshoot/Miami-128.webp",
+    image: "/images/photoshoot/Miami-139.webp",
     href: "/za-igrace",
     logo: "/images/logo-variations/performance-logo.jpg",
   },
@@ -42,7 +42,7 @@ const audienceCards: AudienceCard[] = [
     title: "KLUBOVI",
     description:
       "Coerver® Coaching nudi poseban partnerski program svim klubovima od amaterske do profesionalne razine. Ovim programom pokrivaju se četiri temeljne komponente.",
-    image: "/images/photoshoot/Miami-143.webp",
+    image: "/images/photoshoot/Miami-119.webp",
     href: "/klubovi",
   },
   {
@@ -50,7 +50,7 @@ const audienceCards: AudienceCard[] = [
     title: "INDIVIDUALNI TRENINZI",
     description:
       "Coerver® Coaching ima poseban program za individualne treninge i rad u manjim grupama, koji su ključni za razvoj svih sportaša.",
-    image: "/images/photoshoot/Miami-138.webp",
+    image: "/images/photoshoot/Miami-115.webp",
     href: "/za-igrace/individualni-treninzi",
     logo: "/images/logo-variations/Ball Mastery.png",
   },
@@ -59,7 +59,7 @@ const audienceCards: AudienceCard[] = [
     title: "KAMPOVI",
     description:
       "Coerver® Coaching organizira kampove u trajanju od jednoga do pet dana na kojima kombinacijom učenja vještina i zabave želimo svakom polazniku pružiti nezaboravno iskustvo.",
-    image: "/images/photoshoot/Miami-125.webp",
+    image: "/images/photoshoot/Miami-140.webp",
     href: "/za-igrace/kampovi",
     logo: "/images/logo-variations/Camps.png",
   },
