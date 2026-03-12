@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
+import { createClient } from "@/lib/supabase/client";
 import { getAcademies, Academy } from "@/lib/api/academies";
 import { getCamps, Camp } from "@/lib/api/camps";
 import { getCourses, Course } from "@/lib/api/courses";
@@ -80,6 +81,8 @@ export function InquiryForm({
     setError(null);
 
     try {
+      const supabase = createClient();
+
       // Build message with club and position info
       let fullMessage = formData.message;
       if (type === "camp") {
@@ -93,25 +96,40 @@ export function InquiryForm({
         fullMessage = `Klub: ${formData.club}\n\n${formData.message}`;
       }
 
-      const response = await fetch("/api/inquiries", {
+      // Add program slug to message if it's not a UUID
+      const programValue = selectedProgramId || programId || null;
+      const isUUID = programValue && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(programValue);
+
+      if (programValue && !isUUID) {
+        fullMessage = `Program: ${programValue}\n\n${fullMessage}`;
+      }
+
+      // Insert into Supabase (client-side with proper RLS permissions)
+      const { error: submitError } = await supabase.from("inquiries").insert({
+        type,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || null,
+        message: fullMessage,
+        program_id: isUUID ? programValue : null,
+      });
+
+      if (submitError) throw submitError;
+
+      // Send email notification via API (fire and forget)
+      fetch("/api/inquiries/notify", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type,
           name: formData.name,
           email: formData.email,
           phone: formData.phone || null,
           message: fullMessage,
-          program_id: selectedProgramId || programId || null,
+          program: programValue,
           childAge: formData.childAge || null,
         }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to submit inquiry");
-      }
+      }).catch(console.error);
 
       setIsSubmitted(true);
       setFormData({
