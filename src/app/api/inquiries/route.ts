@@ -11,6 +11,12 @@ const INQUIRY_TYPE_LABELS: Record<string, string> = {
   general: "Opći upit",
 };
 
+// Check if string is a valid UUID
+function isValidUUID(str: string): boolean {
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  return uuidRegex.test(str);
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -24,6 +30,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Only use program_id if it's a valid UUID, otherwise include it in the message
+    const validProgramId = program_id && isValidUUID(program_id) ? program_id : null;
+    const programSlug = program_id && !isValidUUID(program_id) ? program_id : null;
+
+    // If program_id is a slug (not UUID), prepend it to the message
+    let fullMessage = message;
+    if (programSlug) {
+      fullMessage = `Program: ${programSlug}\n\n${message}`;
+    }
+
     // Insert into Supabase
     const supabase = await createClient();
     const { data: inquiry, error: dbError } = await supabase
@@ -33,8 +49,8 @@ export async function POST(request: NextRequest) {
         name,
         email,
         phone: phone || null,
-        message,
-        program_id: program_id || null,
+        message: fullMessage,
+        program_id: validProgramId,
         status: "new",
       })
       .select()
@@ -91,6 +107,12 @@ export async function POST(request: NextRequest) {
                 <tr>
                   <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Dob djeteta:</td>
                   <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${childAge}</td>
+                </tr>
+                ` : ""}
+                ${programSlug ? `
+                <tr>
+                  <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Program:</td>
+                  <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${programSlug}</td>
                 </tr>
                 ` : ""}
               </table>
