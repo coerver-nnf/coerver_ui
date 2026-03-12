@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { createClient } from "@/lib/supabase/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const INQUIRY_TYPE_LABELS: Record<string, string> = {
   camp: "Kamp",
   academy: "Akademija",
@@ -52,6 +50,7 @@ export async function POST(request: NextRequest) {
 
     // Send email notification
     try {
+      const resend = new Resend(process.env.RESEND_API_KEY);
       await resend.emails.send({
         from: "Coerver Croatia <noreply@coervercroatia.com>",
         to: "info@coervercroatia.com",
