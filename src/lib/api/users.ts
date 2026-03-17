@@ -20,7 +20,7 @@ export interface UpdateUserInput {
   phone?: string;
   avatar_url?: string;
   role?: UserRole;
-  is_approved?: boolean;
+  approved?: boolean;
 }
 
 // Get all users
@@ -95,8 +95,8 @@ export async function changeUserRole(id: string, role: UserRole) {
 }
 
 // Toggle user approval
-export async function toggleUserApproval(id: string, is_approved: boolean) {
-  return updateUser({ id, is_approved });
+export async function toggleUserApproval(id: string, approved: boolean) {
+  return updateUser({ id, approved });
 }
 
 // Delete user (soft delete by setting inactive, or hard delete)

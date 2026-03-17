@@ -68,7 +68,7 @@ export default function UserDetailPage({
     if (!user) return;
     setSaving(true);
     try {
-      await updateUser({ id, is_approved: !user.is_approved });
+      await updateUser({ id, approved: !user.is_approved });
       await loadUser();
     } catch (error) {
       console.error("Error updating approval:", error);

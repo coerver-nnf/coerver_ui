@@ -120,7 +120,7 @@ export async function approveCoach(id: string) {
   const supabase = createClient();
   const { data, error } = await supabase
     .from("profiles")
-    .update({ is_approved: true })
+    .update({ approved: true })
     .eq("id", id)
     .eq("role", "coach")
     .select()
@@ -135,7 +135,7 @@ export async function rejectCoach(id: string) {
   const supabase = createClient();
   const { data, error } = await supabase
     .from("profiles")
-    .update({ is_approved: false })
+    .update({ approved: false })
     .eq("id", id)
     .eq("role", "coach")
     .select()
