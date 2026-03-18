@@ -65,21 +65,30 @@ const modules = [
 
 const daySchedule = {
   day1: {
-    title: "Ball Mastery & 1v1",
+    title: "Teoretska predavanja online",
     items: [
-      { time: "09:00 - 10:30", activity: "Ball Mastery teorija" },
-      { time: "11:00 - 12:30", activity: "Ball Mastery praksa" },
-      { time: "13:30 - 15:00", activity: "1v1 potezi - teorija" },
-      { time: "15:30 - 17:00", activity: "1v1 potezi - praksa" },
+      { time: "18:00 – 18:10", activity: "Uvod u edukaciju" },
+      { time: "18:10 – 18:40", activity: "Što je Coerver® Coaching?" },
+      { time: "18:40 – 18:50", activity: "Pauza", isPause: true },
+      { time: "18:50 – 19:20", activity: "Coerver® Coaching sustav razvoja igrača" },
+      { time: "19:20 – 19:30", activity: "Pauza", isPause: true },
+      { time: "19:30 – 20:00", activity: "Planiranje treninga kroz sezonu" },
+      { time: "20:00 – 20:10", activity: "Pauza", isPause: true },
+      { time: "20:10 – 20:40", activity: "Kako postati boljim trenerom" },
+      { time: "20:40 – 20:55", activity: "Pitanja & odgovori" },
     ],
   },
   day2: {
-    title: "Receiving, Turning & Passing",
+    title: "Praktična predavanja uživo i online",
     items: [
-      { time: "09:00 - 10:30", activity: "Receiving & Turning" },
-      { time: "11:00 - 12:30", activity: "Passing tehnika" },
-      { time: "13:30 - 15:00", activity: "Praktična radionica" },
-      { time: "15:30 - 17:00", activity: "Evaluacija i certifikati" },
+      { time: "12:00 – 13:15", activity: "Primjer Coerver® treninga" },
+      { time: "13:15 – 13:30", activity: "Pauza", isPause: true },
+      { time: "13:30 – 14:45", activity: "Coerver® temelji – Ball Mastery, Brzina i 1v1" },
+      { time: "14:45 – 15:45", activity: "Ručak", isPause: true },
+      { time: "15:45 – 17:00", activity: "Small Group Play & Small Sided Game" },
+      { time: "17:15 – 17:30", activity: "Pauza", isPause: true },
+      { time: "17:30 – 18:45", activity: "Coerver® završnica – igra u \"Zlatnoj zoni\"" },
+      { time: "18:45 – 19:15", activity: "Sažetak edukacije, Pitanja & odgovori" },
     ],
   },
 };
@@ -285,14 +294,27 @@ export default function YouthDiploma1Page() {
                 <span className="text-white font-bold text-xl">Dan 1</span>
                 <div className="text-white/80 text-sm mt-1">{daySchedule.day1.title}</div>
               </div>
-              <div className="p-6 space-y-4">
-                {daySchedule.day1.items.map((item, index) => (
-                  <div key={item.time} className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-coerver-green/20 flex items-center justify-center flex-shrink-0">
-                      <span className="text-coerver-green font-bold text-sm">{index + 1}</span>
+              <div className="p-6 space-y-3">
+                {daySchedule.day1.items.map((item) => (
+                  <div
+                    key={item.time}
+                    className={`flex items-center gap-4 ${item.isPause ? 'opacity-50' : ''}`}
+                  >
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                      item.isPause ? 'bg-white/10' : 'bg-coerver-green/20'
+                    }`}>
+                      {item.isPause ? (
+                        <svg className="w-4 h-4 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      ) : (
+                        <span className="text-coerver-green font-bold text-sm">•</span>
+                      )}
                     </div>
                     <div className="flex-1">
-                      <div className="text-white font-medium">{item.activity}</div>
+                      <div className={`font-medium ${item.isPause ? 'text-white/50 text-sm' : 'text-white'}`}>
+                        {item.activity}
+                      </div>
                       <div className="text-white/50 text-sm">{item.time}</div>
                     </div>
                   </div>
@@ -306,14 +328,27 @@ export default function YouthDiploma1Page() {
                 <span className="text-white font-bold text-xl">Dan 2</span>
                 <div className="text-white/80 text-sm mt-1">{daySchedule.day2.title}</div>
               </div>
-              <div className="p-6 space-y-4">
-                {daySchedule.day2.items.map((item, index) => (
-                  <div key={item.time} className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-coerver-green/20 flex items-center justify-center flex-shrink-0">
-                      <span className="text-coerver-green font-bold text-sm">{index + 5}</span>
+              <div className="p-6 space-y-3">
+                {daySchedule.day2.items.map((item) => (
+                  <div
+                    key={item.time}
+                    className={`flex items-center gap-4 ${item.isPause ? 'opacity-50' : ''}`}
+                  >
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                      item.isPause ? 'bg-white/10' : 'bg-coerver-green/20'
+                    }`}>
+                      {item.isPause ? (
+                        <svg className="w-4 h-4 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      ) : (
+                        <span className="text-coerver-green font-bold text-sm">•</span>
+                      )}
                     </div>
                     <div className="flex-1">
-                      <div className="text-white font-medium">{item.activity}</div>
+                      <div className={`font-medium ${item.isPause ? 'text-white/50 text-sm' : 'text-white'}`}>
+                        {item.activity}
+                      </div>
                       <div className="text-white/50 text-sm">{item.time}</div>
                     </div>
                   </div>
