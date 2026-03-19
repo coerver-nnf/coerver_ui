@@ -38,6 +38,7 @@ export function InquiryForm({
     childAge: "",
     club: "",
     position: "",
+    format: "",
   });
 
   // Fetch programs based on type
@@ -92,8 +93,13 @@ export function InquiryForm({
         if (extras.length > 0) {
           fullMessage = `${extras.join(", ")}\n\n${formData.message}`;
         }
-      } else if ((type === "course" || type === "club") && formData.club) {
-        fullMessage = `Klub: ${formData.club}\n\n${formData.message}`;
+      } else if (type === "course" || type === "club") {
+        const extras = [];
+        if (formData.format) extras.push(`Format: ${formData.format}`);
+        if (formData.club) extras.push(`Klub: ${formData.club}`);
+        if (extras.length > 0) {
+          fullMessage = `${extras.join(", ")}\n\n${formData.message}`;
+        }
       }
 
       // Add program slug to message if it's not a UUID
@@ -140,6 +146,7 @@ export function InquiryForm({
         childAge: "",
         club: "",
         position: "",
+        format: "",
       });
     } catch {
       setError("Došlo je do greške. Molimo pokušajte ponovno.");
@@ -330,6 +337,21 @@ export function InquiryForm({
             value={formData.club}
             onChange={handleChange}
             placeholder="Naziv kluba iz kojeg se prijavljujete"
+          />
+        )}
+
+        {type === "course" && programId === "youth-diploma-1" && (
+          <Select
+            label="Format sudjelovanja *"
+            name="format"
+            value={formData.format}
+            onChange={handleChange}
+            options={[
+              { value: "", label: "Odaberite format" },
+              { value: "Uživo", label: "Uživo" },
+              { value: "Online", label: "Online" },
+            ]}
+            required
           />
         )}
 

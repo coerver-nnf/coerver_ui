@@ -189,13 +189,14 @@ export default function YouthDiploma1Page() {
             </h1>
 
             <p className="text-xl text-white/70 mb-8 max-w-xl">
-              Dvodnevni intenzivni program u kojem će treneri naučiti kako kreirati Coerver trening uz pomoć Coerver trening planera.
+              Dvodnevni intenzivni program u kojem će treneri naučiti kako kreirati Coerver trening uz pomoć Coerver trening planera. Tečaj je dostupan uživo ili online.
             </p>
 
             {/* Quick info cards */}
             <div className="flex flex-wrap gap-4 mb-10">
               {[
                 { label: "Trajanje", value: "2 dana" },
+                { label: "Format", value: "Uživo ili Online" },
               ].map((item) => (
                 <div
                   key={item.label}
@@ -533,7 +534,6 @@ export default function YouthDiploma1Page() {
                 <h4 className="font-bold text-lg mb-6">Preduvjeti:</h4>
                 <div className="space-y-4">
                   {[
-                    "Završen Coerver Intro tečaj",
                     "Aktivno iskustvo u trenerskom radu",
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3">

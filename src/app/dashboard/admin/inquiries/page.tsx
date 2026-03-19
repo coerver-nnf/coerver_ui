@@ -15,6 +15,13 @@ import {
 } from "@/lib/api/inquiries";
 import { formatDateShort } from "@/lib/utils";
 
+// Helper to extract format from message
+function extractFormatFromMessage(message: string | null): string | null {
+  if (!message) return null;
+  const match = message.match(/^Format:\s*(Uživo|Online)/i);
+  return match ? match[1] : null;
+}
+
 export default function InquiriesPage() {
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [loading, setLoading] = useState(true);
@@ -81,6 +88,23 @@ export default function InquiriesPage() {
           {INQUIRY_TYPE_LABELS[row.original.type]}
         </span>
       ),
+    },
+    {
+      id: "format",
+      header: "Format",
+      cell: ({ row }) => {
+        const format = extractFormatFromMessage(row.original.message);
+        if (!format) return <span className="text-coerver-gray-400">-</span>;
+        return (
+          <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium ${
+            format === "Online"
+              ? "bg-blue-100 text-blue-700"
+              : "bg-green-100 text-green-700"
+          }`}>
+            {format}
+          </span>
+        );
+      },
     },
     {
       accessorKey: "message",
