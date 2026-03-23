@@ -146,7 +146,7 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
                   { label: "Datum", value: dates, icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" },
                   { label: "Lokacija", value: camp.location || "TBD", icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" },
                   { label: "Dob", value: ageGroupsDisplay, icon: "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" },
-                  { label: "Cijena", value: camp.price ? `${camp.price}€` : "TBD", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
+                  { label: "Cijena od", value: camp.price_day_only ? `${camp.price_day_only}€` : (camp.price ? `${camp.price}€` : "TBD"), icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
                 ].map((item) => (
                   <div
                     key={item.label}
@@ -210,17 +210,32 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
                   </div>
                 </div>
 
-                {/* Early bird */}
-                {camp.early_bird_price && camp.early_bird_deadline && (
+                {/* Prices */}
+                <div className="space-y-3 mb-6">
+                  {camp.price && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/70">S noćenjem</span>
+                      <span className="text-white font-bold text-xl">{camp.price}€</span>
+                    </div>
+                  )}
+                  {camp.price_day_only && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/70">Bez noćenja</span>
+                      <span className="text-white font-bold text-xl">{camp.price_day_only}€</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Registration deadline */}
+                {camp.registration_deadline && (
                   <div className="bg-coerver-green/20 rounded-2xl p-4 border border-coerver-green/30">
                     <div className="flex items-center gap-2 mb-2">
                       <svg className="w-5 h-5 text-coerver-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      <span className="text-coerver-green font-semibold">Early Bird ponuda</span>
+                      <span className="text-coerver-green font-semibold">Rok za prijavu</span>
                     </div>
-                    <p className="text-white text-lg font-bold mb-1">{camp.early_bird_price}€ <span className="text-white/50 line-through text-sm">{camp.price}€</span></p>
-                    <p className="text-white/60 text-sm">Do {formatDate(camp.early_bird_deadline)}</p>
+                    <p className="text-white text-lg font-bold">{formatDate(camp.registration_deadline)}</p>
                   </div>
                 )}
               </div>
@@ -475,13 +490,13 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
               </h2>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {gallery.map((image, index) => (
                 <div
                   key={index}
                   className={cn(
-                    "animate-on-scroll relative rounded-3xl overflow-hidden group",
-                    index === 0 ? "md:col-span-2 md:row-span-2 aspect-square" : "aspect-video"
+                    "animate-on-scroll relative rounded-3xl overflow-hidden group aspect-square",
+                    index === 0 && "md:col-span-2 md:row-span-2"
                   )}
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
@@ -674,21 +689,39 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
 
               {/* Price card */}
               <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 mb-8">
-                <div className="flex items-end gap-3 mb-6">
-                  <span className="text-5xl font-black">{camp.price || "TBD"}€</span>
-                  <span className="text-white/50 mb-2">po igraču</span>
+                <h3 className="text-white font-bold text-xl mb-6">Cijene</h3>
+
+                <div className="space-y-4 mb-6">
+                  {camp.price && (
+                    <div className="flex justify-between items-center bg-white/5 rounded-xl p-4">
+                      <div>
+                        <div className="text-white font-semibold">S noćenjem</div>
+                        <div className="text-white/50 text-sm">Puni kamp s smještajem</div>
+                      </div>
+                      <span className="text-3xl font-black text-white">{camp.price}€</span>
+                    </div>
+                  )}
+                  {camp.price_day_only && (
+                    <div className="flex justify-between items-center bg-white/5 rounded-xl p-4">
+                      <div>
+                        <div className="text-white font-semibold">Bez noćenja</div>
+                        <div className="text-white/50 text-sm">Samo dnevni program</div>
+                      </div>
+                      <span className="text-3xl font-black text-white">{camp.price_day_only}€</span>
+                    </div>
+                  )}
                 </div>
 
-                {camp.early_bird_price && camp.early_bird_deadline && (
+                {camp.registration_deadline && (
                   <div className="bg-coerver-green/20 rounded-2xl p-4 mb-6 border border-coerver-green/30">
                     <div className="flex items-center gap-2 text-coerver-green font-semibold mb-1">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      Early Bird: {camp.early_bird_price}€
+                      Rok za prijavu
                     </div>
-                    <p className="text-white/60 text-sm">
-                      Za prijave do {formatDate(camp.early_bird_deadline)}
+                    <p className="text-white text-lg font-bold">
+                      {formatDate(camp.registration_deadline)}
                     </p>
                   </div>
                 )}

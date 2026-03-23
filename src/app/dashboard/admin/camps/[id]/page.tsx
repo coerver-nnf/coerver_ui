@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
 import {
   ImageUpload,
+  MultiImageUpload,
   DateRangePicker,
   SingleDatePicker,
   ArrayInput,
@@ -41,8 +42,8 @@ const campSchema = z.object({
   start_date: z.string().min(1, "Datum početka je obavezan"),
   end_date: z.string().min(1, "Datum završetka je obavezan"),
   price: z.number().optional().nullable(),
-  early_bird_price: z.number().optional().nullable(),
-  early_bird_deadline: z.string().optional().nullable(),
+  price_day_only: z.number().optional().nullable(),
+  registration_deadline: z.string().optional().nullable(),
   capacity: z.number().optional().nullable(),
   spots: z.number().optional().nullable(),
   total_spots: z.number().optional().nullable(),
@@ -66,7 +67,7 @@ export default function EditCampPage({
   const [loading, setLoading] = useState(true);
   const [startDate, setStartDate] = useState<string | null>(null);
   const [endDate, setEndDate] = useState<string | null>(null);
-  const [earlyBirdDeadline, setEarlyBirdDeadline] = useState<string | null>(null);
+  const [registrationDeadline, setRegistrationDeadline] = useState<string | null>(null);
 
   // Array/JSON state
   const [gallery, setGallery] = useState<string[]>([]);
@@ -100,8 +101,8 @@ export default function EditCampPage({
   useEffect(() => {
     if (startDate) setValue("start_date", startDate);
     if (endDate) setValue("end_date", endDate);
-    if (earlyBirdDeadline) setValue("early_bird_deadline", earlyBirdDeadline);
-  }, [startDate, endDate, earlyBirdDeadline, setValue]);
+    if (registrationDeadline) setValue("registration_deadline", registrationDeadline);
+  }, [startDate, endDate, registrationDeadline, setValue]);
 
   async function loadCamp() {
     setLoading(true);
@@ -109,7 +110,7 @@ export default function EditCampPage({
       const camp = await getCampById(id);
       setStartDate(camp.start_date);
       setEndDate(camp.end_date);
-      setEarlyBirdDeadline(camp.early_bird_deadline || null);
+      setRegistrationDeadline(camp.registration_deadline || null);
 
       // Set array/JSON state
       setGallery(camp.gallery || []);
@@ -133,8 +134,8 @@ export default function EditCampPage({
         start_date: camp.start_date,
         end_date: camp.end_date,
         price: camp.price,
-        early_bird_price: camp.early_bird_price,
-        early_bird_deadline: camp.early_bird_deadline,
+        price_day_only: camp.price_day_only,
+        registration_deadline: camp.registration_deadline,
         capacity: camp.capacity,
         spots: camp.spots,
         total_spots: camp.total_spots,
@@ -158,8 +159,8 @@ export default function EditCampPage({
         id,
         ...data,
         price: data.price || undefined,
-        early_bird_price: data.early_bird_price || undefined,
-        early_bird_deadline: data.early_bird_deadline || undefined,
+        price_day_only: data.price_day_only || undefined,
+        registration_deadline: data.registration_deadline || undefined,
         capacity: data.capacity || undefined,
         spots: data.spots || undefined,
         total_spots: data.total_spots || undefined,
@@ -291,6 +292,12 @@ export default function EditCampPage({
             onEndDateChange={setEndDate}
             error={errors.start_date?.message || errors.end_date?.message}
           />
+
+          <SingleDatePicker
+            label="Rok za prijavu"
+            value={registrationDeadline}
+            onChange={setRegistrationDeadline}
+          />
         </div>
 
         {/* Pricing */}
@@ -299,25 +306,21 @@ export default function EditCampPage({
 
           <div className="grid grid-cols-2 gap-4">
             <Input
-              label="Cijena (€)"
+              label="S noćenjem (€)"
               type="number"
               step="0.01"
               {...register("price", { valueAsNumber: true })}
+              helperText="Cijena za puni kamp s noćenjem"
             />
 
             <Input
-              label="Early Bird cijena (€)"
+              label="Bez noćenja (€)"
               type="number"
               step="0.01"
-              {...register("early_bird_price", { valueAsNumber: true })}
+              {...register("price_day_only", { valueAsNumber: true })}
+              helperText="Cijena samo za dnevni program"
             />
           </div>
-
-          <SingleDatePicker
-            label="Early Bird rok"
-            value={earlyBirdDeadline}
-            onChange={setEarlyBirdDeadline}
-          />
         </div>
 
         {/* Capacity */}
@@ -384,12 +387,11 @@ export default function EditCampPage({
             folder="camps"
           />
 
-          <ArrayInput
+          <MultiImageUpload
             label="Galerija slika"
             value={gallery}
             onChange={setGallery}
-            placeholder="URL slike..."
-            helperText="Dodajte URL-ove slika za galeriju"
+            folder="camps"
           />
         </div>
 

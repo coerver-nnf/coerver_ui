@@ -39,6 +39,7 @@ export function InquiryForm({
     club: "",
     position: "",
     format: "",
+    accommodationType: "",
   });
 
   // Fetch programs based on type
@@ -88,6 +89,7 @@ export function InquiryForm({
       let fullMessage = formData.message;
       if (type === "camp") {
         const extras = [];
+        if (formData.accommodationType) extras.push(`Tip: ${formData.accommodationType === "with_accommodation" ? "S noćenjem" : "Bez noćenja"}`);
         if (formData.club) extras.push(`Klub: ${formData.club}`);
         if (formData.position) extras.push(`Pozicija: ${formData.position}`);
         if (extras.length > 0) {
@@ -147,6 +149,7 @@ export function InquiryForm({
         club: "",
         position: "",
         format: "",
+        accommodationType: "",
       });
     } catch {
       setError("Došlo je do greške. Molimo pokušajte ponovno.");
@@ -306,6 +309,19 @@ export function InquiryForm({
 
         {type === "camp" && (
           <>
+            <Select
+              label="Tip prijave *"
+              name="accommodationType"
+              value={formData.accommodationType}
+              onChange={handleChange}
+              options={[
+                { value: "", label: "Odaberite tip prijave" },
+                { value: "with_accommodation", label: "S noćenjem (puni kamp)" },
+                { value: "day_only", label: "Bez noćenja (samo dnevni program)" },
+              ]}
+              required
+            />
+
             <Input
               label="Klub"
               name="club"

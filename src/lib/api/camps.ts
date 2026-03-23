@@ -41,8 +41,8 @@ export interface Camp {
   start_date: string;
   end_date: string;
   price: number | null;
-  early_bird_price: number | null;
-  early_bird_deadline: string | null;
+  price_day_only: number | null;
+  registration_deadline: string | null;
   capacity: number | null;
   spots: number | null;
   total_spots: number | null;
@@ -75,8 +75,8 @@ export interface CreateCampInput {
   start_date: string;
   end_date: string;
   price?: number;
-  early_bird_price?: number;
-  early_bird_deadline?: string;
+  price_day_only?: number;
+  registration_deadline?: string;
   capacity?: number;
   spots?: number;
   total_spots?: number;
