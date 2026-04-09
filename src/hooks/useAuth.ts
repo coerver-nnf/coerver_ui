@@ -43,6 +43,8 @@ export function useAuth() {
   );
 
   useEffect(() => {
+    let isMounted = true;
+
     const getSession = async () => {
       try {
         const {
@@ -50,10 +52,13 @@ export function useAuth() {
           error,
         } = await supabase.auth.getSession();
 
+        if (!isMounted) return;
+
         if (error) throw error;
 
         if (session?.user) {
           const profile = await fetchProfile(session.user.id);
+          if (!isMounted) return;
           setState({
             user: session.user,
             profile,
@@ -71,6 +76,7 @@ export function useAuth() {
           });
         }
       } catch (error) {
+        if (!isMounted) return;
         setState((prev) => ({
           ...prev,
           loading: false,
@@ -80,6 +86,10 @@ export function useAuth() {
     };
 
     getSession();
+
+    return () => {
+      isMounted = false;
+    };
 
     const {
       data: { subscription },

@@ -79,11 +79,20 @@ export default function CoachDashboardPage() {
         router.push("/prijava");
         return;
       }
-      loadData();
+      if (profile?.id) {
+        loadData();
+      } else {
+        setLoading(false);
+      }
     }
-  }, [authLoading, isAuthenticated, profile, router]);
+  }, [authLoading, isAuthenticated, profile?.id]);
 
   async function loadData() {
+    if (!profile?.id) {
+      setLoading(false);
+      return;
+    }
+
     const supabase = createClient();
 
     try {
@@ -128,15 +137,63 @@ export default function CoachDashboardPage() {
 
       setCategories(categoriesWithCounts);
 
-      // Fetch coach's category access if user is logged in
-      if (profile?.id) {
-        const { data: accessData } = await supabase
-          .from("coach_category_access")
-          .select("category_id")
-          .eq("coach_id", profile.id);
+      // Fetch coach's individual category access
+      const { data: individualAccess } = await supabase
+        .from("coach_category_access")
+        .select("category_id")
+        .eq("coach_id", profile.id);
 
-        setCoachAccess(accessData?.map((a) => a.category_id) || []);
+      // Check if coach belongs to a club
+      const { data: clubMembership } = await supabase
+        .from("club_coaches")
+        .select("club_id")
+        .eq("coach_id", profile.id)
+        .single();
+
+      let clubCategoryIds: string[] = [];
+
+      if (clubMembership?.club_id) {
+        // Get club's direct category access
+        const { data: clubCategoryAccess } = await supabase
+          .from("club_category_access")
+          .select("category_id")
+          .eq("club_id", clubMembership.club_id);
+
+        clubCategoryIds = clubCategoryAccess?.map((a) => a.category_id) || [];
+
+        // Get categories from club's subcategory access
+        const { data: clubSubcategoryAccess } = await supabase
+          .from("club_subcategory_access")
+          .select("subcategory_id, subcategory:exercise_subcategories(category_id)")
+          .eq("club_id", clubMembership.club_id);
+
+        const subcategoryCategoryIds = clubSubcategoryAccess
+          ?.map((a: any) => a.subcategory?.category_id)
+          .filter(Boolean) || [];
+
+        // Get categories from club's exercise access
+        const { data: clubExerciseAccess } = await supabase
+          .from("club_exercise_access")
+          .select("exercise_id, exercise:exercises(category_id)")
+          .eq("club_id", clubMembership.club_id);
+
+        const exerciseCategoryIds = clubExerciseAccess
+          ?.map((a: any) => a.exercise?.category_id)
+          .filter(Boolean) || [];
+
+        // Combine all club access
+        clubCategoryIds = [...new Set([
+          ...clubCategoryIds,
+          ...subcategoryCategoryIds,
+          ...exerciseCategoryIds
+        ])];
       }
+
+      // Combine individual and club access
+      const individualCategoryIds = individualAccess?.map((a) => a.category_id) || [];
+      const allAccessIds = [...new Set([...individualCategoryIds, ...clubCategoryIds])];
+
+      setCoachAccess(allAccessIds);
     } catch (error) {
       console.error("Error loading data:", error);
     } finally {

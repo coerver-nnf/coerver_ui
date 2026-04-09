@@ -7,6 +7,8 @@ export interface Exercise {
   description: string | null;
   video_url: string | null;
   thumbnail_url: string | null;
+  image_1: string | null;
+  image_2: string | null;
   duration: string | null;
   difficulty: "beginner" | "intermediate" | "advanced" | null;
   category_id: string | null;
@@ -53,6 +55,8 @@ export interface CreateExerciseInput {
   description?: string;
   video_url?: string;
   thumbnail_url?: string;
+  image_1?: string;
+  image_2?: string;
   duration?: string;
   difficulty?: "beginner" | "intermediate" | "advanced";
   category_id?: string;

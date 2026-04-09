@@ -281,6 +281,61 @@ export async function getCoachCounts() {
   return { total, approved, pending };
 }
 
+// Get coach's club membership
+export async function getCoachClubMembership(coachId: string) {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("club_coaches")
+    .select(
+      `
+      *,
+      club:partner_clubs(id, name, slug, logo_url, city, status)
+    `
+    )
+    .eq("coach_id", coachId)
+    .single();
+
+  if (error) {
+    if (error.code === "PGRST116") {
+      // No rows returned - coach not in any club
+      return null;
+    }
+    throw error;
+  }
+  return data;
+}
+
+// Get all coaches without club membership
+export async function getCoachesWithoutClub() {
+  const supabase = createClient();
+
+  // Get all coach IDs that are in a club
+  const { data: clubCoaches, error: ccError } = await supabase
+    .from("club_coaches")
+    .select("coach_id");
+
+  if (ccError) throw ccError;
+
+  const coachIdsInClubs = new Set(clubCoaches?.map((cc) => cc.coach_id) || []);
+
+  // Get all approved coaches
+  const { data: allCoaches, error } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("role", "coach")
+    .eq("is_approved", true)
+    .order("full_name");
+
+  if (error) throw error;
+
+  // Filter out coaches who are already in a club
+  const coachesWithoutClub = (allCoaches || []).filter(
+    (coach) => !coachIdsInClubs.has(coach.id)
+  );
+
+  return coachesWithoutClub as Coach[];
+}
+
 // Server-side functions
 export async function getCoachesServer(options?: {
   is_approved?: boolean;

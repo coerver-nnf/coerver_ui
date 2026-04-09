@@ -26,6 +26,8 @@ interface Exercise {
   description: string | null;
   video_url: string | null;
   thumbnail_url: string | null;
+  image_1: string | null;
+  image_2: string | null;
   duration: string | null;
   difficulty: "beginner" | "intermediate" | "advanced" | null;
   coaching_points: string[] | null;
@@ -55,7 +57,10 @@ function getVideoEmbedUrl(url: string | null): string | null {
     /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
   );
   if (youtubeMatch) {
-    return `https://www.youtube.com/embed/${youtubeMatch[1]}`;
+    // Use youtube-nocookie.com for privacy mode
+    // Parameters: modestbranding=1 (minimal YouTube branding), rel=0 (no related videos),
+    // disablekb=1 (disable keyboard controls), fs=0 (disable fullscreen button if needed)
+    return `https://www.youtube-nocookie.com/embed/${youtubeMatch[1]}?modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=0`;
   }
 
   // Vimeo
@@ -72,18 +77,26 @@ export default function ExerciseDetailPage() {
   const categorySlug = params.categoryId as string;
   const subcategorySlug = params.subcategoryId as string;
   const exerciseSlug = params.exerciseSlug as string;
-  const { loading: authLoading } = useAuth();
+  const { profile, loading: authLoading } = useAuth();
 
   const [category, setCategory] = useState<Category | null>(null);
   const [subcategory, setSubcategory] = useState<Subcategory | null>(null);
   const [exercise, setExercise] = useState<Exercise | null>(null);
   const [loading, setLoading] = useState(true);
+  const [hasAccess, setHasAccess] = useState(false);
 
   useEffect(() => {
-    loadData();
-  }, [categorySlug, subcategorySlug, exerciseSlug]);
+    if (!authLoading && profile?.id) {
+      loadData();
+    }
+  }, [categorySlug, subcategorySlug, exerciseSlug, authLoading, profile?.id]);
 
   async function loadData() {
+    if (!profile?.id) {
+      setLoading(false);
+      return;
+    }
+
     const supabase = createClient();
 
     try {
@@ -118,6 +131,68 @@ export default function ExerciseDetailPage() {
 
       if (exError) throw exError;
       setExercise(exerciseData);
+
+      // Check access
+      let accessGranted = false;
+
+      // Check individual category access
+      const { data: categoryAccess } = await supabase
+        .from("coach_category_access")
+        .select("id")
+        .eq("coach_id", profile.id)
+        .eq("category_id", categoryData.id)
+        .single();
+
+      if (categoryAccess) {
+        accessGranted = true;
+      } else {
+        // Check club-based access
+        const { data: clubMembership } = await supabase
+          .from("club_coaches")
+          .select("club_id")
+          .eq("coach_id", profile.id)
+          .single();
+
+        if (clubMembership?.club_id) {
+          // Check club category access
+          const { data: clubCategoryAccess } = await supabase
+            .from("club_category_access")
+            .select("id")
+            .eq("club_id", clubMembership.club_id)
+            .eq("category_id", categoryData.id)
+            .single();
+
+          if (clubCategoryAccess) {
+            accessGranted = true;
+          } else {
+            // Check club subcategory access
+            const { data: clubSubcategoryAccess } = await supabase
+              .from("club_subcategory_access")
+              .select("id")
+              .eq("club_id", clubMembership.club_id)
+              .eq("subcategory_id", subcategoryData.id)
+              .single();
+
+            if (clubSubcategoryAccess) {
+              accessGranted = true;
+            } else {
+              // Check club exercise access
+              const { data: clubExerciseAccess } = await supabase
+                .from("club_exercise_access")
+                .select("id")
+                .eq("club_id", clubMembership.club_id)
+                .eq("exercise_id", exerciseData.id)
+                .single();
+
+              if (clubExerciseAccess) {
+                accessGranted = true;
+              }
+            }
+          }
+        }
+      }
+
+      setHasAccess(accessGranted);
     } catch (error) {
       console.error("Error loading data:", error);
     } finally {
@@ -148,6 +223,29 @@ export default function ExerciseDetailPage() {
             Vježba nije pronađena
           </h1>
           <Link href="/dashboard/trener" className="text-coerver-green mt-4 inline-block">
+            ← Povratak na pregled
+          </Link>
+        </div>
+      </DashboardLayout>
+    );
+  }
+
+  if (!hasAccess) {
+    return (
+      <DashboardLayout>
+        <div className="text-center py-12">
+          <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h1 className="text-2xl font-bold text-coerver-dark mb-2">
+            Nemate pristup ovoj vježbi
+          </h1>
+          <p className="text-gray-500 mb-4">
+            Kontaktirajte administratora za proširenje pristupa.
+          </p>
+          <Link href="/dashboard/trener" className="text-coerver-green hover:underline">
             ← Povratak na pregled
           </Link>
         </div>
@@ -249,6 +347,30 @@ export default function ExerciseDetailPage() {
               <p className="text-gray-600 leading-relaxed">{exercise.description}</p>
             )}
           </div>
+
+          {/* Exercise Images */}
+          {(exercise.image_1 || exercise.image_2) && (
+            <div className="grid grid-cols-2 gap-4">
+              {exercise.image_1 && (
+                <div className="bg-white rounded-2xl overflow-hidden border border-gray-100">
+                  <img
+                    src={exercise.image_1}
+                    alt={`${exercise.title} - slika 1`}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              )}
+              {exercise.image_2 && (
+                <div className="bg-white rounded-2xl overflow-hidden border border-gray-100">
+                  <img
+                    src={exercise.image_2}
+                    alt={`${exercise.title} - slika 2`}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Sidebar */}

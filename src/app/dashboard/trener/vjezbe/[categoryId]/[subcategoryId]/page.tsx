@@ -62,10 +62,17 @@ export default function SubcategoryExercisesPage() {
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>("all");
 
   useEffect(() => {
-    loadData();
-  }, [categorySlug, subcategorySlug]);
+    if (!authLoading && profile?.id) {
+      loadData();
+    }
+  }, [categorySlug, subcategorySlug, authLoading, profile?.id]);
 
   async function loadData() {
+    if (!profile?.id) {
+      setLoading(false);
+      return;
+    }
+
     const supabase = createClient();
 
     try {
@@ -90,8 +97,8 @@ export default function SubcategoryExercisesPage() {
       if (subError) throw subError;
       setSubcategory(subcategoryData);
 
-      // Fetch exercises in this subcategory
-      const { data: exercisesData, error: exError } = await supabase
+      // Fetch all exercises in this subcategory
+      const { data: allExercises, error: exError } = await supabase
         .from("exercises")
         .select("id, title, slug, description, video_url, thumbnail_url, duration, difficulty, order_index")
         .eq("subcategory_id", subcategoryData.id)
@@ -99,7 +106,69 @@ export default function SubcategoryExercisesPage() {
         .order("created_at", { ascending: false });
 
       if (exError) throw exError;
-      setExercises(exercisesData || []);
+
+      // Filter exercises based on access
+      let accessibleExercises = allExercises || [];
+
+      if (profile?.id) {
+        // Check if coach has full category access (individual)
+        const { data: categoryAccess } = await supabase
+          .from("coach_category_access")
+          .select("id")
+          .eq("coach_id", profile.id)
+          .eq("category_id", categoryData.id)
+          .single();
+
+        if (!categoryAccess) {
+          // Check club membership and access
+          const { data: clubMembership } = await supabase
+            .from("club_coaches")
+            .select("club_id")
+            .eq("coach_id", profile.id)
+            .single();
+
+          if (clubMembership?.club_id) {
+            // Check club category access
+            const { data: clubCategoryAccess } = await supabase
+              .from("club_category_access")
+              .select("id")
+              .eq("club_id", clubMembership.club_id)
+              .eq("category_id", categoryData.id)
+              .single();
+
+            if (!clubCategoryAccess) {
+              // Check club subcategory access
+              const { data: clubSubcategoryAccess } = await supabase
+                .from("club_subcategory_access")
+                .select("id")
+                .eq("club_id", clubMembership.club_id)
+                .eq("subcategory_id", subcategoryData.id)
+                .single();
+
+              if (!clubSubcategoryAccess) {
+                // Only show exercises the club has direct access to
+                const { data: clubExerciseAccess } = await supabase
+                  .from("club_exercise_access")
+                  .select("exercise_id")
+                  .eq("club_id", clubMembership.club_id);
+
+                const accessibleExerciseIds = new Set(
+                  clubExerciseAccess?.map((a) => a.exercise_id) || []
+                );
+
+                accessibleExercises = (allExercises || []).filter(
+                  (ex) => accessibleExerciseIds.has(ex.id)
+                );
+              }
+            }
+          } else {
+            // No club, no category access - show nothing
+            accessibleExercises = [];
+          }
+        }
+      }
+
+      setExercises(accessibleExercises);
     } catch (error) {
       console.error("Error loading data:", error);
     } finally {

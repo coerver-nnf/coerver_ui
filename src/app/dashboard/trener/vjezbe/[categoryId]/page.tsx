@@ -46,10 +46,17 @@ export default function CategorySubcategoriesPage() {
   const [hasAccess, setHasAccess] = useState(false);
 
   useEffect(() => {
-    loadData();
-  }, [categorySlug, profile]);
+    if (!authLoading && profile?.id) {
+      loadData();
+    }
+  }, [categorySlug, authLoading, profile?.id]);
 
   async function loadData() {
+    if (!profile?.id) {
+      setLoading(false);
+      return;
+    }
+
     const supabase = createClient();
 
     try {
@@ -63,20 +70,78 @@ export default function CategorySubcategoriesPage() {
       if (catError) throw catError;
       setCategory(categoryData);
 
-      // Check access
+      // Check access (individual + club-based)
+      let hasFullCategoryAccess = false;
+      let hasAnyAccess = false;
+      let clubId: string | null = null;
+
       if (profile?.id && categoryData) {
-        const { data: accessData } = await supabase
+        // Check individual category access
+        const { data: individualAccess } = await supabase
           .from("coach_category_access")
           .select("id")
           .eq("coach_id", profile.id)
           .eq("category_id", categoryData.id)
           .single();
 
-        setHasAccess(!!accessData);
+        if (individualAccess) {
+          hasFullCategoryAccess = true;
+          hasAnyAccess = true;
+        } else {
+          // Check club-based access
+          const { data: clubMembership } = await supabase
+            .from("club_coaches")
+            .select("club_id")
+            .eq("coach_id", profile.id)
+            .single();
+
+          if (clubMembership?.club_id) {
+            clubId = clubMembership.club_id;
+
+            // Check club category access
+            const { data: clubCategoryAccess } = await supabase
+              .from("club_category_access")
+              .select("id")
+              .eq("club_id", clubMembership.club_id)
+              .eq("category_id", categoryData.id)
+              .single();
+
+            if (clubCategoryAccess) {
+              hasFullCategoryAccess = true;
+              hasAnyAccess = true;
+            } else {
+              // Check club subcategory access (any subcategory in this category)
+              const { data: clubSubcategoryAccess } = await supabase
+                .from("club_subcategory_access")
+                .select("id, subcategory:exercise_subcategories!inner(category_id)")
+                .eq("club_id", clubMembership.club_id)
+                .eq("subcategory.category_id", categoryData.id)
+                .limit(1);
+
+              if (clubSubcategoryAccess && clubSubcategoryAccess.length > 0) {
+                hasAnyAccess = true;
+              } else {
+                // Check club exercise access (any exercise in this category)
+                const { data: clubExerciseAccess } = await supabase
+                  .from("club_exercise_access")
+                  .select("id, exercise:exercises!inner(category_id)")
+                  .eq("club_id", clubMembership.club_id)
+                  .eq("exercise.category_id", categoryData.id)
+                  .limit(1);
+
+                if (clubExerciseAccess && clubExerciseAccess.length > 0) {
+                  hasAnyAccess = true;
+                }
+              }
+            }
+          }
+        }
+
+        setHasAccess(hasAnyAccess);
       }
 
-      // Fetch subcategories
-      const { data: subcategoriesData, error: subError } = await supabase
+      // Fetch all subcategories
+      const { data: allSubcategories, error: subError } = await supabase
         .from("exercise_subcategories")
         .select("*")
         .eq("category_id", categoryData.id)
@@ -97,10 +162,42 @@ export default function CategorySubcategoriesPage() {
         return acc;
       }, {} as Record<string, number>) || {};
 
-      const subcategoriesWithCounts = subcategoriesData?.map((sub) => ({
+      // Filter subcategories based on access
+      let accessibleSubcategories = allSubcategories || [];
+
+      // If no full category access, filter to accessible subcategories
+      if (!hasFullCategoryAccess && clubId) {
+        // Get subcategories with direct club access
+        const { data: clubSubAccess } = await supabase
+          .from("club_subcategory_access")
+          .select("subcategory_id")
+          .eq("club_id", clubId);
+
+        const accessibleSubIds = new Set(
+          clubSubAccess?.map((a) => a.subcategory_id) || []
+        );
+
+        // Get subcategories that have exercises with club access
+        const { data: clubExAccess } = await supabase
+          .from("club_exercise_access")
+          .select("exercise:exercises!inner(subcategory_id)")
+          .eq("club_id", clubId);
+
+        clubExAccess?.forEach((a: any) => {
+          if (a.exercise?.subcategory_id) {
+            accessibleSubIds.add(a.exercise.subcategory_id);
+          }
+        });
+
+        accessibleSubcategories = (allSubcategories || []).filter(
+          (sub) => accessibleSubIds.has(sub.id)
+        );
+      }
+
+      const subcategoriesWithCounts = accessibleSubcategories.map((sub) => ({
         ...sub,
         exercise_count: countMap[sub.id] || 0,
-      })) || [];
+      }));
 
       setSubcategories(subcategoriesWithCounts);
     } catch (error) {

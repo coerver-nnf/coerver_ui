@@ -24,6 +24,8 @@ const exerciseSchema = z.object({
   description: z.string().optional(),
   video_url: z.string().optional(),
   thumbnail_url: z.string().optional(),
+  image_1: z.string().optional(),
+  image_2: z.string().optional(),
   duration: z.string().optional(),
   difficulty: z.enum(["beginner", "intermediate", "advanced"]).optional(),
   category_id: z.string().optional(),
@@ -60,6 +62,8 @@ export default function NewExercisePage() {
   const title = watch("title");
   const videoUrl = watch("video_url");
   const thumbnailUrl = watch("thumbnail_url");
+  const image1 = watch("image_1");
+  const image2 = watch("image_2");
   const selectedCategoryId = watch("category_id");
 
   useEffect(() => {
@@ -243,6 +247,22 @@ export default function NewExercisePage() {
             onChange={(url) => setValue("thumbnail_url", url || "")}
             folder="exercises"
           />
+
+          <div className="grid grid-cols-2 gap-4">
+            <ImageUpload
+              label="Slika 1 (prikaz uz video)"
+              value={image1}
+              onChange={(url) => setValue("image_1", url || "")}
+              folder="exercises"
+            />
+
+            <ImageUpload
+              label="Slika 2 (prikaz uz video)"
+              value={image2}
+              onChange={(url) => setValue("image_2", url || "")}
+              folder="exercises"
+            />
+          </div>
         </div>
 
         {/* Coaching Points & Equipment */}

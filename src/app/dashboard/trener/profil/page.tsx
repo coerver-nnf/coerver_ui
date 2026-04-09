@@ -1,16 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
+import { createClient } from "@/lib/supabase/client";
+
+interface CategoryAccess {
+  id: string;
+  name: string;
+  slug: string;
+  type: "full" | "partial";
+}
+
+interface ClubInfo {
+  id: string;
+  name: string;
+  logo_url: string | null;
+}
+
+const categoryColors: Record<string, string> = {
+  "ball-mastery": "from-coerver-green to-green-700",
+  "1v1": "from-coerver-dark to-gray-800",
+  "receiving-turning": "from-emerald-600 to-emerald-800",
+  "passing": "from-coerver-green to-emerald-700",
+  "finishing": "from-gray-700 to-coerver-dark",
+  "speed": "from-lime-600 to-green-700",
+};
 
 export default function CoachProfilePage() {
-  const router = useRouter();
-  const { profile, loading, isAuthenticated, isApproved } = useAuth();
+  const { profile, loading: authLoading } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState({
@@ -18,8 +38,9 @@ export default function CoachProfilePage() {
     email: "",
     phone: "",
   });
-
-  // TODO: Re-enable auth checks when Supabase is connected
+  const [accessibleCategories, setAccessibleCategories] = useState<CategoryAccess[]>([]);
+  const [clubInfo, setClubInfo] = useState<ClubInfo | null>(null);
+  const [loadingAccess, setLoadingAccess] = useState(true);
 
   useEffect(() => {
     if (profile) {
@@ -31,6 +52,106 @@ export default function CoachProfilePage() {
     }
   }, [profile]);
 
+  useEffect(() => {
+    if (!authLoading && profile?.id) {
+      loadAccessData();
+    }
+  }, [authLoading, profile?.id]);
+
+  async function loadAccessData() {
+    if (!profile?.id) {
+      setLoadingAccess(false);
+      return;
+    }
+
+    const supabase = createClient();
+    const accessMap = new Map<string, CategoryAccess>();
+
+    try {
+      // Fetch all categories for reference
+      const { data: allCategories } = await supabase
+        .from("exercise_categories")
+        .select("id, name, slug")
+        .order("order_index");
+
+      // Check individual category access
+      const { data: individualAccess } = await supabase
+        .from("coach_category_access")
+        .select("category_id")
+        .eq("coach_id", profile.id);
+
+      individualAccess?.forEach((access) => {
+        const cat = allCategories?.find((c) => c.id === access.category_id);
+        if (cat) {
+          accessMap.set(cat.id, { ...cat, type: "full" });
+        }
+      });
+
+      // Check club membership
+      const { data: clubMembership } = await supabase
+        .from("club_coaches")
+        .select("club_id, club:partner_clubs(id, name, logo_url)")
+        .eq("coach_id", profile.id)
+        .single();
+
+      if (clubMembership?.club) {
+        setClubInfo(clubMembership.club as ClubInfo);
+        const clubId = clubMembership.club_id;
+
+        // Check club category access
+        const { data: clubCategoryAccess } = await supabase
+          .from("club_category_access")
+          .select("category_id")
+          .eq("club_id", clubId);
+
+        clubCategoryAccess?.forEach((access) => {
+          const cat = allCategories?.find((c) => c.id === access.category_id);
+          if (cat && !accessMap.has(cat.id)) {
+            accessMap.set(cat.id, { ...cat, type: "full" });
+          }
+        });
+
+        // Check club subcategory access (partial category access)
+        const { data: clubSubcategoryAccess } = await supabase
+          .from("club_subcategory_access")
+          .select("subcategory:exercise_subcategories(category_id)")
+          .eq("club_id", clubId);
+
+        clubSubcategoryAccess?.forEach((access: any) => {
+          const categoryId = access.subcategory?.category_id;
+          if (categoryId && !accessMap.has(categoryId)) {
+            const cat = allCategories?.find((c) => c.id === categoryId);
+            if (cat) {
+              accessMap.set(cat.id, { ...cat, type: "partial" });
+            }
+          }
+        });
+
+        // Check club exercise access (partial category access)
+        const { data: clubExerciseAccess } = await supabase
+          .from("club_exercise_access")
+          .select("exercise:exercises(category_id)")
+          .eq("club_id", clubId);
+
+        clubExerciseAccess?.forEach((access: any) => {
+          const categoryId = access.exercise?.category_id;
+          if (categoryId && !accessMap.has(categoryId)) {
+            const cat = allCategories?.find((c) => c.id === categoryId);
+            if (cat) {
+              accessMap.set(cat.id, { ...cat, type: "partial" });
+            }
+          }
+        });
+      }
+
+      setAccessibleCategories(Array.from(accessMap.values()));
+    } catch (error) {
+      console.error("Error loading access data:", error);
+    } finally {
+      setLoadingAccess(false);
+    }
+  }
+
   const handleSave = async () => {
     setIsSaving(true);
     // TODO: Implement profile update with Supabase
@@ -38,12 +159,6 @@ export default function CoachProfilePage() {
     setIsSaving(false);
     setIsEditing(false);
   };
-
-  // Mock data for demonstration
-  const accessibleCategories = [
-    { name: "Ball Mastery", color: "from-coerver-green to-green-700" },
-    { name: "1v1 Potezi", color: "from-coerver-dark to-gray-800" },
-  ];
 
   return (
     <DashboardLayout>
@@ -195,33 +310,98 @@ export default function CoachProfilePage() {
             </div>
           </div>
 
+          {/* Club Info */}
+          {clubInfo && (
+            <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
+              <h3 className="font-bold text-coerver-dark mb-4">Moj Klub</h3>
+              <Link
+                href="/dashboard/trener/klub"
+                className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+              >
+                {clubInfo.logo_url ? (
+                  <img
+                    src={clubInfo.logo_url}
+                    alt={clubInfo.name}
+                    className="w-12 h-12 rounded-xl object-contain bg-white"
+                  />
+                ) : (
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-coerver-green to-emerald-600 flex items-center justify-center text-white font-bold text-lg">
+                    {clubInfo.name.charAt(0)}
+                  </div>
+                )}
+                <div className="flex-1">
+                  <span className="text-coerver-dark font-semibold block">{clubInfo.name}</span>
+                  <span className="text-gray-400 text-xs">Pogledaj detalje →</span>
+                </div>
+              </Link>
+            </div>
+          )}
+
           {/* Access */}
           <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
             <h3 className="font-bold text-coerver-dark mb-5">Pristup kategorijama</h3>
-            <div className="space-y-3">
-              {accessibleCategories.map((cat) => (
-                <div
-                  key={cat.name}
-                  className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl"
-                >
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${cat.color} shadow-md`} />
-                  <span className="text-coerver-dark font-medium flex-1">{cat.name}</span>
-                  <svg
-                    className="w-5 h-5 text-coerver-green"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
+            {loadingAccess ? (
+              <div className="space-y-3">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="h-16 bg-gray-100 rounded-xl animate-pulse" />
+                ))}
+              </div>
+            ) : accessibleCategories.length === 0 ? (
+              <div className="text-center py-6">
+                <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                 </div>
-              ))}
-            </div>
+                <p className="text-gray-500 text-sm">Nemate dodijeljeni pristup</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {accessibleCategories.map((cat) => (
+                  <div
+                    key={cat.id}
+                    className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl"
+                  >
+                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${categoryColors[cat.slug] || "from-gray-500 to-gray-700"} shadow-md`} />
+                    <div className="flex-1">
+                      <span className="text-coerver-dark font-medium block">{cat.name}</span>
+                      {cat.type === "partial" && (
+                        <span className="text-xs text-gray-400">Djelomičan pristup</span>
+                      )}
+                    </div>
+                    {cat.type === "full" ? (
+                      <svg
+                        className="w-5 h-5 text-coerver-green"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        className="w-5 h-5 text-amber-500"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
             <p className="text-xs text-gray-400 mt-4">
               Za proširenje pristupa kontaktirajte administratora.
             </p>
