@@ -18,6 +18,7 @@ import {
   ExerciseCategory,
   ExerciseSubcategory,
 } from "@/lib/api/exercises";
+import { ImageUpload } from "@/components/admin/forms";
 
 const subcategorySchema = z.object({
   category_id: z.string().min(1, "Kategorija je obavezna"),
@@ -55,6 +56,7 @@ export default function SubcategoriesPage() {
   });
 
   const watchName = watch("name");
+  const watchImageUrl = watch("image_url");
 
   useEffect(() => {
     loadData();
@@ -140,9 +142,10 @@ export default function SubcategoriesPage() {
     }
   }
 
-  const filteredSubcategories = filterCategoryId === "all"
+  const filteredSubcategories = (filterCategoryId === "all"
     ? subcategories
-    : subcategories.filter((s) => s.category_id === filterCategoryId);
+    : subcategories.filter((s) => s.category_id === filterCategoryId)
+  ).sort((a, b) => a.order_index - b.order_index);
 
   const columns: ColumnDef<ExerciseSubcategory>[] = [
     {
@@ -173,9 +176,11 @@ export default function SubcategoriesPage() {
     },
     {
       accessorKey: "order_index",
-      header: "Redoslijed",
+      header: "Pozicija",
       cell: ({ row }) => (
-        <span className="text-coerver-gray-500">{row.original.order_index}</span>
+        <span className="inline-flex items-center justify-center w-8 h-8 bg-coerver-gray-100 text-coerver-gray-700 font-medium rounded-lg text-sm">
+          {row.original.order_index}
+        </span>
       ),
     },
     {
@@ -291,16 +296,18 @@ export default function SubcategoriesPage() {
             {...register("description")}
           />
 
-          <Input
-            label="URL slike"
-            error={errors.image_url?.message}
-            {...register("image_url")}
+          <ImageUpload
+            label="Slika potkategorije"
+            value={watchImageUrl}
+            onChange={(url) => setValue("image_url", url || "")}
+            folder="subcategories"
           />
 
           <Input
-            label="Redoslijed"
+            label="Redoslijed (pozicija)"
             type="number"
             error={errors.order_index?.message}
+            helperText="Manji broj = viša pozicija. Npr. 1 će biti prvi, 2 drugi itd."
             {...register("order_index")}
           />
 

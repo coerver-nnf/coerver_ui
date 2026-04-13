@@ -332,13 +332,12 @@ export default function CoachDashboardPage() {
               return (
                 <Link
                   key={category.id}
-                  href={hasAccess ? `/dashboard/trener/vjezbe/${category.slug}` : "#"}
+                  href={`/dashboard/trener/vjezbe/${category.slug}`}
                   className={`group relative overflow-hidden rounded-2xl transition-all duration-300 ${
                     hasAccess
                       ? "bg-white hover:shadow-xl hover:shadow-coerver-green/10 hover:-translate-y-1 cursor-pointer border border-gray-100"
-                      : "bg-gray-50 opacity-60 cursor-not-allowed border border-gray-100"
+                      : "bg-gray-50 opacity-60 hover:opacity-80 cursor-pointer border border-gray-100"
                   }`}
-                  onClick={(e) => !hasAccess && e.preventDefault()}
                 >
                   {/* Gradient accent */}
                   <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${color}`} />

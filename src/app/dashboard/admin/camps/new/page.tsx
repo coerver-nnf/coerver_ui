@@ -41,6 +41,7 @@ const campSchema = z.object({
   start_date: z.string().min(1, "Datum početka je obavezan"),
   end_date: z.string().min(1, "Datum završetka je obavezan"),
   price: z.number().optional(),
+  price_full_day: z.number().optional(),
   price_day_only: z.number().optional(),
   registration_deadline: z.string().optional(),
   capacity: z.number().optional(),
@@ -102,11 +103,25 @@ export default function NewCampPage() {
     if (registrationDeadline) setValue("registration_deadline", registrationDeadline);
   }, [startDate, endDate, registrationDeadline, setValue]);
 
+  // Helper to convert NaN to undefined for numeric fields
+  const toNumberOrUndefined = (val: number | undefined): number | undefined => {
+    if (val === undefined || Number.isNaN(val)) return undefined;
+    return val;
+  };
+
   async function onSubmit(data: CampFormData) {
     setIsSubmitting(true);
     try {
       await createCamp({
         ...data,
+        price: toNumberOrUndefined(data.price),
+        price_full_day: toNumberOrUndefined(data.price_full_day),
+        price_day_only: toNumberOrUndefined(data.price_day_only),
+        capacity: toNumberOrUndefined(data.capacity),
+        spots: toNumberOrUndefined(data.spots),
+        total_spots: toNumberOrUndefined(data.total_spots),
+        age_min: toNumberOrUndefined(data.age_min),
+        age_max: toNumberOrUndefined(data.age_max),
         gallery,
         highlights,
         age_groups: ageGroups,
@@ -233,23 +248,32 @@ export default function NewCampPage() {
         <div className="bg-white rounded-xl border border-coerver-gray-200 p-6 space-y-4">
           <h2 className="text-lg font-semibold text-coerver-gray-900">Cijene</h2>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             <Input
               label="S noćenjem (€)"
               type="number"
               step="0.01"
               {...register("price", { valueAsNumber: true })}
-              placeholder="350.00"
-              helperText="Cijena za puni kamp s noćenjem"
+              placeholder="450.00"
+              helperText="Puni kamp sa smještajem"
             />
 
             <Input
-              label="Bez noćenja (€)"
+              label="Cjelodnevni (€)"
+              type="number"
+              step="0.01"
+              {...register("price_full_day", { valueAsNumber: true })}
+              placeholder="350.00"
+              helperText="Sve aktivnosti bez spavanja"
+            />
+
+            <Input
+              label="Samo treninzi (€)"
               type="number"
               step="0.01"
               {...register("price_day_only", { valueAsNumber: true })}
               placeholder="250.00"
-              helperText="Cijena samo za dnevni program"
+              helperText="Samo trening sessioni"
             />
           </div>
         </div>

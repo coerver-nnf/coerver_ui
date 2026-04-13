@@ -41,6 +41,7 @@ export interface Camp {
   start_date: string;
   end_date: string;
   price: number | null;
+  price_full_day: number | null;
   price_day_only: number | null;
   registration_deadline: string | null;
   capacity: number | null;
@@ -75,6 +76,7 @@ export interface CreateCampInput {
   start_date: string;
   end_date: string;
   price?: number;
+  price_full_day?: number;
   price_day_only?: number;
   registration_deadline?: string;
   capacity?: number;

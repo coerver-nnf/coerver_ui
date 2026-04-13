@@ -13,6 +13,9 @@ interface InquiryFormProps {
   programId?: string;
   title?: string;
   className?: string;
+  hasAccommodation?: boolean; // For camps: true if sleepover option exists
+  hasFullDay?: boolean; // For camps: true if full day (no sleep) option exists
+  hasTrainingOnly?: boolean; // For camps: true if training-only option exists
 }
 
 export function InquiryForm({
@@ -20,6 +23,9 @@ export function InquiryForm({
   programId,
   title = "Pošalji Upit",
   className = "",
+  hasAccommodation = true,
+  hasFullDay = false,
+  hasTrainingOnly = false,
 }: InquiryFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -36,6 +42,8 @@ export function InquiryForm({
     phone: "",
     message: "",
     childAge: "",
+    birthYear: "",
+    jerseySize: "",
     club: "",
     position: "",
     format: "",
@@ -89,7 +97,17 @@ export function InquiryForm({
       let fullMessage = formData.message;
       if (type === "camp") {
         const extras = [];
-        if (formData.accommodationType) extras.push(`Tip: ${formData.accommodationType === "with_accommodation" ? "S noćenjem" : "Bez noćenja"}`);
+        if (formData.accommodationType) {
+          const typeLabels: Record<string, string> = {
+            with_accommodation: "S noćenjem",
+            full_day: "Cjelodnevni",
+            training_only: "Samo treninzi",
+            day_only: "Bez noćenja", // legacy support
+          };
+          extras.push(`Tip: ${typeLabels[formData.accommodationType] || formData.accommodationType}`);
+        }
+        if (formData.birthYear) extras.push(`Godište: ${formData.birthYear}`);
+        if (formData.jerseySize) extras.push(`Veličina dresa: ${formData.jerseySize}`);
         if (formData.club) extras.push(`Klub: ${formData.club}`);
         if (formData.position) extras.push(`Pozicija: ${formData.position}`);
         if (extras.length > 0) {
@@ -146,6 +164,8 @@ export function InquiryForm({
         phone: "",
         message: "",
         childAge: "",
+        birthYear: "",
+        jerseySize: "",
         club: "",
         position: "",
         format: "",
@@ -289,7 +309,7 @@ export function InquiryForm({
           />
         )}
 
-        {(type === "academy" || type === "camp" || type === "individual") && (
+        {(type === "academy" || type === "individual") && (
           <Select
             label="Dob djeteta"
             name="childAge"
@@ -309,15 +329,57 @@ export function InquiryForm({
 
         {type === "camp" && (
           <>
+            {(hasAccommodation || hasFullDay || hasTrainingOnly) && (
+              <Select
+                label="Tip prijave *"
+                name="accommodationType"
+                value={formData.accommodationType}
+                onChange={handleChange}
+                options={[
+                  { value: "", label: "Odaberite tip prijave" },
+                  ...(hasAccommodation ? [{ value: "with_accommodation", label: "S noćenjem (puni kamp sa smještajem)" }] : []),
+                  ...(hasFullDay ? [{ value: "full_day", label: "Cjelodnevni (sve aktivnosti bez spavanja)" }] : []),
+                  ...(hasTrainingOnly ? [{ value: "training_only", label: "Samo treninzi" }] : []),
+                ]}
+                required
+              />
+            )}
+
             <Select
-              label="Tip prijave *"
-              name="accommodationType"
-              value={formData.accommodationType}
+              label="Godište djeteta *"
+              name="birthYear"
+              value={formData.birthYear}
               onChange={handleChange}
               options={[
-                { value: "", label: "Odaberite tip prijave" },
-                { value: "with_accommodation", label: "S noćenjem (puni kamp)" },
-                { value: "day_only", label: "Bez noćenja (samo dnevni program)" },
+                { value: "", label: "Odaberite godište" },
+                { value: "2019", label: "2019" },
+                { value: "2018", label: "2018" },
+                { value: "2017", label: "2017" },
+                { value: "2016", label: "2016" },
+                { value: "2015", label: "2015" },
+                { value: "2014", label: "2014" },
+                { value: "2013", label: "2013" },
+                { value: "2012", label: "2012" },
+                { value: "2011", label: "2011" },
+              ]}
+              required
+            />
+
+            <Select
+              label="Veličina dresa *"
+              name="jerseySize"
+              value={formData.jerseySize}
+              onChange={handleChange}
+              options={[
+                { value: "", label: "Odaberite veličinu" },
+                { value: "128", label: "128" },
+                { value: "140", label: "140" },
+                { value: "152", label: "152" },
+                { value: "164", label: "164" },
+                { value: "176", label: "176" },
+                { value: "S", label: "S" },
+                { value: "M", label: "M" },
+                { value: "L", label: "L" },
               ]}
               required
             />

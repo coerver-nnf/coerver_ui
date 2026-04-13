@@ -23,6 +23,7 @@ interface Subcategory {
   image_url: string | null;
   order_index: number;
   exercise_count: number;
+  hasAccess: boolean;
 }
 
 const categoryColors: Record<string, string> = {
@@ -162,20 +163,20 @@ export default function CategorySubcategoriesPage() {
         return acc;
       }, {} as Record<string, number>) || {};
 
-      // Filter subcategories based on access
-      let accessibleSubcategories = allSubcategories || [];
+      // Determine which subcategories the user has access to
+      const accessibleSubIds = new Set<string>();
 
-      // If no full category access, filter to accessible subcategories
-      if (!hasFullCategoryAccess && clubId) {
+      // If full category access, all subcategories are accessible
+      if (hasFullCategoryAccess) {
+        allSubcategories?.forEach((sub) => accessibleSubIds.add(sub.id));
+      } else if (clubId) {
         // Get subcategories with direct club access
         const { data: clubSubAccess } = await supabase
           .from("club_subcategory_access")
           .select("subcategory_id")
           .eq("club_id", clubId);
 
-        const accessibleSubIds = new Set(
-          clubSubAccess?.map((a) => a.subcategory_id) || []
-        );
+        clubSubAccess?.forEach((a) => accessibleSubIds.add(a.subcategory_id));
 
         // Get subcategories that have exercises with club access
         const { data: clubExAccess } = await supabase
@@ -188,15 +189,13 @@ export default function CategorySubcategoriesPage() {
             accessibleSubIds.add(a.exercise.subcategory_id);
           }
         });
-
-        accessibleSubcategories = (allSubcategories || []).filter(
-          (sub) => accessibleSubIds.has(sub.id)
-        );
       }
 
-      const subcategoriesWithCounts = accessibleSubcategories.map((sub) => ({
+      // Map all subcategories with access info
+      const subcategoriesWithCounts = (allSubcategories || []).map((sub) => ({
         ...sub,
         exercise_count: countMap[sub.id] || 0,
+        hasAccess: accessibleSubIds.has(sub.id),
       }));
 
       setSubcategories(subcategoriesWithCounts);
@@ -240,30 +239,8 @@ export default function CategorySubcategoriesPage() {
     );
   }
 
-  if (!hasAccess && profile) {
-    return (
-      <DashboardLayout>
-        <div className="text-center py-12">
-          <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
-          </div>
-          <h1 className="text-2xl font-bold text-coerver-dark mb-2">
-            Nemate pristup ovoj kategoriji
-          </h1>
-          <p className="text-gray-500 mb-4">
-            Kontaktirajte administratora za proširenje pristupa.
-          </p>
-          <Link href="/dashboard/trener" className="text-coerver-green hover:underline">
-            ← Povratak na pregled
-          </Link>
-        </div>
-      </DashboardLayout>
-    );
-  }
-
   const totalExercises = subcategories.reduce((sum, sub) => sum + sub.exercise_count, 0);
+  const accessibleSubcategories = subcategories.filter((sub) => sub.hasAccess);
 
   return (
     <DashboardLayout>
@@ -291,7 +268,7 @@ export default function CategorySubcategoriesPage() {
 
           <div className="flex flex-wrap items-center gap-3 mt-6">
             <span className="bg-white/20 backdrop-blur text-white px-4 py-2 rounded-xl text-sm font-medium">
-              {subcategories.length} potkategorija
+              {accessibleSubcategories.length} od {subcategories.length} potkategorija dostupno
             </span>
             <span className="bg-white/20 backdrop-blur text-white px-4 py-2 rounded-xl text-sm font-medium">
               {totalExercises} vježbi ukupno
@@ -320,11 +297,16 @@ export default function CategorySubcategoriesPage() {
           {subcategories.map((subcategory) => (
             <Link
               key={subcategory.id}
-              href={`/dashboard/trener/vjezbe/${categorySlug}/${subcategory.slug}`}
-              className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl hover:shadow-gray-100 hover:-translate-y-1 transition-all duration-300"
+              href={subcategory.hasAccess ? `/dashboard/trener/vjezbe/${categorySlug}/${subcategory.slug}` : "#"}
+              onClick={(e) => !subcategory.hasAccess && e.preventDefault()}
+              className={`group relative rounded-2xl border overflow-hidden transition-all duration-300 ${
+                subcategory.hasAccess
+                  ? "bg-white border-gray-100 hover:shadow-xl hover:shadow-gray-100 hover:-translate-y-1 cursor-pointer"
+                  : "bg-gray-50 border-gray-100 opacity-60 cursor-not-allowed"
+              }`}
             >
               {/* Image or Placeholder */}
-              <div className={`h-32 bg-gradient-to-br ${color} flex items-center justify-center relative overflow-hidden`}>
+              <div className={`h-32 bg-gradient-to-br ${color} flex items-center justify-center relative overflow-hidden ${!subcategory.hasAccess ? "grayscale" : ""}`}>
                 {subcategory.image_url ? (
                   <img
                     src={subcategory.image_url}
@@ -345,25 +327,49 @@ export default function CategorySubcategoriesPage() {
                 <div className="absolute bottom-3 right-3 bg-black/50 backdrop-blur text-white text-xs font-medium px-2.5 py-1 rounded-lg">
                   {subcategory.exercise_count} vježbi
                 </div>
+                {/* Lock indicator for locked subcategories */}
+                {!subcategory.hasAccess && (
+                  <div className="absolute top-3 right-3 bg-black/50 backdrop-blur text-white p-1.5 rounded-lg">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                )}
               </div>
 
               <div className="p-5">
-                <h3 className="font-bold text-coerver-dark text-lg mb-1 group-hover:text-coerver-green transition-colors">
-                  {subcategory.name}
-                </h3>
+                <div className="flex items-start justify-between gap-2 mb-1">
+                  <h3 className={`font-bold text-lg transition-colors ${
+                    subcategory.hasAccess
+                      ? "text-coerver-dark group-hover:text-coerver-green"
+                      : "text-gray-400"
+                  }`}>
+                    {subcategory.name}
+                  </h3>
+                  {!subcategory.hasAccess && (
+                    <span className="flex items-center gap-1 text-xs font-medium text-gray-400 bg-gray-100 px-2 py-1 rounded-full flex-shrink-0">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                      Zaključano
+                    </span>
+                  )}
+                </div>
                 {subcategory.description && (
-                  <p className="text-sm text-gray-500 line-clamp-2">
+                  <p className={`text-sm line-clamp-2 ${subcategory.hasAccess ? "text-gray-500" : "text-gray-400"}`}>
                     {subcategory.description}
                   </p>
                 )}
 
                 <div className="flex items-center justify-end mt-4">
-                  <span className="text-coerver-green text-sm font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    Pregledaj vježbe
-                    <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span>
+                  {subcategory.hasAccess && (
+                    <span className="text-coerver-green text-sm font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      Pregledaj vježbe
+                      <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  )}
                 </div>
               </div>
             </Link>

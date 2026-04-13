@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
 import { createClient } from "@/lib/supabase/client";
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 
 interface Category {
   id: string;
@@ -84,6 +86,7 @@ export default function ExerciseDetailPage() {
   const [exercise, setExercise] = useState<Exercise | null>(null);
   const [loading, setLoading] = useState(true);
   const [hasAccess, setHasAccess] = useState(false);
+  const [generatingPdf, setGeneratingPdf] = useState(false);
 
   useEffect(() => {
     if (!authLoading && profile?.id) {
@@ -203,6 +206,175 @@ export default function ExerciseDetailPage() {
   const color = categoryColors[categorySlug] || "from-gray-500 to-gray-700";
   const embedUrl = exercise ? getVideoEmbedUrl(exercise.video_url) : null;
 
+  async function generatePdf() {
+    if (!exercise) return;
+
+    setGeneratingPdf(true);
+
+    try {
+      // Create a temporary container for PDF content
+      const container = document.createElement("div");
+      container.style.cssText = `
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        width: 794px;
+        background: white;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        padding: 0;
+      `;
+
+      const diffLabels: Record<string, string> = {
+        beginner: "Početnik",
+        intermediate: "Srednji",
+        advanced: "Napredni",
+      };
+
+      container.innerHTML = `
+        <div style="background: #006633; padding: 16px 24px; color: white;">
+          <div style="font-size: 14px; font-weight: bold; letter-spacing: 1px;">COERVER COACHING</div>
+        </div>
+        <div style="padding: 24px;">
+          ${exercise.thumbnail_url ? `
+            <div style="margin-bottom: 20px; border-radius: 12px; overflow: hidden;">
+              <img src="${exercise.thumbnail_url}" crossorigin="anonymous" style="width: 100%; height: auto; display: block;" />
+            </div>
+          ` : ""}
+
+          <h1 style="font-size: 28px; font-weight: bold; color: #1a1a1a; margin: 0 0 12px 0;">${exercise.title}</h1>
+
+          <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+            ${exercise.difficulty ? `<span style="background: #e8f5e9; color: #2e7d32; padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;">${diffLabels[exercise.difficulty] || exercise.difficulty}</span>` : ""}
+            ${exercise.duration ? `<span style="background: #f5f5f5; color: #424242; padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;">${exercise.duration}</span>` : ""}
+          </div>
+
+          ${exercise.description ? `
+            <div style="color: #424242; font-size: 14px; line-height: 1.7; margin-bottom: 24px; white-space: pre-wrap;">${exercise.description}</div>
+          ` : ""}
+
+          ${exercise.coaching_points && exercise.coaching_points.length > 0 ? `
+            <div style="margin-bottom: 24px;">
+              <h3 style="font-size: 16px; font-weight: bold; color: #006633; margin: 0 0 12px 0;">Točke treniranja</h3>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                ${exercise.coaching_points.map((point, index) => `
+                  <div style="display: flex; gap: 12px; align-items: flex-start;">
+                    <span style="background: #e8f5e9; color: #006633; width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; flex-shrink: 0;">${index + 1}</span>
+                    <span style="color: #424242; font-size: 13px; line-height: 1.5;">${point}</span>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          ` : ""}
+
+          ${exercise.equipment && exercise.equipment.length > 0 ? `
+            <div style="margin-bottom: 24px;">
+              <h3 style="font-size: 16px; font-weight: bold; color: #006633; margin: 0 0 12px 0;">Potrebna oprema</h3>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                ${exercise.equipment.map(item => `
+                  <span style="background: #f5f5f5; color: #424242; padding: 6px 12px; border-radius: 6px; font-size: 13px;">${item}</span>
+                `).join("")}
+              </div>
+            </div>
+          ` : ""}
+
+          <div style="border-top: 1px solid #e0e0e0; padding-top: 16px; margin-top: 24px; display: flex; justify-content: space-between; color: #9e9e9e; font-size: 11px;">
+            <span>© Coerver Coaching Croatia</span>
+            <span>${new Date().toLocaleDateString("hr-HR")}</span>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(container);
+
+      // Wait for image to load
+      const img = container.querySelector("img");
+      if (img) {
+        await new Promise<void>((resolve) => {
+          if (img.complete) {
+            resolve();
+          } else {
+            img.onload = () => resolve();
+            img.onerror = () => resolve();
+          }
+        });
+      }
+
+      // Small delay for rendering
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      // Capture with html2canvas
+      const canvas = await html2canvas(container, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: "#ffffff",
+      });
+
+      // Remove temporary container
+      document.body.removeChild(container);
+
+      // Create PDF
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4",
+      });
+
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      // Calculate dimensions to fit on page
+      const imgWidth = pageWidth;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      // If content is taller than one page, we need to split it
+      if (imgHeight <= pageHeight) {
+        pdf.addImage(canvas.toDataURL("image/jpeg", 0.95), "JPEG", 0, 0, imgWidth, imgHeight);
+      } else {
+        // Split across multiple pages
+        let remainingHeight = canvas.height;
+        let sourceY = 0;
+        const pageHeightPx = (pageHeight * canvas.width) / pageWidth;
+
+        while (remainingHeight > 0) {
+          const sliceHeight = Math.min(pageHeightPx, remainingHeight);
+
+          // Create a canvas for this page slice
+          const pageCanvas = document.createElement("canvas");
+          pageCanvas.width = canvas.width;
+          pageCanvas.height = sliceHeight;
+          const ctx = pageCanvas.getContext("2d");
+
+          if (ctx) {
+            ctx.drawImage(
+              canvas,
+              0, sourceY, canvas.width, sliceHeight,
+              0, 0, canvas.width, sliceHeight
+            );
+
+            const sliceImgHeight = (sliceHeight * imgWidth) / canvas.width;
+            pdf.addImage(pageCanvas.toDataURL("image/jpeg", 0.95), "JPEG", 0, 0, imgWidth, sliceImgHeight);
+          }
+
+          remainingHeight -= sliceHeight;
+          sourceY += sliceHeight;
+
+          if (remainingHeight > 0) {
+            pdf.addPage();
+          }
+        }
+      }
+
+      // Download the PDF
+      pdf.save(`${exercise.slug || exercise.title.toLowerCase().replace(/\s+/g, "-")}.pdf`);
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      alert("Greška pri generiranju PDF-a. Molimo pokušajte ponovno.");
+    } finally {
+      setGeneratingPdf(false);
+    }
+  }
+
   if (authLoading || loading) {
     return (
       <DashboardLayout>
@@ -285,6 +457,17 @@ export default function ExerciseDetailPage() {
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
+          {/* Thumbnail Image */}
+          {exercise.thumbnail_url && (
+            <div className="rounded-2xl overflow-hidden aspect-video relative">
+              <img
+                src={exercise.thumbnail_url}
+                alt={exercise.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+
           {/* Video Player */}
           <div className="bg-black rounded-2xl overflow-hidden aspect-video relative">
             {embedUrl ? (
@@ -294,24 +477,6 @@ export default function ExerciseDetailPage() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
-            ) : exercise.thumbnail_url ? (
-              <div className="relative w-full h-full">
-                <img
-                  src={exercise.thumbnail_url}
-                  alt={exercise.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                  <div className="text-white text-center">
-                    <div className="w-20 h-20 bg-white/20 backdrop-blur rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                    <p className="text-sm opacity-80">Video nije dostupan</p>
-                  </div>
-                </div>
-              </div>
             ) : (
               <div className={`absolute inset-0 bg-gradient-to-br ${color} flex items-center justify-center`}>
                 <div className="text-white text-center">
@@ -344,7 +509,11 @@ export default function ExerciseDetailPage() {
               </div>
             </div>
             {exercise.description && (
-              <p className="text-gray-600 leading-relaxed">{exercise.description}</p>
+              <div className="text-gray-600 leading-relaxed space-y-3">
+                {exercise.description.split('\n').filter(p => p.trim()).map((paragraph, index) => (
+                  <p key={index}>{paragraph.trim()}</p>
+                ))}
+              </div>
             )}
           </div>
 
@@ -418,6 +587,30 @@ export default function ExerciseDetailPage() {
               </div>
             </div>
           )}
+
+          {/* Download PDF Button */}
+          <button
+            onClick={generatePdf}
+            disabled={generatingPdf}
+            className="w-full px-5 py-3 bg-coerver-green hover:bg-coerver-green/90 disabled:bg-coerver-green/50 text-white rounded-xl font-medium transition-colors flex items-center justify-center gap-2"
+          >
+            {generatingPdf ? (
+              <>
+                <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                </svg>
+                Generiranje PDF-a...
+              </>
+            ) : (
+              <>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Preuzmi PDF
+              </>
+            )}
+          </button>
 
           {/* Back Button */}
           <Link

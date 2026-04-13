@@ -42,6 +42,7 @@ const campSchema = z.object({
   start_date: z.string().min(1, "Datum početka je obavezan"),
   end_date: z.string().min(1, "Datum završetka je obavezan"),
   price: z.number().optional().nullable(),
+  price_full_day: z.number().optional().nullable(),
   price_day_only: z.number().optional().nullable(),
   registration_deadline: z.string().optional().nullable(),
   capacity: z.number().optional().nullable(),
@@ -134,6 +135,7 @@ export default function EditCampPage({
         start_date: camp.start_date,
         end_date: camp.end_date,
         price: camp.price,
+        price_full_day: camp.price_full_day,
         price_day_only: camp.price_day_only,
         registration_deadline: camp.registration_deadline,
         capacity: camp.capacity,
@@ -152,20 +154,27 @@ export default function EditCampPage({
     }
   }
 
+  // Helper to convert NaN to null for numeric fields
+  const toNumberOrNull = (val: number | null | undefined): number | null => {
+    if (val === null || val === undefined || Number.isNaN(val)) return null;
+    return val;
+  };
+
   async function onSubmit(data: CampFormData) {
     setIsSubmitting(true);
     try {
       await updateCamp({
         id,
         ...data,
-        price: data.price || undefined,
-        price_day_only: data.price_day_only || undefined,
-        registration_deadline: data.registration_deadline || undefined,
-        capacity: data.capacity || undefined,
-        spots: data.spots || undefined,
-        total_spots: data.total_spots || undefined,
-        age_min: data.age_min || undefined,
-        age_max: data.age_max || undefined,
+        price: toNumberOrNull(data.price),
+        price_full_day: toNumberOrNull(data.price_full_day),
+        price_day_only: toNumberOrNull(data.price_day_only),
+        registration_deadline: data.registration_deadline || null,
+        capacity: toNumberOrNull(data.capacity),
+        spots: toNumberOrNull(data.spots),
+        total_spots: toNumberOrNull(data.total_spots),
+        age_min: toNumberOrNull(data.age_min),
+        age_max: toNumberOrNull(data.age_max),
         gallery,
         highlights,
         age_groups: ageGroups,
@@ -304,21 +313,29 @@ export default function EditCampPage({
         <div className="bg-white rounded-xl border border-coerver-gray-200 p-6 space-y-4">
           <h2 className="text-lg font-semibold text-coerver-gray-900">Cijene</h2>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             <Input
               label="S noćenjem (€)"
               type="number"
               step="0.01"
               {...register("price", { valueAsNumber: true })}
-              helperText="Cijena za puni kamp s noćenjem"
+              helperText="Puni kamp sa smještajem"
             />
 
             <Input
-              label="Bez noćenja (€)"
+              label="Cjelodnevni (€)"
+              type="number"
+              step="0.01"
+              {...register("price_full_day", { valueAsNumber: true })}
+              helperText="Sve aktivnosti bez spavanja"
+            />
+
+            <Input
+              label="Samo treninzi (€)"
               type="number"
               step="0.01"
               {...register("price_day_only", { valueAsNumber: true })}
-              helperText="Cijena samo za dnevni program"
+              helperText="Samo trening sessioni"
             />
           </div>
         </div>
