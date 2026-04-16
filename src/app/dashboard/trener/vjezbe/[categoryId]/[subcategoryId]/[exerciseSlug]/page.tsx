@@ -468,29 +468,6 @@ export default function ExerciseDetailPage() {
             </div>
           )}
 
-          {/* Video Player */}
-          <div className="bg-black rounded-2xl overflow-hidden aspect-video relative">
-            {embedUrl ? (
-              <iframe
-                src={embedUrl}
-                className="absolute inset-0 w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            ) : (
-              <div className={`absolute inset-0 bg-gradient-to-br ${color} flex items-center justify-center`}>
-                <div className="text-white text-center">
-                  <div className="w-20 h-20 bg-white/20 backdrop-blur rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                  <p className="text-sm opacity-80">Video nije dostupan</p>
-                </div>
-              </div>
-            )}
-          </div>
-
           {/* Exercise Title & Description */}
           <div className="bg-white rounded-2xl p-6 border border-gray-100">
             <div className="flex items-start justify-between gap-4 mb-4">
@@ -513,6 +490,29 @@ export default function ExerciseDetailPage() {
                 {exercise.description.split('\n').filter(p => p.trim()).map((paragraph, index) => (
                   <p key={index}>{paragraph.trim()}</p>
                 ))}
+              </div>
+            )}
+          </div>
+
+          {/* Video Player */}
+          <div className="bg-black rounded-2xl overflow-hidden aspect-video relative">
+            {embedUrl ? (
+              <iframe
+                src={embedUrl}
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <div className={`absolute inset-0 bg-gradient-to-br ${color} flex items-center justify-center`}>
+                <div className="text-white text-center">
+                  <div className="w-20 h-20 bg-white/20 backdrop-blur rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                  <p className="text-sm opacity-80">Video nije dostupan</p>
+                </div>
               </div>
             )}
           </div>

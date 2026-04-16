@@ -16,16 +16,38 @@ export default function ResetPasswordPage() {
   const [isValidSession, setIsValidSession] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // Check if user has a valid recovery session
-    const checkSession = async () => {
-      const supabase = createClient();
-      const { data: { session } } = await supabase.auth.getSession();
+    const supabase = createClient();
 
-      // User should have a session from the recovery link
-      setIsValidSession(!!session);
+    // Listen for auth state changes - this will fire when Supabase processes the URL hash
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "PASSWORD_RECOVERY") {
+        // User clicked the recovery link and Supabase processed it
+        setIsValidSession(true);
+      } else if (event === "SIGNED_IN" && session) {
+        // Already signed in with recovery token
+        setIsValidSession(true);
+      }
+    });
+
+    // Also check if there's already a session (in case onAuthStateChange already fired)
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        setIsValidSession(true);
+      } else {
+        // Give Supabase a moment to process the URL hash before declaring invalid
+        // The hash tokens are processed asynchronously
+        setTimeout(() => {
+          setIsValidSession((current) => current === null ? false : current);
+        }, 1500);
+      }
     };
 
     checkSession();
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
