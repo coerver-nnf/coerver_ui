@@ -6,7 +6,6 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
-import { InquiryForm } from "@/components/forms/InquiryForm";
 import { getCamps, Camp } from "@/lib/api/camps";
 
 if (typeof window !== "undefined") {
@@ -205,12 +204,12 @@ export default function KampoviPage() {
               <p className="text-gray-500 mb-6">
                 Pratite nas za informacije o novim kampovima ili se prijavite na našu mailing listu.
               </p>
-              <a
-                href="#prijava"
+              <Link
+                href="/kontakt"
                 className="inline-flex items-center gap-2 bg-coerver-green text-white font-semibold px-6 py-3 rounded-full hover:bg-coerver-green/90 transition-colors"
               >
                 Kontaktirajte nas
-              </a>
+              </Link>
             </div>
           ) : (
             <div className="space-y-6 max-w-5xl mx-auto">
@@ -297,22 +296,13 @@ export default function KampoviPage() {
                       <div className="flex flex-wrap gap-3">
                         <Link
                           href={`/za-igrace/kampovi/${camp.slug}`}
-                          className="inline-flex items-center gap-2 bg-coerver-dark text-white font-semibold px-6 py-3 rounded-full hover:bg-coerver-dark/90 transition-colors"
+                          className="inline-flex items-center gap-2 bg-coerver-green text-white font-semibold px-6 py-3 rounded-full hover:bg-coerver-green/90 transition-colors"
                         >
                           Saznaj više
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                           </svg>
                         </Link>
-                        <a
-                          href="#prijava"
-                          className="inline-flex items-center gap-2 bg-coerver-green text-white font-semibold px-6 py-3 rounded-full hover:bg-coerver-green/90 transition-colors"
-                        >
-                          Prijavi se
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </a>
                       </div>
                     </div>
                   </div>
@@ -496,56 +486,6 @@ export default function KampoviPage() {
         </div>
       </section>
 
-      {/* Inquiry Form */}
-      <section id="prijava" className="py-24 lg:py-32 bg-coerver-dark relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-coerver-green/15 rounded-full blur-[150px]" />
-        </div>
-
-        <div className="container mx-auto px-6 lg:px-8 relative">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div className="animate-on-scroll text-white">
-              <div className="inline-flex items-center gap-2 bg-coerver-green/20 rounded-full px-4 py-2 mb-6">
-                <span className="w-2 h-2 bg-coerver-green rounded-full animate-pulse" />
-                <span className="text-coerver-green text-sm font-semibold">Prijave otvorene</span>
-              </div>
-
-              <h2 className="text-4xl lg:text-5xl font-black mb-6">
-                Prijavi se na kamp
-              </h2>
-              <p className="text-lg text-white/60 mb-10">
-                Ispuni obrazac i osiguraj svoje mjesto na jednom od naših kampova.
-                Broj mjesta je ograničen!
-              </p>
-
-              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10">
-                <h4 className="font-bold mb-6">Potrebne informacije:</h4>
-                <ul className="space-y-4">
-                  {[
-                    "Ime i prezime djeteta",
-                    "Dob djeteta",
-                    "Željeni kamp (datum i lokacija)",
-                    "Kontakt podatke roditelja",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-3">
-                      <div className="w-6 h-6 rounded-full bg-coerver-green flex items-center justify-center flex-shrink-0">
-                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <span className="text-white/80">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="animate-on-scroll">
-              <InquiryForm type="camp" title="Prijava na kamp" />
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
