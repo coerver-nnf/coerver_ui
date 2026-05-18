@@ -533,7 +533,7 @@ export default function CoerverIntroPage() {
             </div>
 
             <div className="animate-on-scroll">
-              <InquiryForm type="course" programId="coerver-intro" title="Prijava" />
+              <InquiryForm type="course" programId="coerver-intro" programName="Coerver Intro" title="Prijava" />
             </div>
           </div>
         </div>

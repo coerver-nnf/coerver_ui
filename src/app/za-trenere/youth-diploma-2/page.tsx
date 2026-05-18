@@ -509,7 +509,7 @@ export default function YouthDiploma2Page() {
             </div>
 
             <div className="animate-on-scroll">
-              <InquiryForm type="course" programId="youth-diploma-2" title="Prijava za YD2" />
+              <InquiryForm type="course" programId="youth-diploma-2" programName="Youth Diploma 2" title="Prijava za YD2" />
             </div>
           </div>
         </div>

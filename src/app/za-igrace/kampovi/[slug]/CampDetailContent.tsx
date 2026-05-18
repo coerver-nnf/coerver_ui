@@ -782,7 +782,7 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
             </div>
 
             <div className="animate-on-scroll">
-              <InquiryForm type="camp" programId={camp.id} title="Prijava na kamp" hasAccommodation={hasAccommodation} hasFullDay={hasFullDay} hasTrainingOnly={hasTrainingOnly} />
+              <InquiryForm type="camp" programId={camp.id} programName={camp.title} title="Prijava na kamp" hasAccommodation={hasAccommodation} hasFullDay={hasFullDay} hasTrainingOnly={hasTrainingOnly} />
             </div>
           </div>
         </div>

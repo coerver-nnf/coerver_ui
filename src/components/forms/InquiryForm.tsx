@@ -11,6 +11,7 @@ import { getCourses, Course } from "@/lib/api/courses";
 interface InquiryFormProps {
   type: "academy" | "camp" | "course" | "club" | "individual" | "general";
   programId?: string;
+  programName?: string; // Human-readable name of the program (camp title, academy name, etc.)
   title?: string;
   className?: string;
   hasAccommodation?: boolean; // For camps: true if sleepover option exists
@@ -21,6 +22,7 @@ interface InquiryFormProps {
 export function InquiryForm({
   type,
   programId,
+  programName,
   title = "Pošalji Upit",
   className = "",
   hasAccommodation = true,
@@ -143,6 +145,7 @@ export function InquiryForm({
       if (submitError) throw submitError;
 
       // Send email notification via API (fire and forget)
+      // Use programName if provided, otherwise fall back to programValue (slug or UUID)
       fetch("/api/inquiries/notify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -152,7 +155,7 @@ export function InquiryForm({
           email: formData.email,
           phone: formData.phone || null,
           message: fullMessage,
-          program: programValue,
+          program: programName || programValue,
           childAge: formData.childAge || null,
         }),
       }).catch(console.error);
