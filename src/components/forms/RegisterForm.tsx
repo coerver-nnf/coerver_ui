@@ -19,6 +19,7 @@ export function RegisterForm() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [privacyConsent, setPrivacyConsent] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -241,10 +242,34 @@ export function RegisterForm() {
         </div>
       )}
 
+      {/* GDPR Consent Checkbox */}
+      <div className="mt-4">
+        <label className="flex items-start gap-3 cursor-pointer group">
+          <input
+            type="checkbox"
+            checked={privacyConsent}
+            onChange={(e) => setPrivacyConsent(e.target.checked)}
+            required
+            className="mt-1 w-5 h-5 rounded border-gray-300 text-coerver-green focus:ring-coerver-green cursor-pointer"
+          />
+          <span className="text-sm text-gray-600 group-hover:text-gray-800">
+            Pročitao/la sam i slažem se s{" "}
+            <Link
+              href="/privatnost"
+              target="_blank"
+              className="text-coerver-green hover:underline font-medium"
+            >
+              politikom privatnosti
+            </Link>{" "}
+            te pristajem na obradu mojih osobnih podataka. *
+          </span>
+        </label>
+      </div>
+
       {/* Submit Button */}
       <button
         type="submit"
-        disabled={isLoading}
+        disabled={isLoading || !privacyConsent}
         className="w-full py-4 bg-gradient-to-r from-coerver-dark to-gray-800 hover:from-coerver-dark/90 hover:to-gray-800/90 text-white font-semibold rounded-xl shadow-lg transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-6"
       >
         {isLoading ? (
@@ -264,18 +289,6 @@ export function RegisterForm() {
           </>
         )}
       </button>
-
-      {/* Terms */}
-      <p className="text-center text-xs text-gray-400 mt-4">
-        Registracijom se slažete s našim{" "}
-        <Link href="/uvjeti" className="text-coerver-green hover:underline">
-          uvjetima korištenja
-        </Link>{" "}
-        i{" "}
-        <Link href="/privatnost" className="text-coerver-green hover:underline">
-          politikom privatnosti
-        </Link>
-      </p>
 
       {/* Divider */}
       <div className="relative my-6">

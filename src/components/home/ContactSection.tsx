@@ -43,6 +43,7 @@ export function ContactSection() {
     phone: "",
     message: "",
   });
+  const [privacyConsent, setPrivacyConsent] = useState(false);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -99,6 +100,7 @@ export function ContactSection() {
 
       setIsSubmitted(true);
       setFormData({ name: "", email: "", phone: "", message: "" });
+      setPrivacyConsent(false);
     } catch {
       setError("Došlo je do greške. Molimo pokušajte ponovno.");
     } finally {
@@ -283,9 +285,31 @@ export function ContactSection() {
                     </div>
                   )}
 
+                  {/* GDPR Consent Checkbox */}
+                  <label className="flex items-start gap-3 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      checked={privacyConsent}
+                      onChange={(e) => setPrivacyConsent(e.target.checked)}
+                      required
+                      className="mt-1 w-5 h-5 rounded border-gray-300 text-coerver-green focus:ring-coerver-green cursor-pointer"
+                    />
+                    <span className="text-sm text-gray-600 group-hover:text-gray-800">
+                      Slažem se s{" "}
+                      <Link
+                        href="/privatnost"
+                        target="_blank"
+                        className="text-coerver-green hover:underline font-medium"
+                      >
+                        politikom privatnosti
+                      </Link>{" "}
+                      *
+                    </span>
+                  </label>
+
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !privacyConsent}
                     className="w-full py-4 bg-coerver-green hover:bg-coerver-green/90 text-white font-semibold rounded-xl transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
@@ -305,13 +329,6 @@ export function ContactSection() {
                       </>
                     )}
                   </button>
-
-                  <p className="text-xs text-gray-400 text-center">
-                    Slanjem ovog obrasca slažete se s našom{" "}
-                    <Link href="/privatnost" className="text-coerver-green hover:underline">
-                      politikom privatnosti
-                    </Link>
-                  </p>
                 </form>
               </div>
             )}

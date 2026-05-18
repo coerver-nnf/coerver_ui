@@ -51,6 +51,7 @@ export function InquiryForm({
     format: "",
     accommodationType: "",
   });
+  const [privacyConsent, setPrivacyConsent] = useState(false);
 
   // Fetch programs based on type
   useEffect(() => {
@@ -174,6 +175,7 @@ export function InquiryForm({
         format: "",
         accommodationType: "",
       });
+      setPrivacyConsent(false);
     } catch {
       setError("Došlo je do greške. Molimo pokušajte ponovno.");
     } finally {
@@ -463,23 +465,40 @@ export function InquiryForm({
           </div>
         )}
 
+        {/* GDPR Consent Checkbox */}
+        <div className="space-y-3">
+          <label className="flex items-start gap-3 cursor-pointer group">
+            <input
+              type="checkbox"
+              checked={privacyConsent}
+              onChange={(e) => setPrivacyConsent(e.target.checked)}
+              required
+              className="mt-1 w-5 h-5 rounded border-gray-300 text-coerver-green focus:ring-coerver-green cursor-pointer"
+            />
+            <span className="text-sm text-gray-600 group-hover:text-gray-800">
+              Pročitao/la sam i slažem se s{" "}
+              <a
+                href="/privatnost"
+                target="_blank"
+                className="text-coerver-green hover:underline font-medium"
+              >
+                politikom privatnosti
+              </a>{" "}
+              te pristajem na obradu mojih osobnih podataka u svrhu obrade ovog upita. *
+            </span>
+          </label>
+        </div>
+
         <Button
           type="submit"
           variant="primary"
           size="lg"
           className="w-full"
           isLoading={isSubmitting}
+          disabled={!privacyConsent}
         >
           Pošalji Upit
         </Button>
-
-        <p className="text-xs text-coerver-gray-500 text-center">
-          Slanjem ovog obrasca slažete se s našom{" "}
-          <a href="/privatnost" className="text-coerver-green hover:underline">
-            politikom privatnosti
-          </a>
-          .
-        </p>
       </form>
     </div>
   );
