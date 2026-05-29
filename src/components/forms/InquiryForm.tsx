@@ -224,11 +224,11 @@ export function InquiryForm({
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <Input
-          label="Ime i prezime *"
+          label={type === "camp" ? "Ime i prezime djeteta *" : "Ime i prezime *"}
           name="name"
           value={formData.name}
           onChange={handleChange}
-          placeholder="Unesite vaše ime i prezime"
+          placeholder={type === "camp" ? "Unesite ime i prezime djeteta" : "Unesite vaše ime i prezime"}
           required
         />
 
