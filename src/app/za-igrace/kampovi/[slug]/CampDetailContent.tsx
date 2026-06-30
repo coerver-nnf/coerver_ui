@@ -153,6 +153,13 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
     hasTrainingOnly ? `${camp.price_day_only}€` : null,
   ].filter(Boolean).join(" / ");
 
+  // Get lowest price for mobile CTA
+  const lowestPrice = hasTrainingOnly
+    ? camp.price_day_only
+    : hasFullDay
+    ? camp.price_full_day
+    : camp.price;
+
   // Default values for arrays
   const highlights = camp.highlights || [];
   const dailySchedule = camp.daily_schedule || [];
@@ -993,7 +1000,7 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
           <div className="flex items-center gap-3">
             <div className="flex-1">
               <div className="text-xs text-gray-500">Cijena od</div>
-              <div className="text-xl font-black text-coerver-dark">{displayPrice}€</div>
+              <div className="text-xl font-black text-coerver-dark">{lowestPrice}€</div>
             </div>
             <a
               href="#prijava"
