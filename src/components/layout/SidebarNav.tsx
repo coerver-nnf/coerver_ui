@@ -85,6 +85,8 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
   const pathname = usePathname();
 
   useEffect(() => {
+    let timer: NodeJS.Timeout | null = null;
+
     if (isOpen) {
       setIsVisible(true);
       document.body.style.overflow = "hidden";
@@ -97,11 +99,16 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
       setIsAnimating(false);
       document.body.style.overflow = "";
       setActiveItem(null);
-      const timer = setTimeout(() => {
+      timer = setTimeout(() => {
         setIsVisible(false);
       }, 600);
-      return () => clearTimeout(timer);
     }
+
+    // Always cleanup: reset overflow and clear timer
+    return () => {
+      if (timer) clearTimeout(timer);
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
 
   useEffect(() => {
@@ -114,9 +121,12 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] overflow-hidden">
+    <div className={cn(
+      "fixed inset-0 z-[100] overflow-hidden",
+      !isAnimating && "pointer-events-none"
+    )}>
       {/* Animated background panels */}
-      <div className="absolute inset-0 flex">
+      <div className="absolute inset-0 flex pointer-events-none">
         {[...Array(5)].map((_, i) => (
           <div
             key={i}
@@ -135,7 +145,7 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
       <div
         className={cn(
           "relative h-full transition-opacity duration-300 delay-200",
-          isAnimating ? "opacity-100" : "opacity-0"
+          isAnimating ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
       >
         {/* Decorative elements - hidden on mobile for performance */}
