@@ -207,7 +207,7 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
             <span className="text-white/40">/</span>
             <Link href="/za-igrace/kampovi" className="text-white/60 hover:text-white text-sm transition-colors">Kampovi</Link>
             <span className="text-white/40">/</span>
-            <span className="text-coerver-green text-sm font-semibold">{camp.title}</span>
+            <span className="text-coerver-green text-sm font-semibold max-w-[150px] sm:max-w-[200px] truncate">{camp.title}</span>
           </nav>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
