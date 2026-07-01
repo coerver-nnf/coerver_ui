@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
 import { createClient } from "@/lib/supabase/client";
 import { getAcademies, Academy } from "@/lib/api/academies";
 import { getCamps, Camp } from "@/lib/api/camps";
 import { getCourses, Course } from "@/lib/api/courses";
+import { trackEvent } from "@/lib/tracking";
 
 interface InquiryFormProps {
   type: "academy" | "camp" | "course" | "club" | "individual" | "general";
@@ -37,6 +38,15 @@ export function InquiryForm({
   const [courses, setCourses] = useState<Course[]>([]);
   const [selectedProgramId, setSelectedProgramId] = useState(programId || "");
   const [loadingPrograms, setLoadingPrograms] = useState(false);
+  const formStartTracked = useRef(false);
+
+  // Track form start on first field focus
+  const handleFormStart = () => {
+    if (!formStartTracked.current) {
+      formStartTracked.current = true;
+      trackEvent.formStart(`${type}_inquiry`);
+    }
+  };
 
   const [formData, setFormData] = useState({
     name: "",
@@ -145,6 +155,9 @@ export function InquiryForm({
 
       if (submitError) throw submitError;
 
+      // Track successful form submission
+      trackEvent.formSubmit(`${type}_inquiry`);
+
       // Send email notification via API (fire and forget)
       // Use programName if provided, otherwise fall back to programValue (slug or UUID)
       fetch("/api/inquiries/notify", {
@@ -178,6 +191,7 @@ export function InquiryForm({
       setPrivacyConsent(false);
     } catch {
       setError("Došlo je do greške. Molimo pokušajte ponovno.");
+      trackEvent.formError(`${type}_inquiry`, "submission_failed");
     } finally {
       setIsSubmitting(false);
     }
@@ -228,6 +242,7 @@ export function InquiryForm({
           name="name"
           value={formData.name}
           onChange={handleChange}
+          onFocus={handleFormStart}
           placeholder={type === "camp" ? "Unesite ime i prezime djeteta" : "Unesite vaše ime i prezime"}
           required
         />
@@ -449,15 +464,17 @@ export function InquiryForm({
           />
         )}
 
-        <Textarea
-          label="Poruka *"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          placeholder="Napišite vašu poruku ili pitanje..."
-          rows={4}
-          required
-        />
+        {type !== "camp" && (
+          <Textarea
+            label="Poruka *"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="Napišite vašu poruku ili pitanje..."
+            rows={4}
+            required
+          />
+        )}
 
         {error && (
           <div className="bg-red-50 text-red-600 p-4 rounded-lg text-sm">

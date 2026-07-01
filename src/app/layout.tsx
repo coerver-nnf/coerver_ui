@@ -4,6 +4,8 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
+import { Analytics } from "@vercel/analytics/next";
+import { ClarityAnalytics } from "@/components/ClarityAnalytics";
 
 const messinaSans = localFont({
   src: [
@@ -167,6 +169,8 @@ export default function RootLayout({
         <main className="flex-grow">{children}</main>
         <Footer />
         <CookieConsent />
+        <Analytics />
+        <ClarityAnalytics />
       </body>
     </html>
   );
