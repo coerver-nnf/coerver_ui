@@ -3,47 +3,54 @@ import clarity from "@microsoft/clarity";
 // CRO Event Tracking
 // Tracks user interactions for conversion optimization analysis
 
+// Safe wrapper that checks if clarity is ready before sending events
+const safeEvent = (eventName: string, data: Record<string, string>) => {
+  if (typeof window !== "undefined" && typeof window.clarity === "function") {
+    clarity.event(eventName, data);
+  }
+};
+
 export const trackEvent = {
   // CTA Clicks
   ctaClick: (ctaName: string, location: string) => {
-    clarity.event("cta_click", { cta: ctaName, location });
+    safeEvent("cta_click", { cta: ctaName, location });
   },
 
   // Form Events
   formStart: (formName: string) => {
-    clarity.event("form_start", { form: formName });
+    safeEvent("form_start", { form: formName });
   },
 
   formSubmit: (formName: string) => {
-    clarity.event("form_submit", { form: formName });
+    safeEvent("form_submit", { form: formName });
   },
 
   formError: (formName: string, error: string) => {
-    clarity.event("form_error", { form: formName, error });
+    safeEvent("form_error", { form: formName, error });
   },
 
   // Scroll Depth
   scrollDepth: (depth: number, page: string) => {
-    clarity.event("scroll_depth", { depth: `${depth}%`, page });
+    safeEvent("scroll_depth", { depth: `${depth}%`, page });
   },
 
   // Page Section Views
   sectionView: (section: string, page: string) => {
-    clarity.event("section_view", { section, page });
+    safeEvent("section_view", { section, page });
   },
 
   // Camp Specific
   campView: (campSlug: string, campName: string) => {
-    clarity.event("camp_view", { slug: campSlug, name: campName });
+    safeEvent("camp_view", { slug: campSlug, name: campName });
   },
 
   campCardClick: (campSlug: string) => {
-    clarity.event("camp_card_click", { slug: campSlug });
+    safeEvent("camp_card_click", { slug: campSlug });
   },
 
   // Urgency Elements
   urgencyView: (type: string, value: string) => {
-    clarity.event("urgency_view", { type, value });
+    safeEvent("urgency_view", { type, value });
   },
 };
 
