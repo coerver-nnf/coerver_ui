@@ -609,7 +609,7 @@ export default function KampoviPage() {
             <div>
               <div className="inline-flex items-center gap-2 bg-red-500/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-red-500/30">
                 <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                <span className="text-red-300 text-sm font-semibold">Ograničen broj mjesta - Ljeto 2025</span>
+                <span className="text-red-300 text-sm font-semibold">Ograničen broj mjesta - Ljeto 2026</span>
               </div>
 
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[0.95] mb-6">
