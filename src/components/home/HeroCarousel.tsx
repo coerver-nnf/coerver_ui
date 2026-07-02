@@ -106,26 +106,19 @@ export function HeroCarousel() {
           )}
         >
           {(index === 0 || imagesLoaded.has(index)) && (
-            <picture>
-              <source
-                media="(max-width: 640px)"
-                srcSet={slide.imageMobile}
-                type="image/webp"
-              />
-              <Image
-                src={slide.image}
-                alt="Coerver Training"
-                fill
-                className="object-cover"
-                priority={index === 0}
-                fetchPriority={index === 0 ? "high" : "low"}
-                loading={index === 0 ? "eager" : "lazy"}
-                sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 100vw"
-                quality={75}
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAHxAAAgICAgMBAAAAAAAAAAAAAQIDBAARBRIGITFB/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAZEQEAAwEBAAAAAAAAAAAAAAABAAIRITH/2gAMAwEAAhEDEEA/ANJ4jydrj+Ls2Z4oJZJJGdmWMgE+/wBxk1eSvyN6eeazK0srcpHZj2J9k5MydKuw4iZ//9k="
-              />
-            </picture>
+            <Image
+              src={index === 0 ? slide.imageMobile : slide.image}
+              alt="Coerver Training"
+              fill
+              className="object-cover"
+              priority={index === 0}
+              fetchPriority={index === 0 ? "high" : "low"}
+              loading={index === 0 ? "eager" : "lazy"}
+              sizes="100vw"
+              quality={80}
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAHxAAAgICAgMBAAAAAAAAAAAAAQIDBAARBRIGITFB/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAZEQEAAwEBAAAAAAAAAAAAAAABAAIRITH/2gAMAwEAAhEDEEA/ANJ4jydrj+Ls2Z4oJZJJGdmWMgE+/wBxk1eSvyN6eeazK0srcpHZj2J9k5MydKuw4iZ//9k="
+            />
           )}
           {/* Gradient Overlays */}
           <div className="absolute inset-0 bg-gradient-to-r from-coerver-dark/70 via-coerver-dark/40 to-transparent" />

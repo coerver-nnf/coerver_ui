@@ -164,20 +164,12 @@ export default function RootLayout({
         <link rel="preconnect" href="https://a.clarity.ms" />
         <link rel="dns-prefetch" href="https://scripts.clarity.ms" />
 
-        {/* Preload hero image for faster LCP - responsive */}
+        {/* Preload hero image for faster LCP */}
         <link
           rel="preload"
           as="image"
           href="/images/photoshoot/Miami-141-mobile.webp"
           type="image/webp"
-          media="(max-width: 640px)"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/images/photoshoot/Miami-141.webp"
-          type="image/webp"
-          media="(min-width: 641px)"
         />
 
         <script

@@ -12,10 +12,19 @@ export function CookieConsent() {
     // Check if user has already consented
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
     if (!consent) {
-      // Delay cookie banner to not interfere with LCP measurement
-      // Hero image should be measured as LCP, not cookie banner text
-      const timer = setTimeout(() => setShowBanner(true), 4000);
-      return () => clearTimeout(timer);
+      // Wait for browser to be idle, then add extra delay to ensure LCP is measured first
+      const showBannerWhenIdle = () => {
+        setTimeout(() => setShowBanner(true), 2000);
+      };
+
+      if ('requestIdleCallback' in window) {
+        const idleId = requestIdleCallback(showBannerWhenIdle, { timeout: 5000 });
+        return () => cancelIdleCallback(idleId);
+      } else {
+        // Fallback for Safari
+        const timer = setTimeout(showBannerWhenIdle, 5000);
+        return () => clearTimeout(timer);
+      }
     }
   }, []);
 
