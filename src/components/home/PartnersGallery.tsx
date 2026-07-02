@@ -1,13 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 interface Partner {
   id: string;
@@ -16,48 +9,19 @@ interface Partner {
 }
 
 const partners: Partner[] = [
-  { id: "1", name: "Dinamo Zagreb", logo: "/images/clubs/Dinamov-grb.png" },
-  { id: "2", name: "FC Lugano", logo: "/images/clubs/FC-Lugano-new-1.png" },
-  { id: "3", name: "NK Olimpija Ljubljana", logo: "/images/clubs/NK_Olimpija_Ljubljana.png" },
-  { id: "4", name: "NK Rudeš", logo: "/images/clubs/NK-RUDES.png" },
-  { id: "5", name: "NK Triglav Kranj", logo: "/images/clubs/NK-Triglav-Kranj.png" },
-  { id: "6", name: "NK Zelina", logo: "/images/clubs/NK-Zelina.png" },
-  { id: "7", name: "Novi Marof", logo: "/images/clubs/Novi-Marof-png.png" },
-  { id: "8", name: "ŠN Maksimir", logo: "/images/clubs/SN-Maksimir.jpg" },
+  { id: "1", name: "Dinamo Zagreb", logo: "/images/clubs/Dinamov-grb.webp" },
+  { id: "2", name: "FC Lugano", logo: "/images/clubs/FC-Lugano-new-1.webp" },
+  { id: "3", name: "NK Olimpija Ljubljana", logo: "/images/clubs/NK_Olimpija_Ljubljana.webp" },
+  { id: "4", name: "NK Rudeš", logo: "/images/clubs/NK-RUDES.webp" },
+  { id: "5", name: "NK Triglav Kranj", logo: "/images/clubs/NK-Triglav-Kranj.webp" },
+  { id: "6", name: "NK Zelina", logo: "/images/clubs/NK-Zelina.webp" },
+  { id: "7", name: "Novi Marof", logo: "/images/clubs/Novi-Marof-png.webp" },
+  { id: "8", name: "ŠN Maksimir", logo: "/images/clubs/SN-Maksimir.webp" },
 ];
 
 export function PartnersGallery() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const logosRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!sectionRef.current || !logosRef.current) return;
-
-    const logos = logosRef.current.querySelectorAll(".partner-logo");
-
-    gsap.set(logos, { opacity: 0, scale: 0.8 });
-
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top 80%",
-      onEnter: () => {
-        gsap.to(logos, {
-          opacity: 1,
-          scale: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "back.out(1.5)",
-        });
-      },
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
-
   return (
-    <section ref={sectionRef} className="py-16 lg:py-20 bg-white">
+    <section className="py-16 lg:py-20 bg-white">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -70,14 +34,11 @@ export function PartnersGallery() {
         </div>
 
         {/* Partner Logos Grid */}
-        <div
-          ref={logosRef}
-          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-8 lg:gap-6 items-center"
-        >
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-8 lg:gap-6 items-center">
           {partners.map((partner) => (
             <div
               key={partner.id}
-              className="partner-logo flex items-center justify-center p-4 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+              className="flex items-center justify-center p-4 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
             >
               <div className="relative w-16 h-16 lg:w-20 lg:h-20">
                 <Image
@@ -85,6 +46,8 @@ export function PartnersGallery() {
                   alt={partner.name}
                   fill
                   className="object-contain"
+                  loading="lazy"
+                  sizes="(max-width: 640px) 64px, 80px"
                 />
               </div>
             </div>

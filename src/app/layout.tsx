@@ -159,6 +159,19 @@ export default function RootLayout({
   return (
     <html lang="hr" className={messinaSans.variable}>
       <head>
+        {/* Preconnect to critical third-party origins */}
+        <link rel="preconnect" href="https://cshwyyvwwzzntmzzirja.supabase.co" />
+        <link rel="preconnect" href="https://a.clarity.ms" />
+        <link rel="dns-prefetch" href="https://scripts.clarity.ms" />
+
+        {/* Preload hero image for faster LCP */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/photoshoot/Miami-141.webp"
+          type="image/webp"
+        />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

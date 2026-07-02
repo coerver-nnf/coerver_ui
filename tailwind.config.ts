@@ -34,7 +34,10 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+      },
+      screens: {
+        'xs': '375px',
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-out",

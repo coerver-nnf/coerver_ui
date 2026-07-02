@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import gsap from "gsap";
 
 const socialLinks = [
   {
@@ -101,7 +100,7 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
       setActiveItem(null);
       timer = setTimeout(() => {
         setIsVisible(false);
-      }, 600);
+      }, 300);
     }
 
     // Always cleanup: reset overflow and clear timer
@@ -125,21 +124,13 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
       "fixed inset-0 z-[100] overflow-hidden",
       !isAnimating && "pointer-events-none"
     )}>
-      {/* Animated background panels */}
-      <div className="absolute inset-0 flex pointer-events-none">
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={i}
-            className={cn(
-              "flex-1 bg-coerver-dark transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] will-change-transform",
-              isAnimating ? "translate-y-0" : "-translate-y-full"
-            )}
-            style={{
-              transitionDelay: `${i * 50}ms`,
-            }}
-          />
-        ))}
-      </div>
+      {/* Simple background - no animated panels on mobile for performance */}
+      <div
+        className={cn(
+          "absolute inset-0 bg-coerver-dark transition-opacity duration-300",
+          isAnimating ? "opacity-100" : "opacity-0"
+        )}
+      />
 
       {/* Main content */}
       <div
@@ -148,8 +139,8 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
           isAnimating ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
       >
-        {/* Decorative elements - hidden on mobile for performance */}
-        <div className="hidden sm:block absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Decorative elements - only on large screens for performance */}
+        <div className="hidden xl:block absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -right-32 top-1/4 w-96 h-96 bg-coerver-green/20 rounded-full blur-[120px]" />
           <div className="absolute -left-32 bottom-1/4 w-80 h-80 bg-coerver-green/10 rounded-full blur-[100px]" />
         </div>
@@ -194,12 +185,9 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
                     <div
                       key={item.href}
                       className={cn(
-                        "border-b border-white/10 transition-all duration-700",
-                        isAnimating ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                        "border-b border-white/10 transition-opacity duration-300",
+                        isAnimating ? "opacity-100" : "opacity-0"
                       )}
-                      style={{
-                        transitionDelay: isAnimating ? `${300 + index * 40}ms` : '0ms'
-                      }}
                     >
                       {item.children ? (
                         <div
@@ -236,18 +224,12 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
                             )}
                           >
                             <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                              {item.children.map((child, childIdx) => (
+                              {item.children.map((child) => (
                                 <Link
                                   key={child.href}
                                   href={child.href}
                                   onClick={onClose}
-                                  className={cn(
-                                    "px-2.5 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm rounded-full border border-white/20 text-white/70 hover:bg-coerver-green hover:border-coerver-green hover:text-white transition-all duration-300",
-                                    isExpanded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                                  )}
-                                  style={{
-                                    transitionDelay: isExpanded ? `${childIdx * 50}ms` : '0ms'
-                                  }}
+                                  className="px-2.5 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm rounded-full border border-white/20 text-white/70 hover:bg-coerver-green hover:border-coerver-green hover:text-white transition-colors duration-200"
                                 >
                                   {child.label}
                                 </Link>
@@ -285,10 +267,9 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
             {/* Footer */}
             <div
               className={cn(
-                "px-3 py-3 sm:p-6 lg:p-8 flex items-center justify-between transition-all duration-500 flex-shrink-0",
-                isAnimating ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                "px-3 py-3 sm:p-6 lg:p-8 flex items-center justify-between transition-opacity duration-300 flex-shrink-0",
+                isAnimating ? "opacity-100" : "opacity-0"
               )}
-              style={{ transitionDelay: "500ms" }}
             >
               <div className="hidden sm:flex items-center gap-2 sm:gap-3">
                 {socialLinks.map((social) => (
@@ -341,8 +322,8 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
             <div className="flex-1 flex flex-col items-center justify-center gap-6">
               <div
                 className={cn(
-                  "relative w-full max-w-md aspect-[4/3] rounded-3xl overflow-hidden transition-all duration-700 delay-500",
-                  isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                  "relative w-full max-w-md aspect-[4/3] rounded-3xl overflow-hidden transition-opacity duration-300",
+                  isAnimating ? "opacity-100" : "opacity-0"
                 )}
               >
                 <Image
@@ -355,7 +336,7 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
 
                 {/* Card content */}
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-5 border border-white/20">
+                  <div className="bg-coerver-dark/80 rounded-2xl p-5 border border-white/20">
                     <h3 className="text-white font-bold text-xl mb-1">Pridruži se</h3>
                     <p className="text-white/60 text-sm mb-4">Postani dio Coerver obitelji</p>
                     <Link
@@ -377,8 +358,8 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
                 href="/kontakt"
                 onClick={onClose}
                 className={cn(
-                  "w-full max-w-md bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-5 transition-all duration-700 delay-600 group",
-                  isAnimating ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  "w-full max-w-md bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl p-5 transition-opacity duration-300 group",
+                  isAnimating ? "opacity-100" : "opacity-0"
                 )}
               >
                 <div className="flex items-center justify-between">
@@ -433,24 +414,6 @@ export function SidebarNav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // GSAP animations for show/hide
-  useEffect(() => {
-    if (!sidebarRef.current) return;
-
-    if (isVisible) {
-      gsap.to(sidebarRef.current, {
-        x: 0,
-        duration: 0.4,
-        ease: "power2.out",
-      });
-    } else {
-      gsap.to(sidebarRef.current, {
-        x: 80, // Slide out to the right
-        duration: 0.3,
-        ease: "power2.in",
-      });
-    }
-  }, [isVisible]);
 
   const handleOpen = useCallback(() => {
     setIsOpen(true);
@@ -462,10 +425,13 @@ export function SidebarNav() {
 
   return (
     <>
-      {/* Fixed Sidebar */}
+      {/* Fixed Sidebar - using CSS transforms instead of GSAP */}
       <div
         ref={sidebarRef}
-        className="fixed right-0 top-0 h-full w-16 md:w-20 z-50 flex flex-col items-center py-6 main-site-sidebar"
+        className={cn(
+          "fixed right-0 top-0 h-full w-16 md:w-20 z-50 flex flex-col items-center py-6 main-site-sidebar transition-transform duration-300 ease-out",
+          isVisible ? "translate-x-0" : "translate-x-20"
+        )}
       >
         {/* Top Section - Login & Menu in a pill when scrolled */}
         <div

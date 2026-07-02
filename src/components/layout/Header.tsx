@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { SidebarNav } from "./SidebarNav";
-import gsap from "gsap";
 
 export function Header() {
   const [isVisible, setIsVisible] = useState(true);
@@ -36,30 +35,14 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // GSAP animations for show/hide
-  useEffect(() => {
-    if (!headerRef.current) return;
-
-    if (isVisible) {
-      gsap.to(headerRef.current, {
-        y: 0,
-        duration: 0.4,
-        ease: "power2.out",
-      });
-    } else {
-      gsap.to(headerRef.current, {
-        y: -100,
-        duration: 0.3,
-        ease: "power2.in",
-      });
-    }
-  }, [isVisible]);
-
   return (
     <>
       <header
         ref={headerRef}
-        className="fixed top-0 left-0 z-40 p-4 md:p-6 main-site-header"
+        className={cn(
+          "fixed top-0 left-0 z-40 p-4 md:p-6 main-site-header transition-transform duration-300 ease-out",
+          isVisible ? "translate-y-0" : "-translate-y-full"
+        )}
       >
         {/* Logo Container */}
         <Link

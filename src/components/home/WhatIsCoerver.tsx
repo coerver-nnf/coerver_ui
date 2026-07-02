@@ -39,14 +39,14 @@ const features = [
 ];
 
 const trustedBy = [
-  { name: "Dinamo Zagreb", logo: "/images/clubs/Dinamov-grb.png" },
-  { name: "FC Lugano", logo: "/images/clubs/FC-Lugano-new-1.png" },
-  { name: "NK Olimpija Ljubljana", logo: "/images/clubs/NK_Olimpija_Ljubljana.png" },
-  { name: "NK Rudeš", logo: "/images/clubs/NK-RUDES.png" },
-  { name: "NK Triglav Kranj", logo: "/images/clubs/NK-Triglav-Kranj.png" },
-  { name: "NK Zelina", logo: "/images/clubs/NK-Zelina.png" },
-  { name: "Novi Marof", logo: "/images/clubs/Novi-Marof-png.png" },
-  { name: "ŠN Maksimir", logo: "/images/clubs/SN-Maksimir.jpg" },
+  { name: "Dinamo Zagreb", logo: "/images/clubs/Dinamov-grb.webp" },
+  { name: "FC Lugano", logo: "/images/clubs/FC-Lugano-new-1.webp" },
+  { name: "NK Olimpija Ljubljana", logo: "/images/clubs/NK_Olimpija_Ljubljana.webp" },
+  { name: "NK Rudeš", logo: "/images/clubs/NK-RUDES.webp" },
+  { name: "NK Triglav Kranj", logo: "/images/clubs/NK-Triglav-Kranj.webp" },
+  { name: "NK Zelina", logo: "/images/clubs/NK-Zelina.webp" },
+  { name: "Novi Marof", logo: "/images/clubs/Novi-Marof-png.webp" },
+  { name: "ŠN Maksimir", logo: "/images/clubs/SN-Maksimir.webp" },
 ];
 
 export function WhatIsCoerver() {

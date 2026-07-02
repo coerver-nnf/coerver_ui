@@ -89,6 +89,19 @@ body {
     text-wrap: balance;
   }
 
+  /* Performant scroll animations using CSS instead of GSAP */
+  .animate-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
+  }
+
+  .animate-fade-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   .animate-slide-down {
     animation: slideDown 0.3s ease-out;
   }
