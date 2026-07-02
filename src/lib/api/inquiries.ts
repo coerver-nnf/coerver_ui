@@ -18,6 +18,8 @@ export interface Inquiry {
   admin_notes: string | null;
   created_at: string;
   updated_at: string;
+  // Joined fields
+  program_name?: string | null;
 }
 
 export interface CreateInquiryInput {
@@ -45,7 +47,7 @@ export const INQUIRY_TYPE_LABELS: Record<InquiryType, string> = {
   general: "Opći upit",
 };
 
-// Get inquiries
+// Get inquiries with program names
 export async function getInquiries(options?: {
   type?: InquiryType;
   status?: InquiryStatus;
@@ -73,7 +75,48 @@ export async function getInquiries(options?: {
 
   const { data, error } = await query;
   if (error) throw error;
-  return data as Inquiry[];
+
+  const inquiries = data as Inquiry[];
+
+  // Fetch program names for each type
+  const campIds = inquiries.filter(i => i.type === "camp" && i.program_id).map(i => i.program_id!);
+  const academyIds = inquiries.filter(i => i.type === "academy" && i.program_id).map(i => i.program_id!);
+  const courseIds = inquiries.filter(i => i.type === "course" && i.program_id).map(i => i.program_id!);
+
+  const programNames: Record<string, string> = {};
+
+  // Fetch camp names
+  if (campIds.length > 0) {
+    const { data: camps } = await supabase
+      .from("camps")
+      .select("id, title")
+      .in("id", campIds);
+    camps?.forEach(c => { programNames[c.id] = c.title; });
+  }
+
+  // Fetch academy names
+  if (academyIds.length > 0) {
+    const { data: academies } = await supabase
+      .from("academies")
+      .select("id, name")
+      .in("id", academyIds);
+    academies?.forEach(a => { programNames[a.id] = a.name; });
+  }
+
+  // Fetch course names
+  if (courseIds.length > 0) {
+    const { data: courses } = await supabase
+      .from("courses")
+      .select("id, title")
+      .in("id", courseIds);
+    courses?.forEach(c => { programNames[c.id] = c.title; });
+  }
+
+  // Attach program names to inquiries
+  return inquiries.map(inquiry => ({
+    ...inquiry,
+    program_name: inquiry.program_id ? programNames[inquiry.program_id] || null : null,
+  }));
 }
 
 // Get inquiry by ID

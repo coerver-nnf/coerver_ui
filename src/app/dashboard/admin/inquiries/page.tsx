@@ -90,6 +90,15 @@ export default function InquiriesPage() {
       ),
     },
     {
+      accessorKey: "program_name",
+      header: "Program",
+      cell: ({ row }) => (
+        <span className="text-coerver-gray-600 font-medium">
+          {row.original.program_name || "-"}
+        </span>
+      ),
+    },
+    {
       id: "format",
       header: "Format",
       cell: ({ row }) => {
