@@ -115,30 +115,17 @@ export default function InquiriesPage() {
       ),
     },
     {
-      accessorKey: "type",
-      header: "Tip",
-      cell: ({ row }) => (
-        <span className="text-coerver-gray-600">
-          {INQUIRY_TYPE_LABELS[row.original.type]}
-        </span>
-      ),
-    },
-    {
       accessorKey: "program_name",
       header: "Program",
       cell: ({ row }) => (
-        <span className="text-coerver-gray-600 font-medium">
-          {row.original.program_name || "-"}
-        </span>
-      ),
-    },
-    {
-      accessorKey: "message",
-      header: "Poruka",
-      cell: ({ row }) => (
-        <p className="text-coerver-gray-600 line-clamp-2 max-w-xs">
-          {row.original.message || "-"}
-        </p>
+        <div>
+          <span className="text-coerver-gray-900 font-medium">
+            {row.original.program_name || "-"}
+          </span>
+          <span className="text-coerver-gray-500 text-xs block">
+            {INQUIRY_TYPE_LABELS[row.original.type]}
+          </span>
+        </div>
       ),
     },
     {

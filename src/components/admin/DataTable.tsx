@@ -70,8 +70,8 @@ export function DataTable<TData, TValue>({
         </div>
       )}
 
-      <div className="rounded-lg border border-coerver-gray-200 overflow-hidden">
-        <table className="w-full">
+      <div className="rounded-lg border border-coerver-gray-200 overflow-hidden overflow-x-auto">
+        <table className="w-full min-w-[640px]">
           <thead className="bg-coerver-gray-50">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
