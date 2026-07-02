@@ -179,14 +179,17 @@ export function Testimonials() {
           </div>
 
           {/* Mobile navigation */}
-          <div className="flex justify-center gap-2 mt-8">
-            {testimonials.map((_, idx) => (
+          <div className="flex justify-center gap-2 mt-8" role="tablist" aria-label="Odaberi izjavu">
+            {testimonials.map((testimonial, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveIndex(idx)}
                 className={`h-2 rounded-full transition-all ${
                   idx === activeIndex ? "w-8 bg-coerver-green" : "w-2 bg-gray-300"
                 }`}
+                role="tab"
+                aria-selected={idx === activeIndex}
+                aria-label={`Izjava ${idx + 1}: ${testimonial.name}`}
               />
             ))}
           </div>

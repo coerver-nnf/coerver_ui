@@ -12,18 +12,17 @@ export function CookieConsent() {
     // Check if user has already consented
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
     if (!consent) {
-      // Wait for browser to be idle, then add extra delay to ensure LCP is measured first
-      const showBannerWhenIdle = () => {
-        setTimeout(() => setShowBanner(true), 2000);
+      // Wait for page load + extra delay to ensure LCP is measured first
+      const showBanner = () => {
+        setTimeout(() => setShowBanner(true), 3000);
       };
 
-      if ('requestIdleCallback' in window) {
-        const idleId = requestIdleCallback(showBannerWhenIdle, { timeout: 5000 });
-        return () => cancelIdleCallback(idleId);
+      // Wait for window load event (all resources loaded)
+      if (document.readyState === 'complete') {
+        showBanner();
       } else {
-        // Fallback for Safari
-        const timer = setTimeout(showBannerWhenIdle, 5000);
-        return () => clearTimeout(timer);
+        window.addEventListener('load', showBanner);
+        return () => window.removeEventListener('load', showBanner);
       }
     }
   }, []);
