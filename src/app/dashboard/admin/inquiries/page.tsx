@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTable, StatusBadge, EmptyState, LoadingState, ConfirmDialog } from "@/components/admin";
@@ -15,36 +15,70 @@ import {
 } from "@/lib/api/inquiries";
 import { formatDateShort } from "@/lib/utils";
 
-// Helper to extract format from message
-function extractFormatFromMessage(message: string | null): string | null {
-  if (!message) return null;
-  const match = message.match(/^Format:\s*(Uživo|Online)/i);
-  return match ? match[1] : null;
+interface CampStats {
+  id: string;
+  name: string;
+  total: number;
+  new: number;
 }
 
 export default function InquiriesPage() {
-  const [inquiries, setInquiries] = useState<Inquiry[]>([]);
+  const [allInquiries, setAllInquiries] = useState<Inquiry[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<"all" | InquiryStatus>("all");
+  const [statusFilter, setStatusFilter] = useState<"all" | InquiryStatus>("all");
+  const [campFilter, setCampFilter] = useState<string>("all");
   const [deleteTarget, setDeleteTarget] = useState<Inquiry | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     loadInquiries();
-  }, [filter]);
+  }, []);
 
   async function loadInquiries() {
     setLoading(true);
     try {
-      const options = filter !== "all" ? { status: filter } : {};
-      const data = await getInquiries(options);
-      setInquiries(data);
+      const data = await getInquiries();
+      setAllInquiries(data);
     } catch (error) {
       console.error("Error loading inquiries:", error);
     } finally {
       setLoading(false);
     }
   }
+
+  // Calculate camp stats from all inquiries
+  const campStats = useMemo(() => {
+    const stats: Record<string, CampStats> = {};
+
+    allInquiries
+      .filter(i => i.type === "camp" && i.program_id && i.program_name)
+      .forEach(inquiry => {
+        const id = inquiry.program_id!;
+        if (!stats[id]) {
+          stats[id] = {
+            id,
+            name: inquiry.program_name!,
+            total: 0,
+            new: 0,
+          };
+        }
+        stats[id].total++;
+        if (inquiry.status === "new") {
+          stats[id].new++;
+        }
+      });
+
+    return Object.values(stats).sort((a, b) => b.new - a.new || b.total - a.total);
+  }, [allInquiries]);
+
+  // Filter inquiries based on status and camp filters
+  const inquiries = useMemo(() => {
+    return allInquiries.filter(inquiry => {
+      const matchesStatus = statusFilter === "all" || inquiry.status === statusFilter;
+      const matchesCamp = campFilter === "all" || inquiry.program_id === campFilter;
+      return matchesStatus && matchesCamp;
+    });
+  }, [allInquiries, statusFilter, campFilter]);
 
   async function handleStatusChange(id: string, status: InquiryStatus) {
     try {
@@ -97,23 +131,6 @@ export default function InquiriesPage() {
           {row.original.program_name || "-"}
         </span>
       ),
-    },
-    {
-      id: "format",
-      header: "Format",
-      cell: ({ row }) => {
-        const format = extractFormatFromMessage(row.original.message);
-        if (!format) return <span className="text-coerver-gray-400">-</span>;
-        return (
-          <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium ${
-            format === "Online"
-              ? "bg-blue-100 text-blue-700"
-              : "bg-green-100 text-green-700"
-          }`}>
-            {format}
-          </span>
-        );
-      },
     },
     {
       accessorKey: "message",
@@ -170,10 +187,18 @@ export default function InquiriesPage() {
     },
   ];
 
+  // Calculate counts based on filtered inquiries (by camp) but not by status
+  const inquiriesForCounts = useMemo(() => {
+    return allInquiries.filter(inquiry => {
+      return campFilter === "all" || inquiry.program_id === campFilter;
+    });
+  }, [allInquiries, campFilter]);
+
   const counts = {
-    new: inquiries.filter((i) => i.status === "new").length,
-    in_progress: inquiries.filter((i) => i.status === "in_progress").length,
-    resolved: inquiries.filter((i) => i.status === "resolved").length,
+    all: inquiriesForCounts.length,
+    new: inquiriesForCounts.filter((i) => i.status === "new").length,
+    in_progress: inquiriesForCounts.filter((i) => i.status === "in_progress").length,
+    resolved: inquiriesForCounts.filter((i) => i.status === "resolved").length,
   };
 
   return (
@@ -186,22 +211,78 @@ export default function InquiriesPage() {
         </div>
       </div>
 
-      {/* Filters */}
+      {/* Camp Cards */}
+      {campStats.length > 0 && (
+        <div>
+          <h2 className="text-sm font-semibold text-coerver-gray-500 uppercase tracking-wider mb-3">
+            Upiti po kampu
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            {campStats.map((camp) => (
+              <button
+                key={camp.id}
+                onClick={() => {
+                  setCampFilter(campFilter === camp.id ? "all" : camp.id);
+                  setStatusFilter("all");
+                }}
+                className={`relative p-4 rounded-xl text-left transition-all ${
+                  campFilter === camp.id
+                    ? "bg-coerver-green text-white shadow-lg scale-[1.02]"
+                    : "bg-white border border-coerver-gray-200 hover:border-coerver-green hover:shadow-md"
+                }`}
+              >
+                {camp.new > 0 && campFilter !== camp.id && (
+                  <span className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center">
+                    {camp.new}
+                  </span>
+                )}
+                <p className={`font-semibold text-sm truncate ${
+                  campFilter === camp.id ? "text-white" : "text-coerver-gray-900"
+                }`}>
+                  {camp.name}
+                </p>
+                <p className={`text-xs mt-1 ${
+                  campFilter === camp.id ? "text-white/80" : "text-coerver-gray-500"
+                }`}>
+                  {camp.total} upita{camp.new > 0 && ` · ${camp.new} novi${camp.new > 1 ? "h" : ""}`}
+                </p>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Active Camp Filter Indicator */}
+      {campFilter !== "all" && (
+        <div className="flex items-center gap-2 bg-coerver-green/10 text-coerver-green px-4 py-2 rounded-lg">
+          <span className="text-sm font-medium">
+            Filtrirano: {campStats.find(c => c.id === campFilter)?.name}
+          </span>
+          <button
+            onClick={() => setCampFilter("all")}
+            className="ml-auto text-sm hover:underline"
+          >
+            Prikaži sve
+          </button>
+        </div>
+      )}
+
+      {/* Status Filters */}
       <div className="flex gap-2 flex-wrap">
         <button
-          onClick={() => setFilter("all")}
+          onClick={() => setStatusFilter("all")}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            filter === "all"
+            statusFilter === "all"
               ? "bg-coerver-green text-white"
               : "bg-white text-coerver-gray-700 border border-coerver-gray-300 hover:bg-coerver-gray-50"
           }`}
         >
-          Svi ({inquiries.length})
+          Svi ({counts.all})
         </button>
         <button
-          onClick={() => setFilter("new")}
+          onClick={() => setStatusFilter("new")}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            filter === "new"
+            statusFilter === "new"
               ? "bg-coerver-green text-white"
               : "bg-white text-coerver-gray-700 border border-coerver-gray-300 hover:bg-coerver-gray-50"
           }`}
@@ -209,9 +290,9 @@ export default function InquiriesPage() {
           Novi ({counts.new})
         </button>
         <button
-          onClick={() => setFilter("in_progress")}
+          onClick={() => setStatusFilter("in_progress")}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            filter === "in_progress"
+            statusFilter === "in_progress"
               ? "bg-coerver-green text-white"
               : "bg-white text-coerver-gray-700 border border-coerver-gray-300 hover:bg-coerver-gray-50"
           }`}
@@ -219,9 +300,9 @@ export default function InquiriesPage() {
           U obradi ({counts.in_progress})
         </button>
         <button
-          onClick={() => setFilter("resolved")}
+          onClick={() => setStatusFilter("resolved")}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            filter === "resolved"
+            statusFilter === "resolved"
               ? "bg-coerver-green text-white"
               : "bg-white text-coerver-gray-700 border border-coerver-gray-300 hover:bg-coerver-gray-50"
           }`}
@@ -237,9 +318,9 @@ export default function InquiriesPage() {
         <EmptyState
           title="Nema upita"
           description={
-            filter === "all"
+            statusFilter === "all" && campFilter === "all"
               ? "Još nema upita od posjetitelja"
-              : `Nema upita sa statusom "${filter}"`
+              : "Nema upita s odabranim filterima"
           }
         />
       ) : (
