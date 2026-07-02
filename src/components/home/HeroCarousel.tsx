@@ -10,6 +10,7 @@ interface Slide {
   title: string;
   subtitle: string;
   image: string;
+  imageMobile: string;
   accent: string;
 }
 
@@ -20,6 +21,7 @@ const slides: Slide[] = [
     subtitle: "Start Here",
     accent: "Prisutna u preko 60 zemalja",
     image: "/images/photoshoot/Miami-141.webp",
+    imageMobile: "/images/photoshoot/Miami-141-mobile.webp",
   },
   {
     id: 2,
@@ -27,6 +29,7 @@ const slides: Slide[] = [
     subtitle: "Your Skills",
     accent: "Osnovana 1984. godine",
     image: "/images/photoshoot/Miami-081.webp",
+    imageMobile: "/images/photoshoot/Miami-081-mobile.webp",
   },
   {
     id: 3,
@@ -34,6 +37,7 @@ const slides: Slide[] = [
     subtitle: "The Pros",
     accent: "Razvijamo buduće prvake",
     image: "/images/photoshoot/Miami-083.webp",
+    imageMobile: "/images/photoshoot/Miami-083-mobile.webp",
   },
 ];
 
@@ -102,19 +106,26 @@ export function HeroCarousel() {
           )}
         >
           {(index === 0 || imagesLoaded.has(index)) && (
-            <Image
-              src={slide.image}
-              alt="Coerver Training"
-              fill
-              className="object-cover"
-              priority={index === 0}
-              fetchPriority={index === 0 ? "high" : "low"}
-              loading={index === 0 ? "eager" : "lazy"}
-              sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 100vw"
-              quality={75}
-              placeholder="blur"
-              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAHxAAAgICAgMBAAAAAAAAAAAAAQIDBAARBRIGITFB/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAZEQEAAwEBAAAAAAAAAAAAAAABAAIRITH/2gAMAwEAAhEDEEA/ANJ4jydrj+Ls2Z4oJZJJGdmWMgE+/wBxk1eSvyN6eeazK0srcpHZj2J9k5MydKuw4iZ//9k="
-            />
+            <picture>
+              <source
+                media="(max-width: 640px)"
+                srcSet={slide.imageMobile}
+                type="image/webp"
+              />
+              <Image
+                src={slide.image}
+                alt="Coerver Training"
+                fill
+                className="object-cover"
+                priority={index === 0}
+                fetchPriority={index === 0 ? "high" : "low"}
+                loading={index === 0 ? "eager" : "lazy"}
+                sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 100vw"
+                quality={75}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAHxAAAgICAgMBAAAAAAAAAAAAAQIDBAARBRIGITFB/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAZEQEAAwEBAAAAAAAAAAAAAAABAAIRITH/2gAMAwEAAhEDEEA/ANJ4jydrj+Ls2Z4oJZJJGdmWMgE+/wBxk1eSvyN6eeazK0srcpHZj2J9k5MydKuw4iZ//9k="
+              />
+            </picture>
           )}
           {/* Gradient Overlays */}
           <div className="absolute inset-0 bg-gradient-to-r from-coerver-dark/70 via-coerver-dark/40 to-transparent" />
@@ -223,10 +234,11 @@ export function HeroCarousel() {
                     "relative h-1 rounded-full transition-all duration-500 overflow-hidden",
                     index === currentSlide ? "w-16 bg-white/20" : "w-8 bg-white/10 hover:bg-white/20"
                   )}
-                  aria-label={`Slide ${index + 1}`}
+                  aria-label={`Prikaži slajd ${index + 1} od ${slides.length}: ${slides[index].title} ${slides[index].subtitle}`}
+                  aria-current={index === currentSlide ? "true" : undefined}
                 >
                   {index === currentSlide && (
-                    <span className="absolute inset-0 bg-coerver-green rounded-full origin-left animate-[progress_6s_linear]" />
+                    <span className="absolute inset-0 bg-coerver-green rounded-full origin-left animate-[progress_6s_linear]" aria-hidden="true" />
                   )}
                 </button>
               ))}

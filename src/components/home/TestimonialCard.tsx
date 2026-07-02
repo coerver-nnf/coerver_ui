@@ -96,12 +96,12 @@ export function TestimonialCard({
             )}
           </div>
           <div>
-            <h4 className={cn(
+            <p className={cn(
               "font-bold",
               isDark ? "text-white" : "text-coerver-dark"
             )}>
               {testimonial.name}
-            </h4>
+            </p>
             <p className={cn(
               "text-sm",
               isDark ? "text-white/50" : "text-gray-500"

@@ -128,20 +128,23 @@ export function Testimonials() {
                         {testimonials[activeIndex].name.split(" ").map((n) => n[0]).join("")}
                       </div>
                       <div>
-                        <h4 className="font-bold text-white text-lg">{testimonials[activeIndex].name}</h4>
+                        <p className="font-bold text-white text-lg">{testimonials[activeIndex].name}</p>
                         <p className="text-white/50">{testimonials[activeIndex].role}</p>
                       </div>
                     </div>
 
                     {/* Navigation dots */}
-                    <div className="flex gap-2">
-                      {testimonials.map((_, idx) => (
+                    <div className="flex gap-2" role="tablist" aria-label="Odaberi izjavu">
+                      {testimonials.map((testimonial, idx) => (
                         <button
                           key={idx}
                           onClick={() => setActiveIndex(idx)}
                           className={`h-2 rounded-full transition-all ${
                             idx === activeIndex ? "w-8 bg-coerver-green" : "w-2 bg-white/30 hover:bg-white/50"
                           }`}
+                          role="tab"
+                          aria-selected={idx === activeIndex}
+                          aria-label={`Izjava ${idx + 1} od ${testimonials.length}: ${testimonial.name}`}
                         />
                       ))}
                     </div>

@@ -12,8 +12,9 @@ export function CookieConsent() {
     // Check if user has already consented
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
     if (!consent) {
-      // Small delay to avoid layout shift on initial load
-      const timer = setTimeout(() => setShowBanner(true), 1000);
+      // Delay cookie banner to not interfere with LCP measurement
+      // Hero image should be measured as LCP, not cookie banner text
+      const timer = setTimeout(() => setShowBanner(true), 4000);
       return () => clearTimeout(timer);
     }
   }, []);

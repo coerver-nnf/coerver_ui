@@ -201,7 +201,7 @@ export function WhatIsCoerver() {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-bold text-coerver-dark group-hover:text-white transition-colors">{feature.title}</h4>
+                    <h3 className="font-bold text-coerver-dark group-hover:text-white transition-colors text-base">{feature.title}</h3>
                     <p className="text-sm text-gray-500 group-hover:text-white/80 transition-colors">{feature.description}</p>
                   </div>
                   <svg className="w-5 h-5 text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
