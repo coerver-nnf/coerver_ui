@@ -108,9 +108,12 @@ export function HeroCarousel() {
               fill
               className="object-cover"
               priority={index === 0}
+              fetchPriority={index === 0 ? "high" : "low"}
               loading={index === 0 ? "eager" : "lazy"}
-              sizes="100vw"
-              quality={85}
+              sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 100vw"
+              quality={75}
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAHxAAAgICAgMBAAAAAAAAAAAAAQIDBAARBRIGITFB/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAZEQEAAwEBAAAAAAAAAAAAAAABAAIRITH/2gAMAwEAAhEDEEA/ANJ4jydrj+Ls2Z4oJZJJGdmWMgE+/wBxk1eSvyN6eeazK0srcpHZj2J9k5MydKuw4iZ//9k="
             />
           )}
           {/* Gradient Overlays */}

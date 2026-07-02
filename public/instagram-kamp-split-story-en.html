@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coerver Camp Split 2026 - Instagram Story</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #111;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .story {
+      width: 1080px;
+      height: 1920px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+    }
+
+    /* Background image */
+    .bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      opacity: 0.55;
+    }
+
+    /* Gradient overlay */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(15, 15, 35, 0.6) 0%,
+        rgba(15, 15, 35, 0.2) 30%,
+        rgba(15, 15, 35, 0.2) 60%,
+        rgba(15, 15, 35, 0.7) 100%
+      );
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 60px 50px;
+    }
+
+    /* Header with logos */
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logos-left {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .coerver-logo {
+      height: 55px;
+      width: auto;
+    }
+
+    .adidas-logo {
+      height: 55px;
+      width: auto;
+    }
+
+    /* Top label */
+    .top-label {
+      color: white;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    /* Main title section */
+    .title-section {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .international {
+      color: #F5C518;
+      font-size: 42px;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .location {
+      font-size: 80px;
+      font-weight: 900;
+      font-style: italic;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .location .split {
+      color: white;
+    }
+
+    .location .croatia {
+      color: #F5C518;
+    }
+
+    .year {
+      color: #F5C518;
+      font-size: 140px;
+      font-weight: 900;
+      font-style: italic;
+      line-height: 1;
+      margin-top: 15px;
+    }
+
+    /* Info section - stacked for story */
+    .info-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      margin-top: 70px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+    }
+
+    .info-item {
+      text-align: center;
+    }
+
+    .info-value {
+      color: #F5C518;
+      font-size: 32px;
+      font-weight: 800;
+      font-style: italic;
+    }
+
+    .info-label {
+      color: white;
+      font-size: 22px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 5px;
+    }
+
+    /* Date section */
+    .date-section {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .date-value {
+      color: white;
+      font-size: 38px;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    .date-value span {
+      color: #F5C518;
+    }
+
+    .training-info {
+      color: white;
+      font-size: 24px;
+      font-weight: 600;
+      font-style: italic;
+      margin-top: 20px;
+      letter-spacing: 2px;
+    }
+
+    /* Price section - stacked for story */
+    .price-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      margin-top: auto;
+      padding-bottom: 30px;
+    }
+
+    .price-box {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .price-tag {
+      background: #F5C518;
+      color: #1a1a2e;
+      padding: 15px 25px;
+      font-size: 42px;
+      font-weight: 900;
+      font-style: italic;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .price-tag::after {
+      content: '';
+      position: absolute;
+      right: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left: 12px solid #F5C518;
+      border-top: 18px solid transparent;
+      border-bottom: 18px solid transparent;
+    }
+
+    .price-label {
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .price-label .highlight {
+      color: #F5C518;
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      margin-top: 3px;
+    }
+
+    /* Bottom section */
+    .bottom-section {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(245, 197, 24, 0.3);
+    }
+
+    .cta {
+      color: white;
+      font-size: 32px;
+      font-weight: 800;
+      font-style: italic;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    .cta span {
+      color: #F5C518;
+    }
+
+    .website {
+      color: #F5C518;
+      font-size: 26px;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    .swipe-up {
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-top: 25px;
+      opacity: 0.8;
+    }
+
+    .swipe-up::before {
+      content: '↑';
+      display: block;
+      font-size: 28px;
+      margin-bottom: 8px;
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* Decorative elements */
+    .corner-accent {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 3px solid rgba(245, 197, 24, 0.4);
+    }
+
+    .corner-accent.top-left {
+      top: 30px;
+      left: 30px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .corner-accent.top-right {
+      top: 30px;
+      right: 30px;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    .corner-accent.bottom-left {
+      bottom: 30px;
+      left: 30px;
+      border-right: none;
+      border-top: none;
+    }
+
+    .corner-accent.bottom-right {
+      bottom: 30px;
+      right: 30px;
+      border-left: none;
+      border-top: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="story">
+    <!-- Background Image -->
+    <img src="images/kamp-split-bg.jpg" alt="Split Croatia" class="bg-image">
+    <div class="overlay"></div>
+
+    <!-- Corner accents -->
+    <div class="corner-accent top-left"></div>
+    <div class="corner-accent top-right"></div>
+    <div class="corner-accent bottom-left"></div>
+    <div class="corner-accent bottom-right"></div>
+
+    <div class="content">
+      <!-- Header with logos -->
+      <div class="header">
+        <div class="logos-left">
+          <img src="images/coerver-logo.png" alt="Coerver Coaching" class="coerver-logo">
+          <img src="images/adidas-logo.png" alt="Adidas" class="adidas-logo">
+        </div>
+      </div>
+
+      <!-- Top label -->
+      <div class="top-label">Summer Football Camp</div>
+
+      <!-- Main title -->
+      <div class="title-section">
+        <div class="international">International Camp</div>
+        <div class="location">
+          <span class="split">SPLIT,</span> <span class="croatia">CROATIA</span>
+        </div>
+        <div class="year">2026</div>
+      </div>
+
+      <!-- Info section -->
+      <div class="info-section">
+        <div class="info-row">
+          <div class="info-item">
+            <div class="info-value">6 DAYS</div>
+            <div class="info-label">5 Nights</div>
+          </div>
+          <div class="info-item">
+            <div class="info-value">8-15</div>
+            <div class="info-label">Ages</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Date -->
+      <div class="date-section">
+        <div class="date-value"><span>JULY 27</span> - <span>AUGUST 1</span></div>
+        <div class="training-info">10 Training Sessions + 1 Match</div>
+      </div>
+
+      <!-- Prices -->
+      <div class="price-section">
+        <div class="price-box">
+          <div class="price-tag">280€</div>
+          <div class="price-label">
+            Training Only
+            <span class="highlight">no accommodation</span>
+          </div>
+        </div>
+        <div class="price-box">
+          <div class="price-tag">750€</div>
+          <div class="price-label">
+            Full Package
+            <span class="highlight">WITH ACCOMMODATION & MEALS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom section -->
+      <div class="bottom-section">
+        <div class="cta"><span>Register Now</span> - Limited Spots!</div>
+        <div class="website">www.coervercroatia.com</div>
+        <div class="swipe-up">Swipe Up</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

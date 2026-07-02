@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coerver Kampovi 2026 - Instagram Post</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #111;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .post {
+      width: 1080px;
+      height: 1350px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, #1a2612 0%, #0f1a0a 50%, #0a0f07 100%);
+    }
+
+    /* Background image */
+    .bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0.35;
+    }
+
+    /* Dark overlay for better text readability */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(15, 26, 10, 0.7) 0%,
+        rgba(15, 26, 10, 0.5) 30%,
+        rgba(15, 26, 10, 0.8) 100%
+      );
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 40px 50px;
+    }
+
+    /* Header with logos */
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .coerver-logo {
+      height: 45px;
+      width: auto;
+    }
+
+    .logo-divider {
+      width: 2px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .adidas-logo {
+      height: 45px;
+      width: auto;
+    }
+
+    /* Top label */
+    .top-label {
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    /* Main tagline */
+    .tagline {
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    .tagline-line {
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .tagline-line .white {
+      color: white;
+      font-style: italic;
+    }
+
+    .tagline-line .yellow {
+      color: #7CB518;
+      font-style: italic;
+    }
+
+    .coerver-croatia {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      margin-top: 15px;
+    }
+
+    /* Subtitle */
+    .subtitle {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .subtitle .white {
+      color: white;
+    }
+
+    .subtitle .yellow {
+      color: #7CB518;
+      font-style: italic;
+    }
+
+    /* Camps list */
+    .camps-list {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .camp-item {
+      display: flex;
+      align-items: stretch;
+      background: linear-gradient(90deg, rgba(245, 197, 24, 0.1) 0%, rgba(245, 197, 24, 0.05) 100%);
+      border: 1px solid rgba(245, 197, 24, 0.3);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .camp-number {
+      background: #7CB518;
+      color: #0f1a0a;
+      min-width: 110px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 12px;
+    }
+
+    .camp-number .dates {
+      font-size: 18px;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .camp-details {
+      flex: 1;
+      padding: 15px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .camp-name {
+      color: #7CB518;
+      font-size: 20px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .camp-location {
+      color: white;
+      font-size: 15px;
+      font-weight: 500;
+      font-style: italic;
+      margin-top: 4px;
+      opacity: 0.9;
+    }
+
+    .camp-price {
+      min-width: 130px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 20px;
+      background: rgba(107, 142, 35, 0.4);
+      border-left: 1px solid rgba(245, 197, 24, 0.3);
+    }
+
+    .price-value {
+      color: white;
+      font-size: 36px;
+      font-weight: 900;
+      font-style: italic;
+    }
+
+    .price-note {
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-top: 2px;
+      opacity: 0.8;
+    }
+
+    /* Special camp styling */
+    .camp-item.special {
+      border-color: #7CB518;
+      background: linear-gradient(90deg, rgba(245, 197, 24, 0.15) 0%, rgba(245, 197, 24, 0.08) 100%);
+    }
+
+    .camp-item.special .camp-price {
+      background: rgba(245, 197, 24, 0.3);
+    }
+
+    /* Bottom bar */
+    .bottom-bar {
+      margin-top: auto;
+      padding-top: 25px;
+      border-top: 2px solid #7CB518;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .website {
+      color: #7CB518;
+      font-size: 22px;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    .email {
+      color: white;
+      font-size: 20px;
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    /* Corner accents */
+    .corner-accent {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border: 2px solid rgba(245, 197, 24, 0.4);
+    }
+
+    .corner-accent.top-left {
+      top: 15px;
+      left: 15px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .corner-accent.top-right {
+      top: 15px;
+      right: 15px;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    .corner-accent.bottom-left {
+      bottom: 15px;
+      left: 15px;
+      border-right: none;
+      border-top: none;
+    }
+
+    .corner-accent.bottom-right {
+      bottom: 15px;
+      right: 15px;
+      border-left: none;
+      border-top: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="post">
+    <!-- Background image -->
+    <img src="images/training/training-01.webp" alt="Training" class="bg-image">
+    <div class="overlay"></div>
+
+    <!-- Corner accents -->
+    <div class="corner-accent top-left"></div>
+    <div class="corner-accent top-right"></div>
+    <div class="corner-accent bottom-left"></div>
+    <div class="corner-accent bottom-right"></div>
+
+    <div class="content">
+      <!-- Header with logos -->
+      <div class="header">
+        <img src="images/coerver-logo.png" alt="Coerver Coaching" class="coerver-logo">
+        <div class="logo-divider"></div>
+        <img src="images/adidas-logo.png" alt="Adidas" class="adidas-logo">
+      </div>
+
+      <!-- Top label -->
+      <div class="top-label">Ljetni Nogometni Kampovi</div>
+
+      <!-- Main tagline -->
+      <div class="tagline">
+        <div class="tagline-line"><span class="white">TVOJE</span> <span class="yellow">LJETO.</span></div>
+        <div class="tagline-line"><span class="white">TVOJ</span> <span class="yellow">RAZVOJ.</span></div>
+        <div class="tagline-line"><span class="white">TVOJA</span> <span class="yellow">IGRA.</span></div>
+        <div class="coerver-croatia">Coerver Croatia</div>
+      </div>
+
+      <!-- Subtitle -->
+      <div class="subtitle">
+        <span class="white">ODABERI SVOJ</span> <span class="yellow">KAMP.</span>
+      </div>
+
+      <!-- Camps list -->
+      <div class="camps-list">
+        <!-- Camp 1 -->
+        <div class="camp-item">
+          <div class="camp-number">
+            <div class="dates">15.-19.06.<br>2026</div>
+          </div>
+          <div class="camp-details">
+            <div class="camp-name">Benfica x Coerver Kamp - Hvar</div>
+            <div class="camp-location">Križna Luka, Hvar</div>
+          </div>
+          <div class="camp-price">
+            <div class="price-value">380€</div>
+          </div>
+        </div>
+
+        <!-- Camp 2 -->
+        <div class="camp-item">
+          <div class="camp-number">
+            <div class="dates">22.-26.06.<br>2026</div>
+          </div>
+          <div class="camp-details">
+            <div class="camp-name">Benfica x Coerver Kamp - Zagreb</div>
+            <div class="camp-location">NK Sesvete, Zagreb</div>
+          </div>
+          <div class="camp-price">
+            <div class="price-value">380€</div>
+          </div>
+        </div>
+
+        <!-- Camp 3 -->
+        <div class="camp-item">
+          <div class="camp-number">
+            <div class="dates">29.-03.07.<br>2026</div>
+          </div>
+          <div class="camp-details">
+            <div class="camp-name">Coerver Kamp - Rijeka</div>
+            <div class="camp-location">Omladinsko igralište, Rijeka</div>
+          </div>
+          <div class="camp-price">
+            <div class="price-value">280€</div>
+          </div>
+        </div>
+
+        <!-- Camp 4 -->
+        <div class="camp-item">
+          <div class="camp-number">
+            <div class="dates">06.-10.07.<br>2026</div>
+          </div>
+          <div class="camp-details">
+            <div class="camp-name">Coerver Kamp - Novi Vinodolski</div>
+            <div class="camp-location">NK Novi Vinodolski, Novi Vinodolski</div>
+          </div>
+          <div class="camp-price">
+            <div class="price-value">280€</div>
+          </div>
+        </div>
+
+        <!-- Camp 5 - Special -->
+        <div class="camp-item special">
+          <div class="camp-number">
+            <div class="dates">27.-01.08.<br>2026</div>
+          </div>
+          <div class="camp-details">
+            <div class="camp-name">Internacionalni Coerver Kamp - Split</div>
+            <div class="camp-location">Teren RNK Split "Park Mladeži"</div>
+          </div>
+          <div class="camp-price">
+            <div class="price-value">750€</div>
+            <div class="price-note">S noćenjem</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="bottom-bar">
+        <div class="website">www.coervercroatia.com</div>
+        <div class="email">info@coervercroatia.com</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

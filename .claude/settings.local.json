@@ -28,7 +28,16 @@
       "Bash(ipconfig getifaddr:*)",
       "Bash(ipconfig:*)",
       "Bash(npx depcheck:*)",
-      "Bash(npm uninstall:*)"
+      "Bash(npm uninstall:*)",
+      "WebFetch(domain:www.coervercroatia.com)",
+      "WebFetch(domain:www.instagram.com)",
+      "Bash(for img in Miami-119 Miami-120 Miami-139 Miami-140)",
+      "Bash(do cwebp -q 80 ~/Downloads/Edited-peko-coerver/$img.png -o $img.webp)",
+      "Bash(done)",
+      "Bash(git fetch:*)",
+      "Bash(git diff:*)",
+      "Bash(npm i:*)",
+      "WebFetch(domain:coervercroatia.com)"
     ]
   }
 }
