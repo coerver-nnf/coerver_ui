@@ -60,6 +60,7 @@ export function InquiryForm({
     position: "",
     format: "",
     accommodationType: "",
+    note: "",
   });
   const [privacyConsent, setPrivacyConsent] = useState(false);
 
@@ -126,6 +127,9 @@ export function InquiryForm({
         if (extras.length > 0) {
           fullMessage = `${extras.join(", ")}\n\n${formData.message}`;
         }
+        if (formData.note) {
+          fullMessage = fullMessage ? `${fullMessage}\n\nNapomena: ${formData.note}` : `Napomena: ${formData.note}`;
+        }
       } else if (type === "course" || type === "club") {
         const extras = [];
         if (formData.format) extras.push(`Format: ${formData.format}`);
@@ -187,6 +191,7 @@ export function InquiryForm({
         position: "",
         format: "",
         accommodationType: "",
+        note: "",
       });
       setPrivacyConsent(false);
     } catch {
@@ -424,6 +429,15 @@ export function InquiryForm({
                 { value: "Vezni", label: "Vezni" },
                 { value: "Napadač", label: "Napadač" },
               ]}
+            />
+
+            <Textarea
+              label="Napomena"
+              name="note"
+              value={formData.note}
+              onChange={handleChange}
+              placeholder="Alergije, zdravstvene napomene ili druge važne informacije..."
+              rows={3}
             />
           </>
         )}
