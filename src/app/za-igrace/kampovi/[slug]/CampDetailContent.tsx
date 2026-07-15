@@ -145,12 +145,6 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
   const hasAccommodation = (camp.price ?? 0) > 0;
   const hasFullDay = (camp.price_full_day ?? 0) > 0;
   const hasTrainingOnly = (camp.price_day_only ?? 0) > 0;
-  const displayPrice = hasAccommodation
-    ? camp.price
-    : hasFullDay
-    ? camp.price_full_day
-    : camp.price_day_only;
-
   // Build all prices string for display
   const allPrices = [
     hasAccommodation ? `${camp.price}€` : null,
@@ -158,12 +152,64 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
     hasTrainingOnly ? `${camp.price_day_only}€` : null,
   ].filter(Boolean).join(" / ");
 
-  // Get lowest price for mobile CTA
-  const lowestPrice = hasTrainingOnly
-    ? camp.price_day_only
-    : hasFullDay
-    ? camp.price_full_day
-    : camp.price;
+  // Lowest available price, shown in hero and mobile CTA
+  const availablePrices = [
+    hasAccommodation ? camp.price : null,
+    hasFullDay ? camp.price_full_day : null,
+    hasTrainingOnly ? camp.price_day_only : null,
+  ].filter((p): p is number => p != null);
+  const lowestPrice = availablePrices.length ? Math.min(...availablePrices) : null;
+
+  // Pricing tiers for the dedicated pricing section (lowest first)
+  const pricingTiers = [
+    hasTrainingOnly
+      ? {
+          key: "samo_treninzi",
+          name: "Samo treninzi",
+          price: camp.price_day_only as number,
+          description: "Za igrače iz okolice koji dolaze samo na treninge",
+          features: [
+            "Svi Coerver® treninzi",
+            "Službena Coerver oprema",
+            "Osiguranje uključeno",
+          ],
+          popular: false,
+        }
+      : null,
+    hasFullDay
+      ? {
+          key: "cjelodnevni",
+          name: "Cjelodnevni",
+          price: camp.price_full_day as number,
+          description: "Sve dnevne aktivnosti, bez noćenja",
+          features: [
+            "Svi Coerver® treninzi",
+            "Ručak i užina",
+            "Sve dnevne aktivnosti",
+            "Službena Coerver oprema",
+            "Osiguranje uključeno",
+          ],
+          popular: true,
+        }
+      : null,
+    hasAccommodation
+      ? {
+          key: "s_nocenjem",
+          name: "S noćenjem",
+          price: camp.price as number,
+          description: "Potpuno kamp iskustvo sa smještajem",
+          features: [
+            "Svi Coerver® treninzi",
+            "Smještaj uključen",
+            "Svi obroci",
+            "Dnevne i večernje aktivnosti",
+            "Službena Coerver oprema",
+            "Osiguranje uključeno",
+          ],
+          popular: false,
+        }
+      : null,
+  ].filter((t): t is NonNullable<typeof t> => t !== null);
 
   // Default values for arrays
   const highlights = camp.highlights || [];
@@ -269,10 +315,10 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-white/20 mb-4 sm:mb-6">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                   {/* Price - prominent on mobile */}
-                  {!isFull && displayPrice && (
+                  {!isFull && lowestPrice && (
                     <div className="flex items-baseline gap-1" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                       <span className="text-white/60 text-sm">od</span>
-                      <span className="text-3xl sm:text-4xl font-black text-white">{displayPrice}€</span>
+                      <span className="text-3xl sm:text-4xl font-black text-white">{lowestPrice}€</span>
                       {hasAccommodation && <span className="text-white/50 text-xs">/osoba</span>}
                     </div>
                   )}
@@ -651,6 +697,92 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
                   </div>
                 </div>
               )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Pricing Tiers */}
+      {pricingTiers.length > 0 && (
+        <section id="cijene" className="py-24 lg:py-32 bg-coerver-dark relative overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-coerver-green/10 rounded-full blur-[150px]" />
+            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-coerver-green/10 rounded-full blur-[120px]" />
+          </div>
+
+          <div className="container mx-auto px-6 lg:px-8 relative">
+            <div className="animate-on-scroll text-center max-w-3xl mx-auto mb-16">
+              <div className="inline-flex items-center gap-2 bg-coerver-green/20 rounded-full px-4 py-2 mb-6">
+                <span className="text-coerver-green text-sm font-semibold">Cijene</span>
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-black text-white mb-4">
+                Odaberi svoj paket
+              </h2>
+              <p className="text-lg text-white/60">
+                Tri opcije prilagođene tvojim potrebama - od samo treninga do potpunog kamp iskustva
+              </p>
+            </div>
+
+            <div
+              className={cn(
+                "grid gap-6 lg:gap-8 items-stretch",
+                pricingTiers.length === 3 && "md:grid-cols-3 max-w-6xl mx-auto",
+                pricingTiers.length === 2 && "md:grid-cols-2 max-w-4xl mx-auto",
+                pricingTiers.length === 1 && "max-w-md mx-auto"
+              )}
+            >
+              {pricingTiers.map((tier, index) => (
+                <div
+                  key={tier.key}
+                  className={cn(
+                    "animate-on-scroll relative flex flex-col rounded-3xl p-8",
+                    tier.popular
+                      ? "bg-white/10 border-2 border-coerver-green md:-my-4 md:py-12"
+                      : "bg-white/5 border border-white/10"
+                  )}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  {tier.popular && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-coerver-green text-white text-sm font-bold px-4 py-1.5 rounded-full whitespace-nowrap">
+                      Najpopularnije
+                    </div>
+                  )}
+
+                  <h3 className="text-xl font-bold text-white mb-2">{tier.name}</h3>
+                  <p className="text-white/50 text-sm mb-6">{tier.description}</p>
+
+                  <div className="flex items-baseline gap-1 mb-8" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                    <span className="text-5xl font-black text-white">{tier.price}€</span>
+                    <span className="text-white/50 text-sm">/osoba</span>
+                  </div>
+
+                  <div className="space-y-3 mb-8 flex-1">
+                    {tier.features.map((feature) => (
+                      <div key={feature} className="flex items-center gap-3">
+                        <div className="w-5 h-5 rounded-full bg-coerver-green/20 flex items-center justify-center flex-shrink-0">
+                          <svg className="w-3 h-3 text-coerver-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <span className="text-white/80 text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <a
+                    href="#prijava"
+                    onClick={() => trackEvent.ctaClick(`odaberi_paket_${tier.key}`, "pricing")}
+                    className={cn(
+                      "inline-flex items-center justify-center font-bold px-6 py-3.5 rounded-full transition-all duration-300",
+                      tier.popular
+                        ? "bg-coerver-green text-white hover:bg-coerver-green/90 hover:scale-105"
+                        : "bg-white/10 text-white border border-white/20 hover:bg-white/20"
+                    )}
+                  >
+                    Odaberi paket
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -1045,7 +1177,7 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
         availableSpots={availableSpots}
         totalSpots={totalSpots}
         isFull={isFull}
-        registrationDeadline={camp.registration_deadline}
+        registrationDeadline={camp.registration_deadline ?? undefined}
       />
     </div>
   );
