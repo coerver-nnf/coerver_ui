@@ -64,7 +64,8 @@ export function ImageUpload({
         const { error: uploadError } = await supabase.storage
           .from(bucket)
           .upload(fileName, file, {
-            cacheControl: "3600",
+            // Filenames are unique per upload, so cache aggressively (1 year)
+            cacheControl: "31536000",
             upsert: false,
           });
 

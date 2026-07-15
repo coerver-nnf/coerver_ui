@@ -6,7 +6,7 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
-  ],
+  // Only run Supabase session refresh where auth actually matters —
+  // running it site-wide costs a Supabase auth API call on every public page view.
+  matcher: ["/dashboard/:path*", "/prijava"],
 };

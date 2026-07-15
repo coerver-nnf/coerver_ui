@@ -1,15 +1,17 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { createClient } from "@/lib/supabase/server"
+import { createStaticClient } from "@/lib/supabase/static"
 import { Camp } from "@/lib/api/camps"
 import CampDetailContent from "./CampDetailContent"
+
+export const revalidate = 3600
 
 interface PageProps {
   params: Promise<{ slug: string }>
 }
 
 async function getCamp(slug: string): Promise<Camp | null> {
-  const supabase = await createClient()
+  const supabase = createStaticClient()
   const { data, error } = await supabase
     .from("camps")
     .select("*")

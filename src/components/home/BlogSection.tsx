@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { getPosts, Post } from "@/lib/api/posts";
+import type { Post } from "@/lib/api/posts";
 
 function formatDateShort(dateString: string): string {
   const date = new Date(dateString);
@@ -14,24 +13,7 @@ function formatDateShort(dateString: string): string {
   });
 }
 
-export function BlogSection() {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function loadPosts() {
-      try {
-        const data = await getPosts({ status: "published", limit: 4 });
-        setPosts(data);
-      } catch (error) {
-        console.error("Error loading posts:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadPosts();
-  }, []);
-
+export function BlogSection({ posts }: { posts: Post[] }) {
   const featuredPost = posts[0];
   const sidePosts = posts.slice(1, 4);
 
@@ -83,12 +65,7 @@ export function BlogSection() {
           </Link>
         </div>
 
-        {/* Loading State */}
-        {loading ? (
-          <div className="flex justify-center py-20">
-            <div className="w-12 h-12 border-4 border-coerver-green border-t-transparent rounded-full animate-spin" />
-          </div>
-        ) : posts.length === 0 ? (
+        {posts.length === 0 ? (
           /* Empty State */
           <div className="text-center py-16">
             <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-6">
