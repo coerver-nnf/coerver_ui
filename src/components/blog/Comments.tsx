@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Textarea } from "@/components/ui/Input";
 import { formatDate } from "@/lib/utils";
@@ -13,6 +14,7 @@ interface CommentsProps {
 }
 
 export function Comments({ postId, comments: initialComments }: CommentsProps) {
+  const t = useTranslations("blog.comments");
   const [comments, setComments] = useState(initialComments);
   const [newComment, setNewComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,7 +33,7 @@ export function Comments({ postId, comments: initialComments }: CommentsProps) {
       const { data: { user } } = await supabase.auth.getUser();
 
       if (!user) {
-        setError("Morate biti prijavljeni za komentiranje.");
+        setError(t("loginRequired"));
         return;
       }
 
@@ -51,7 +53,7 @@ export function Comments({ postId, comments: initialComments }: CommentsProps) {
       setComments((prev) => [...prev, data as Comment]);
       setNewComment("");
     } catch {
-      setError("Došlo je do greške. Pokušajte ponovno.");
+      setError(t("error"));
     } finally {
       setIsSubmitting(false);
     }
@@ -60,13 +62,13 @@ export function Comments({ postId, comments: initialComments }: CommentsProps) {
   return (
     <div className="mt-12 pt-12 border-t border-coerver-gray-200">
       <h3 className="text-2xl font-bold text-coerver-dark mb-8">
-        Komentari ({comments.length})
+        {t("title", { count: comments.length })}
       </h3>
 
       {/* Comment Form */}
       <form onSubmit={handleSubmit} className="mb-8">
         <Textarea
-          placeholder="Napišite svoj komentar..."
+          placeholder={t("placeholder")}
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           rows={4}
@@ -76,7 +78,7 @@ export function Comments({ postId, comments: initialComments }: CommentsProps) {
           <p className="text-red-600 text-sm mb-4">{error}</p>
         )}
         <Button type="submit" isLoading={isSubmitting}>
-          Objavi Komentar
+          {t("submit")}
         </Button>
       </form>
 
@@ -84,7 +86,7 @@ export function Comments({ postId, comments: initialComments }: CommentsProps) {
       <div className="space-y-6">
         {comments.length === 0 ? (
           <p className="text-coerver-gray-500 text-center py-8">
-            Nema komentara. Budite prvi koji će komentirati!
+            {t("empty")}
           </p>
         ) : (
           comments.map((comment) => (
@@ -98,7 +100,7 @@ export function Comments({ postId, comments: initialComments }: CommentsProps) {
                 </div>
                 <div>
                   <div className="font-semibold text-coerver-dark">
-                    {comment.user?.full_name || "Korisnik"}
+                    {comment.user?.full_name || t("anonymous")}
                   </div>
                   <div className="text-sm text-coerver-gray-500">
                     {formatDate(comment.created_at)}

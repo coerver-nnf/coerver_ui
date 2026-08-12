@@ -1,0 +1,389 @@
+{
+  "clubs": {
+    "hero": {
+      "badge": "Za klube",
+      "titleLine1": "Partnerski",
+      "titleLine2": "Programi",
+      "description": "Pridružite se mreži več kot 1000 partnerskih klubov po vsem svetu. Vpeljite preizkušeno Coerver metodologijo v svojo mladinsko šolo.",
+      "cta": "Zahtevajte ponudbo",
+      "imageAlt": "Profesionalni trening"
+    },
+    "stats": {
+      "0": { "value": "1.000+", "label": "Partnerskih klubov" },
+      "1": { "value": "60+", "label": "Držav" },
+      "2": { "value": "40+", "label": "Let izkušenj" }
+    },
+    "benefits": {
+      "badge": "Zakaj Coerver?",
+      "title": "Prednosti partnerstva",
+      "items": {
+        "0": { "title": "Preizkušena metodologija", "description": "40+ let razvoja in izpopolnjevanja tehničnega treninga." },
+        "1": { "title": "Strukturiran kurikulum", "description": "Jasna progresija za vse starostne skupine in ravni." },
+        "2": { "title": "Neprekinjena podpora", "description": "Strokovna podpora in redne ocene napredka." },
+        "3": { "title": "Globalno priznanje", "description": "Pridružite se mreži več kot 3000 partnerskih klubov." },
+        "4": { "title": "Dostop do platforme Coerver Croatia", "description": "Ekskluziven dostop do digitalne platforme z vajami in gradivi." }
+      }
+    },
+    "partners": {
+      "badge": "Naši partnerji",
+      "title": "Klubi, ki nam zaupajo"
+    },
+    "process": {
+      "badge": "Postopek",
+      "title": "Kako postati partner?",
+      "steps": {
+        "0": { "title": "Uvodni pogovor", "description": "Spoznamo vaš klub in vaše potrebe." },
+        "1": { "title": "Ocena in predlog", "description": "Analiziramo situacijo in predlagamo optimalen model." },
+        "2": { "title": "Izobraževanje trenerjev", "description": "Vaši trenerji opravijo Coerver certifikacijo." },
+        "3": { "title": "Implementacija", "description": "Neprekinjena podpora in spremljanje napredka." }
+      }
+    },
+    "testimonials": {
+      "badge": "Izkušnje",
+      "title": "Kaj pravijo naši partnerji?",
+      "items": {
+        "0": { "quote": "Coerver partnerstvo je preobrazilo našo mladinsko šolo. Naši igralci so tehnično superiornejši od konkurence.", "role": "Direktor mladinske šole, NK Dinamo Zagreb" },
+        "1": { "quote": "Strukturiran pristop in kakovostna gradiva so olajšali delo našim trenerjem in dvignili kakovost treninga.", "role": "Športni direktor, NK Hajduk Split" }
+      }
+    },
+    "contact": {
+      "title": "Kontaktirajte nas",
+      "description": "Vas zanima partnerstvo? Izpolnite obrazec in naša ekipa vas bo kontaktirala s prilagojeno ponudbo.",
+      "emailLabel": "E-pošta",
+      "phoneLabel": "Telefon",
+      "badgesTitle": "Pridružite se vodilnim klubom",
+      "badges": {
+        "0": "1000+ partnerjev",
+        "1": "60+ držav",
+        "2": "40+ let"
+      },
+      "formTitle": "Zahtevajte ponudbo"
+    }
+  },
+  "about": {
+    "hero": {
+      "badge": "O nas",
+      "titleStart": "Kaj je Coerver",
+      "titleEnd": "Coaching?",
+      "description": "Globalno priznana metodologija razvoja mladih nogometašev, prisotna v več kot 60 državah sveta že več kot 40 let.",
+      "ctaPlayers": "Programi za igralce",
+      "ctaCoaches": "Programi za trenerje",
+      "stats": {
+        "0": { "value": "40+", "label": "Let izkušenj" },
+        "1": { "value": "60+", "label": "Držav sveta" },
+        "2": { "value": "1M+", "label": "Igralcev globalno" },
+        "3": { "value": "500+", "label": "Aktivnih igralcev v HR" }
+      }
+    },
+    "stats": {
+      "0": { "value": "1984", "label": "Leto ustanovitve" },
+      "1": { "value": "60+", "label": "Držav sveta" },
+      "2": { "value": "1M+", "label": "Igralcev globalno" },
+      "3": { "value": "40+", "label": "Let izkušenj" }
+    },
+    "story": {
+      "badge": "Naša zgodba",
+      "titleStart": "Kaj je Coerver",
+      "titleEnd": "Coaching?",
+      "imageAlt": "Coerver trening",
+      "founderRole": "Ustanovitelj metodologije",
+      "para1": "Coerver® Coaching je globalno priznana metodologija razvoja mladih nogometašev, ki jo je razvil legendarni nizozemski trener <strong>Wiel Coerver</strong>.",
+      "para2": "Prisotni v več kot <strong>60 državah</strong> sveta, je Coerver® metodologija postala zlati standard v razvoju mladih igralcev. Na Hrvaškem delujemo s ciljem dviga kakovosti tehničnega usposabljanja na najvišjo raven.",
+      "features": {
+        "0": "Individualni pristop",
+        "1": "Certificirani trenerji",
+        "2": "Dokazana metodologija",
+        "3": "Globalna mreža"
+      }
+    },
+    "values": {
+      "badge": "Naše vrednote",
+      "title": "Kaj nas žene",
+      "items": {
+        "0": { "title": "Odličnost", "description": "Stremimo k najvišjim standardom v vsem, kar počnemo" },
+        "1": { "title": "Inovativnost", "description": "Nenehno izboljšujemo metode treninga" },
+        "2": { "title": "Predanost", "description": "Predani smo razvoju vsakega posameznika" },
+        "3": { "title": "Skupnost", "description": "Gradimo močno Coerver® družino" }
+      }
+    },
+    "timeline": {
+      "badge": "Naša zgodovina",
+      "title": "Pot do odličnosti",
+      "items": {
+        "0": { "year": "1984", "title": "Ustanovitev Coerver® Coachinga", "description": "Wiel Coerver, legendarni nizozemski trener, razvije revolucionarno metodologijo treninga, osredotočeno na individualno tehniko. Njegova sodelavca Alf Galustian in Charlie Cooke ustanovita to, kar danes poznamo kot Coerver® Coaching." },
+        "1": { "year": "1990", "title": "Globalna ekspanzija", "description": "Coerver® metodologija se širi na vse celine in postane zlati standard razvoja mladih igralcev. Sčasoma se Coerver® Coaching razvije iz preproste ideje v strukturiran kurikulum." },
+        "2": { "year": "2015", "title": "Prihod na Hrvaško", "description": "Coerver® Coaching uradno prispe na Hrvaško, v Slovenijo in BiH ter prinese vrhunsko metodologijo našim mladim talentom in trenerjem." },
+        "3": { "year": "Danes", "title": "Neprekinjena rast", "description": "Več kot 500 aktivnih igralcev in 30+ certificiranih trenerjev na Hrvaškem, v Sloveniji in BiH." }
+      }
+    },
+    "pyramid": {
+      "badge": "Coerver® sistem",
+      "title": "Piramida razvoja igralca",
+      "description": "Progresiven sistem, ki gradi tehnično odličnost od temeljev. Vsaka raven nadgrajuje prejšnjo in ustvarja popolnega igralca.",
+      "cards": {
+        "0": { "title": "Coerver® piramida", "subtitle": "6 ravni tehničnega razvoja", "alt": "Coerver piramida - 6 ravni razvoja" },
+        "1": { "title": "1v1 piramida", "subtitle": "Poteze in fintiranje", "alt": "1v1 piramida - poteze in fintiranje" },
+        "2": { "title": "Ravni igralca", "subtitle": "Od začetnika do mojstra", "alt": "Ravni igralca - od začetnika do mojstra" }
+      },
+      "levels": {
+        "0": { "title": "Ball Mastery", "description": "Temelj vsega - popoln nadzor žoge z vsemi deli stopala in z obema nogama." },
+        "1": { "title": "Sprejem & Podaje", "description": "Prvi dotik - ekipne veščine." },
+        "2": { "title": "1 na 1 - napad in obramba", "description": "Spremembe smeri, ustavljanja in štarti ter finte." },
+        "3": { "title": "Hitrost", "description": "Hitrost z žogo in brez nje - hitrost sprejemanja odločitev." },
+        "4": { "title": "Zaključek", "description": "Ustvarjanje priložnosti za gol in realizacija." },
+        "5": { "title": "Skupinski napad", "description": "Napad in obramba v manjših skupinah." }
+      }
+    },
+    "cta": {
+      "badge": "Začni danes",
+      "title": "Pridruži se Coerver® družini",
+      "description": "Ne glede na to, ali si igralec, ki želi izboljšati tehniko, ali trener, ki želi razširiti znanje, imamo program za tebe.",
+      "ctaPlayers": "Za igralce",
+      "ctaCoaches": "Za trenerje"
+    }
+  },
+  "contact": {
+    "hero": {
+      "badge": "Stopite v stik",
+      "titleStart": "Kako vam lahko",
+      "titleHighlight": "pomagamo?",
+      "description": "Imate vprašanje o naših programih? Želite prijaviti otroka na trening? Tu smo za vas - javite se nam!"
+    },
+    "info": {
+      "title": "Kontaktni podatki",
+      "email": { "label": "E-pošta", "description": "Pišite nam kadarkoli" },
+      "phone": { "label": "Telefon", "description": "Pon - Pet, 9:00 - 17:00" },
+      "address": { "label": "Naslov", "description": "10000 Zagreb, Hrvaška" }
+    },
+    "social": {
+      "title": "Sledite nam"
+    },
+    "form": {
+      "successTitle": "Hvala za sporočilo!",
+      "successMessage": "Vaše sporočilo je bilo uspešno poslano. Javili se vam bomo v najkrajšem možnem času.",
+      "newMessage": "Pošlji novo sporočilo",
+      "title": "Pošljite nam sporočilo",
+      "subtitle": "Izpolnite obrazec in kmalu se vam bomo javili.",
+      "nameLabel": "Ime in priimek *",
+      "namePlaceholder": "Vaše ime in priimek",
+      "emailLabel": "E-poštni naslov *",
+      "emailPlaceholder": "vas@email.com",
+      "phoneLabel": "Telefon",
+      "subjectLabel": "Tema *",
+      "subjectPlaceholder": "Izberite temo",
+      "topics": {
+        "0": "Vpis igralca",
+        "1": "Izobraževanje trenerjev",
+        "2": "Partnerstvo s klubom",
+        "3": "Splošno vprašanje",
+        "4": "Drugo"
+      },
+      "messageLabel": "Sporočilo *",
+      "messagePlaceholder": "Opišite svoje vprašanje...",
+      "requiredNote": "* Obvezna polja",
+      "submitting": "Pošiljanje...",
+      "submit": "Pošlji sporočilo",
+      "error": "Prišlo je do napake. Prosimo, poskusite znova."
+    },
+    "faq": {
+      "title": "Pogosto zastavljena vprašanja",
+      "subtitle": "Poiščite odgovore na najpogostejša vprašanja",
+      "items": {
+        "0": { "question": "Za katere starosti so namenjeni Coerver programi?", "answer": "Naši programi so prilagojeni vsem starostim, tako odraslim kot mlajšim. Vsaka starostna skupina ima posebej zasnovan program, ki ustreza njihovi razvojni stopnji." },
+        "1": { "question": "Koliko časa trajajo treningi?", "answer": "Treningi trajajo 60-90 minut, odvisno od starostne skupine in vrste programa. Mlajši udeleženci imajo krajše treninge, prilagojene njihovi koncentraciji." },
+        "2": { "question": "Kako se lahko prijavim?", "answer": "Prijavite se lahko prek kontaktnega obrazca na tej strani, po e-pošti ali telefonu. Po prijavi se vam bomo javili z informacijami o razpoložljivih terminih." },
+        "3": { "question": "Ali moram prinesti lastno opremo?", "answer": "Odvisno od programa vam bodo trenerji sporočili, ali je oprema lastna ali jo priskrbimo mi." }
+      },
+      "notFound": "Niste našli odgovora?",
+      "emailUs": "Pošljite nam e-pošto"
+    },
+    "cta": {
+      "title": "Pripravljeni na prvi trening?",
+      "description": "Pridružite se stotinam zadovoljnih igralcev, ki so že del Coerver družine",
+      "findAcademy": "Poišči akademijo",
+      "becomeCoach": "Postani trener"
+    }
+  },
+  "privacy": {
+    "hero": {
+      "titleStart": "Politika",
+      "titleHighlight": "zasebnosti",
+      "description": "Vaša zasebnost nam je pomembna. Tukaj lahko izveste, kako zbiramo, uporabljamo in varujemo vaše osebne podatke.",
+      "lastUpdated": "Zadnja posodobitev: {date}"
+    },
+    "controller": {
+      "title": "1. Upravljavec obdelave podatkov",
+      "intro": "Upravljavec vaših osebnih podatkov je Coerver Coaching Croatia s sedežem v Zagrebu, Hrvaška. Za vsa vprašanja v zvezi z varstvom osebnih podatkov nas lahko kontaktirate na:",
+      "emailLabel": "E-pošta:",
+      "phoneLabel": "Telefon:"
+    },
+    "dataCollected": {
+      "title": "2. Katere podatke zbiramo",
+      "intro": "Zbiramo naslednje vrste osebnih podatkov:",
+      "items": {
+        "0": "<strong>Kontaktni podatki:</strong> ime in priimek, e-poštni naslov, telefonska številka",
+        "1": "<strong>Podatki o otrocih:</strong> starost/letnik rojstva otroka, velikost dresa, nogometni klub, pozicija (za prijave na kampe in akademije)",
+        "2": "<strong>Podatki o uporabniškem računu:</strong> e-poštni naslov, geslo (šifrirano), vloga uporabnika",
+        "3": "<strong>Tehnični podatki:</strong> IP naslov, vrsta brskalnika, sejni piškotki"
+      }
+    },
+    "purpose": {
+      "title": "3. Namen obdelave podatkov",
+      "intro": "Vaše osebne podatke uporabljamo za:",
+      "items": {
+        "0": "Obdelavo prijav na kampe, akademije in tečaje",
+        "1": "Komunikacijo v zvezi z našimi programi in storitvami",
+        "2": "Upravljanje uporabniških računov",
+        "3": "Pošiljanje obvestil o novostih in ponudbah (z vašim soglasjem)",
+        "4": "Izboljševanje naših storitev in spletne strani"
+      }
+    },
+    "legalBasis": {
+      "title": "4. Pravna podlaga obdelave",
+      "intro": "Vaše podatke obdelujemo na podlagi:",
+      "items": {
+        "0": "<strong>Soglasja:</strong> ko nam daste izrecno soglasje za obdelavo podatkov",
+        "1": "<strong>Pogodbene obveznosti:</strong> ko je obdelava nujna za izvajanje pogodbe (npr. prijava na kamp)",
+        "2": "<strong>Zakonitega interesa:</strong> za izboljšanje naših storitev in varnost sistema",
+        "3": "<strong>Zakonske obveznosti:</strong> ko smo zakonsko dolžni hraniti določene podatke"
+      }
+    },
+    "sharing": {
+      "title": "5. Deljenje podatkov s tretjimi stranmi",
+      "intro": "Vaše podatke lahko delimo z:",
+      "items": {
+        "0": "<strong>Supabase Inc.</strong> - ponudnik storitve baze podatkov in avtentikacije (ZDA, ob uporabi standardnih pogodbenih klavzul)",
+        "1": "<strong>Vercel Inc.</strong> - ponudnik gostovanja (ZDA, ob uporabi standardnih pogodbenih klavzul)",
+        "2": "<strong>Resend</strong> - ponudnik storitve pošiljanja e-pošte"
+      },
+      "outro": "Vaših osebnih podatkov ne prodajamo niti ne oddajamo tretjim stranem v trženjske namene."
+    },
+    "cookies": {
+      "title": "6. Piškotki (Cookies)",
+      "intro": "Naša spletna stran uporablja naslednje vrste piškotkov:",
+      "items": {
+        "0": "<strong>Nujni piškotki:</strong> potrebni za delovanje strani in avtentikacijo uporabnikov",
+        "1": "<strong>Sejni piškotki:</strong> ohranjajo vašo prijavo aktivno med obiskom"
+      },
+      "outro": "Trenutno ne uporabljamo analitičnih niti trženjskih piškotkov. Nastavitve piškotkov lahko upravljate prek nastavitev svojega brskalnika."
+    },
+    "rights": {
+      "title": "7. Vaše pravice",
+      "intro": "V skladu s GDPR imate naslednje pravice:",
+      "items": {
+        "0": "<strong>Pravica do dostopa:</strong> lahko zahtevate kopijo vseh podatkov, ki jih imamo o vas",
+        "1": "<strong>Pravica do popravka:</strong> lahko zahtevate popravek netočnih podatkov",
+        "2": "<strong>Pravica do izbrisa:</strong> lahko zahtevate izbris vaših podatkov (\"pravica do pozabe\")",
+        "3": "<strong>Pravica do omejitve obdelave:</strong> lahko zahtevate omejitev načina, kako uporabljamo vaše podatke",
+        "4": "<strong>Pravica do prenosljivosti:</strong> lahko zahtevate prenos podatkov drugemu upravljavcu",
+        "5": "<strong>Pravica do ugovora:</strong> lahko ugovarjate obdelavi podatkov na podlagi zakonitega interesa",
+        "6": "<strong>Pravica do preklica soglasja:</strong> soglasje lahko prekličete kadar koli"
+      },
+      "outro": "Za uveljavljanje katere koli od navedenih pravic nas kontaktirajte na"
+    },
+    "retention": {
+      "title": "8. Rok hrambe podatkov",
+      "intro": "Vaše osebne podatke hranimo samo toliko časa, kolikor je potrebno za namene, za katere so bili zbrani:",
+      "items": {
+        "0": "Podatki o povpraševanjih: 2 leti od prejema povpraševanja",
+        "1": "Podatki o prijavah na programe: 5 let od zaključka programa",
+        "2": "Uporabniški računi: do zaprtja računa + 30 dni",
+        "3": "Računovodski podatki: v skladu z zakonskimi predpisi (11 let)"
+      }
+    },
+    "security": {
+      "title": "9. Varnost podatkov",
+      "intro": "Izvajamo ustrezne tehnične in organizacijske ukrepe za zaščito vaših osebnih podatkov pred nepooblaščenim dostopom, izgubo ali uničenjem. To vključuje:",
+      "items": {
+        "0": "SSL/TLS šifriranje vseh komunikacij",
+        "1": "Šifriranje gesel",
+        "2": "Redne varnostne preglede",
+        "3": "Omejen dostop do podatkov samo pooblaščenim osebam"
+      }
+    },
+    "children": {
+      "title": "10. Podatki o otrocih",
+      "text": "Ker naši programi vključujejo otroke, posebno pozornost namenjamo zaščiti njihovih podatkov. Podatke o otrocih zbiramo izključno s soglasjem staršev ali skrbnikov, in sicer samo tiste podatke, ki so nujni za sodelovanje v naših programih."
+    },
+    "complaint": {
+      "title": "11. Pravica do pritožbe",
+      "intro": "Če menite, da je obdelava vaših osebnih podatkov v nasprotju z GDPR, imate pravico vložiti pritožbo pri nadzornem organu - Agenciji za varstvo osebnih podatkov (AZOP):",
+      "webLabel": "Splet:",
+      "emailLabel": "E-pošta:",
+      "addressLabel": "Naslov:"
+    },
+    "changes": {
+      "title": "12. Spremembe politike zasebnosti",
+      "text": "Pridržujemo si pravico do spremembe te politike zasebnosti. O vseh pomembnih spremembah vas bomo obvestili prek naše spletne strani ali e-pošte. Priporočamo občasen ogled te strani."
+    },
+    "questions": {
+      "title": "Imate vprašanja?",
+      "text": "Za vsa vprašanja v zvezi z varstvom vaših osebnih podatkov nas prosto kontaktirajte:"
+    }
+  },
+  "forms": {
+    "inquiry": {
+      "title": "Pošlji povpraševanje",
+      "submit": "Pošlji povpraševanje",
+      "error": "Prišlo je do napake. Prosimo, poskusite znova.",
+      "loading": "Nalaganje...",
+      "success": {
+        "title": "Hvala za povpraševanje!",
+        "message": "Vaše povpraševanje je bilo uspešno poslano. Javili se vam bomo v najkrajšem možnem času.",
+        "newInquiry": "Pošlji novo povpraševanje"
+      },
+      "fields": {
+        "name": { "label": "Ime in priimek *", "placeholder": "Vnesite svoje ime in priimek" },
+        "childName": { "label": "Ime in priimek otroka *", "placeholder": "Vnesite ime in priimek otroka" },
+        "email": { "label": "E-poštni naslov *", "placeholder": "vas@email.com" },
+        "phone": { "label": "Telefon" },
+        "academy": { "label": "Izberite akademijo *", "placeholder": "Izberite akademijo", "empty": "Ni razpoložljivih akademij" },
+        "camp": { "label": "Izberite kamp *", "placeholder": "Izberite kamp", "empty": "Ni razpoložljivih kampov" },
+        "course": { "label": "Izberite tečaj *", "placeholder": "Izberite tečaj", "empty": "Ni razpoložljivih tečajev" },
+        "childAge": { "label": "Starost otroka", "placeholder": "Izberite starost", "years": "{range} let" },
+        "accommodationType": {
+          "label": "Tip prijave *",
+          "placeholder": "Izberite tip prijave",
+          "withAccommodation": "Z nastanitvijo (polni kamp z nastanitvijo)",
+          "fullDay": "Celodnevni (vse aktivnosti brez spanja)",
+          "trainingOnly": "Samo treningi"
+        },
+        "birthYear": { "label": "Letnik rojstva otroka *", "placeholder": "Izberite letnik" },
+        "jerseySize": { "label": "Velikost dresa *", "placeholder": "Izberite velikost" },
+        "club": { "label": "Klub", "placeholder": "Naziv kluba, v katerem igra" },
+        "clubCourse": { "label": "Klub", "placeholder": "Naziv kluba, iz katerega se prijavljate" },
+        "clubName": { "label": "Naziv kluba *", "placeholder": "Naziv vašega kluba" },
+        "position": {
+          "label": "Pozicija",
+          "placeholder": "Izberite pozicijo",
+          "goalkeeper": "Vratar",
+          "defender": "Branilec",
+          "midfielder": "Vezist",
+          "forward": "Napadalec"
+        },
+        "note": { "label": "Opomba", "placeholder": "Alergije, zdravstvene opombe ali druge pomembne informacije..." },
+        "format": { "label": "Format sodelovanja *", "placeholder": "Izberite format", "live": "V živo" },
+        "message": { "label": "Sporočilo *", "placeholder": "Napišite svoje sporočilo ali vprašanje..." }
+      },
+      "summary": {
+        "type": "Tip",
+        "birthYear": "Letnik",
+        "jerseySize": "Velikost dresa",
+        "club": "Klub",
+        "position": "Pozicija",
+        "note": "Opomba",
+        "format": "Format",
+        "program": "Program",
+        "withAccommodation": "Z nastanitvijo",
+        "fullDay": "Celodnevni",
+        "trainingOnly": "Samo treningi",
+        "dayOnly": "Brez nastanitve"
+      },
+      "consent": {
+        "textStart": "Prebral/-a sem in se strinjam s",
+        "privacyLink": "politiko zasebnosti",
+        "textEnd": "ter soglašam z obdelavo mojih osebnih podatkov za namen obravnave tega povpraševanja. *"
+      }
+    }
+  }
+}

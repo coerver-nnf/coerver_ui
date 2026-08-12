@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/client";
+import type { Translations } from "@/lib/i18n/localize";
 
 export interface Post {
   id: string;
@@ -15,6 +16,7 @@ export interface Post {
   updated_at: string;
   category?: BlogCategory | null;
   author?: { id: string; full_name: string } | null;
+  translations?: Translations | null;
 }
 
 export interface BlogCategory {
@@ -22,6 +24,7 @@ export interface BlogCategory {
   name: string;
   slug: string;
   created_at: string;
+  translations?: Translations | null;
 }
 
 export interface CreatePostInput {
@@ -33,6 +36,7 @@ export interface CreatePostInput {
   category_id?: string;
   status?: "draft" | "published" | "archived";
   published_at?: string;
+  translations?: Translations;
 }
 
 export interface UpdatePostInput extends Partial<CreatePostInput> {
@@ -52,7 +56,7 @@ export async function getPosts(options?: {
     .select(
       `
       *,
-      category:blog_categories(id, name, slug),
+      category:blog_categories(id, name, slug, translations),
       author:profiles(id, full_name)
     `
     )
@@ -83,7 +87,7 @@ export async function getPostById(id: string) {
     .select(
       `
       *,
-      category:blog_categories(id, name, slug),
+      category:blog_categories(id, name, slug, translations),
       author:profiles(id, full_name)
     `
     )
@@ -101,7 +105,7 @@ export async function getPostBySlug(slug: string) {
     .select(
       `
       *,
-      category:blog_categories(id, name, slug),
+      category:blog_categories(id, name, slug, translations),
       author:profiles(id, full_name)
     `
     )
@@ -173,7 +177,11 @@ export async function getBlogCategories() {
   return data as BlogCategory[];
 }
 
-export async function createBlogCategory(input: { name: string; slug: string }) {
+export async function createBlogCategory(input: {
+  name: string;
+  slug: string;
+  translations?: Translations;
+}) {
   const supabase = createClient();
   const { data, error } = await supabase
     .from("blog_categories")
@@ -187,7 +195,7 @@ export async function createBlogCategory(input: { name: string; slug: string }) 
 
 export async function updateBlogCategory(
   id: string,
-  input: { name?: string; slug?: string }
+  input: { name?: string; slug?: string; translations?: Translations }
 ) {
   const supabase = createClient();
   const { data, error } = await supabase
@@ -219,7 +227,7 @@ export async function getPostsServer(options?: {
     .select(
       `
       *,
-      category:blog_categories(id, name, slug),
+      category:blog_categories(id, name, slug, translations),
       author:profiles(id, full_name)
     `
     )

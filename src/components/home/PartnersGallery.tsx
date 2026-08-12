@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 interface Partner {
   id: string;
@@ -20,16 +22,17 @@ const partners: Partner[] = [
 ];
 
 export function PartnersGallery() {
+  const t = useTranslations("home.partners");
   return (
     <section className="py-16 lg:py-20 bg-white">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
           <span className="text-coerver-green font-semibold text-sm uppercase tracking-wider">
-            Naši Partneri
+            {t("badge")}
           </span>
           <h3 className="mt-2 text-2xl lg:text-3xl font-bold text-coerver-dark">
-            Klubovi s Kojima Surađujemo
+            {t("title")}
           </h3>
         </div>
 
@@ -57,13 +60,13 @@ export function PartnersGallery() {
         {/* CTA */}
         <div className="text-center mt-12">
           <p className="text-coerver-gray-600 mb-4">
-            Želite postati partner? Kontaktirajte nas!
+            {t("ctaText")}
           </p>
-          <a
+          <Link
             href="/klubovi"
             className="inline-flex items-center gap-2 text-coerver-green font-semibold hover:gap-3 transition-all"
           >
-            Saznajte više o partnerstvu
+            {t("ctaLink")}
             <svg
               className="w-5 h-5"
               fill="none"
@@ -77,7 +80,7 @@ export function PartnersGallery() {
                 d="M17 8l4 4m0 0l-4 4m4-4H3"
               />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

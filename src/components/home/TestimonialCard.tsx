@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 export interface Testimonial {
@@ -115,38 +116,20 @@ export function TestimonialCard({
   );
 }
 
-// Testimonials data
-export const testimonials: Testimonial[] = [
-  {
-    id: "1",
-    name: "Marko Horvat",
-    role: "Roditelj igrača, U12",
-    content:
-      "Coerver Coaching mi je pomogao podići igru na višu razinu. Treninzi tehnika u kombinaciji sa brzim donošenjem odluka bilo je ono što mi je trebalo da se bolje adaptiram na nogomet u Europi.",
-    rating: 5,
-  },
-  {
-    id: "2",
-    name: "Ana Kovačević",
-    role: "Igračica, 16 godina",
-    content:
-      "Nakon godinu dana na Coerver programu, moja kontrola lopte i samopouzdanje su nevjerojatno napredovali. Treneri su fantastični i uvijek potiču na bolji rad.",
-    rating: 5,
-  },
-  {
-    id: "3",
-    name: "Ivan Perić",
-    role: "Trener NK Dinamo Mladi",
-    content:
-      "Coerver diploma mi je otvorila oči za nove metode treninga. Moji igrači sada uživaju na treninzima i napreduju brže nego ikad.",
-    rating: 5,
-  },
-  {
-    id: "4",
-    name: "Petra Novak",
-    role: "Mama igračice, U10",
-    content:
-      "Moja kći obožava Coerver treninge! Svaki put se vraća sretna i uzbuđena pokazati nove trikove. Profesionalnost trenera je iznad svih očekivanja.",
-    rating: 5,
-  },
+// Testimonials metadata (names are proper nouns; role/content come from translations)
+const testimonialMeta = [
+  { id: "1", name: "Marko Horvat", rating: 5 },
+  { id: "2", name: "Ana Kovačević", rating: 5 },
+  { id: "3", name: "Ivan Perić", rating: 5 },
+  { id: "4", name: "Petra Novak", rating: 5 },
 ];
+
+// Returns testimonials with role/content resolved for the active locale
+export function useTestimonials(): Testimonial[] {
+  const t = useTranslations("home.testimonials");
+  return testimonialMeta.map((meta, index) => ({
+    ...meta,
+    role: t(`items.${index}.role`),
+    content: t(`items.${index}.content`),
+  }));
+}

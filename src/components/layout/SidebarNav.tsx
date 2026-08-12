@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { cn } from "@/lib/utils";
 
 const socialLinks = [
@@ -46,30 +47,30 @@ const socialLinks = [
 ];
 
 const navigationItems = [
-  { label: "POČETNA", href: "/" },
-  { label: "O NAMA", href: "/o-nama" },
+  { key: "home", href: "/" },
+  { key: "about", href: "/o-nama" },
   {
-    label: "IGRAČI",
+    key: "players",
     href: "/za-igrace",
     children: [
-      { label: "SVI PROGRAMI", href: "/za-igrace" },
-      { label: "AKADEMIJE", href: "/za-igrace/akademije" },
-      { label: "INDIVIDUALNI TRENINZI", href: "/za-igrace/individualni-treninzi" },
-      { label: "KAMPOVI", href: "/za-igrace/kampovi" },
+      { key: "allPrograms", href: "/za-igrace" },
+      { key: "academies", href: "/za-igrace/akademije" },
+      { key: "individualTrainings", href: "/za-igrace/individualni-treninzi" },
+      { key: "camps", href: "/za-igrace/kampovi" },
     ],
   },
   {
-    label: "TRENERI",
+    key: "coaches",
     href: "/za-trenere",
     children: [
-      { label: "SVI PROGRAMI", href: "/za-trenere" },
-      { label: "COERVER® INTRO", href: "/za-trenere/coerver-intro" },
-      { label: "YOUTH DIPLOMA 1", href: "/za-trenere/youth-diploma-1" },
-      { label: "YOUTH DIPLOMA 2", href: "/za-trenere/youth-diploma-2" },
+      { key: "allPrograms", href: "/za-trenere" },
+      { key: "coerverIntro", href: "/za-trenere/coerver-intro" },
+      { key: "youthDiploma1", href: "/za-trenere/youth-diploma-1" },
+      { key: "youthDiploma2", href: "/za-trenere/youth-diploma-2" },
     ],
   },
-  { label: "KLUBOVI", href: "/klubovi" },
-  { label: "BLOG", href: "/blog" },
+  { key: "clubs", href: "/klubovi" },
+  { key: "blog", href: "/blog" },
 ];
 
 interface FullscreenNavProps {
@@ -82,6 +83,7 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations("nav");
 
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
@@ -164,7 +166,7 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
               <button
                 onClick={onClose}
                 className="xl:hidden w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 flex items-center justify-center text-white"
-                aria-label="Zatvori"
+                aria-label={t("closeMenu")}
               >
                 <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -204,7 +206,7 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
                                 ? "text-white"
                                 : "text-white/30 group-hover:text-white"
                             )}>
-                              {item.label}
+                              {t(item.key)}
                             </span>
                             <div className={cn(
                               "w-7 h-7 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0 ml-auto",
@@ -229,9 +231,9 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
                                   key={child.href}
                                   href={child.href}
                                   onClick={onClose}
-                                  className="px-2.5 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm rounded-full border border-white/20 text-white/70 hover:bg-coerver-green hover:border-coerver-green hover:text-white transition-colors duration-200"
+                                  className="px-2.5 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm uppercase rounded-full border border-white/20 text-white/70 hover:bg-coerver-green hover:border-coerver-green hover:text-white transition-colors duration-200"
                                 >
-                                  {child.label}
+                                  {t(child.key)}
                                 </Link>
                               ))}
                             </div>
@@ -249,7 +251,7 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
                               ? "text-white"
                               : "text-white/30 group-hover:text-white"
                           )}>
-                            {item.label}
+                            {t(item.key)}
                           </span>
                           <div className="w-7 h-7 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0 translate-x-4 flex-shrink-0">
                             <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -272,6 +274,11 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
               )}
             >
               <div className="hidden sm:flex items-center gap-2 sm:gap-3">
+                <LanguageSwitcher
+                  className="mr-2"
+                  buttonClassName="text-white/70 hover:bg-white/10 hover:text-white"
+                  activeButtonClassName="bg-coerver-green text-white shadow-md"
+                />
                 {socialLinks.map((social) => (
                   <a
                     key={social.name}
@@ -295,7 +302,7 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span>KONTAKT</span>
+                <span className="uppercase">{t("contact")}</span>
                 <svg className="w-3 h-3 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -310,7 +317,7 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
               <button
                 onClick={onClose}
                 className="w-14 h-14 rounded-full bg-white text-coerver-dark hover:bg-coerver-green hover:text-white flex items-center justify-center transition-all duration-300 group"
-                aria-label="Zatvori izbornik"
+                aria-label={t("closeMenu")}
               >
                 <svg className="w-6 h-6 transition-transform duration-300 group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -337,14 +344,14 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
                 {/* Card content */}
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <div className="bg-coerver-dark/80 rounded-2xl p-5 border border-white/20">
-                    <h3 className="text-white font-bold text-xl mb-1">Pridruži se</h3>
-                    <p className="text-white/60 text-sm mb-4">Postani dio Coerver obitelji</p>
+                    <h3 className="text-white font-bold text-xl mb-1">{t("joinTitle")}</h3>
+                    <p className="text-white/60 text-sm mb-4">{t("joinSubtitle")}</p>
                     <Link
                       href="/za-igrace/akademije"
                       onClick={onClose}
                       className="inline-flex items-center gap-2 bg-coerver-green text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-coerver-green/90 transition-colors"
                     >
-                      Prijavi se
+                      {t("joinCta")}
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       </svg>
@@ -364,7 +371,7 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-white/40 text-xs uppercase tracking-wider mb-1">Kontaktirajte nas</p>
+                    <p className="text-white/40 text-xs uppercase tracking-wider mb-1">{t("contactUs")}</p>
                     <p className="text-white font-semibold">info@coervercroatia.com</p>
                     <p className="text-white/60 text-sm">+385 98 1873 228</p>
                   </div>
@@ -384,6 +391,7 @@ function FullscreenNav({ isOpen, onClose }: FullscreenNavProps) {
 }
 
 export function SidebarNav() {
+  const t = useTranslations("nav");
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -468,7 +476,7 @@ export function SidebarNav() {
             <span className={cn(
               "text-[9px] font-bold uppercase tracking-wider transition-opacity duration-300",
               isScrolled ? "opacity-0 h-0" : "opacity-100"
-            )}>Prijava</span>
+            )}>{t("login")}</span>
           </Link>
 
           {/* Divider when scrolled */}
@@ -485,7 +493,7 @@ export function SidebarNav() {
                 ? "text-coerver-dark hover:text-coerver-green"
                 : "text-white hover:text-coerver-green"
             )}
-            aria-label="Otvori izbornik"
+            aria-label={t("openMenu")}
             type="button"
           >
             <div className="relative w-7 h-5 flex flex-col justify-between">
@@ -493,6 +501,20 @@ export function SidebarNav() {
               <span className="block w-5 h-0.5 bg-current transition-all duration-300 group-hover:w-full ml-auto" />
             </div>
           </button>
+
+          {/* Divider */}
+          <div className={cn("w-6 h-px", isScrolled ? "bg-gray-200" : "bg-white/20")} />
+
+          {/* Language Switcher */}
+          <LanguageSwitcher
+            orientation="vertical"
+            buttonClassName={cn(
+              isScrolled
+                ? "text-coerver-gray-500 hover:bg-coerver-gray-100 hover:text-coerver-dark"
+                : "text-white/70 hover:bg-white/10 hover:text-white"
+            )}
+            activeButtonClassName="bg-coerver-green text-white shadow-md"
+          />
         </div>
 
         {/* Spacer */}

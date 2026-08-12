@@ -2,7 +2,8 @@
 
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -12,8 +13,6 @@ if (typeof window !== "undefined") {
 
 interface AudienceCard {
   id: string;
-  title: string;
-  description: string;
   image: string;
   href: string;
   logo?: string;
@@ -22,43 +21,28 @@ interface AudienceCard {
 const audienceCards: AudienceCard[] = [
   {
     id: "players",
-    title: "IGRAČI",
-    description:
-      "Coerver® Coaching Performance Akademije namijenjene su igračima od 7 do 14 godina starosti koji već treniraju u klubovima, a žele poboljšati svoju izvedbu dodatno trenirajući po jedinstvenoj Coerver® metodi.",
     image: "/images/photoshoot/Miami-139.webp",
     href: "/za-igrace",
     logo: "/images/logo-variations/performance-logo.jpg",
   },
   {
     id: "coaches",
-    title: "TRENERI",
-    description:
-      "Cilj Coerver® edukacija je pružiti trenerima teoretski i praktični pregled evolucije Coerver® metode od njenog osnivanja 1984. godine.",
     image: "/images/photoshoot/Miami-146.webp",
     href: "/za-trenere",
   },
   {
     id: "clubs",
-    title: "KLUBOVI",
-    description:
-      "Coerver® Coaching nudi poseban partnerski program svim klubovima od amaterske do profesionalne razine. Ovim programom pokrivaju se četiri temeljne komponente.",
     image: "/images/photoshoot/Miami-119.webp",
     href: "/klubovi",
   },
   {
     id: "individual",
-    title: "INDIVIDUALNI TRENINZI",
-    description:
-      "Coerver® Coaching ima poseban program za individualne treninge i rad u manjim grupama, koji su ključni za razvoj svih sportaša.",
     image: "/images/photoshoot/Miami-115.webp",
     href: "/za-igrace/individualni-treninzi",
     logo: "/images/logo-variations/Ball Mastery.png",
   },
   {
     id: "camps",
-    title: "KAMPOVI",
-    description:
-      "Coerver® Coaching organizira kampove u trajanju od jednoga do pet dana na kojima kombinacijom učenja vještina i zabave želimo svakom polazniku pružiti nezaboravno iskustvo.",
     image: "/images/photoshoot/Miami-140.webp",
     href: "/za-igrace/kampovi",
     logo: "/images/logo-variations/Camps.png",
@@ -66,6 +50,7 @@ const audienceCards: AudienceCard[] = [
 ];
 
 export function AudienceCarousel() {
+  const t = useTranslations("home.audience");
   const sectionRef = useRef<HTMLElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -154,7 +139,7 @@ export function AudienceCarousel() {
                 {/* Background Image */}
                 <Image
                   src={card.image}
-                  alt={card.title}
+                  alt={t(`cards.${card.id}.title`)}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -167,7 +152,7 @@ export function AudienceCarousel() {
                   <div className="absolute top-4 left-4">
                     <Image
                       src={card.logo}
-                      alt={card.title}
+                      alt={t(`cards.${card.id}.title`)}
                       width={80}
                       height={35}
                       className="object-contain rounded"
@@ -178,10 +163,10 @@ export function AudienceCarousel() {
                 {/* Content */}
                 <div className="absolute inset-0 p-5 flex flex-col justify-end">
                   <h3 className="text-xl lg:text-2xl font-bold text-white mb-2">
-                    {card.title}
+                    {t(`cards.${card.id}.title`)}
                   </h3>
                   <p className="text-white/80 text-sm leading-relaxed line-clamp-4">
-                    {card.description}
+                    {t(`cards.${card.id}.description`)}
                   </p>
                 </div>
 
@@ -215,7 +200,7 @@ export function AudienceCarousel() {
             <button
               onClick={() => scroll("left")}
               className="w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-coerver-green transition-all"
-              aria-label="Prethodni"
+              aria-label={t("prevAria")}
             >
               <svg
                 className="w-5 h-5"
@@ -234,7 +219,7 @@ export function AudienceCarousel() {
             <button
               onClick={() => scroll("right")}
               className="w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-coerver-green transition-all"
-              aria-label="Sljedeći"
+              aria-label={t("nextAria")}
             >
               <svg
                 className="w-5 h-5"
@@ -267,7 +252,7 @@ export function AudienceCarousel() {
             href="/kontakt"
             className="inline-flex items-center justify-center px-8 py-4 bg-white text-coerver-dark font-semibold rounded-full hover:bg-coerver-gray-100 transition-colors"
           >
-            KONTAKTIRAJTE NAS
+            {t("contactCta")}
           </Link>
         </div>
       </div>

@@ -1,27 +1,28 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useState } from "react";
 
 const footerLinks = {
   programs: [
-    { label: "Akademije", href: "/za-igrace/akademije" },
-    { label: "Individualni Treninzi", href: "/za-igrace/individualni-treninzi" },
-    { label: "Kampovi", href: "/za-igrace/kampovi" },
+    { key: "academies", href: "/za-igrace/akademije" },
+    { key: "individualTrainings", href: "/za-igrace/individualni-treninzi" },
+    { key: "camps", href: "/za-igrace/kampovi" },
   ],
   coaches: [
-    { label: "Coerver Intro", href: "/za-trenere/coerver-intro" },
-    { label: "Youth Diploma 1", href: "/za-trenere/youth-diploma-1" },
-    { label: "Youth Diploma 2", href: "/za-trenere/youth-diploma-2" },
+    { key: "coerverIntro", href: "/za-trenere/coerver-intro" },
+    { key: "youthDiploma1", href: "/za-trenere/youth-diploma-1" },
+    { key: "youthDiploma2", href: "/za-trenere/youth-diploma-2" },
   ],
   company: [
-    { label: "O nama", href: "/o-nama" },
-    { label: "Kontakt", href: "/kontakt" },
-    { label: "Blog", href: "/blog" },
-    { label: "Privatnost", href: "/privatnost" },
+    { key: "aboutUs", href: "/o-nama" },
+    { key: "contact", href: "/kontakt" },
+    { key: "blog", href: "/blog" },
+    { key: "privacy", href: "/privatnost" },
   ],
 };
 
@@ -65,6 +66,10 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const t = useTranslations("footer");
+  const tNav = useTranslations("nav");
+  const linkLabel = (key: string) =>
+    key === "aboutUs" || key === "privacy" ? t(key) : tNav(key);
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
 
@@ -93,8 +98,7 @@ export function Footer() {
             </Link>
 
             <p className="text-coerver-gray-400 mb-6 max-w-sm">
-              Razvijamo vrhunske nogometaše kroz provjerenu Coerver metodologiju.
-              Pridružite se svjetskoj obitelji Coerver treninga.
+              {t("description")}
             </p>
 
             {/* Contact Info */}
@@ -151,14 +155,14 @@ export function Footer() {
                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                   />
                 </svg>
-                Zagreb, Hrvatska
+                {t("location")}
               </p>
             </div>
           </div>
 
           {/* Programs Links */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Za Igrače</h4>
+            <h4 className="font-semibold text-lg mb-4">{t("forPlayers")}</h4>
             <ul className="space-y-2">
               {footerLinks.programs.map((link) => (
                 <li key={link.href}>
@@ -166,7 +170,7 @@ export function Footer() {
                     href={link.href}
                     className="text-coerver-gray-400 hover:text-coerver-green transition-colors"
                   >
-                    {link.label}
+                    {linkLabel(link.key)}
                   </Link>
                 </li>
               ))}
@@ -175,7 +179,7 @@ export function Footer() {
 
           {/* Coaches Links */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Za Trenere</h4>
+            <h4 className="font-semibold text-lg mb-4">{t("forCoaches")}</h4>
             <ul className="space-y-2">
               {footerLinks.coaches.map((link) => (
                 <li key={link.href}>
@@ -183,7 +187,7 @@ export function Footer() {
                     href={link.href}
                     className="text-coerver-gray-400 hover:text-coerver-green transition-colors"
                   >
-                    {link.label}
+                    {linkLabel(link.key)}
                   </Link>
                 </li>
               ))}
@@ -192,27 +196,27 @@ export function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Newsletter</h4>
+            <h4 className="font-semibold text-lg mb-4">{t("newsletter")}</h4>
             <p className="text-coerver-gray-400 text-sm mb-4">
-              Prijavite se za najnovije vijesti i ekskluzivne ponude.
+              {t("newsletterText")}
             </p>
 
             {isSubscribed ? (
               <p className="text-coerver-green text-sm">
-                Hvala na prijavi! Provjerite svoj email.
+                {t("newsletterThanks")}
               </p>
             ) : (
               <form onSubmit={handleNewsletterSubmit} className="space-y-3">
                 <Input
                   type="email"
-                  placeholder="Vaš email"
+                  placeholder={t("emailPlaceholder")}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   className="bg-coerver-gray-800 border-coerver-gray-700 text-white placeholder-coerver-gray-500"
                 />
                 <Button type="submit" variant="primary" size="sm" className="w-full">
-                  Pretplatite se
+                  {t("subscribe")}
                 </Button>
               </form>
             )}
@@ -241,7 +245,7 @@ export function Footer() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-coerver-gray-500 text-sm">
-              &copy; {new Date().getFullYear()} Coerver Coaching Croatia. Sva prava pridržana.
+              &copy; {new Date().getFullYear()} Coerver Coaching Croatia. {t("rights")}
             </p>
             <div className="flex items-center gap-6 text-sm">
               {footerLinks.company.map((link) => (
@@ -250,7 +254,7 @@ export function Footer() {
                   href={link.href}
                   className="text-coerver-gray-500 hover:text-coerver-green transition-colors"
                 >
-                  {link.label}
+                  {linkLabel(link.key)}
                 </Link>
               ))}
             </div>

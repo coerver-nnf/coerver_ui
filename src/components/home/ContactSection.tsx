@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { createClient } from "@/lib/supabase/client";
@@ -14,25 +15,26 @@ if (typeof window !== "undefined") {
 const contactInfo = [
   {
     icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
-    label: "Email",
+    key: "email",
     value: "info@coervercroatia.com",
     href: "mailto:info@coervercroatia.com",
   },
   {
     icon: "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z",
-    label: "Telefon",
+    key: "phone",
     value: "+385 98 1873 228",
     href: "tel:+385981873228",
   },
   {
     icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z",
-    label: "Lokacija",
-    value: "Zagreb, Hrvatska",
+    key: "location",
+    value: null,
     href: null,
   },
-];
+] as const;
 
 export function ContactSection() {
+  const t = useTranslations("home.contact");
   const sectionRef = useRef<HTMLElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -102,7 +104,7 @@ export function ContactSection() {
       setFormData({ name: "", email: "", phone: "", message: "" });
       setPrivacyConsent(false);
     } catch {
-      setError("Došlo je do greške. Molimo pokušajte ponovno.");
+      setError(t("errorMessage"));
     } finally {
       setIsSubmitting(false);
     }
@@ -133,35 +135,36 @@ export function ContactSection() {
           <div>
             <div className="animate-on-scroll inline-flex items-center gap-2 bg-coerver-green/20 rounded-full px-4 py-2 mb-6">
               <span className="w-2 h-2 bg-coerver-green rounded-full animate-pulse" />
-              <span className="text-coerver-green text-sm font-semibold">Javite nam se</span>
+              <span className="text-coerver-green text-sm font-semibold">{t("badge")}</span>
             </div>
 
             <h2 className="animate-on-scroll text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-tight mb-6">
-              Spremni za{" "}
-              <span className="text-coerver-green">početak?</span>
+              {t.rich("title", {
+                green: (chunks) => <span className="text-coerver-green">{chunks}</span>,
+              })}
             </h2>
 
             <p className="animate-on-scroll text-white/60 text-lg lg:text-xl mb-10 max-w-md">
-              Pridružite se stotinama zadovoljnih igrača i trenera koji su već dio Coerver obitelji.
+              {t("subtitle")}
             </p>
 
             {/* Contact info */}
             <div className="animate-on-scroll space-y-4 mb-10">
-              {contactInfo.map((item, index) => (
-                <div key={index} className="flex items-center gap-4 group">
+              {contactInfo.map((item) => (
+                <div key={item.key} className="flex items-center gap-4 group">
                   <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-coerver-green transition-colors">
                     <svg className="w-5 h-5 text-coerver-green group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={item.icon} />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-white/40 text-sm">{item.label}</p>
+                    <p className="text-white/40 text-sm">{t(`info.${item.key}`)}</p>
                     {item.href ? (
                       <a href={item.href} className="text-white font-medium hover:text-coerver-green transition-colors">
                         {item.value}
                       </a>
                     ) : (
-                      <p className="text-white font-medium">{item.value}</p>
+                      <p className="text-white font-medium">{item.value ?? t("locationValue")}</p>
                     )}
                   </div>
                 </div>
@@ -174,7 +177,7 @@ export function ContactSection() {
                 href="/za-igrace/akademije"
                 className="inline-flex items-center gap-2 bg-coerver-green text-white font-semibold px-6 py-3 rounded-full hover:bg-coerver-green/90 transition-colors"
               >
-                Prijavi igrača
+                {t("signUpPlayer")}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -183,7 +186,7 @@ export function ContactSection() {
                 href="/za-trenere"
                 className="inline-flex items-center gap-2 bg-white/10 text-white font-semibold px-6 py-3 rounded-full hover:bg-white/20 transition-colors"
               >
-                Postani trener
+                {t("becomeCoach")}
               </Link>
             </div>
           </div>
@@ -198,49 +201,49 @@ export function ContactSection() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-coerver-dark mb-3">
-                  Hvala na upitu!
+                  {t("successTitle")}
                 </h3>
                 <p className="text-gray-500 mb-6">
-                  Vaša poruka je uspješno poslana. Javit ćemo vam se u najkraćem mogućem roku.
+                  {t("successText")}
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
                   className="text-coerver-green font-semibold hover:underline"
                 >
-                  Pošalji novu poruku
+                  {t("sendAnother")}
                 </button>
               </div>
             ) : (
               <div className="bg-white rounded-3xl p-8 lg:p-10">
-                <h3 className="text-2xl font-bold text-coerver-dark mb-2">Kontaktirajte nas</h3>
-                <p className="text-gray-500 mb-8">Ispunite obrazac i javit ćemo vam se uskoro.</p>
+                <h3 className="text-2xl font-bold text-coerver-dark mb-2">{t("formTitle")}</h3>
+                <p className="text-gray-500 mb-8">{t("formSubtitle")}</p>
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid md:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
-                        Ime i prezime
+                        {t("nameLabel")}
                       </label>
                       <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="Vaše ime"
+                        placeholder={t("namePlaceholder")}
                         required
                         className="w-full px-4 py-3.5 bg-gray-50 border-0 rounded-xl focus:ring-2 focus:ring-coerver-green focus:bg-white transition-all text-coerver-dark placeholder:text-gray-400"
                       />
                     </div>
                     <div>
                       <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
-                        Email
+                        {t("emailLabel")}
                       </label>
                       <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="vas@email.com"
+                        placeholder={t("emailPlaceholder")}
                         required
                         className="w-full px-4 py-3.5 bg-gray-50 border-0 rounded-xl focus:ring-2 focus:ring-coerver-green focus:bg-white transition-all text-coerver-dark placeholder:text-gray-400"
                       />
@@ -249,7 +252,7 @@ export function ContactSection() {
 
                   <div>
                     <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
-                      Telefon (opcionalno)
+                      {t("phoneLabel")}
                     </label>
                     <input
                       type="tel"
@@ -263,13 +266,13 @@ export function ContactSection() {
 
                   <div>
                     <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
-                      Poruka
+                      {t("messageLabel")}
                     </label>
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Kako vam možemo pomoći?"
+                      placeholder={t("messagePlaceholder")}
                       rows={4}
                       required
                       className="w-full px-4 py-3.5 bg-gray-50 border-0 rounded-xl focus:ring-2 focus:ring-coerver-green focus:bg-white transition-all text-coerver-dark placeholder:text-gray-400 resize-none"
@@ -295,15 +298,17 @@ export function ContactSection() {
                       className="mt-1 w-5 h-5 rounded border-gray-300 text-coerver-green focus:ring-coerver-green cursor-pointer"
                     />
                     <span className="text-sm text-gray-600 group-hover:text-gray-800">
-                      Slažem se s{" "}
-                      <Link
-                        href="/privatnost"
-                        target="_blank"
-                        className="text-coerver-green hover:underline font-medium"
-                      >
-                        politikom privatnosti
-                      </Link>{" "}
-                      *
+                      {t.rich("privacyConsent", {
+                        link: (chunks) => (
+                          <Link
+                            href="/privatnost"
+                            target="_blank"
+                            className="text-coerver-green hover:underline font-medium"
+                          >
+                            {chunks}
+                          </Link>
+                        ),
+                      })}
                     </span>
                   </label>
 
@@ -318,11 +323,11 @@ export function ContactSection() {
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                         </svg>
-                        Slanje...
+                        {t("sending")}
                       </>
                     ) : (
                       <>
-                        Pošalji poruku
+                        {t("send")}
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>

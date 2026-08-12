@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 
 export function PartnerClubCTA() {
+  const t = useTranslations("home.partnerCta");
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
       {/* Background Image */}
@@ -35,7 +37,7 @@ export function PartnerClubCTA() {
 
           {/* Description */}
           <p className="text-white text-lg md:text-xl mb-10 max-w-3xl mx-auto leading-relaxed">
-            Coerver® Coaching nudi poseban partnerski program svim klubovima od amaterske do profesionalne razine, koji žele kontinuiranu edukaciju i prepoznatljivost u svom okruženju
+            {t("description")}
           </p>
 
           {/* CTA Button */}
@@ -45,7 +47,7 @@ export function PartnerClubCTA() {
               size="lg"
               className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-coerver-dark font-semibold px-8 py-4 text-base"
             >
-              POSTANITE COERVER® PARTNER KLUB
+              {t("button")}
             </Button>
           </Link>
         </div>

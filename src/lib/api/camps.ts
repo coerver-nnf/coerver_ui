@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/client";
+import type { Translations } from "@/lib/i18n/localize";
 
 export interface DailyScheduleItem {
   time: string;
@@ -63,6 +64,7 @@ export interface Camp {
   status: "draft" | "published" | "cancelled" | "completed";
   created_at: string;
   updated_at: string;
+  translations?: Translations | null;
 }
 
 export interface CreateCampInput {
@@ -96,9 +98,12 @@ export interface CreateCampInput {
   faq?: FaqItem[];
   testimonials?: TestimonialItem[];
   status?: "draft" | "published" | "cancelled" | "completed";
+  translations?: Translations;
 }
 
-export interface UpdateCampInput extends Partial<CreateCampInput> {
+// Updates may write explicit nulls to clear optional columns
+export interface UpdateCampInput
+  extends Partial<{ [K in keyof CreateCampInput]: CreateCampInput[K] | null }> {
   id: string;
 }
 

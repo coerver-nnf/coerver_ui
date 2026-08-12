@@ -2,15 +2,25 @@
 
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { TestimonialCard, testimonials, type Testimonial } from "./TestimonialCard";
+import { TestimonialCard, useTestimonials, type Testimonial } from "./TestimonialCard";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+const statsRow = [
+  { value: "1000+", key: "activePlayers" },
+  { value: "30+", key: "certifiedCoaches" },
+  { value: "10", key: "partnerClubs" },
+  { value: "11", key: "yearsExperience" },
+] as const;
+
 export function Testimonials() {
+  const t = useTranslations("home.testimonials");
+  const testimonials = useTestimonials();
   const sectionRef = useRef<HTMLElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -74,17 +84,18 @@ export function Testimonials() {
               ))}
             </div>
             <span className="text-coerver-dark/70 font-medium text-sm">
-              5.0 od naših polaznika
+              {t("badge")}
             </span>
           </div>
 
           <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black text-coerver-dark leading-tight">
-            Što kažu naši{" "}
-            <span className="text-coerver-green">polaznici</span>
+            {t.rich("title", {
+              green: (chunks) => <span className="text-coerver-green">{chunks}</span>,
+            })}
           </h2>
 
           <p className="mt-6 text-gray-500 text-lg lg:text-xl">
-            Priče igrača, roditelja i trenera koji su transformirali svoju igru
+            {t("subtitle")}
           </p>
         </div>
 
@@ -134,7 +145,7 @@ export function Testimonials() {
                     </div>
 
                     {/* Navigation dots */}
-                    <div className="flex gap-2" role="tablist" aria-label="Odaberi izjavu">
+                    <div className="flex gap-2" role="tablist" aria-label={t("tablistAria")}>
                       {testimonials.map((testimonial, idx) => (
                         <button
                           key={idx}
@@ -144,7 +155,7 @@ export function Testimonials() {
                           }`}
                           role="tab"
                           aria-selected={idx === activeIndex}
-                          aria-label={`Izjava ${idx + 1} od ${testimonials.length}: ${testimonial.name}`}
+                          aria-label={t("dotAriaFull", { num: idx + 1, total: testimonials.length, name: testimonial.name })}
                         />
                       ))}
                     </div>
@@ -179,7 +190,7 @@ export function Testimonials() {
           </div>
 
           {/* Mobile navigation */}
-          <div className="flex justify-center gap-2 mt-8" role="tablist" aria-label="Odaberi izjavu">
+          <div className="flex justify-center gap-2 mt-8" role="tablist" aria-label={t("tablistAria")}>
             {testimonials.map((testimonial, idx) => (
               <button
                 key={idx}
@@ -189,7 +200,7 @@ export function Testimonials() {
                 }`}
                 role="tab"
                 aria-selected={idx === activeIndex}
-                aria-label={`Izjava ${idx + 1}: ${testimonial.name}`}
+                aria-label={t("dotAria", { num: idx + 1, name: testimonial.name })}
               />
             ))}
           </div>
@@ -197,18 +208,13 @@ export function Testimonials() {
 
         {/* Stats row */}
         <div className="animate-on-scroll mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { value: "1000+", label: "Aktivnih Igrača" },
-            { value: "30+", label: "Certificiranih Trenera" },
-            { value: "10", label: "Partnerskih Klubova" },
-            { value: "11", label: "Godina Iskustva" },
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
+          {statsRow.map((stat) => (
+            <div key={stat.key} className="text-center">
               <div className="text-4xl lg:text-5xl font-black text-coerver-green">
                 {stat.value}
               </div>
               <p className="mt-2 text-gray-500">
-                {stat.label}
+                {t(`stats.${stat.key}`)}
               </p>
             </div>
           ))}
@@ -218,4 +224,4 @@ export function Testimonials() {
   );
 }
 
-export { TestimonialCard, testimonials, type Testimonial };
+export { TestimonialCard, useTestimonials, type Testimonial };

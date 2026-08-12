@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const countries = [
   {
-    name: "Hrvatska",
+    key: "croatia",
     flag: "🇭🇷",
     coaches: "1000+",
     players: "5000+",
@@ -13,7 +14,7 @@ const countries = [
     image: "/images/training/training-03.webp",
   },
   {
-    name: "Slovenija",
+    key: "slovenia",
     flag: "🇸🇮",
     coaches: "500+",
     players: "1000+",
@@ -21,7 +22,7 @@ const countries = [
     image: "/images/training/training-04.webp",
   },
   {
-    name: "Bosna i Hercegovina",
+    key: "bosnia",
     flag: "🇧🇦",
     coaches: "100+",
     players: "1000+",
@@ -31,6 +32,7 @@ const countries = [
 ];
 
 export function RegionMap() {
+  const t = useTranslations("home.region");
   const [activeCountry, setActiveCountry] = useState(0);
 
   return (
@@ -44,7 +46,7 @@ export function RegionMap() {
           >
             <Image
               src={country.image}
-              alt={country.name}
+              alt={t(`countries.${country.key}`)}
               fill
               className="object-cover"
             />
@@ -68,7 +70,7 @@ export function RegionMap() {
               }`}
             >
               <span className="text-lg">{country.flag}</span>
-              <span className="hidden sm:inline">{country.name}</span>
+              <span className="hidden sm:inline">{t(`countries.${country.key}`)}</span>
             </button>
           ))}
         </div>
@@ -80,20 +82,20 @@ export function RegionMap() {
               <div className="text-5xl lg:text-7xl font-black text-white mb-1">
                 {countries[activeCountry].coaches}
               </div>
-              <div className="text-white/50 text-sm lg:text-base font-medium">Educiranih trenera</div>
+              <div className="text-white/50 text-sm lg:text-base font-medium">{t("coachesLabel")}</div>
             </div>
             <div className="text-center">
               <div className="text-5xl lg:text-7xl font-black text-coerver-green mb-1">
                 {countries[activeCountry].players}
               </div>
-              <div className="text-white/50 text-sm lg:text-base font-medium">Educiranih igrača</div>
+              <div className="text-white/50 text-sm lg:text-base font-medium">{t("playersLabel")}</div>
             </div>
           </div>
         </div>
 
         {/* Bottom - Cities */}
         <div>
-          <p className="text-white/40 text-xs font-medium uppercase tracking-wider mb-3">Lokacije</p>
+          <p className="text-white/40 text-xs font-medium uppercase tracking-wider mb-3">{t("locations")}</p>
           <div className="flex flex-wrap gap-2">
             {countries[activeCountry].cities.map((city, idx) => (
               <span

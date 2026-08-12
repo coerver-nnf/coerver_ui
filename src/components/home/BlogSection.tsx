@@ -1,12 +1,13 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
+import { useLocale, useTranslations } from "next-intl";
 import type { Post } from "@/lib/api/posts";
 
-function formatDateShort(dateString: string): string {
+function formatDateShort(dateString: string, locale: string): string {
   const date = new Date(dateString);
-  return date.toLocaleDateString("hr-HR", {
+  return date.toLocaleDateString(locale, {
     day: "numeric",
     month: "short",
     year: "numeric",
@@ -14,6 +15,8 @@ function formatDateShort(dateString: string): string {
 }
 
 export function BlogSection({ posts }: { posts: Post[] }) {
+  const t = useTranslations("home.blog");
+  const locale = useLocale();
   const featuredPost = posts[0];
   const sidePosts = posts.slice(1, 4);
 
@@ -37,10 +40,12 @@ export function BlogSection({ posts }: { posts: Post[] }) {
           <div>
             <div className="inline-flex items-center gap-2 bg-coerver-green/20 rounded-full px-4 py-2 mb-4">
               <span className="w-2 h-2 bg-coerver-green rounded-full animate-pulse" />
-              <span className="text-coerver-green text-sm font-semibold">Blog</span>
+              <span className="text-coerver-green text-sm font-semibold">{t("badge")}</span>
             </div>
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-black text-white">
-              Najnovije iz <span className="text-coerver-green">Coerver</span> svijeta
+              {t.rich("title", {
+                green: (chunks) => <span className="text-coerver-green">{chunks}</span>,
+              })}
             </h2>
           </div>
 
@@ -48,7 +53,7 @@ export function BlogSection({ posts }: { posts: Post[] }) {
             href="/blog"
             className="group inline-flex items-center gap-3 bg-white/10 hover:bg-white text-white hover:text-coerver-dark font-semibold px-6 py-3 rounded-full transition-all duration-300"
           >
-            Svi članci
+            {t("allPosts")}
             <svg
               className="w-5 h-5 group-hover:translate-x-1 transition-transform"
               fill="none"
@@ -73,9 +78,9 @@ export function BlogSection({ posts }: { posts: Post[] }) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">Uskoro novi članci</h3>
+            <h3 className="text-xl font-bold text-white mb-2">{t("emptyTitle")}</h3>
             <p className="text-white/50">
-              Pratite nas za najnovije vijesti i savjete iz svijeta nogometa.
+              {t("emptyText")}
             </p>
           </div>
         ) : (
@@ -124,10 +129,10 @@ export function BlogSection({ posts }: { posts: Post[] }) {
                           </div>
                           <div>
                             <p className="text-white font-medium text-sm">
-                              {featuredPost.author.full_name || "Coerver Tim"}
+                              {featuredPost.author.full_name || t("teamFallback")}
                             </p>
                             <p className="text-white/50 text-sm">
-                              {formatDateShort(featuredPost.created_at)}
+                              {formatDateShort(featuredPost.created_at, locale)}
                             </p>
                           </div>
                         </div>
@@ -174,7 +179,7 @@ export function BlogSection({ posts }: { posts: Post[] }) {
                         )}
                         <span className="w-1 h-1 rounded-full bg-white/30" />
                         <span className="text-white/40 text-xs">
-                          {formatDateShort(post.created_at)}
+                          {formatDateShort(post.created_at, locale)}
                         </span>
                       </div>
 
@@ -197,10 +202,10 @@ export function BlogSection({ posts }: { posts: Post[] }) {
               >
                 <div className="text-center">
                   <p className="text-white font-bold text-lg group-hover:text-white transition-colors">
-                    Pogledaj sve članke
+                    {t("viewAll")}
                   </p>
                   <p className="text-white/50 text-sm group-hover:text-white/80 transition-colors">
-                    Više članaka na blogu
+                    {t("morePosts")}
                   </p>
                 </div>
                 <div className="w-12 h-12 rounded-full bg-white/10 group-hover:bg-white flex items-center justify-center transition-colors">

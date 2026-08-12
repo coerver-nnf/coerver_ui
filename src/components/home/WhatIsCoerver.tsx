@@ -2,7 +2,8 @@
 
 import { useRef, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { RegionMap } from "./RegionMap";
@@ -12,31 +13,28 @@ if (typeof window !== "undefined") {
 }
 
 const stats = [
-  { value: "40+", label: "Godina Iskustva", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" },
-  { value: "60+", label: "Zemalja Svijeta", icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
-  { value: "1M+", label: "Igrača Globalno", icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" },
-];
+  { value: "40+", key: "experience", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" },
+  { value: "60+", key: "countries", icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
+  { value: "1M+", key: "players", icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" },
+] as const;
 
 const features = [
   {
-    title: "Za Igrače",
-    description: "Individualni i grupni treninzi za sve uzraste",
+    key: "players",
     icon: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z",
     href: "/za-igrace",
   },
   {
-    title: "Za Trenere",
-    description: "Edukacija i certifikacija trenera",
+    key: "coaches",
     icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
     href: "/za-trenere",
   },
   {
-    title: "Za Klubove",
-    description: "Partnerstva i programi za klubove",
+    key: "clubs",
     icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4",
     href: "/za-klubove",
   },
-];
+] as const;
 
 const trustedBy = [
   { name: "Dinamo Zagreb", logo: "/images/clubs/Dinamov-grb.webp" },
@@ -50,6 +48,7 @@ const trustedBy = [
 ];
 
 export function WhatIsCoerver() {
+  const t = useTranslations("home.whatIsCoerver");
   const sectionRef = useRef<HTMLElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
 
@@ -133,14 +132,15 @@ export function WhatIsCoerver() {
           </div>
           <div className="animate-on-scroll inline-flex items-center gap-2 bg-coerver-green/10 rounded-full px-4 py-2 mb-6">
             <span className="w-2 h-2 bg-coerver-green rounded-full" />
-            <span className="text-coerver-green text-sm font-semibold">Globalna metoda #1</span>
+            <span className="text-coerver-green text-sm font-semibold">{t("badge")}</span>
           </div>
           <h2 className="animate-on-scroll text-4xl lg:text-5xl xl:text-6xl font-black text-coerver-dark leading-tight">
-            Što je Coerver<span className="text-coerver-green">®</span> Coaching?
+            {t.rich("title", {
+              r: (chunks) => <span className="text-coerver-green">{chunks}</span>,
+            })}
           </h2>
           <p className="animate-on-scroll mt-6 text-lg lg:text-xl text-gray-500 leading-relaxed">
-            Globalna nogometna edukacijska tvrtka koja je razvila svjetsku metodu broj 1
-            za učenje nogometnih vještina.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -161,11 +161,11 @@ export function WhatIsCoerver() {
               <div className="absolute bottom-6 left-6 right-6 flex justify-between">
                 <div className="bg-white/10 backdrop-blur-md rounded-2xl px-5 py-4 border border-white/20">
                   <div className="text-3xl font-black text-white">40+</div>
-                  <div className="text-white/70 text-sm">Godina</div>
+                  <div className="text-white/70 text-sm">{t("yearsShort")}</div>
                 </div>
                 <div className="bg-coerver-green rounded-2xl px-5 py-4">
                   <div className="text-3xl font-black text-white">60+</div>
-                  <div className="text-white/80 text-sm">Zemalja</div>
+                  <div className="text-white/80 text-sm">{t("countriesShort")}</div>
                 </div>
               </div>
             </div>
@@ -177,21 +177,21 @@ export function WhatIsCoerver() {
           {/* Right - Content */}
           <div className="animate-on-scroll">
             <p className="text-lg lg:text-xl text-gray-600 leading-relaxed mb-6">
-              <span className="text-coerver-green font-bold">Coerver® Coaching</span> je danas prisutna
-              u preko <span className="font-semibold text-coerver-dark">60 zemalja</span> na svim
-              kontinentima, a koriste ju neke od najpoznatijih nogometnih akademija i saveza.
+              {t.rich("description", {
+                green: (chunks) => <span className="text-coerver-green font-bold">{chunks}</span>,
+                bold: (chunks) => <span className="font-semibold text-coerver-dark">{chunks}</span>,
+              })}
             </p>
 
             <p className="text-lg text-gray-500 leading-relaxed mb-8">
-              Arsenal, Bayern München, Benfica, Dinamo Zagreb, francuski nogometni savez,
-              japanski nogometni savez – samo su neke od organizacija koje koriste našu metodologiju.
+              {t("description2")}
             </p>
 
             {/* Feature cards */}
             <div className="grid gap-4">
-              {features.map((feature, index) => (
+              {features.map((feature) => (
                 <Link
-                  key={index}
+                  key={feature.key}
                   href={feature.href}
                   className="group flex items-center gap-4 p-4 rounded-2xl bg-gray-50 hover:bg-coerver-green transition-all duration-300"
                 >
@@ -201,8 +201,8 @@ export function WhatIsCoerver() {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-bold text-coerver-dark group-hover:text-white transition-colors text-base">{feature.title}</h3>
-                    <p className="text-sm text-gray-500 group-hover:text-white/80 transition-colors">{feature.description}</p>
+                    <h3 className="font-bold text-coerver-dark group-hover:text-white transition-colors text-base">{t(`features.${feature.key}.title`)}</h3>
+                    <p className="text-sm text-gray-500 group-hover:text-white/80 transition-colors">{t(`features.${feature.key}.description`)}</p>
                   </div>
                   <svg className="w-5 h-5 text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -249,7 +249,7 @@ export function WhatIsCoerver() {
                 >
                   {stat.value}
                 </div>
-                <p className="text-white/60 font-medium">{stat.label}</p>
+                <p className="text-white/60 font-medium">{t(`stats.${stat.key}`)}</p>
               </div>
             ))}
           </div>
@@ -258,7 +258,7 @@ export function WhatIsCoerver() {
         {/* Trust Badges */}
         <div className="animate-on-scroll mb-20">
           <p className="text-center text-gray-400 text-sm font-medium uppercase tracking-wider mb-8">
-            Klubovi koji nam vjeruju
+            {t("trustedBy")}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-12">
             {trustedBy.map((partner, index) => (
@@ -300,25 +300,25 @@ export function WhatIsCoerver() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span className="text-white text-sm font-semibold">Regionalna mreža</span>
+                  <span className="text-white text-sm font-semibold">{t("regionBadge")}</span>
                 </div>
 
                 <h3 className="text-3xl lg:text-4xl font-black text-white mb-4 leading-tight">
-                  Prisutni<br />u regiji
+                  {t("regionTitleLine1")}<br />{t("regionTitleLine2")}
                 </h3>
                 <p className="text-white/80 text-lg mb-8">
-                  Naši certificirani treneri provode programe diljem tri zemlje regije.
+                  {t("regionText")}
                 </p>
 
                 <div className="space-y-3 mb-8">
                   {[
-                    { country: "Hrvatska", flag: "🇭🇷" },
-                    { country: "Slovenija", flag: "🇸🇮" },
-                    { country: "BiH", flag: "🇧🇦" },
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center gap-3 bg-white/10 rounded-xl px-4 py-3">
+                    { key: "croatia", flag: "🇭🇷" },
+                    { key: "slovenia", flag: "🇸🇮" },
+                    { key: "bih", flag: "🇧🇦" },
+                  ].map((item) => (
+                    <div key={item.key} className="flex items-center gap-3 bg-white/10 rounded-xl px-4 py-3">
                       <span className="text-2xl">{item.flag}</span>
-                      <span className="font-semibold text-white">{item.country}</span>
+                      <span className="font-semibold text-white">{t(`countries.${item.key}`)}</span>
                     </div>
                   ))}
                 </div>
@@ -327,7 +327,7 @@ export function WhatIsCoerver() {
                   href="/kontakt"
                   className="inline-flex items-center gap-2 bg-white text-coerver-green font-bold px-6 py-3 rounded-full hover:bg-white/90 transition-all group"
                 >
-                  Pronađi program
+                  {t("findProgram")}
                   <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -351,8 +351,8 @@ export function WhatIsCoerver() {
             {[...Array(2)].map((_, i) => (
               <div key={i} className="flex items-center gap-8 lg:gap-12 px-4">
                 <span className="text-5xl lg:text-7xl xl:text-8xl font-black text-gray-100 uppercase tracking-tight">Ball Mastery</span>
-                <span className="text-5xl lg:text-7xl xl:text-8xl font-black text-transparent uppercase tracking-tight" style={{ WebkitTextStroke: '2px rgba(0,0,0,0.1)' }}>1v1 Potezi</span>
-                <span className="text-5xl lg:text-7xl xl:text-8xl font-black text-gray-100 uppercase tracking-tight">Završnica</span>
+                <span className="text-5xl lg:text-7xl xl:text-8xl font-black text-transparent uppercase tracking-tight" style={{ WebkitTextStroke: '2px rgba(0,0,0,0.1)' }}>{t("marquee.moves1v1")}</span>
+                <span className="text-5xl lg:text-7xl xl:text-8xl font-black text-gray-100 uppercase tracking-tight">{t("marquee.finishing")}</span>
               </div>
             ))}
           </div>
@@ -363,10 +363,10 @@ export function WhatIsCoerver() {
           <div className="animate-marquee-left flex whitespace-nowrap">
             {[...Array(2)].map((_, i) => (
               <div key={i} className="flex items-center gap-8 lg:gap-12 px-4">
-                <span className="text-5xl lg:text-7xl xl:text-8xl font-black text-transparent uppercase tracking-tight" style={{ WebkitTextStroke: '2px rgba(0,0,0,0.1)' }}>Primanje</span>
-                <span className="text-5xl lg:text-7xl xl:text-8xl font-black text-gray-100 uppercase tracking-tight">Dodavanje</span>
-                <span className="text-5xl lg:text-7xl xl:text-8xl font-black text-transparent uppercase tracking-tight" style={{ WebkitTextStroke: '2px rgba(0,0,0,0.1)' }}>Brzina</span>
-                <span className="text-5xl lg:text-7xl xl:text-8xl font-black text-gray-100 uppercase tracking-tight">Grupni Napad</span>
+                <span className="text-5xl lg:text-7xl xl:text-8xl font-black text-transparent uppercase tracking-tight" style={{ WebkitTextStroke: '2px rgba(0,0,0,0.1)' }}>{t("marquee.receiving")}</span>
+                <span className="text-5xl lg:text-7xl xl:text-8xl font-black text-gray-100 uppercase tracking-tight">{t("marquee.passing")}</span>
+                <span className="text-5xl lg:text-7xl xl:text-8xl font-black text-transparent uppercase tracking-tight" style={{ WebkitTextStroke: '2px rgba(0,0,0,0.1)' }}>{t("marquee.speed")}</span>
+                <span className="text-5xl lg:text-7xl xl:text-8xl font-black text-gray-100 uppercase tracking-tight">{t("marquee.groupAttack")}</span>
               </div>
             ))}
           </div>

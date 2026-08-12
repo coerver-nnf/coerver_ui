@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Card, CardContent } from "@/components/ui/Card";
 import { formatDate } from "@/lib/utils";
 import type { Post } from "@/types";
@@ -11,6 +12,7 @@ interface PostCardProps {
 }
 
 export function PostCard({ post, featured = false }: PostCardProps) {
+  const t = useTranslations("blog");
   if (featured) {
     return (
       <Link href={`/blog/${post.slug}`} className="group">
@@ -41,7 +43,7 @@ export function PostCard({ post, featured = false }: PostCardProps) {
 
               <div className="flex items-center gap-4 text-sm text-coerver-gray-500">
                 {post.author && (
-                  <span>{post.author.full_name || "Coerver Tim"}</span>
+                  <span>{post.author.full_name || t("team")}</span>
                 )}
                 <span>{formatDate(post.created_at)}</span>
               </div>
@@ -83,7 +85,7 @@ export function PostCard({ post, featured = false }: PostCardProps) {
                 <div className="w-6 h-6 rounded-full bg-coerver-green flex items-center justify-center text-white text-xs font-bold">
                   {(post.author.full_name || "C").charAt(0)}
                 </div>
-                <span>{post.author.full_name || "Coerver Tim"}</span>
+                <span>{post.author.full_name || t("team")}</span>
               </>
             )}
             <span>•</span>

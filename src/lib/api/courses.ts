@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/client";
+import type { Translations } from "@/lib/i18n/localize";
 
 export type CourseType = "coerver-intro" | "youth-diploma-1" | "youth-diploma-2";
 
@@ -17,6 +18,7 @@ export interface Course {
   status: "draft" | "published" | "cancelled" | "completed";
   created_at: string;
   updated_at: string;
+  translations?: Translations | null;
 }
 
 export interface CreateCourseInput {
@@ -31,6 +33,7 @@ export interface CreateCourseInput {
   capacity?: number;
   image_url?: string;
   status?: "draft" | "published" | "cancelled" | "completed";
+  translations?: Translations;
 }
 
 export interface UpdateCourseInput extends Partial<CreateCourseInput> {

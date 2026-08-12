@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
 import { createClient } from "@/lib/supabase/client";
@@ -24,12 +25,13 @@ export function InquiryForm({
   type,
   programId,
   programName,
-  title = "Pošalji Upit",
+  title,
   className = "",
   hasAccommodation = true,
   hasFullDay = false,
   hasTrainingOnly = false,
 }: InquiryFormProps) {
+  const t = useTranslations("forms.inquiry");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -113,27 +115,27 @@ export function InquiryForm({
         const extras = [];
         if (formData.accommodationType) {
           const typeLabels: Record<string, string> = {
-            with_accommodation: "S noćenjem",
-            full_day: "Cjelodnevni",
-            training_only: "Samo treninzi",
-            day_only: "Bez noćenja", // legacy support
+            with_accommodation: t("summary.withAccommodation"),
+            full_day: t("summary.fullDay"),
+            training_only: t("summary.trainingOnly"),
+            day_only: t("summary.dayOnly"), // legacy support
           };
-          extras.push(`Tip: ${typeLabels[formData.accommodationType] || formData.accommodationType}`);
+          extras.push(`${t("summary.type")}: ${typeLabels[formData.accommodationType] || formData.accommodationType}`);
         }
-        if (formData.birthYear) extras.push(`Godište: ${formData.birthYear}`);
-        if (formData.jerseySize) extras.push(`Veličina dresa: ${formData.jerseySize}`);
-        if (formData.club) extras.push(`Klub: ${formData.club}`);
-        if (formData.position) extras.push(`Pozicija: ${formData.position}`);
+        if (formData.birthYear) extras.push(`${t("summary.birthYear")}: ${formData.birthYear}`);
+        if (formData.jerseySize) extras.push(`${t("summary.jerseySize")}: ${formData.jerseySize}`);
+        if (formData.club) extras.push(`${t("summary.club")}: ${formData.club}`);
+        if (formData.position) extras.push(`${t("summary.position")}: ${formData.position}`);
         if (extras.length > 0) {
           fullMessage = `${extras.join(", ")}\n\n${formData.message}`;
         }
         if (formData.note) {
-          fullMessage = fullMessage ? `${fullMessage}\n\nNapomena: ${formData.note}` : `Napomena: ${formData.note}`;
+          fullMessage = fullMessage ? `${fullMessage}\n\n${t("summary.note")}: ${formData.note}` : `${t("summary.note")}: ${formData.note}`;
         }
       } else if (type === "course" || type === "club") {
         const extras = [];
-        if (formData.format) extras.push(`Format: ${formData.format}`);
-        if (formData.club) extras.push(`Klub: ${formData.club}`);
+        if (formData.format) extras.push(`${t("summary.format")}: ${formData.format}`);
+        if (formData.club) extras.push(`${t("summary.club")}: ${formData.club}`);
         if (extras.length > 0) {
           fullMessage = `${extras.join(", ")}\n\n${formData.message}`;
         }
@@ -144,7 +146,7 @@ export function InquiryForm({
       const isUUID = programValue && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(programValue);
 
       if (programValue && !isUUID) {
-        fullMessage = `Program: ${programValue}\n\n${fullMessage}`;
+        fullMessage = `${t("summary.program")}: ${programValue}\n\n${fullMessage}`;
       }
 
       // Insert into Supabase (client-side with proper RLS permissions)
@@ -195,7 +197,7 @@ export function InquiryForm({
       });
       setPrivacyConsent(false);
     } catch {
-      setError("Došlo je do greške. Molimo pokušajte ponovno.");
+      setError(t("error"));
       trackEvent.formError(`${type}_inquiry`, "submission_failed");
     } finally {
       setIsSubmitting(false);
@@ -221,17 +223,17 @@ export function InquiryForm({
           </svg>
         </div>
         <h3 className="text-xl font-bold text-coerver-dark mb-2">
-          Hvala na upitu!
+          {t("success.title")}
         </h3>
         <p className="text-coerver-gray-600">
-          Vaš upit je uspješno poslan. Javit ćemo vam se u najkraćem mogućem roku.
+          {t("success.message")}
         </p>
         <Button
           variant="outline"
           className="mt-6"
           onClick={() => setIsSubmitted(false)}
         >
-          Pošalji novi upit
+          {t("success.newInquiry")}
         </Button>
       </div>
     );
@@ -239,31 +241,31 @@ export function InquiryForm({
 
   return (
     <div className={`bg-white rounded-xl p-6 md:p-8 shadow-lg ${className}`}>
-      <h3 className="text-2xl font-bold text-coerver-dark mb-6">{title}</h3>
+      <h3 className="text-2xl font-bold text-coerver-dark mb-6">{title ?? t("title")}</h3>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <Input
-          label={type === "camp" ? "Ime i prezime djeteta *" : "Ime i prezime *"}
+          label={type === "camp" ? t("fields.childName.label") : t("fields.name.label")}
           name="name"
           value={formData.name}
           onChange={handleChange}
           onFocus={handleFormStart}
-          placeholder={type === "camp" ? "Unesite ime i prezime djeteta" : "Unesite vaše ime i prezime"}
+          placeholder={type === "camp" ? t("fields.childName.placeholder") : t("fields.name.placeholder")}
           required
         />
 
         <Input
-          label="Email adresa *"
+          label={t("fields.email.label")}
           name="email"
           type="email"
           value={formData.email}
           onChange={handleChange}
-          placeholder="vas@email.com"
+          placeholder={t("fields.email.placeholder")}
           required
         />
 
         <Input
-          label="Telefon"
+          label={t("fields.phone.label")}
           name="phone"
           type="tel"
           value={formData.phone}
@@ -273,19 +275,19 @@ export function InquiryForm({
 
         {type === "academy" && !programId && (
           <Select
-            label="Odaberite akademiju *"
+            label={t("fields.academy.label")}
             name="academy"
             value={selectedProgramId}
             onChange={(e) => setSelectedProgramId(e.target.value)}
             options={
               loadingPrograms
-                ? [{ value: "", label: "Učitavanje..." }]
+                ? [{ value: "", label: t("loading") }]
                 : academies.length > 0
                 ? [
-                    { value: "", label: "Odaberite akademiju" },
+                    { value: "", label: t("fields.academy.placeholder") },
                     ...academies.map((a) => ({ value: a.id, label: a.name + (a.location ? ` - ${a.location}` : "") })),
                   ]
-                : [{ value: "", label: "Nema dostupnih akademija" }]
+                : [{ value: "", label: t("fields.academy.empty") }]
             }
             required
             disabled={loadingPrograms || academies.length === 0}
@@ -294,19 +296,19 @@ export function InquiryForm({
 
         {type === "camp" && !programId && (
           <Select
-            label="Odaberite kamp *"
+            label={t("fields.camp.label")}
             name="camp"
             value={selectedProgramId}
             onChange={(e) => setSelectedProgramId(e.target.value)}
             options={
               loadingPrograms
-                ? [{ value: "", label: "Učitavanje..." }]
+                ? [{ value: "", label: t("loading") }]
                 : camps.length > 0
                 ? [
-                    { value: "", label: "Odaberite kamp" },
+                    { value: "", label: t("fields.camp.placeholder") },
                     ...camps.map((c) => ({ value: c.id, label: c.title + (c.location ? ` - ${c.location}` : "") })),
                   ]
-                : [{ value: "", label: "Nema dostupnih kampova" }]
+                : [{ value: "", label: t("fields.camp.empty") }]
             }
             required
             disabled={loadingPrograms || camps.length === 0}
@@ -315,19 +317,19 @@ export function InquiryForm({
 
         {type === "course" && !programId && (
           <Select
-            label="Odaberite tečaj *"
+            label={t("fields.course.label")}
             name="course"
             value={selectedProgramId}
             onChange={(e) => setSelectedProgramId(e.target.value)}
             options={
               loadingPrograms
-                ? [{ value: "", label: "Učitavanje..." }]
+                ? [{ value: "", label: t("loading") }]
                 : courses.length > 0
                 ? [
-                    { value: "", label: "Odaberite tečaj" },
+                    { value: "", label: t("fields.course.placeholder") },
                     ...courses.map((c) => ({ value: c.id, label: c.title + (c.location ? ` - ${c.location}` : "") })),
                   ]
-                : [{ value: "", label: "Nema dostupnih tečajeva" }]
+                : [{ value: "", label: t("fields.course.empty") }]
             }
             required
             disabled={loadingPrograms || courses.length === 0}
@@ -336,18 +338,18 @@ export function InquiryForm({
 
         {(type === "academy" || type === "individual") && (
           <Select
-            label="Dob djeteta"
+            label={t("fields.childAge.label")}
             name="childAge"
             value={formData.childAge}
             onChange={handleChange}
             options={[
-              { value: "", label: "Odaberite dob" },
-              { value: "5-6", label: "5-6 godina" },
-              { value: "7-8", label: "7-8 godina" },
-              { value: "9-10", label: "9-10 godina" },
-              { value: "11-12", label: "11-12 godina" },
-              { value: "13-14", label: "13-14 godina" },
-              { value: "15+", label: "15+ godina" },
+              { value: "", label: t("fields.childAge.placeholder") },
+              { value: "5-6", label: t("fields.childAge.years", { range: "5-6" }) },
+              { value: "7-8", label: t("fields.childAge.years", { range: "7-8" }) },
+              { value: "9-10", label: t("fields.childAge.years", { range: "9-10" }) },
+              { value: "11-12", label: t("fields.childAge.years", { range: "11-12" }) },
+              { value: "13-14", label: t("fields.childAge.years", { range: "13-14" }) },
+              { value: "15+", label: t("fields.childAge.years", { range: "15+" }) },
             ]}
           />
         )}
@@ -356,27 +358,27 @@ export function InquiryForm({
           <>
             {(hasAccommodation || hasFullDay || hasTrainingOnly) && (
               <Select
-                label="Tip prijave *"
+                label={t("fields.accommodationType.label")}
                 name="accommodationType"
                 value={formData.accommodationType}
                 onChange={handleChange}
                 options={[
-                  { value: "", label: "Odaberite tip prijave" },
-                  ...(hasAccommodation ? [{ value: "with_accommodation", label: "S noćenjem (puni kamp sa smještajem)" }] : []),
-                  ...(hasFullDay ? [{ value: "full_day", label: "Cjelodnevni (sve aktivnosti bez spavanja)" }] : []),
-                  ...(hasTrainingOnly ? [{ value: "training_only", label: "Samo treninzi" }] : []),
+                  { value: "", label: t("fields.accommodationType.placeholder") },
+                  ...(hasAccommodation ? [{ value: "with_accommodation", label: t("fields.accommodationType.withAccommodation") }] : []),
+                  ...(hasFullDay ? [{ value: "full_day", label: t("fields.accommodationType.fullDay") }] : []),
+                  ...(hasTrainingOnly ? [{ value: "training_only", label: t("fields.accommodationType.trainingOnly") }] : []),
                 ]}
                 required
               />
             )}
 
             <Select
-              label="Godište djeteta *"
+              label={t("fields.birthYear.label")}
               name="birthYear"
               value={formData.birthYear}
               onChange={handleChange}
               options={[
-                { value: "", label: "Odaberite godište" },
+                { value: "", label: t("fields.birthYear.placeholder") },
                 { value: "2019", label: "2019" },
                 { value: "2018", label: "2018" },
                 { value: "2017", label: "2017" },
@@ -391,12 +393,12 @@ export function InquiryForm({
             />
 
             <Select
-              label="Veličina dresa *"
+              label={t("fields.jerseySize.label")}
               name="jerseySize"
               value={formData.jerseySize}
               onChange={handleChange}
               options={[
-                { value: "", label: "Odaberite veličinu" },
+                { value: "", label: t("fields.jerseySize.placeholder") },
                 { value: "128", label: "128" },
                 { value: "140", label: "140" },
                 { value: "152", label: "152" },
@@ -410,33 +412,33 @@ export function InquiryForm({
             />
 
             <Input
-              label="Klub"
+              label={t("fields.club.label")}
               name="club"
               value={formData.club}
               onChange={handleChange}
-              placeholder="Naziv kluba u kojem igra"
+              placeholder={t("fields.club.placeholder")}
             />
 
             <Select
-              label="Pozicija"
+              label={t("fields.position.label")}
               name="position"
               value={formData.position}
               onChange={handleChange}
               options={[
-                { value: "", label: "Odaberite poziciju" },
-                { value: "Golman", label: "Golman" },
-                { value: "Branič", label: "Branič" },
-                { value: "Vezni", label: "Vezni" },
-                { value: "Napadač", label: "Napadač" },
+                { value: "", label: t("fields.position.placeholder") },
+                { value: t("fields.position.goalkeeper"), label: t("fields.position.goalkeeper") },
+                { value: t("fields.position.defender"), label: t("fields.position.defender") },
+                { value: t("fields.position.midfielder"), label: t("fields.position.midfielder") },
+                { value: t("fields.position.forward"), label: t("fields.position.forward") },
               ]}
             />
 
             <Textarea
-              label="Napomena"
+              label={t("fields.note.label")}
               name="note"
               value={formData.note}
               onChange={handleChange}
-              placeholder="Alergije, zdravstvene napomene ili druge važne informacije..."
+              placeholder={t("fields.note.placeholder")}
               rows={3}
             />
           </>
@@ -444,23 +446,23 @@ export function InquiryForm({
 
         {type === "course" && (
           <Input
-            label="Klub"
+            label={t("fields.clubCourse.label")}
             name="club"
             value={formData.club}
             onChange={handleChange}
-            placeholder="Naziv kluba iz kojeg se prijavljujete"
+            placeholder={t("fields.clubCourse.placeholder")}
           />
         )}
 
         {type === "course" && programId === "youth-diploma-1" && (
           <Select
-            label="Format sudjelovanja *"
+            label={t("fields.format.label")}
             name="format"
             value={formData.format}
             onChange={handleChange}
             options={[
-              { value: "", label: "Odaberite format" },
-              { value: "Uživo", label: "Uživo" },
+              { value: "", label: t("fields.format.placeholder") },
+              { value: t("fields.format.live"), label: t("fields.format.live") },
               { value: "Online", label: "Online" },
             ]}
             required
@@ -469,22 +471,22 @@ export function InquiryForm({
 
         {type === "club" && (
           <Input
-            label="Naziv kluba *"
+            label={t("fields.clubName.label")}
             name="club"
             value={formData.club}
             onChange={handleChange}
-            placeholder="Naziv vašeg kluba"
+            placeholder={t("fields.clubName.placeholder")}
             required
           />
         )}
 
         {type !== "camp" && (
           <Textarea
-            label="Poruka *"
+            label={t("fields.message.label")}
             name="message"
             value={formData.message}
             onChange={handleChange}
-            placeholder="Napišite vašu poruku ili pitanje..."
+            placeholder={t("fields.message.placeholder")}
             rows={4}
             required
           />
@@ -507,15 +509,15 @@ export function InquiryForm({
               className="mt-1 w-5 h-5 rounded border-gray-300 text-coerver-green focus:ring-coerver-green cursor-pointer"
             />
             <span className="text-sm text-gray-600 group-hover:text-gray-800">
-              Pročitao/la sam i slažem se s{" "}
+              {t("consent.textStart")}{" "}
               <a
                 href="/privatnost"
                 target="_blank"
                 className="text-coerver-green hover:underline font-medium"
               >
-                politikom privatnosti
+                {t("consent.privacyLink")}
               </a>{" "}
-              te pristajem na obradu mojih osobnih podataka u svrhu obrade ovog upita. *
+              {t("consent.textEnd")}
             </span>
           </label>
         </div>
@@ -528,7 +530,7 @@ export function InquiryForm({
           isLoading={isSubmitting}
           disabled={!privacyConsent}
         >
-          Pošalji Upit
+          {t("submit")}
         </Button>
       </form>
     </div>

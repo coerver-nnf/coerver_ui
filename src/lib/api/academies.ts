@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/client";
+import type { Translations } from "@/lib/i18n/localize";
 
 export interface Academy {
   id: string;
@@ -15,6 +16,7 @@ export interface Academy {
   status: "active" | "inactive";
   created_at: string;
   updated_at: string;
+  translations?: Translations | null;
 }
 
 export interface CreateAcademyInput {
@@ -29,6 +31,7 @@ export interface CreateAcademyInput {
   contact_phone?: string;
   image_url?: string;
   status?: "active" | "inactive";
+  translations?: Translations;
 }
 
 export interface UpdateAcademyInput extends Partial<CreateAcademyInput> {

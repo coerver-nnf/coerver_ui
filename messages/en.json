@@ -1,0 +1,1776 @@
+{
+  "metadata": {
+    "title": "Coerver Coaching Croatia | Football Academy",
+    "description": "We develop top footballers through the proven Coerver methodology. Academies, camps, individual training and coach education.",
+    "ogDescription": "We develop top footballers through the proven Coerver methodology.",
+    "keywords": "football, football academy, Coerver, training, kids, young footballers, Zagreb, Croatia, coaches, diploma",
+    "jsonLd": {
+      "academies": "Coerver Academies",
+      "academiesDesc": "Regular group training sessions using the proven Coerver methodology",
+      "camps": "Football Camps",
+      "campsDesc": "Intensive multi-day programmes during school holidays",
+      "diploma": "Coerver Diploma Pathway",
+      "diplomaDesc": "Coach education based on the Coerver methodology"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "players": "Players",
+    "allPrograms": "All Programs",
+    "academies": "Academies",
+    "individualTrainings": "Individual Training",
+    "camps": "Camps",
+    "coaches": "Coaches",
+    "coerverIntro": "Coerver® Intro",
+    "youthDiploma1": "Youth Diploma 1",
+    "youthDiploma2": "Youth Diploma 2",
+    "clubs": "Clubs",
+    "blog": "Blog",
+    "contact": "Contact",
+    "login": "Log In",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "joinTitle": "Join Us",
+    "joinSubtitle": "Become part of the Coerver family",
+    "joinCta": "Sign Up",
+    "contactUs": "Contact us",
+    "changeLanguage": "Change language"
+  },
+  "footer": {
+    "description": "We develop top footballers through the proven Coerver methodology. Join the worldwide family of Coerver training.",
+    "location": "Zagreb, Croatia",
+    "forPlayers": "For Players",
+    "forCoaches": "For Coaches",
+    "newsletter": "Newsletter",
+    "newsletterText": "Sign up for the latest news and exclusive offers.",
+    "newsletterThanks": "Thank you for subscribing! Check your email.",
+    "emailPlaceholder": "Your email",
+    "subscribe": "Subscribe",
+    "rights": "All rights reserved.",
+    "aboutUs": "About Us",
+    "privacy": "Privacy"
+  },
+  "players": {
+    "index": {
+      "heroAlt": "Young player in action",
+      "badge": "For Players",
+      "heroTitle1": "Develop your",
+      "heroTitle2": "full potential",
+      "heroText": "No matter your current level, we have a program that will take you to the next stage. Join thousands of young footballers.",
+      "signUp": "Sign up",
+      "viewPrograms": "View programs",
+      "programs": {
+        "badge": "Programs",
+        "title": "Choose your path",
+        "text": "Three ways to develop your football career - choose the one that suits you best.",
+        "learnMore": "Learn more",
+        "0": {
+          "title": "Academies",
+          "subtitle": "Regular training",
+          "description": "Regular group training sessions in your city. Structured programs for all age groups from 7 to 14 years.",
+          "features": {
+            "0": "Small groups",
+            "1": "All cities"
+          }
+        },
+        "1": {
+          "title": "Individual training",
+          "subtitle": "1-on-1 training",
+          "description": "Personalized training sessions tailored to the specific needs and goals of each player.",
+          "features": {
+            "0": "Flexible",
+            "1": "Faster progress",
+            "2": "Personal plan"
+          }
+        },
+        "2": {
+          "title": "Camps",
+          "subtitle": "Intensive programs",
+          "description": "Intensive football camps during school holidays. Multi-day programs full of football and fun.",
+          "features": {
+            "0": "Summer & Winter",
+            "1": "Full-day",
+            "2": "Friendships"
+          }
+        }
+      },
+      "pyramid": {
+        "0": {
+          "title": "Ball Mastery",
+          "description": "The foundation of everything - complete ball control with all parts of both feet."
+        },
+        "1": {
+          "title": "Receiving & Passing",
+          "description": "First touch - team skills."
+        },
+        "2": {
+          "title": "1v1 - attack and defence",
+          "description": "Change of directions, stops & starts and feints."
+        },
+        "3": {
+          "title": "Speed",
+          "description": "Speed with and without the ball - speed of decision-making."
+        },
+        "4": {
+          "title": "Finishing",
+          "description": "Creating goal-scoring chances and finishing."
+        },
+        "5": {
+          "title": "Group Attack",
+          "description": "Attacking and defending in small groups."
+        }
+      },
+      "stats": {
+        "0": "Active players",
+        "1": "Coaches",
+        "2": "Satisfaction",
+        "3": "Locations"
+      },
+      "ageGroups": {
+        "badge": "Age groups",
+        "title1": "A program for",
+        "title2": "every age",
+        "text": "Our programs are carefully designed for every developmental stage of a young footballer.",
+        "imageAlt": "Coerver Player Pathway - a program for every age"
+      },
+      "skills": {
+        "badge": "What you'll learn",
+        "title": "Skills that make the difference",
+        "text": "Our programs are designed to develop a complete player - technically excellent, mentally strong and tactically aware.",
+        "imageAlt": "Coerver training",
+        "recommend1": "Of parents recommend",
+        "recommend2": "Coerver programs",
+        "players1": "500+ players",
+        "players2": "training actively"
+      },
+      "cta": {
+        "badge": "Free trial training",
+        "title": "Ready to start?",
+        "text": "Sign up for a free trial session and discover why thousands of young footballers choose Coerver. No obligations.",
+        "signUpNow": "Sign up now",
+        "contactUs": "Contact us"
+      }
+    },
+    "academies": {
+      "heroAlt": "Coerver academy",
+      "breadcrumbParent": "For Players",
+      "breadcrumbCurrent": "Academies",
+      "heroTitle": "Academies",
+      "heroText": "Regular group training based on the proven Coerver methodology. Find an academy in your city and start your journey towards football excellence.",
+      "signUp": "Sign up",
+      "findLocation": "Find a location",
+      "stats": {
+        "locations": "Locations",
+        "cities": "Cities",
+        "maxPlayers": "Max players per group",
+        "minutes": "Minutes per session"
+      },
+      "locations": {
+        "badge": "Locations",
+        "title": "Find an academy",
+        "text": "Coerver academies are present in all major Croatian cities.",
+        "empty": "There are currently no active academies.",
+        "schedule": "Schedule",
+        "ageGroups": "Age groups",
+        "years": "{age} yrs",
+        "signUp": "Sign up",
+        "signUpLocation": "Sign up for this location"
+      },
+      "structure": {
+        "badge": "Training structure",
+        "title": "What awaits you at training?",
+        "text": "90 minutes of structured training based on the proven Coerver methodology.",
+        "phases": {
+          "0": {
+            "title": "Warm-up",
+            "description": "Dynamic warm-up through ball mastery"
+          },
+          "1": {
+            "title": "Speed",
+            "description": "Speed with and without the ball"
+          },
+          "2": {
+            "title": "1v1",
+            "description": "Change of directions, stops & starts and feints"
+          },
+          "3": {
+            "title": "Small Group Play",
+            "description": "Receiving, passing, combination and finishing drills"
+          },
+          "4": {
+            "title": "Small Sided Game",
+            "description": "Games on a reduced pitch"
+          },
+          "5": {
+            "title": "Homework",
+            "description": "Moves to practise in your free time"
+          }
+        }
+      },
+      "inquiry": {
+        "badge": "Sign-up",
+        "title": "Sign up for an academy",
+        "text": "Fill in the form and we will get back to you with available slots and all the necessary information. You can also come to a free trial session!",
+        "email": "Email",
+        "phone": "Phone",
+        "formTitle": "Send an inquiry"
+      }
+    },
+    "individual": {
+      "heroAlt": "Individual training",
+      "breadcrumbParent": "For Players",
+      "breadcrumbCurrent": "Individual training",
+      "heroTitle1": "1-on-1",
+      "heroTitle2": "Training",
+      "heroText": "Maximum attention, maximum results. Personalized training sessions tailored to your goals and needs.",
+      "bookSlot": "Book a slot",
+      "benefits": {
+        "badge": "Benefits",
+        "title": "Why individual training?",
+        "0": {
+          "title": "Personalized Program",
+          "description": "Every session is designed specifically for your needs and goals."
+        },
+        "1": {
+          "title": "Flexible Schedule",
+          "description": "You choose the time and place of training that suits you best."
+        },
+        "2": {
+          "title": "Faster Progress",
+          "description": "The coach's 100% focus on you means faster acquisition of new skills."
+        },
+        "3": {
+          "title": "Continuous Monitoring",
+          "description": "Monitoring the player through matches and evaluations."
+        }
+      },
+      "coaches": {
+        "badge": "Our coaches",
+        "title": "Certified experts",
+        "text": "All our coaches have completed rigorous Coerver education and have extensive experience working with young players.",
+        "0": {
+          "title": "Director of Coerver Croatia, Slovenia and BiH",
+          "licence": "UEFA A",
+          "experience": "16+ years of experience"
+        },
+        "1": {
+          "title": "Director of Coerver Split",
+          "licence": "UEFA B",
+          "experience": "11+ years of experience"
+        },
+        "2": {
+          "title": "Director of Coerver Varaždin",
+          "licence": "National Pro Licence",
+          "experience": "20+ years of experience"
+        }
+      },
+      "process": {
+        "badge": "How it works",
+        "title": "4 simple steps",
+        "0": {
+          "title": "Contact Us",
+          "description": "Send an inquiry with information about the player and their goals."
+        },
+        "1": {
+          "title": "Assessment",
+          "description": "An initial meeting to assess the level and define a plan."
+        },
+        "2": {
+          "title": "Schedule Sessions",
+          "description": "Choose the slots that suit you."
+        },
+        "3": {
+          "title": "Start Training",
+          "description": "Start training and track your progress."
+        }
+      },
+      "booking": {
+        "badge": "Booking",
+        "title": "Book your slot",
+        "text": "Fill in the form with basic information and we will get back to you within 24 hours with available slots.",
+        "needToKnow": "What we need to know:",
+        "items": {
+          "0": "The player's age and current level",
+          "1": "Goals and areas for improvement",
+          "2": "Preferred location and time slots"
+        },
+        "formTitle": "Send an inquiry"
+      }
+    },
+    "camps": {
+      "countdown": {
+        "days": "days",
+        "hours": "hrs",
+        "min": "min",
+        "sec": "sec"
+      },
+      "quickForm": {
+        "thanks": "Thank you for your inquiry!",
+        "reply": "We will get back to you as soon as possible.",
+        "name": "Full name",
+        "email": "Email address",
+        "phone": "Mobile number",
+        "sending": "Sending...",
+        "send": "Send inquiry"
+      },
+      "trustStats": {
+        "0": "Participants per year",
+        "1": "Years of experience",
+        "2": "Satisfied parents"
+      },
+      "benefits": {
+        "0": {
+          "title": "Coerver methodology",
+          "description": "A world-renowned method for developing technical skills"
+        },
+        "1": {
+          "title": "Licensed coaches",
+          "description": "UEFA licensed coaches with a Coerver certificate"
+        },
+        "2": {
+          "title": "Small groups",
+          "description": "A maximum of 12 players per coach for an individual approach"
+        },
+        "3": {
+          "title": "All inclusive",
+          "description": "Equipment, meals, insurance and a certificate"
+        }
+      },
+      "testimonials": {
+        "0": {
+          "text": "My son came back from camp full of enthusiasm! His technical progress is incredible, and he made new friends too.",
+          "role": "Luka's mum (age 9)"
+        },
+        "1": {
+          "text": "Professional approach, excellent organization. The kids are constantly active and learn through play. I recommend it to everyone!",
+          "role": "Ivan's dad (age 11)"
+        },
+        "2": {
+          "text": "This is the third year in a row we're sending our son to a Coerver camp. Every year he comes back with new skills and an even greater love for football.",
+          "role": "Petar's mum (age 12)"
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "What should a child bring to camp?",
+          "answer": "Football boots or trainers, shin guards, a water bottle, personal hygiene items and a good attitude! You receive Coerver equipment at the camp."
+        },
+        "1": {
+          "question": "Is lunch included?",
+          "answer": "Depending on the duration of the camp, players have a meal included, i.e. lunch and/or a snack."
+        },
+        "2": {
+          "question": "What if a child has no previous experience?",
+          "answer": "Our camps are adapted to all levels - from complete beginners to advanced players. Groups are formed by age and ability."
+        },
+        "3": {
+          "question": "How can I cancel my registration?",
+          "answer": "Free cancellation up to 14 days before the start of the camp. After that, we retain 50% of the amount paid."
+        }
+      },
+      "card": {
+        "nextCamp": "Next camp",
+        "full": "Fully booked",
+        "spotsLeftUrgent": "{count, plural, one {Only # spot left!} other {Only # spots left!}}",
+        "viewing": "{count, plural, one {# person viewing} other {# people viewing}}",
+        "from": "from",
+        "daysUntil": "days to go",
+        "date": "Date",
+        "location": "Location",
+        "age": "Age",
+        "spots": "Spots",
+        "ageValue": "{ages} yrs",
+        "spotsFree": "{count} available",
+        "percentFull": "{percent}% full",
+        "hurry": "Hurry!",
+        "deadline": "Registration closes in:",
+        "signUp": "Sign up"
+      },
+      "galleryAlt": "Gallery {num}",
+      "hero": {
+        "imageAlt": "Football camp",
+        "badge": "Limited spots - Summer 2026",
+        "title1": "Secure Your",
+        "title2": "Spot Today",
+        "text": "Spots fill up fast. Sign your child up for a football camp that develops technical skills, builds confidence and creates friendships for life.",
+        "reserve": "Reserve a spot",
+        "callUs": "Call us",
+        "questions": "Have questions?",
+        "reply24h": "We reply within 24h",
+        "emailBtn": "Email",
+        "partners": "Official partners",
+        "quickInquiry": "Quick inquiry"
+      },
+      "list": {
+        "badge": "Upcoming camps",
+        "title": "Reserve your spot",
+        "text": "The number of spots is limited - secure yours in time!",
+        "emptyTitle": "There are currently no upcoming camps",
+        "emptyText": "Follow us on social media or leave us your contact details to be notified about new camps.",
+        "notifyMe": "Notify me about new camps",
+        "followUs": "Follow us"
+      },
+      "gallery": {
+        "badge": "Gallery",
+        "title": "See the atmosphere at our camps",
+        "text": "Every camp is an opportunity for learning, fun and creating unforgettable memories. See what it looks like in practice.",
+        "instagram": "More on Instagram"
+      },
+      "why": {
+        "title": "Why choose a Coerver camp?",
+        "text": "For more than 35 years, the Coerver methodology has been developing the technical skills of young footballers around the world.",
+        "alts": {
+          "0": "Training at camp",
+          "1": "Camp activities",
+          "2": "Group training",
+          "3": "Fun at camp"
+        }
+      },
+      "parents": {
+        "badge": "Parents' experiences",
+        "title": "What do parents say?",
+        "text": "More than 500 satisfied families every year",
+        "googleReviews": "on Google reviews"
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "text": "Have more questions? Feel free to contact us by email or phone.",
+        "cardTitle": "Have questions?",
+        "cardText": "Our team is here for you. Get in touch and we will be happy to answer all your questions.",
+        "email": "Email",
+        "phone": "Phone"
+      },
+      "finalCta": {
+        "title": "Get your child ready for an unforgettable summer",
+        "text": "Sign up today and secure a spot at one of our camps. The number of spots is limited!",
+        "signUpNow": "Sign up now"
+      },
+      "stickyCta": "Sign up for a camp"
+    },
+    "campDetail": {
+      "countdown": {
+        "deadline": "Registration closes in:",
+        "d": "d",
+        "h": "h",
+        "m": "m"
+      },
+      "testimonialsDefault": {
+        "0": {
+          "text": "My son came back from camp full of enthusiasm! His technical progress is incredible.",
+          "role": "Luka's mum (age 9)"
+        },
+        "1": {
+          "text": "Professional approach, excellent organization. I recommend it to everyone!",
+          "role": "Ivan's dad (age 11)"
+        }
+      },
+      "allAges": "All ages",
+      "yearsSuffix": "{ages} yrs",
+      "breadcrumb": "Camps",
+      "viewingNow": "{count} viewing now",
+      "spotsLeft": "{count, plural, one {# spot left!} other {# spots left!}}",
+      "full": "Fully booked",
+      "subtitleFallback": "Join hundreds of young footballers for an unforgettable week of training, games and new friendships.",
+      "trust": {
+        "participants": "500+ participants",
+        "rating": "4.9 rating",
+        "returning": "98% come back"
+      },
+      "from": "from",
+      "perPerson": "/person",
+      "signUpNow": "Sign up now",
+      "hurrySpots": "{count, plural, one {Hurry - only # spot left!} other {Hurry - only # spots left!}}",
+      "spotsAvailable": "{count} spots available",
+      "info": {
+        "date": "Date",
+        "location": "Location",
+        "age": "Age",
+        "spots": "Spots",
+        "spotsValue": "{count} available"
+      },
+      "statsCard": {
+        "soldOut": "Sold out in 2 weeks last year!",
+        "occupancy": "Camp occupancy",
+        "spots": "{count} spots",
+        "percentFull": "{percent}% full",
+        "hurry": "Hurry up and register!",
+        "insurance": "Insurance included",
+        "equipment": "Equipment included"
+      },
+      "tiers": {
+        "trainingOnly": {
+          "name": "Training only",
+          "description": "For local players attending training sessions only",
+          "features": {
+            "0": "All Coerver® training sessions",
+            "1": "Official Coerver equipment",
+            "2": "Insurance included"
+          }
+        },
+        "fullDay": {
+          "name": "Full-day",
+          "description": "All daytime activities, no overnight stay",
+          "features": {
+            "0": "All Coerver® training sessions",
+            "1": "Lunch and a snack",
+            "2": "All daytime activities",
+            "3": "Official Coerver equipment",
+            "4": "Insurance included"
+          }
+        },
+        "accommodation": {
+          "name": "With accommodation",
+          "description": "The complete camp experience with accommodation",
+          "features": {
+            "0": "All Coerver® training sessions",
+            "1": "Accommodation included",
+            "2": "All meals",
+            "3": "Daytime and evening activities",
+            "4": "Official Coerver equipment",
+            "5": "Insurance included"
+          }
+        }
+      },
+      "about": {
+        "badge": "About the camp",
+        "title": "What awaits you?",
+        "whyTitle": "Why choose this camp?"
+      },
+      "weekly": {
+        "badge": "Camp program",
+        "title": "Weekly schedule",
+        "text": "Every day brings a new theme and new skills",
+        "day": "Day {num}"
+      },
+      "daily": {
+        "badge": "Daily schedule",
+        "title": "A typical day at camp",
+        "text": "Every day is carefully planned to provide the optimal balance of training, rest and fun.",
+        "alts": {
+          "0": "Training at camp",
+          "1": "Camp activities",
+          "2": "Group training",
+          "3": "Fun at camp"
+        }
+      },
+      "included": {
+        "title": "What's included",
+        "bringTitle": "What to bring"
+      },
+      "pricing": {
+        "badge": "Prices",
+        "title": "Choose your package",
+        "text": "Three options tailored to your needs - from training only to the complete camp experience",
+        "popular": "Most popular",
+        "perPerson": "/person",
+        "choose": "Choose package"
+      },
+      "gallery": {
+        "badge": "Gallery",
+        "title": "Photos from our camps",
+        "alt": "Gallery {num}"
+      },
+      "testimonials": {
+        "badge": "Experiences",
+        "title": "What parents say",
+        "googleReviews": "on Google reviews"
+      },
+      "faq": {
+        "title": "Frequently asked questions"
+      },
+      "location": {
+        "badge": "Location",
+        "openMaps": "Open in Google Maps",
+        "imageAlt": "Camp location"
+      },
+      "register": {
+        "limited": "Limited number of spots",
+        "soldOutLastYear": "Sold out last year!",
+        "title": "Reserve your spot",
+        "text": "Don't wait - registration is closing and spots fill up fast!",
+        "freeCancel": "Free cancellation up to 14 days before",
+        "installments": "Payment in installments",
+        "prices": "Prices",
+        "accommodationDesc": "Full camp with accommodation",
+        "fullDayDesc": "All activities without an overnight stay",
+        "trainingOnlyDesc": "Training sessions only",
+        "included": {
+          "0": "All meals included",
+          "1": "Coerver equipment included",
+          "2": "Insurance included"
+        },
+        "freeSpots": "Available spots",
+        "halfFull": "More than half of the spots are already taken!",
+        "signUpToday": "Sign up today and secure your spot!",
+        "formTitle": "Camp registration"
+      },
+      "back": "Back to all camps",
+      "stickyMobile": {
+        "priceFrom": "Price from",
+        "signUp": "Sign up"
+      },
+      "sticky": {
+        "spotsLeft": "{count, plural, one {Only # spot left!} other {Only # spots left!}}",
+        "closing": "Registration closes in {days}d {hours}h",
+        "priceFrom": "Price from",
+        "occupancy": "Occupancy",
+        "spotsFree": "{count} available",
+        "signUpNow": "Sign up now",
+        "freeCancel": "Free cancellation"
+      }
+    }
+  },
+  "coaches": {
+    "index": {
+      "badge": "For Coaches",
+      "heroAlt": "Coerver coach",
+      "heroTitleTop": "Learn the secrets of the",
+      "heroTitleBottom": "method",
+      "heroText": "Get educated in the world-renowned Coerver® method and take your coaching skills to the next level. Join a network of over 1000+ educated coaches across Croatia, Slovenia and Bosnia & Herzegovina.",
+      "viewCourses": "View courses",
+      "whyCoerver": "Why Coerver®?",
+      "stats": {
+        "0": "Educated coaches",
+        "1": "Countries",
+        "2": "Years of tradition"
+      },
+      "pathBadge": "Path to the diploma",
+      "pathText": "A progressive education system that takes you from the basics to expertise in the Coerver® methodology.",
+      "courses": {
+        "0": {
+          "description": "An introductory course in the Coerver methodology, giving you an introduction to the ball mastery and 1v1 curriculum",
+          "duration": "1 day",
+          "level": "Beginner"
+        },
+        "1": {
+          "description": "The topic is creating training sessions with the Coerver® session planner",
+          "duration": "2 days",
+          "level": "Intermediate"
+        },
+        "2": {
+          "description": "The Coerver box/trap curriculum — how to develop a team playing style based on possession and an attacking style of play.",
+          "duration": "2 days",
+          "level": "Advanced"
+        }
+      },
+      "learnMore": "Learn more",
+      "benefitsBadge": "Benefits",
+      "benefitsTitlePre": "Why get educated in the",
+      "benefitsTitlePost": "methodology?",
+      "benefits": {
+        "0": {
+          "title": "Globally Recognized Method",
+          "description": "A Coerver® certificate for your acquired knowledge, recognized around the world."
+        },
+        "1": {
+          "title": "Access To Materials",
+          "description": "Practical sessions and the Coerver manual with drills"
+        },
+        "2": {
+          "title": "Coach Network",
+          "description": "Become part of the global network of Coerver-educated coaches."
+        },
+        "3": {
+          "title": "Continuous Development",
+          "description": "A pathway that starts from the foundations and ends with team development."
+        }
+      },
+      "coursesBadge": "Our courses",
+      "coursesTitle": "Choose your course",
+      "duration": "Duration",
+      "price": "Price",
+      "signUp": "Sign up",
+      "testimonialsBadge": "Testimonials",
+      "testimonialsTitle": "What do our coaches say?",
+      "testimonials": {
+        "0": {
+          "role": "Coach, NK Osijek U15",
+          "content": "The Coerver diploma changed the way I approach training. My players have progressed faster than ever."
+        },
+        "1": {
+          "role": "Coach, NK Hajduk U12",
+          "content": "The structured approach to Ball Mastery gave me tools I use every day. An irreplaceable experience."
+        }
+      },
+      "ctaTitle": "Ready for the next step?",
+      "ctaText": "Join the network of certified Coerver coaches and transform the way you train young players.",
+      "startIntro": "Start with the Intro course",
+      "contactUs": "Contact us"
+    },
+    "intro": {
+      "breadcrumb": "For Coaches",
+      "heroAlt": "Coerver Intro course",
+      "heroText": "A one-day introduction to the Coerver methodology. The perfect first step for coaches who want to get to know the Coerver ball mastery and 1v1 curriculum.",
+      "duration": "Duration",
+      "durationValue": "1 day",
+      "level": "Level",
+      "levelValue": "Beginner",
+      "signUp": "Sign up",
+      "learnBadge": "Course content",
+      "learnTitle": "What will you learn?",
+      "learn": {
+        "0": {
+          "title": "Coerver Evolution",
+          "desc": "The evolution of Coerver drills and games."
+        },
+        "1": {
+          "desc": "Ball control drills for all ages and levels, and how to implement them in your own training sessions."
+        },
+        "2": {
+          "desc": "Skills for every player — change of direction, starts & stops and feint moves for every situation in the game."
+        }
+      },
+      "scheduleBadge": "Schedule",
+      "scheduleTitle": "Daily program",
+      "curriculum": {
+        "0": {
+          "topic": "Introduction to the Coerver Methodology",
+          "desc": "The history, philosophy and principles of Coerver Coaching."
+        },
+        "1": {
+          "topic": "Coffee break"
+        },
+        "2": {
+          "topic": "Ball Mastery - Theory and Practice",
+          "desc": "Basic ball control drills and how to apply them."
+        },
+        "3": {
+          "topic": "Lunch"
+        },
+        "4": {
+          "topic": "1v1 - Theory and Practice",
+          "desc": "An introduction to the fundamental dribbling moves and teaching methodology."
+        },
+        "5": {
+          "topic": "Break"
+        },
+        "6": {
+          "topic": "Wrap-up",
+          "desc": "A recap of the full day of sessions."
+        }
+      },
+      "includedBadge": "What you get",
+      "includedTitle": "Included in the price",
+      "included": {
+        "0": "Coerver Intro certificate",
+        "1": "15+ drills and games with variations",
+        "2": "Coerver manual",
+        "3": "Networking with other coaches"
+      },
+      "altTraining": "Coerver training",
+      "altEducation": "Coerver education",
+      "altGroup": "Group training",
+      "altMethod": "Coerver methodology",
+      "datesBadge": "Dates",
+      "datesTitle": "Upcoming courses",
+      "noDates": "No dates scheduled at the moment",
+      "noDatesText": "Contact us for information about upcoming dates.",
+      "sendInquiry": "Send an inquiry",
+      "spots": "{count} spots",
+      "nextBadge": "Next steps",
+      "nextTitle": "Continue your journey",
+      "nextText": "After the Coerver Intro course, you can continue with Youth Diploma 1 and 2 for full Coerver certification.",
+      "regBadge": "Registration open",
+      "regTitle": "Sign up for Coerver Intro",
+      "regText": "Fill out the form and reserve your spot at one of the upcoming dates.",
+      "courseInfo": "Course information:",
+      "info": {
+        "0": {
+          "label": "Max. 20 participants",
+          "sublabel": "per date"
+        },
+        "1": {
+          "label": "No prerequisites",
+          "sublabel": "open to all coaches"
+        }
+      },
+      "formTitle": "Registration"
+    },
+    "yd1": {
+      "breadcrumb": "For Coaches",
+      "levelBadge": "Intermediate level",
+      "heroText": "A two-day intensive program in which coaches learn how to create a Coerver training session using the Coerver session planner. The course is available in person or online.",
+      "duration": "Duration",
+      "durationValue": "2 days",
+      "format": "Format",
+      "formatValue": "In person or Online",
+      "signUp": "Sign up",
+      "modulesBadge": "Curriculum",
+      "modulesTitle": "What will you learn?",
+      "modulesText": "Youth Diploma 1 covers the five key modules of the Coerver methodology.",
+      "modules": {
+        "0": {
+          "title": "Warm-up",
+          "desc": "Drills on how to use ball mastery in the warm-up."
+        },
+        "1": {
+          "title": "Speed",
+          "desc": "Speed drills with the ball."
+        },
+        "2": {
+          "desc": "1v1 moves plus 1v1 and 2v2 games."
+        },
+        "3": {
+          "desc": "Games in small groups. Game drills focused on receiving, passing, combination play and finishing."
+        },
+        "4": {
+          "title": "Small-Sided Games",
+          "desc": "Themed and free games to develop all skills under full pressure."
+        }
+      },
+      "scheduleBadge": "Schedule",
+      "scheduleTitle": "Day-by-day program",
+      "dayLabel": "Day {num}",
+      "day1Title": "Theory sessions online",
+      "day2Title": "Practical sessions in person and online",
+      "day1": {
+        "0": "Introduction to the course",
+        "1": "What is Coerver® Coaching?",
+        "2": "Break",
+        "3": "The Coerver® Coaching player development system",
+        "4": "Break",
+        "5": "Planning training sessions through the season",
+        "6": "Break",
+        "7": "How to become a better coach",
+        "8": "Questions & answers"
+      },
+      "day2": {
+        "0": "Example Coerver® training session",
+        "1": "Break",
+        "2": "Coerver® foundations – Ball Mastery, Speed and 1v1",
+        "3": "Lunch",
+        "4": "Small Group Play & Small Sided Game",
+        "5": "Break",
+        "6": "Coerver® finishing – playing in the \"Golden Zone\"",
+        "7": "Course summary, Questions & answers"
+      },
+      "includedBadge": "What you get",
+      "includedTitle": "Included in the price",
+      "included": {
+        "0": "Youth Diploma 1 certificate",
+        "1": "A complete set of manuals and materials",
+        "2": "Lunch and refreshments",
+        "3": "25 drills with variations"
+      },
+      "altEducation": "Coerver education",
+      "datesBadge": "Dates",
+      "datesTitle": "Upcoming courses",
+      "noDates": "No dates scheduled at the moment",
+      "noDatesText": "Contact us for information about upcoming dates.",
+      "sendInquiry": "Send an inquiry",
+      "spots": "{count} spots",
+      "nextBadge": "Next step",
+      "nextTitle": "Continue with Youth Diploma 2",
+      "nextText": "After successfully completing YD1, you can continue with Youth Diploma 2 for complete Coerver certification.",
+      "regTitle": "Sign up for Youth Diploma 1",
+      "regText": "Fill out the form and start your journey towards Coerver certification.",
+      "prereqTitle": "Prerequisites:",
+      "prereq": {
+        "0": "Active coaching experience"
+      },
+      "formTitle": "YD1 registration"
+    },
+    "yd2": {
+      "breadcrumb": "For Coaches",
+      "levelBadge": "Advanced level",
+      "heroText": "The advanced level of Coerver education. Developing the Coerver team style of play (box/trap).",
+      "duration": "Duration",
+      "durationValue": "2 days",
+      "signUp": "Sign up",
+      "modulesBadge": "Advanced curriculum",
+      "modulesTitle": "What will you learn?",
+      "modulesText": "YD2 expands your knowledge with advanced techniques and tactical elements.",
+      "modules": {
+        "0": {
+          "desc": "Coerver team ball mastery, speed, 1v1."
+        },
+        "1": {
+          "desc": "Preventing attacks and starting attacks."
+        },
+        "2": {
+          "desc": "Combination play in tight spaces, quick counter-attacks, penetrating passes"
+        },
+        "3": {
+          "desc": "Creating goal-scoring chances and finishing."
+        }
+      },
+      "pathwayBadge": "Complete education",
+      "pathwayTitle": "Your Coerver Pathway",
+      "levels": {
+        "0": "Beginner",
+        "1": "Intermediate",
+        "2": "Advanced"
+      },
+      "pathwayText": "After Youth Diploma 2 you gain complete insight into the Coerver player development system.",
+      "includedBadge": "What you get",
+      "includedTitle": "Complete education",
+      "included": {
+        "0": "Youth Diploma 2 certificate",
+        "1": "Lunch and refreshments",
+        "2": "Invitation to the annual conference",
+        "3": "70+ Coerver drills with variations",
+        "4": "The opportunity to work on Coerver programs"
+      },
+      "certSubtitle": "Complete education",
+      "certRecognized": "Recognized around the world",
+      "datesBadge": "Dates",
+      "datesTitle": "Upcoming courses",
+      "noDates": "No dates scheduled at the moment",
+      "noDatesText": "Contact us for information about upcoming dates.",
+      "sendInquiry": "Send an inquiry",
+      "spots": "{count} spots",
+      "regTitle": "Sign up for Youth Diploma 2",
+      "regText": "Complete your Coerver certification and become part of the global network of licensed coaches.",
+      "prereqTitle": "Prerequisites:",
+      "prereq": {
+        "0": "Completed Youth Diploma 1 course",
+        "1": "A minimum of 6 months of practical experience after YD1"
+      },
+      "groupDiscount": "Group discount",
+      "discountText": "Sign up together with a colleague and you both get a 10% discount!",
+      "formTitle": "YD2 registration"
+    }
+  },
+  "blog": {
+    "hero": {
+      "badge": "Blog",
+      "title": "News, tips and",
+      "titleHighlight": "inspiration",
+      "subtitle": "Tips for coaches and players, news from the Coerver world and success stories from our community."
+    },
+    "empty": {
+      "title": "No published articles at the moment",
+      "subtitle": "Follow us for new content and news from the world of Coerver training."
+    },
+    "featured": "Featured",
+    "readMore": "Read more",
+    "searchPlaceholder": "Search articles...",
+    "allCategories": "All",
+    "allArticles": "All articles",
+    "articleCount": "{count, plural, one {# article} other {# articles}}",
+    "readingTime": "{minutes} min read",
+    "noResults": {
+      "title": "No results",
+      "subtitle": "Try a different search or category."
+    },
+    "loadMore": "Load more articles",
+    "team": "Coerver Team",
+    "newsletter": {
+      "badge": "Newsletter",
+      "title": "Don't miss new posts",
+      "subtitle": "Subscribe to our newsletter and get the latest news, tips and exclusive content straight to your inbox.",
+      "emailPlaceholder": "Your email address",
+      "subscribe": "Subscribe",
+      "privacy": "You can unsubscribe at any time. We respect your privacy."
+    },
+    "cta": {
+      "badge": "Become part of the story",
+      "title": "Have a story to share?",
+      "subtitle": "If you're a coach, player or parent with an experience you'd like to share with our community, get in touch. We're always looking for new voices and perspectives.",
+      "contact": "Contact us"
+    },
+    "post": {
+      "tags": "Tags:",
+      "share": "Share:",
+      "authorBio": "A Coerver coach with years of experience working with young players. Specialist in Ball Mastery and individual development.",
+      "related": "Related Articles",
+      "viewAll": "View All Articles"
+    },
+    "comments": {
+      "title": "Comments ({count})",
+      "placeholder": "Write your comment...",
+      "submit": "Post Comment",
+      "loginRequired": "You must be logged in to comment.",
+      "error": "An error occurred. Please try again.",
+      "empty": "No comments yet. Be the first to comment!",
+      "anonymous": "User"
+    }
+  },
+  "cookies": {
+    "title": "We use cookies",
+    "text": "This website uses essential cookies for proper functioning and the security of your session. These cookies are required for signing in and using your account. We do not use cookies for tracking or marketing.",
+    "learnMore": "Learn more",
+    "accept": "Accept",
+    "essentialOnly": "Essential only",
+    "close": "Close"
+  },
+  "home": {
+    "hero": {
+      "slides": {
+        "0": {
+          "title": "Champions",
+          "subtitle": "Start Here",
+          "accent": "Present in over 60 countries"
+        },
+        "1": {
+          "title": "Develop",
+          "subtitle": "Your Skills",
+          "accent": "Founded in 1984"
+        },
+        "2": {
+          "title": "Train Like",
+          "subtitle": "The Pros",
+          "accent": "Developing future champions"
+        }
+      },
+      "stats": {
+        "countries": "Countries",
+        "years": "Years",
+        "players": "Players"
+      },
+      "joinCta": "Join Us",
+      "learnMore": "Learn more",
+      "slideAria": "Show slide {num} of {total}: {title} {subtitle}"
+    },
+    "whatIsCoerver": {
+      "badge": "The world's #1 method",
+      "title": "What is Coerver<r>®</r> Coaching?",
+      "subtitle": "A global football education company that developed the world's number 1 method for teaching football skills.",
+      "yearsShort": "Years",
+      "countriesShort": "Countries",
+      "description": "<green>Coerver® Coaching</green> is today present in over <bold>60 countries</bold> across every continent, and is used by some of the world's best-known football academies and federations.",
+      "description2": "Arsenal, Bayern Munich, Benfica, Dinamo Zagreb, the French Football Federation, the Japan Football Association – just some of the organisations using our methodology.",
+      "features": {
+        "players": {
+          "title": "For Players",
+          "description": "Individual and group training for all ages"
+        },
+        "coaches": {
+          "title": "For Coaches",
+          "description": "Coach education and certification"
+        },
+        "clubs": {
+          "title": "For Clubs",
+          "description": "Partnerships and programmes for clubs"
+        }
+      },
+      "stats": {
+        "experience": "Years of Experience",
+        "countries": "Countries Worldwide",
+        "players": "Players Globally"
+      },
+      "trustedBy": "Clubs that trust us",
+      "regionBadge": "Regional network",
+      "regionTitleLine1": "Present",
+      "regionTitleLine2": "across the region",
+      "regionText": "Our certified coaches run programmes across three countries in the region.",
+      "countries": {
+        "croatia": "Croatia",
+        "slovenia": "Slovenia",
+        "bih": "BiH"
+      },
+      "findProgram": "Find a program",
+      "marquee": {
+        "moves1v1": "1v1 Moves",
+        "finishing": "Finishing",
+        "receiving": "Receiving",
+        "passing": "Passing",
+        "speed": "Speed",
+        "groupAttack": "Group Attack"
+      }
+    },
+    "audience": {
+      "cards": {
+        "players": {
+          "title": "PLAYERS",
+          "description": "Coerver® Coaching Performance Academies are designed for players aged 7 to 14 who already train with a club and want to improve their game through additional training based on the unique Coerver® method."
+        },
+        "coaches": {
+          "title": "COACHES",
+          "description": "The goal of Coerver® education is to give coaches a theoretical and practical overview of the evolution of the Coerver® method since its founding in 1984."
+        },
+        "clubs": {
+          "title": "CLUBS",
+          "description": "Coerver® Coaching offers a dedicated partnership programme to all clubs, from amateur to professional level. The programme covers four core components."
+        },
+        "individual": {
+          "title": "INDIVIDUAL TRAINING",
+          "description": "Coerver® Coaching has a dedicated programme for individual training and small-group work, which are key to the development of every athlete."
+        },
+        "camps": {
+          "title": "CAMPS",
+          "description": "Coerver® Coaching organises camps lasting from one to five days where, by combining skill learning and fun, we aim to give every participant an unforgettable experience."
+        }
+      },
+      "prevAria": "Previous",
+      "nextAria": "Next",
+      "contactCta": "CONTACT US"
+    },
+    "testimonials": {
+      "badge": "5.0 from our participants",
+      "title": "What our <green>participants</green> say",
+      "subtitle": "Stories from players, parents and coaches who transformed their game",
+      "tablistAria": "Select a testimonial",
+      "dotAriaFull": "Testimonial {num} of {total}: {name}",
+      "dotAria": "Testimonial {num}: {name}",
+      "items": {
+        "0": {
+          "role": "Parent of a player, U12",
+          "content": "Coerver Coaching helped me take my game to a higher level. Technique training combined with quick decision-making was exactly what I needed to adapt better to football in Europe."
+        },
+        "1": {
+          "role": "Player, 16 years old",
+          "content": "After a year in the Coerver programme, my ball control and confidence have improved incredibly. The coaches are fantastic and always push you to do better."
+        },
+        "2": {
+          "role": "Coach, NK Dinamo Mladi",
+          "content": "The Coerver diploma opened my eyes to new training methods. My players now enjoy their sessions and are progressing faster than ever."
+        },
+        "3": {
+          "role": "Mother of a player, U10",
+          "content": "My daughter loves Coerver training! She comes back happy every time, excited to show off new tricks. The coaches' professionalism exceeds all expectations."
+        }
+      },
+      "stats": {
+        "activePlayers": "Active Players",
+        "certifiedCoaches": "Certified Coaches",
+        "partnerClubs": "Partner Clubs",
+        "yearsExperience": "Years of Experience"
+      }
+    },
+    "blog": {
+      "badge": "Blog",
+      "title": "The latest from the <green>Coerver</green> world",
+      "allPosts": "All articles",
+      "emptyTitle": "New articles coming soon",
+      "emptyText": "Follow us for the latest news and tips from the world of football.",
+      "teamFallback": "Coerver Team",
+      "viewAll": "View all articles",
+      "morePosts": "More articles on the blog"
+    },
+    "partnerCta": {
+      "description": "Coerver® Coaching offers a dedicated partnership programme to all clubs from amateur to professional level that want continuous education and recognition in their community",
+      "button": "BECOME A COERVER® PARTNER CLUB"
+    },
+    "contact": {
+      "badge": "Get in touch",
+      "title": "Ready to <green>get started?</green>",
+      "subtitle": "Join hundreds of happy players and coaches who are already part of the Coerver family.",
+      "info": {
+        "email": "Email",
+        "phone": "Phone",
+        "location": "Location"
+      },
+      "locationValue": "Zagreb, Croatia",
+      "signUpPlayer": "Sign up a player",
+      "becomeCoach": "Become a coach",
+      "successTitle": "Thank you for your inquiry!",
+      "successText": "Your message has been sent successfully. We will get back to you as soon as possible.",
+      "sendAnother": "Send another message",
+      "formTitle": "Contact us",
+      "formSubtitle": "Fill in the form and we'll get back to you shortly.",
+      "nameLabel": "Full name",
+      "namePlaceholder": "Your name",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@email.com",
+      "phoneLabel": "Phone (optional)",
+      "messageLabel": "Message",
+      "messagePlaceholder": "How can we help you?",
+      "errorMessage": "Something went wrong. Please try again.",
+      "privacyConsent": "I agree to the <link>privacy policy</link> *",
+      "sending": "Sending...",
+      "send": "Send message"
+    },
+    "partners": {
+      "badge": "Our Partners",
+      "title": "Clubs We Work With",
+      "ctaText": "Want to become a partner? Contact us!",
+      "ctaLink": "Learn more about partnership"
+    },
+    "region": {
+      "countries": {
+        "croatia": "Croatia",
+        "slovenia": "Slovenia",
+        "bosnia": "Bosnia and Herzegovina"
+      },
+      "coachesLabel": "Coaches educated",
+      "playersLabel": "Players educated",
+      "locations": "Locations"
+    }
+  },
+  "clubs": {
+    "hero": {
+      "badge": "For Clubs",
+      "titleLine1": "Partnership",
+      "titleLine2": "Programs",
+      "description": "Join a network of over 1,000 partner clubs worldwide. Bring the proven Coerver methodology to your youth academy.",
+      "cta": "Request a quote",
+      "imageAlt": "Professional training"
+    },
+    "stats": {
+      "0": {
+        "value": "1,000+",
+        "label": "Partner clubs"
+      },
+      "1": {
+        "value": "60+",
+        "label": "Countries"
+      },
+      "2": {
+        "value": "40+",
+        "label": "Years of experience"
+      }
+    },
+    "benefits": {
+      "badge": "Why Coerver?",
+      "title": "Partnership benefits",
+      "items": {
+        "0": {
+          "title": "Proven Methodology",
+          "description": "40+ years of developing and refining technical training."
+        },
+        "1": {
+          "title": "Structured Curriculum",
+          "description": "Clear progression for every age group and level."
+        },
+        "2": {
+          "title": "Continuous Support",
+          "description": "Expert support and regular progress evaluations."
+        },
+        "3": {
+          "title": "Global Recognition",
+          "description": "Join a network of 3,000+ partner clubs."
+        },
+        "4": {
+          "title": "Access to the Coerver Croatia Platform",
+          "description": "Exclusive access to a digital platform with exercises and materials."
+        }
+      }
+    },
+    "partners": {
+      "badge": "Our partners",
+      "title": "Clubs that trust us"
+    },
+    "process": {
+      "badge": "Process",
+      "title": "How to become a partner?",
+      "steps": {
+        "0": {
+          "title": "Initial conversation",
+          "description": "We get to know your club and your needs."
+        },
+        "1": {
+          "title": "Assessment and proposal",
+          "description": "We analyze the situation and propose the optimal model."
+        },
+        "2": {
+          "title": "Coach education",
+          "description": "Your coaches complete Coerver certification."
+        },
+        "3": {
+          "title": "Implementation",
+          "description": "Continuous support and progress tracking."
+        }
+      }
+    },
+    "testimonials": {
+      "badge": "Experiences",
+      "title": "What our partners say",
+      "items": {
+        "0": {
+          "quote": "The Coerver partnership has transformed our youth academy. Our players are technically superior to the competition.",
+          "role": "Youth Academy Director, NK Dinamo Zagreb"
+        },
+        "1": {
+          "quote": "The structured approach and quality materials have made our coaches' work easier and raised the quality of training.",
+          "role": "Sporting Director, NK Hajduk Split"
+        }
+      }
+    },
+    "contact": {
+      "title": "Contact us",
+      "description": "Interested in a partnership? Fill out the form and our team will get back to you with a tailored offer.",
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "badgesTitle": "Join leading clubs",
+      "badges": {
+        "0": "1000+ partners",
+        "1": "60+ countries",
+        "2": "40+ years"
+      },
+      "formTitle": "Request a quote"
+    }
+  },
+  "about": {
+    "hero": {
+      "badge": "About Us",
+      "titleStart": "What is Coerver",
+      "titleEnd": "Coaching?",
+      "description": "A globally recognized methodology for developing young footballers, present in over 60 countries for more than 40 years.",
+      "ctaPlayers": "Programs for players",
+      "ctaCoaches": "Programs for coaches",
+      "stats": {
+        "0": {
+          "value": "40+",
+          "label": "Years of experience"
+        },
+        "1": {
+          "value": "60+",
+          "label": "Countries worldwide"
+        },
+        "2": {
+          "value": "1M+",
+          "label": "Players globally"
+        },
+        "3": {
+          "value": "500+",
+          "label": "Active players in HR"
+        }
+      }
+    },
+    "stats": {
+      "0": {
+        "value": "1984",
+        "label": "Year founded"
+      },
+      "1": {
+        "value": "60+",
+        "label": "Countries worldwide"
+      },
+      "2": {
+        "value": "1M+",
+        "label": "Players globally"
+      },
+      "3": {
+        "value": "40+",
+        "label": "Years of experience"
+      }
+    },
+    "story": {
+      "badge": "Our story",
+      "titleStart": "What is Coerver",
+      "titleEnd": "Coaching?",
+      "imageAlt": "Coerver training",
+      "founderRole": "Founder of the methodology",
+      "para1": "Coerver® Coaching is a globally recognized methodology for developing young footballers, created by the legendary Dutch coach <strong>Wiel Coerver</strong>.",
+      "para2": "Present in over <strong>60 countries</strong> worldwide, the Coerver® methodology has become the gold standard in youth player development. In Croatia, we work to raise the quality of technical training to the highest level.",
+      "features": {
+        "0": "Individual approach",
+        "1": "Certified coaches",
+        "2": "Proven methodology",
+        "3": "Global network"
+      }
+    },
+    "values": {
+      "badge": "Our values",
+      "title": "What drives us",
+      "items": {
+        "0": {
+          "title": "Excellence",
+          "description": "We strive for the highest standards in everything we do"
+        },
+        "1": {
+          "title": "Innovation",
+          "description": "We constantly improve our training methods"
+        },
+        "2": {
+          "title": "Dedication",
+          "description": "We are committed to the development of every individual"
+        },
+        "3": {
+          "title": "Community",
+          "description": "We build a strong Coerver® family"
+        }
+      }
+    },
+    "timeline": {
+      "badge": "Our history",
+      "title": "The road to excellence",
+      "items": {
+        "0": {
+          "year": "1984",
+          "title": "Founding of Coerver® Coaching",
+          "description": "Wiel Coerver, the legendary Dutch coach, develops a revolutionary training methodology focused on individual technique. His associates Alf Galustian and Charlie Cooke found what we know today as Coerver® Coaching."
+        },
+        "1": {
+          "year": "1990",
+          "title": "Global Expansion",
+          "description": "The Coerver® methodology spreads across all continents, becoming the gold standard for youth player development. Over time, Coerver® Coaching evolves from a simple idea into a structured curriculum."
+        },
+        "2": {
+          "year": "2015",
+          "title": "Arrival in Croatia",
+          "description": "Coerver® Coaching officially arrives in Croatia, Slovenia and Bosnia and Herzegovina, bringing top-tier methodology to our young talents and coaches."
+        },
+        "3": {
+          "year": "Today",
+          "title": "Continuous Growth",
+          "description": "More than 500 active players and 30+ certified coaches in Croatia, Slovenia and Bosnia and Herzegovina."
+        }
+      }
+    },
+    "pyramid": {
+      "badge": "Coerver® system",
+      "title": "Player Development Pyramid",
+      "description": "A progressive system that builds technical excellence from the ground up. Each level builds on the previous one, creating a complete player.",
+      "cards": {
+        "0": {
+          "title": "Coerver® Pyramid",
+          "subtitle": "6 levels of technical development",
+          "alt": "Coerver Pyramid - 6 levels of development"
+        },
+        "1": {
+          "title": "1v1 Pyramid",
+          "subtitle": "Moves and feints",
+          "alt": "1v1 Pyramid - moves and feints"
+        },
+        "2": {
+          "title": "Player Levels",
+          "subtitle": "From beginner to master",
+          "alt": "Player levels - from beginner to master"
+        }
+      },
+      "levels": {
+        "0": {
+          "title": "Ball Mastery",
+          "description": "The foundation of everything - complete ball control with every part of the foot, on both feet."
+        },
+        "1": {
+          "title": "Receiving & Passing",
+          "description": "First touch - team skills."
+        },
+        "2": {
+          "title": "1v1 - attacking and defending",
+          "description": "Changes of direction, stops & starts, and feints."
+        },
+        "3": {
+          "title": "Speed",
+          "description": "Speed with and without the ball - speed of decision-making."
+        },
+        "4": {
+          "title": "Finishing",
+          "description": "Creating scoring chances and finishing them."
+        },
+        "5": {
+          "title": "Group Attack",
+          "description": "Attacking and defending in small groups."
+        }
+      }
+    },
+    "cta": {
+      "badge": "Start today",
+      "title": "Join the Coerver® family",
+      "description": "Whether you're a player looking to improve your technique or a coach looking to expand your knowledge, we have a program for you.",
+      "ctaPlayers": "For players",
+      "ctaCoaches": "For coaches"
+    }
+  },
+  "contact": {
+    "hero": {
+      "badge": "Get in touch",
+      "titleStart": "How can we",
+      "titleHighlight": "help you?",
+      "description": "Have a question about our programs? Want to sign your child up for training? We're here for you - get in touch!"
+    },
+    "info": {
+      "title": "Contact information",
+      "email": {
+        "label": "Email",
+        "description": "Write to us anytime"
+      },
+      "phone": {
+        "label": "Phone",
+        "description": "Mon - Fri, 9:00 AM - 5:00 PM"
+      },
+      "address": {
+        "label": "Address",
+        "description": "10000 Zagreb, Croatia"
+      }
+    },
+    "social": {
+      "title": "Follow us"
+    },
+    "form": {
+      "successTitle": "Thanks for your message!",
+      "successMessage": "Your message has been sent successfully. We'll get back to you as soon as possible.",
+      "newMessage": "Send a new message",
+      "title": "Send us a message",
+      "subtitle": "Fill out the form and we'll get back to you soon.",
+      "nameLabel": "Full name *",
+      "namePlaceholder": "Your full name",
+      "emailLabel": "Email address *",
+      "emailPlaceholder": "you@email.com",
+      "phoneLabel": "Phone",
+      "subjectLabel": "Subject *",
+      "subjectPlaceholder": "Select a subject",
+      "topics": {
+        "0": "Player enrollment",
+        "1": "Coach education",
+        "2": "Club partnership",
+        "3": "General inquiry",
+        "4": "Other"
+      },
+      "messageLabel": "Message *",
+      "messagePlaceholder": "Describe your inquiry...",
+      "requiredNote": "* Required fields",
+      "submitting": "Sending...",
+      "submit": "Send message",
+      "error": "An error occurred. Please try again."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "subtitle": "Find answers to the most common questions",
+      "items": {
+        "0": {
+          "question": "What ages are Coerver programs designed for?",
+          "answer": "Our programs are tailored to all ages, both adults and younger players. Each age group has a specially designed program suited to their stage of development."
+        },
+        "1": {
+          "question": "How long do training sessions last?",
+          "answer": "Training sessions last 60-90 minutes, depending on the age group and type of program. Younger participants have shorter sessions adapted to their attention span."
+        },
+        "2": {
+          "question": "How can I sign up?",
+          "answer": "You can sign up via the contact form on this page, by email, or by phone. After signing up, we'll get back to you with details on available time slots."
+        },
+        "3": {
+          "question": "Do I need to bring my own equipment?",
+          "answer": "Depending on the program, coaches will let you know whether you need to bring your own equipment or whether we provide it."
+        }
+      },
+      "notFound": "Didn't find an answer?",
+      "emailUs": "Send us an email"
+    },
+    "cta": {
+      "title": "Ready for your first training session?",
+      "description": "Join hundreds of satisfied players who are already part of the Coerver family",
+      "findAcademy": "Find an academy",
+      "becomeCoach": "Become a coach"
+    }
+  },
+  "privacy": {
+    "hero": {
+      "titleStart": "Privacy",
+      "titleHighlight": "Policy",
+      "description": "Your privacy matters to us. Here you can find out how we collect, use and protect your personal data.",
+      "lastUpdated": "Last updated: {date}"
+    },
+    "controller": {
+      "title": "1. Data Controller",
+      "intro": "The controller of your personal data is Coerver Coaching Croatia, headquartered in Zagreb, Croatia. For any questions related to the protection of personal data, you can contact us at:",
+      "emailLabel": "Email:",
+      "phoneLabel": "Phone:"
+    },
+    "dataCollected": {
+      "title": "2. What Data We Collect",
+      "intro": "We collect the following types of personal data:",
+      "items": {
+        "0": "<strong>Contact details:</strong> full name, email address, phone number",
+        "1": "<strong>Child data:</strong> child's age/year of birth, jersey size, football club, position (for camp and academy registrations)",
+        "2": "<strong>User account data:</strong> email address, password (encrypted), user role",
+        "3": "<strong>Technical data:</strong> IP address, browser type, session cookies"
+      }
+    },
+    "purpose": {
+      "title": "3. Purpose of Processing",
+      "intro": "We use your personal data to:",
+      "items": {
+        "0": "Process registrations for camps, academies and courses",
+        "1": "Communicate about our programs and services",
+        "2": "Manage user accounts",
+        "3": "Send notifications about news and offers (with your consent)",
+        "4": "Improve our services and website"
+      }
+    },
+    "legalBasis": {
+      "title": "4. Legal Basis for Processing",
+      "intro": "We process your data based on:",
+      "items": {
+        "0": "<strong>Consent:</strong> when you give us explicit consent to process your data",
+        "1": "<strong>Contractual obligation:</strong> when processing is necessary to perform a contract (e.g. a camp registration)",
+        "2": "<strong>Legitimate interest:</strong> to improve our services and system security",
+        "3": "<strong>Legal obligation:</strong> when we are legally required to retain certain data"
+      }
+    },
+    "sharing": {
+      "title": "5. Sharing Data with Third Parties",
+      "intro": "We may share your data with:",
+      "items": {
+        "0": "<strong>Supabase Inc.</strong> - database and authentication service provider (USA, subject to standard contractual clauses)",
+        "1": "<strong>Vercel Inc.</strong> - hosting service provider (USA, subject to standard contractual clauses)",
+        "2": "<strong>Resend</strong> - email delivery service provider"
+      },
+      "outro": "We do not sell or rent your personal data to third parties for marketing purposes."
+    },
+    "cookies": {
+      "title": "6. Cookies",
+      "intro": "Our website uses the following types of cookies:",
+      "items": {
+        "0": "<strong>Essential cookies:</strong> required for the site to function and for user authentication",
+        "1": "<strong>Session cookies:</strong> keep you logged in during your visit"
+      },
+      "outro": "We currently do not use analytics or marketing cookies. You can manage cookie settings through your browser's settings."
+    },
+    "rights": {
+      "title": "7. Your Rights",
+      "intro": "Under the GDPR, you have the following rights:",
+      "items": {
+        "0": "<strong>Right of access:</strong> you can request a copy of all data we hold about you",
+        "1": "<strong>Right to rectification:</strong> you can request correction of inaccurate data",
+        "2": "<strong>Right to erasure:</strong> you can request deletion of your data (\"right to be forgotten\")",
+        "3": "<strong>Right to restriction of processing:</strong> you can request that we limit how we use your data",
+        "4": "<strong>Right to data portability:</strong> you can request that your data be transferred to another controller",
+        "5": "<strong>Right to object:</strong> you can object to processing based on legitimate interest",
+        "6": "<strong>Right to withdraw consent:</strong> you can withdraw your consent at any time"
+      },
+      "outro": "To exercise any of the rights listed above, contact us at"
+    },
+    "retention": {
+      "title": "8. Data Retention Period",
+      "intro": "We retain your personal data only for as long as necessary for the purposes for which it was collected:",
+      "items": {
+        "0": "Inquiry data: 2 years from receipt of the inquiry",
+        "1": "Program registration data: 5 years from completion of the program",
+        "2": "User accounts: until account closure + 30 days",
+        "3": "Accounting data: in accordance with legal regulations (11 years)"
+      }
+    },
+    "security": {
+      "title": "9. Data Security",
+      "intro": "We take appropriate technical and organizational measures to protect your personal data from unauthorized access, loss or destruction. This includes:",
+      "items": {
+        "0": "SSL/TLS encryption of all communications",
+        "1": "Password encryption",
+        "2": "Regular security audits",
+        "3": "Restricted access to data limited to authorized personnel"
+      }
+    },
+    "children": {
+      "title": "10. Children's Data",
+      "text": "Since our programs involve children, we pay special attention to protecting their data. We collect children's data solely with the consent of a parent or guardian, and only the data necessary for participation in our programs."
+    },
+    "complaint": {
+      "title": "11. Right to Lodge a Complaint",
+      "intro": "If you believe that the processing of your personal data violates the GDPR, you have the right to lodge a complaint with the supervisory authority - the Croatian Personal Data Protection Agency (AZOP):",
+      "webLabel": "Website:",
+      "emailLabel": "Email:",
+      "addressLabel": "Address:"
+    },
+    "changes": {
+      "title": "12. Changes to the Privacy Policy",
+      "text": "We reserve the right to amend this privacy policy. We will notify you of any significant changes via our website or by email. We recommend reviewing this page periodically."
+    },
+    "questions": {
+      "title": "Have questions?",
+      "text": "For any questions related to the protection of your personal data, feel free to contact us:"
+    }
+  },
+  "forms": {
+    "inquiry": {
+      "title": "Send Inquiry",
+      "submit": "Send Inquiry",
+      "error": "An error occurred. Please try again.",
+      "loading": "Loading...",
+      "success": {
+        "title": "Thanks for your inquiry!",
+        "message": "Your inquiry has been sent successfully. We'll get back to you as soon as possible.",
+        "newInquiry": "Send a new inquiry"
+      },
+      "fields": {
+        "name": {
+          "label": "Full name *",
+          "placeholder": "Enter your full name"
+        },
+        "childName": {
+          "label": "Child's full name *",
+          "placeholder": "Enter your child's full name"
+        },
+        "email": {
+          "label": "Email address *",
+          "placeholder": "you@email.com"
+        },
+        "phone": {
+          "label": "Phone"
+        },
+        "academy": {
+          "label": "Select academy *",
+          "placeholder": "Select an academy",
+          "empty": "No academies available"
+        },
+        "camp": {
+          "label": "Select camp *",
+          "placeholder": "Select a camp",
+          "empty": "No camps available"
+        },
+        "course": {
+          "label": "Select course *",
+          "placeholder": "Select a course",
+          "empty": "No courses available"
+        },
+        "childAge": {
+          "label": "Child's age",
+          "placeholder": "Select age",
+          "years": "{range} years"
+        },
+        "accommodationType": {
+          "label": "Registration type *",
+          "placeholder": "Select registration type",
+          "withAccommodation": "With accommodation (full camp with lodging)",
+          "fullDay": "Full day (all activities, no overnight stay)",
+          "trainingOnly": "Training only"
+        },
+        "birthYear": {
+          "label": "Child's year of birth *",
+          "placeholder": "Select year of birth"
+        },
+        "jerseySize": {
+          "label": "Jersey size *",
+          "placeholder": "Select size"
+        },
+        "club": {
+          "label": "Club",
+          "placeholder": "Name of the club they play for"
+        },
+        "clubCourse": {
+          "label": "Club",
+          "placeholder": "Name of the club you're registering from"
+        },
+        "clubName": {
+          "label": "Club name *",
+          "placeholder": "Name of your club"
+        },
+        "position": {
+          "label": "Position",
+          "placeholder": "Select position",
+          "goalkeeper": "Goalkeeper",
+          "defender": "Defender",
+          "midfielder": "Midfielder",
+          "forward": "Forward"
+        },
+        "note": {
+          "label": "Note",
+          "placeholder": "Allergies, health notes or other important information..."
+        },
+        "format": {
+          "label": "Participation format *",
+          "placeholder": "Select format",
+          "live": "In person"
+        },
+        "message": {
+          "label": "Message *",
+          "placeholder": "Write your message or question..."
+        }
+      },
+      "summary": {
+        "type": "Type",
+        "birthYear": "Year of birth",
+        "jerseySize": "Jersey size",
+        "club": "Club",
+        "position": "Position",
+        "note": "Note",
+        "format": "Format",
+        "program": "Program",
+        "withAccommodation": "With accommodation",
+        "fullDay": "Full day",
+        "trainingOnly": "Training only",
+        "dayOnly": "No accommodation"
+      },
+      "consent": {
+        "textStart": "I have read and agree to the",
+        "privacyLink": "privacy policy",
+        "textEnd": "and I consent to the processing of my personal data for the purpose of handling this inquiry. *"
+      }
+    }
+  }
+}

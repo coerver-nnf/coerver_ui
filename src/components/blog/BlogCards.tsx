@@ -1,22 +1,23 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Card, CardContent } from "@/components/ui/Card";
 import { cn } from "@/lib/utils";
 import type { Post } from "@/types";
 
 // Utility function for formatting dates
-function formatDate(dateString: string, format: "short" | "long" = "long"): string {
+function formatDate(dateString: string, locale: string, format: "short" | "long" = "long"): string {
   const date = new Date(dateString);
   if (format === "short") {
-    return date.toLocaleDateString("hr-HR", {
+    return date.toLocaleDateString(locale, {
       month: "short",
       day: "numeric",
       year: "numeric",
     });
   }
-  return date.toLocaleDateString("hr-HR", {
+  return date.toLocaleDateString(locale, {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -92,6 +93,8 @@ export function BlogCard({
   imageAspect = "video",
   className,
 }: BlogCardProps) {
+  const t = useTranslations("blog");
+  const locale = useLocale();
   const aspectClasses = {
     video: "aspect-video",
     square: "aspect-square",
@@ -120,7 +123,7 @@ export function BlogCard({
           {/* Category & Date */}
           <div className="flex items-center justify-between mb-3">
             {showCategory && post.category && <CategoryBadge category={post.category} />}
-            <span className="text-coerver-gray-500 text-sm">{formatDate(post.created_at, "short")}</span>
+            <span className="text-coerver-gray-500 text-sm">{formatDate(post.created_at, locale, "short")}</span>
           </div>
 
           {/* Tags */}
@@ -140,7 +143,7 @@ export function BlogCard({
           {showAuthor && post.author && (
             <div className="flex items-center gap-2 pt-3 border-t border-coerver-gray-100">
               <AuthorAvatar author={post.author} size="sm" />
-              <span className="text-coerver-gray-600 text-sm">{post.author.full_name || "Coerver Tim"}</span>
+              <span className="text-coerver-gray-600 text-sm">{post.author.full_name || t("team")}</span>
             </div>
           )}
         </CardContent>
@@ -159,6 +162,8 @@ interface BlogCardFeaturedProps {
 }
 
 export function BlogCardFeatured({ post, className, imagePosition = "left" }: BlogCardFeaturedProps) {
+  const t = useTranslations("blog");
+  const locale = useLocale();
   return (
     <Link href={`/blog/${post.slug}`} className={cn("group block", className)}>
       <Card className="overflow-hidden" padding="none" hover>
@@ -205,11 +210,11 @@ export function BlogCardFeatured({ post, className, imagePosition = "left" }: Bl
               {post.author && (
                 <div className="flex items-center gap-2">
                   <AuthorAvatar author={post.author} size="md" />
-                  <span>{post.author.full_name || "Coerver Tim"}</span>
+                  <span>{post.author.full_name || t("team")}</span>
                 </div>
               )}
               <span className="w-1 h-1 rounded-full bg-coerver-gray-400" />
-              <span>{formatDate(post.created_at)}</span>
+              <span>{formatDate(post.created_at, locale)}</span>
             </div>
           </CardContent>
         </div>
@@ -228,6 +233,7 @@ interface BlogCardHorizontalProps {
 }
 
 export function BlogCardHorizontal({ post, className, imageSize = "md" }: BlogCardHorizontalProps) {
+  const locale = useLocale();
   const imageSizes = {
     sm: "w-20 h-20",
     md: "w-28 h-28 md:w-36 md:h-36",
@@ -256,7 +262,7 @@ export function BlogCardHorizontal({ post, className, imageSize = "md" }: BlogCa
           {/* Category & Date */}
           <div className="flex items-center gap-2 mb-2">
             {post.category && <CategoryBadge category={post.category} size="sm" />}
-            <span className="text-coerver-gray-400 text-xs">{formatDate(post.created_at, "short")}</span>
+            <span className="text-coerver-gray-400 text-xs">{formatDate(post.created_at, locale, "short")}</span>
           </div>
 
           {/* Title */}
@@ -283,6 +289,7 @@ interface BlogCardCompactProps {
 }
 
 export function BlogCardCompact({ post, className, showImage = false, index }: BlogCardCompactProps) {
+  const locale = useLocale();
   return (
     <Link href={`/blog/${post.slug}`} className={cn("group block", className)}>
       <div className="flex gap-3 py-3 border-b border-coerver-gray-100 last:border-0">
@@ -309,7 +316,7 @@ export function BlogCardCompact({ post, className, showImage = false, index }: B
           <h4 className="font-semibold text-coerver-dark group-hover:text-coerver-green transition-colors line-clamp-2 text-sm">
             {post.title}
           </h4>
-          <span className="text-coerver-gray-400 text-xs mt-1 block">{formatDate(post.created_at, "short")}</span>
+          <span className="text-coerver-gray-400 text-xs mt-1 block">{formatDate(post.created_at, locale, "short")}</span>
         </div>
       </div>
     </Link>
@@ -325,6 +332,7 @@ interface BlogCardMinimalProps {
 }
 
 export function BlogCardMinimal({ post, className }: BlogCardMinimalProps) {
+  const locale = useLocale();
   return (
     <Link href={`/blog/${post.slug}`} className={cn("group block py-4 border-b border-coerver-gray-100 last:border-0", className)}>
       <div className="flex items-start justify-between gap-4">
@@ -334,7 +342,7 @@ export function BlogCardMinimal({ post, className }: BlogCardMinimalProps) {
             {post.title}
           </h3>
         </div>
-        <span className="text-coerver-gray-400 text-sm flex-shrink-0">{formatDate(post.created_at, "short")}</span>
+        <span className="text-coerver-gray-400 text-sm flex-shrink-0">{formatDate(post.created_at, locale, "short")}</span>
       </div>
     </Link>
   );
@@ -350,6 +358,8 @@ interface BlogCardOverlayProps {
 }
 
 export function BlogCardOverlay({ post, className, size = "md" }: BlogCardOverlayProps) {
+  const t = useTranslations("blog");
+  const locale = useLocale();
   const sizeClasses = {
     sm: "aspect-square",
     md: "aspect-video",
@@ -387,9 +397,9 @@ export function BlogCardOverlay({ post, className, size = "md" }: BlogCardOverla
           {post.title}
         </h3>
         <div className="flex items-center gap-3 mt-2 text-white/70 text-sm">
-          {post.author && <span>{post.author.full_name || "Coerver Tim"}</span>}
+          {post.author && <span>{post.author.full_name || t("team")}</span>}
           <span className="w-1 h-1 rounded-full bg-white/50" />
-          <span>{formatDate(post.created_at, "short")}</span>
+          <span>{formatDate(post.created_at, locale, "short")}</span>
         </div>
       </div>
     </Link>

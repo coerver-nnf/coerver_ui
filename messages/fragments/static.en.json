@@ -1,0 +1,389 @@
+{
+  "clubs": {
+    "hero": {
+      "badge": "For Clubs",
+      "titleLine1": "Partnership",
+      "titleLine2": "Programs",
+      "description": "Join a network of over 1,000 partner clubs worldwide. Bring the proven Coerver methodology to your youth academy.",
+      "cta": "Request a quote",
+      "imageAlt": "Professional training"
+    },
+    "stats": {
+      "0": { "value": "1,000+", "label": "Partner clubs" },
+      "1": { "value": "60+", "label": "Countries" },
+      "2": { "value": "40+", "label": "Years of experience" }
+    },
+    "benefits": {
+      "badge": "Why Coerver?",
+      "title": "Partnership benefits",
+      "items": {
+        "0": { "title": "Proven Methodology", "description": "40+ years of developing and refining technical training." },
+        "1": { "title": "Structured Curriculum", "description": "Clear progression for every age group and level." },
+        "2": { "title": "Continuous Support", "description": "Expert support and regular progress evaluations." },
+        "3": { "title": "Global Recognition", "description": "Join a network of 3,000+ partner clubs." },
+        "4": { "title": "Access to the Coerver Croatia Platform", "description": "Exclusive access to a digital platform with exercises and materials." }
+      }
+    },
+    "partners": {
+      "badge": "Our partners",
+      "title": "Clubs that trust us"
+    },
+    "process": {
+      "badge": "Process",
+      "title": "How to become a partner?",
+      "steps": {
+        "0": { "title": "Initial conversation", "description": "We get to know your club and your needs." },
+        "1": { "title": "Assessment and proposal", "description": "We analyze the situation and propose the optimal model." },
+        "2": { "title": "Coach education", "description": "Your coaches complete Coerver certification." },
+        "3": { "title": "Implementation", "description": "Continuous support and progress tracking." }
+      }
+    },
+    "testimonials": {
+      "badge": "Experiences",
+      "title": "What our partners say",
+      "items": {
+        "0": { "quote": "The Coerver partnership has transformed our youth academy. Our players are technically superior to the competition.", "role": "Youth Academy Director, NK Dinamo Zagreb" },
+        "1": { "quote": "The structured approach and quality materials have made our coaches' work easier and raised the quality of training.", "role": "Sporting Director, NK Hajduk Split" }
+      }
+    },
+    "contact": {
+      "title": "Contact us",
+      "description": "Interested in a partnership? Fill out the form and our team will get back to you with a tailored offer.",
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "badgesTitle": "Join leading clubs",
+      "badges": {
+        "0": "1000+ partners",
+        "1": "60+ countries",
+        "2": "40+ years"
+      },
+      "formTitle": "Request a quote"
+    }
+  },
+  "about": {
+    "hero": {
+      "badge": "About Us",
+      "titleStart": "What is Coerver",
+      "titleEnd": "Coaching?",
+      "description": "A globally recognized methodology for developing young footballers, present in over 60 countries for more than 40 years.",
+      "ctaPlayers": "Programs for players",
+      "ctaCoaches": "Programs for coaches",
+      "stats": {
+        "0": { "value": "40+", "label": "Years of experience" },
+        "1": { "value": "60+", "label": "Countries worldwide" },
+        "2": { "value": "1M+", "label": "Players globally" },
+        "3": { "value": "500+", "label": "Active players in HR" }
+      }
+    },
+    "stats": {
+      "0": { "value": "1984", "label": "Year founded" },
+      "1": { "value": "60+", "label": "Countries worldwide" },
+      "2": { "value": "1M+", "label": "Players globally" },
+      "3": { "value": "40+", "label": "Years of experience" }
+    },
+    "story": {
+      "badge": "Our story",
+      "titleStart": "What is Coerver",
+      "titleEnd": "Coaching?",
+      "imageAlt": "Coerver training",
+      "founderRole": "Founder of the methodology",
+      "para1": "Coerver® Coaching is a globally recognized methodology for developing young footballers, created by the legendary Dutch coach <strong>Wiel Coerver</strong>.",
+      "para2": "Present in over <strong>60 countries</strong> worldwide, the Coerver® methodology has become the gold standard in youth player development. In Croatia, we work to raise the quality of technical training to the highest level.",
+      "features": {
+        "0": "Individual approach",
+        "1": "Certified coaches",
+        "2": "Proven methodology",
+        "3": "Global network"
+      }
+    },
+    "values": {
+      "badge": "Our values",
+      "title": "What drives us",
+      "items": {
+        "0": { "title": "Excellence", "description": "We strive for the highest standards in everything we do" },
+        "1": { "title": "Innovation", "description": "We constantly improve our training methods" },
+        "2": { "title": "Dedication", "description": "We are committed to the development of every individual" },
+        "3": { "title": "Community", "description": "We build a strong Coerver® family" }
+      }
+    },
+    "timeline": {
+      "badge": "Our history",
+      "title": "The road to excellence",
+      "items": {
+        "0": { "year": "1984", "title": "Founding of Coerver® Coaching", "description": "Wiel Coerver, the legendary Dutch coach, develops a revolutionary training methodology focused on individual technique. His associates Alf Galustian and Charlie Cooke found what we know today as Coerver® Coaching." },
+        "1": { "year": "1990", "title": "Global Expansion", "description": "The Coerver® methodology spreads across all continents, becoming the gold standard for youth player development. Over time, Coerver® Coaching evolves from a simple idea into a structured curriculum." },
+        "2": { "year": "2015", "title": "Arrival in Croatia", "description": "Coerver® Coaching officially arrives in Croatia, Slovenia and Bosnia and Herzegovina, bringing top-tier methodology to our young talents and coaches." },
+        "3": { "year": "Today", "title": "Continuous Growth", "description": "More than 500 active players and 30+ certified coaches in Croatia, Slovenia and Bosnia and Herzegovina." }
+      }
+    },
+    "pyramid": {
+      "badge": "Coerver® system",
+      "title": "Player Development Pyramid",
+      "description": "A progressive system that builds technical excellence from the ground up. Each level builds on the previous one, creating a complete player.",
+      "cards": {
+        "0": { "title": "Coerver® Pyramid", "subtitle": "6 levels of technical development", "alt": "Coerver Pyramid - 6 levels of development" },
+        "1": { "title": "1v1 Pyramid", "subtitle": "Moves and feints", "alt": "1v1 Pyramid - moves and feints" },
+        "2": { "title": "Player Levels", "subtitle": "From beginner to master", "alt": "Player levels - from beginner to master" }
+      },
+      "levels": {
+        "0": { "title": "Ball Mastery", "description": "The foundation of everything - complete ball control with every part of the foot, on both feet." },
+        "1": { "title": "Receiving & Passing", "description": "First touch - team skills." },
+        "2": { "title": "1v1 - attacking and defending", "description": "Changes of direction, stops & starts, and feints." },
+        "3": { "title": "Speed", "description": "Speed with and without the ball - speed of decision-making." },
+        "4": { "title": "Finishing", "description": "Creating scoring chances and finishing them." },
+        "5": { "title": "Group Attack", "description": "Attacking and defending in small groups." }
+      }
+    },
+    "cta": {
+      "badge": "Start today",
+      "title": "Join the Coerver® family",
+      "description": "Whether you're a player looking to improve your technique or a coach looking to expand your knowledge, we have a program for you.",
+      "ctaPlayers": "For players",
+      "ctaCoaches": "For coaches"
+    }
+  },
+  "contact": {
+    "hero": {
+      "badge": "Get in touch",
+      "titleStart": "How can we",
+      "titleHighlight": "help you?",
+      "description": "Have a question about our programs? Want to sign your child up for training? We're here for you - get in touch!"
+    },
+    "info": {
+      "title": "Contact information",
+      "email": { "label": "Email", "description": "Write to us anytime" },
+      "phone": { "label": "Phone", "description": "Mon - Fri, 9:00 AM - 5:00 PM" },
+      "address": { "label": "Address", "description": "10000 Zagreb, Croatia" }
+    },
+    "social": {
+      "title": "Follow us"
+    },
+    "form": {
+      "successTitle": "Thanks for your message!",
+      "successMessage": "Your message has been sent successfully. We'll get back to you as soon as possible.",
+      "newMessage": "Send a new message",
+      "title": "Send us a message",
+      "subtitle": "Fill out the form and we'll get back to you soon.",
+      "nameLabel": "Full name *",
+      "namePlaceholder": "Your full name",
+      "emailLabel": "Email address *",
+      "emailPlaceholder": "you@email.com",
+      "phoneLabel": "Phone",
+      "subjectLabel": "Subject *",
+      "subjectPlaceholder": "Select a subject",
+      "topics": {
+        "0": "Player enrollment",
+        "1": "Coach education",
+        "2": "Club partnership",
+        "3": "General inquiry",
+        "4": "Other"
+      },
+      "messageLabel": "Message *",
+      "messagePlaceholder": "Describe your inquiry...",
+      "requiredNote": "* Required fields",
+      "submitting": "Sending...",
+      "submit": "Send message",
+      "error": "An error occurred. Please try again."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "subtitle": "Find answers to the most common questions",
+      "items": {
+        "0": { "question": "What ages are Coerver programs designed for?", "answer": "Our programs are tailored to all ages, both adults and younger players. Each age group has a specially designed program suited to their stage of development." },
+        "1": { "question": "How long do training sessions last?", "answer": "Training sessions last 60-90 minutes, depending on the age group and type of program. Younger participants have shorter sessions adapted to their attention span." },
+        "2": { "question": "How can I sign up?", "answer": "You can sign up via the contact form on this page, by email, or by phone. After signing up, we'll get back to you with details on available time slots." },
+        "3": { "question": "Do I need to bring my own equipment?", "answer": "Depending on the program, coaches will let you know whether you need to bring your own equipment or whether we provide it." }
+      },
+      "notFound": "Didn't find an answer?",
+      "emailUs": "Send us an email"
+    },
+    "cta": {
+      "title": "Ready for your first training session?",
+      "description": "Join hundreds of satisfied players who are already part of the Coerver family",
+      "findAcademy": "Find an academy",
+      "becomeCoach": "Become a coach"
+    }
+  },
+  "privacy": {
+    "hero": {
+      "titleStart": "Privacy",
+      "titleHighlight": "Policy",
+      "description": "Your privacy matters to us. Here you can find out how we collect, use and protect your personal data.",
+      "lastUpdated": "Last updated: {date}"
+    },
+    "controller": {
+      "title": "1. Data Controller",
+      "intro": "The controller of your personal data is Coerver Coaching Croatia, headquartered in Zagreb, Croatia. For any questions related to the protection of personal data, you can contact us at:",
+      "emailLabel": "Email:",
+      "phoneLabel": "Phone:"
+    },
+    "dataCollected": {
+      "title": "2. What Data We Collect",
+      "intro": "We collect the following types of personal data:",
+      "items": {
+        "0": "<strong>Contact details:</strong> full name, email address, phone number",
+        "1": "<strong>Child data:</strong> child's age/year of birth, jersey size, football club, position (for camp and academy registrations)",
+        "2": "<strong>User account data:</strong> email address, password (encrypted), user role",
+        "3": "<strong>Technical data:</strong> IP address, browser type, session cookies"
+      }
+    },
+    "purpose": {
+      "title": "3. Purpose of Processing",
+      "intro": "We use your personal data to:",
+      "items": {
+        "0": "Process registrations for camps, academies and courses",
+        "1": "Communicate about our programs and services",
+        "2": "Manage user accounts",
+        "3": "Send notifications about news and offers (with your consent)",
+        "4": "Improve our services and website"
+      }
+    },
+    "legalBasis": {
+      "title": "4. Legal Basis for Processing",
+      "intro": "We process your data based on:",
+      "items": {
+        "0": "<strong>Consent:</strong> when you give us explicit consent to process your data",
+        "1": "<strong>Contractual obligation:</strong> when processing is necessary to perform a contract (e.g. a camp registration)",
+        "2": "<strong>Legitimate interest:</strong> to improve our services and system security",
+        "3": "<strong>Legal obligation:</strong> when we are legally required to retain certain data"
+      }
+    },
+    "sharing": {
+      "title": "5. Sharing Data with Third Parties",
+      "intro": "We may share your data with:",
+      "items": {
+        "0": "<strong>Supabase Inc.</strong> - database and authentication service provider (USA, subject to standard contractual clauses)",
+        "1": "<strong>Vercel Inc.</strong> - hosting service provider (USA, subject to standard contractual clauses)",
+        "2": "<strong>Resend</strong> - email delivery service provider"
+      },
+      "outro": "We do not sell or rent your personal data to third parties for marketing purposes."
+    },
+    "cookies": {
+      "title": "6. Cookies",
+      "intro": "Our website uses the following types of cookies:",
+      "items": {
+        "0": "<strong>Essential cookies:</strong> required for the site to function and for user authentication",
+        "1": "<strong>Session cookies:</strong> keep you logged in during your visit"
+      },
+      "outro": "We currently do not use analytics or marketing cookies. You can manage cookie settings through your browser's settings."
+    },
+    "rights": {
+      "title": "7. Your Rights",
+      "intro": "Under the GDPR, you have the following rights:",
+      "items": {
+        "0": "<strong>Right of access:</strong> you can request a copy of all data we hold about you",
+        "1": "<strong>Right to rectification:</strong> you can request correction of inaccurate data",
+        "2": "<strong>Right to erasure:</strong> you can request deletion of your data (\"right to be forgotten\")",
+        "3": "<strong>Right to restriction of processing:</strong> you can request that we limit how we use your data",
+        "4": "<strong>Right to data portability:</strong> you can request that your data be transferred to another controller",
+        "5": "<strong>Right to object:</strong> you can object to processing based on legitimate interest",
+        "6": "<strong>Right to withdraw consent:</strong> you can withdraw your consent at any time"
+      },
+      "outro": "To exercise any of the rights listed above, contact us at"
+    },
+    "retention": {
+      "title": "8. Data Retention Period",
+      "intro": "We retain your personal data only for as long as necessary for the purposes for which it was collected:",
+      "items": {
+        "0": "Inquiry data: 2 years from receipt of the inquiry",
+        "1": "Program registration data: 5 years from completion of the program",
+        "2": "User accounts: until account closure + 30 days",
+        "3": "Accounting data: in accordance with legal regulations (11 years)"
+      }
+    },
+    "security": {
+      "title": "9. Data Security",
+      "intro": "We take appropriate technical and organizational measures to protect your personal data from unauthorized access, loss or destruction. This includes:",
+      "items": {
+        "0": "SSL/TLS encryption of all communications",
+        "1": "Password encryption",
+        "2": "Regular security audits",
+        "3": "Restricted access to data limited to authorized personnel"
+      }
+    },
+    "children": {
+      "title": "10. Children's Data",
+      "text": "Since our programs involve children, we pay special attention to protecting their data. We collect children's data solely with the consent of a parent or guardian, and only the data necessary for participation in our programs."
+    },
+    "complaint": {
+      "title": "11. Right to Lodge a Complaint",
+      "intro": "If you believe that the processing of your personal data violates the GDPR, you have the right to lodge a complaint with the supervisory authority - the Croatian Personal Data Protection Agency (AZOP):",
+      "webLabel": "Website:",
+      "emailLabel": "Email:",
+      "addressLabel": "Address:"
+    },
+    "changes": {
+      "title": "12. Changes to the Privacy Policy",
+      "text": "We reserve the right to amend this privacy policy. We will notify you of any significant changes via our website or by email. We recommend reviewing this page periodically."
+    },
+    "questions": {
+      "title": "Have questions?",
+      "text": "For any questions related to the protection of your personal data, feel free to contact us:"
+    }
+  },
+  "forms": {
+    "inquiry": {
+      "title": "Send Inquiry",
+      "submit": "Send Inquiry",
+      "error": "An error occurred. Please try again.",
+      "loading": "Loading...",
+      "success": {
+        "title": "Thanks for your inquiry!",
+        "message": "Your inquiry has been sent successfully. We'll get back to you as soon as possible.",
+        "newInquiry": "Send a new inquiry"
+      },
+      "fields": {
+        "name": { "label": "Full name *", "placeholder": "Enter your full name" },
+        "childName": { "label": "Child's full name *", "placeholder": "Enter your child's full name" },
+        "email": { "label": "Email address *", "placeholder": "you@email.com" },
+        "phone": { "label": "Phone" },
+        "academy": { "label": "Select academy *", "placeholder": "Select an academy", "empty": "No academies available" },
+        "camp": { "label": "Select camp *", "placeholder": "Select a camp", "empty": "No camps available" },
+        "course": { "label": "Select course *", "placeholder": "Select a course", "empty": "No courses available" },
+        "childAge": { "label": "Child's age", "placeholder": "Select age", "years": "{range} years" },
+        "accommodationType": {
+          "label": "Registration type *",
+          "placeholder": "Select registration type",
+          "withAccommodation": "With accommodation (full camp with lodging)",
+          "fullDay": "Full day (all activities, no overnight stay)",
+          "trainingOnly": "Training only"
+        },
+        "birthYear": { "label": "Child's year of birth *", "placeholder": "Select year of birth" },
+        "jerseySize": { "label": "Jersey size *", "placeholder": "Select size" },
+        "club": { "label": "Club", "placeholder": "Name of the club they play for" },
+        "clubCourse": { "label": "Club", "placeholder": "Name of the club you're registering from" },
+        "clubName": { "label": "Club name *", "placeholder": "Name of your club" },
+        "position": {
+          "label": "Position",
+          "placeholder": "Select position",
+          "goalkeeper": "Goalkeeper",
+          "defender": "Defender",
+          "midfielder": "Midfielder",
+          "forward": "Forward"
+        },
+        "note": { "label": "Note", "placeholder": "Allergies, health notes or other important information..." },
+        "format": { "label": "Participation format *", "placeholder": "Select format", "live": "In person" },
+        "message": { "label": "Message *", "placeholder": "Write your message or question..." }
+      },
+      "summary": {
+        "type": "Type",
+        "birthYear": "Year of birth",
+        "jerseySize": "Jersey size",
+        "club": "Club",
+        "position": "Position",
+        "note": "Note",
+        "format": "Format",
+        "program": "Program",
+        "withAccommodation": "With accommodation",
+        "fullDay": "Full day",
+        "trainingOnly": "Training only",
+        "dayOnly": "No accommodation"
+      },
+      "consent": {
+        "textStart": "I have read and agree to the",
+        "privacyLink": "privacy policy",
+        "textEnd": "and I consent to the processing of my personal data for the purpose of handling this inquiry. *"
+      }
+    }
+  }
+}

@@ -2,52 +2,42 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 interface Slide {
   id: number;
-  title: string;
-  subtitle: string;
   image: string;
   imageMobile: string;
-  accent: string;
 }
 
 const slides: Slide[] = [
   {
     id: 1,
-    title: "Champions",
-    subtitle: "Start Here",
-    accent: "Prisutna u preko 60 zemalja",
     image: "/images/photoshoot/Miami-141.webp",
     imageMobile: "/images/photoshoot/Miami-141-mobile.webp",
   },
   {
     id: 2,
-    title: "Develop",
-    subtitle: "Your Skills",
-    accent: "Osnovana 1984. godine",
     image: "/images/photoshoot/Miami-081.webp",
     imageMobile: "/images/photoshoot/Miami-081-mobile.webp",
   },
   {
     id: 3,
-    title: "Train Like",
-    subtitle: "The Pros",
-    accent: "Razvijamo buduće prvake",
     image: "/images/photoshoot/Miami-083.webp",
     imageMobile: "/images/photoshoot/Miami-083-mobile.webp",
   },
 ];
 
 const stats = [
-  { value: "60+", label: "Zemalja" },
-  { value: "40+", label: "Godina" },
-  { value: "1M+", label: "Igrača" },
-];
+  { value: "60+", key: "countries" },
+  { value: "40+", key: "years" },
+  { value: "1M+", key: "players" },
+] as const;
 
 export function HeroCarousel() {
+  const t = useTranslations("home.hero");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState<Set<number>>(new Set([0]));
@@ -59,7 +49,7 @@ export function HeroCarousel() {
 
     // Preload the next image if not loaded
     if (!imagesLoaded.has(index)) {
-      setImagesLoaded(prev => new Set([...prev, index]));
+      setImagesLoaded(prev => new Set(Array.from(prev).concat(index)));
     }
 
     setTimeout(() => {
@@ -86,13 +76,11 @@ export function HeroCarousel() {
     const nextIndex = (currentSlide + 1) % slides.length;
     if (!imagesLoaded.has(nextIndex)) {
       const timer = setTimeout(() => {
-        setImagesLoaded(prev => new Set([...prev, nextIndex]));
+        setImagesLoaded(prev => new Set(Array.from(prev).concat(nextIndex)));
       }, 1000);
       return () => clearTimeout(timer);
     }
   }, [currentSlide, imagesLoaded]);
-
-  const currentSlideData = slides[currentSlide];
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-coerver-dark">
@@ -150,7 +138,7 @@ export function HeroCarousel() {
                     isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
                   )}
                 >
-                  {currentSlideData.title}
+                  {t(`slides.${currentSlide}.title`)}
                 </span>
                 <span
                   className={cn(
@@ -158,7 +146,7 @@ export function HeroCarousel() {
                     isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
                   )}
                 >
-                  {currentSlideData.subtitle}
+                  {t(`slides.${currentSlide}.subtitle`)}
                 </span>
               </h1>
 
@@ -167,7 +155,7 @@ export function HeroCarousel() {
                 "text-lg sm:text-xl md:text-2xl text-white/60 mb-8 sm:mb-10 max-w-md transition-all duration-500 delay-100",
                 isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
               )}>
-                {currentSlideData.accent}
+                {t(`slides.${currentSlide}.accent`)}
               </p>
 
               {/* CTA Buttons */}
@@ -176,7 +164,7 @@ export function HeroCarousel() {
                   href="/za-igrace/akademije"
                   className="group inline-flex items-center gap-2 sm:gap-3 bg-coerver-green hover:bg-coerver-green/90 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-colors duration-200"
                 >
-                  <span>Pridruži se</span>
+                  <span>{t("joinCta")}</span>
                   <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
@@ -189,7 +177,7 @@ export function HeroCarousel() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span>Saznaj više</span>
+                  <span>{t("learnMore")}</span>
                 </Link>
               </div>
 
@@ -198,7 +186,7 @@ export function HeroCarousel() {
                 {stats.map((stat, index) => (
                   <div key={index} className="relative">
                     <div className="text-4xl lg:text-5xl font-black text-white">{stat.value}</div>
-                    <div className="text-sm text-white/50 font-medium uppercase tracking-wider">{stat.label}</div>
+                    <div className="text-sm text-white/50 font-medium uppercase tracking-wider">{t(`stats.${stat.key}`)}</div>
                     {index < stats.length - 1 && (
                       <div className="absolute -right-4 lg:-right-6 top-1/2 -translate-y-1/2 w-px h-12 bg-white/10" />
                     )}
@@ -227,7 +215,12 @@ export function HeroCarousel() {
                     "relative h-1 rounded-full transition-all duration-500 overflow-hidden",
                     index === currentSlide ? "w-16 bg-white/20" : "w-8 bg-white/10 hover:bg-white/20"
                   )}
-                  aria-label={`Prikaži slajd ${index + 1} od ${slides.length}: ${slides[index].title} ${slides[index].subtitle}`}
+                  aria-label={t("slideAria", {
+                    num: index + 1,
+                    total: slides.length,
+                    title: t(`slides.${index}.title`),
+                    subtitle: t(`slides.${index}.subtitle`),
+                  })}
                   aria-current={index === currentSlide ? "true" : undefined}
                 >
                   {index === currentSlide && (

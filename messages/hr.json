@@ -1,0 +1,1776 @@
+{
+  "metadata": {
+    "title": "Coerver Coaching Croatia | Nogometna Akademija",
+    "description": "Razvijamo vrhunske nogometaše kroz provjerenu Coerver metodologiju. Akademije, kampovi, individualni treninzi i edukacija trenera.",
+    "ogDescription": "Razvijamo vrhunske nogometaše kroz provjerenu Coerver metodologiju.",
+    "keywords": "nogomet, nogometna akademija, Coerver, trening, djeca, mladi nogometaši, Zagreb, Hrvatska, treneri, diploma",
+    "jsonLd": {
+      "academies": "Coerver Akademije",
+      "academiesDesc": "Redovni grupni treninzi po provjerenoj Coerver metodologiji",
+      "camps": "Nogometni Kampovi",
+      "campsDesc": "Intenzivni višednevni programi tijekom školskih praznika",
+      "diploma": "Coerver Diploma Pathway",
+      "diplomaDesc": "Edukacija trenera po Coerver metodologiji"
+    }
+  },
+  "nav": {
+    "home": "Početna",
+    "about": "O nama",
+    "players": "Igrači",
+    "allPrograms": "Svi programi",
+    "academies": "Akademije",
+    "individualTrainings": "Individualni treninzi",
+    "camps": "Kampovi",
+    "coaches": "Treneri",
+    "coerverIntro": "Coerver® Intro",
+    "youthDiploma1": "Youth Diploma 1",
+    "youthDiploma2": "Youth Diploma 2",
+    "clubs": "Klubovi",
+    "blog": "Blog",
+    "contact": "Kontakt",
+    "login": "Prijava",
+    "openMenu": "Otvori izbornik",
+    "closeMenu": "Zatvori izbornik",
+    "joinTitle": "Pridruži se",
+    "joinSubtitle": "Postani dio Coerver obitelji",
+    "joinCta": "Prijavi se",
+    "contactUs": "Kontaktirajte nas",
+    "changeLanguage": "Promijeni jezik"
+  },
+  "footer": {
+    "description": "Razvijamo vrhunske nogometaše kroz provjerenu Coerver metodologiju. Pridružite se svjetskoj obitelji Coerver treninga.",
+    "location": "Zagreb, Hrvatska",
+    "forPlayers": "Za Igrače",
+    "forCoaches": "Za Trenere",
+    "newsletter": "Newsletter",
+    "newsletterText": "Prijavite se za najnovije vijesti i ekskluzivne ponude.",
+    "newsletterThanks": "Hvala na prijavi! Provjerite svoj email.",
+    "emailPlaceholder": "Vaš email",
+    "subscribe": "Pretplatite se",
+    "rights": "Sva prava pridržana.",
+    "aboutUs": "O nama",
+    "privacy": "Privatnost"
+  },
+  "home": {
+    "hero": {
+      "slides": {
+        "0": {
+          "title": "Champions",
+          "subtitle": "Start Here",
+          "accent": "Prisutna u preko 60 zemalja"
+        },
+        "1": {
+          "title": "Develop",
+          "subtitle": "Your Skills",
+          "accent": "Osnovana 1984. godine"
+        },
+        "2": {
+          "title": "Train Like",
+          "subtitle": "The Pros",
+          "accent": "Razvijamo buduće prvake"
+        }
+      },
+      "stats": {
+        "countries": "Zemalja",
+        "years": "Godina",
+        "players": "Igrača"
+      },
+      "joinCta": "Pridruži se",
+      "learnMore": "Saznaj više",
+      "slideAria": "Prikaži slajd {num} od {total}: {title} {subtitle}"
+    },
+    "whatIsCoerver": {
+      "badge": "Globalna metoda #1",
+      "title": "Što je Coerver<r>®</r> Coaching?",
+      "subtitle": "Globalna nogometna edukacijska tvrtka koja je razvila svjetsku metodu broj 1 za učenje nogometnih vještina.",
+      "yearsShort": "Godina",
+      "countriesShort": "Zemalja",
+      "description": "<green>Coerver® Coaching</green> je danas prisutna u preko <bold>60 zemalja</bold> na svim kontinentima, a koriste ju neke od najpoznatijih nogometnih akademija i saveza.",
+      "description2": "Arsenal, Bayern München, Benfica, Dinamo Zagreb, francuski nogometni savez, japanski nogometni savez – samo su neke od organizacija koje koriste našu metodologiju.",
+      "features": {
+        "players": {
+          "title": "Za Igrače",
+          "description": "Individualni i grupni treninzi za sve uzraste"
+        },
+        "coaches": {
+          "title": "Za Trenere",
+          "description": "Edukacija i certifikacija trenera"
+        },
+        "clubs": {
+          "title": "Za Klubove",
+          "description": "Partnerstva i programi za klubove"
+        }
+      },
+      "stats": {
+        "experience": "Godina Iskustva",
+        "countries": "Zemalja Svijeta",
+        "players": "Igrača Globalno"
+      },
+      "trustedBy": "Klubovi koji nam vjeruju",
+      "regionBadge": "Regionalna mreža",
+      "regionTitleLine1": "Prisutni",
+      "regionTitleLine2": "u regiji",
+      "regionText": "Naši certificirani treneri provode programe diljem tri zemlje regije.",
+      "countries": {
+        "croatia": "Hrvatska",
+        "slovenia": "Slovenija",
+        "bih": "BiH"
+      },
+      "findProgram": "Pronađi program",
+      "marquee": {
+        "moves1v1": "1v1 Potezi",
+        "finishing": "Završnica",
+        "receiving": "Primanje",
+        "passing": "Dodavanje",
+        "speed": "Brzina",
+        "groupAttack": "Grupni Napad"
+      }
+    },
+    "audience": {
+      "cards": {
+        "players": {
+          "title": "IGRAČI",
+          "description": "Coerver® Coaching Performance Akademije namijenjene su igračima od 7 do 14 godina starosti koji već treniraju u klubovima, a žele poboljšati svoju izvedbu dodatno trenirajući po jedinstvenoj Coerver® metodi."
+        },
+        "coaches": {
+          "title": "TRENERI",
+          "description": "Cilj Coerver® edukacija je pružiti trenerima teoretski i praktični pregled evolucije Coerver® metode od njenog osnivanja 1984. godine."
+        },
+        "clubs": {
+          "title": "KLUBOVI",
+          "description": "Coerver® Coaching nudi poseban partnerski program svim klubovima od amaterske do profesionalne razine. Ovim programom pokrivaju se četiri temeljne komponente."
+        },
+        "individual": {
+          "title": "INDIVIDUALNI TRENINZI",
+          "description": "Coerver® Coaching ima poseban program za individualne treninge i rad u manjim grupama, koji su ključni za razvoj svih sportaša."
+        },
+        "camps": {
+          "title": "KAMPOVI",
+          "description": "Coerver® Coaching organizira kampove u trajanju od jednoga do pet dana na kojima kombinacijom učenja vještina i zabave želimo svakom polazniku pružiti nezaboravno iskustvo."
+        }
+      },
+      "prevAria": "Prethodni",
+      "nextAria": "Sljedeći",
+      "contactCta": "KONTAKTIRAJTE NAS"
+    },
+    "testimonials": {
+      "badge": "5.0 od naših polaznika",
+      "title": "Što kažu naši <green>polaznici</green>",
+      "subtitle": "Priče igrača, roditelja i trenera koji su transformirali svoju igru",
+      "tablistAria": "Odaberi izjavu",
+      "dotAriaFull": "Izjava {num} od {total}: {name}",
+      "dotAria": "Izjava {num}: {name}",
+      "items": {
+        "0": {
+          "role": "Roditelj igrača, U12",
+          "content": "Coerver Coaching mi je pomogao podići igru na višu razinu. Treninzi tehnika u kombinaciji sa brzim donošenjem odluka bilo je ono što mi je trebalo da se bolje adaptiram na nogomet u Europi."
+        },
+        "1": {
+          "role": "Igračica, 16 godina",
+          "content": "Nakon godinu dana na Coerver programu, moja kontrola lopte i samopouzdanje su nevjerojatno napredovali. Treneri su fantastični i uvijek potiču na bolji rad."
+        },
+        "2": {
+          "role": "Trener NK Dinamo Mladi",
+          "content": "Coerver diploma mi je otvorila oči za nove metode treninga. Moji igrači sada uživaju na treninzima i napreduju brže nego ikad."
+        },
+        "3": {
+          "role": "Mama igračice, U10",
+          "content": "Moja kći obožava Coerver treninge! Svaki put se vraća sretna i uzbuđena pokazati nove trikove. Profesionalnost trenera je iznad svih očekivanja."
+        }
+      },
+      "stats": {
+        "activePlayers": "Aktivnih Igrača",
+        "certifiedCoaches": "Certificiranih Trenera",
+        "partnerClubs": "Partnerskih Klubova",
+        "yearsExperience": "Godina Iskustva"
+      }
+    },
+    "blog": {
+      "badge": "Blog",
+      "title": "Najnovije iz <green>Coerver</green> svijeta",
+      "allPosts": "Svi članci",
+      "emptyTitle": "Uskoro novi članci",
+      "emptyText": "Pratite nas za najnovije vijesti i savjete iz svijeta nogometa.",
+      "teamFallback": "Coerver Tim",
+      "viewAll": "Pogledaj sve članke",
+      "morePosts": "Više članaka na blogu"
+    },
+    "partnerCta": {
+      "description": "Coerver® Coaching nudi poseban partnerski program svim klubovima od amaterske do profesionalne razine, koji žele kontinuiranu edukaciju i prepoznatljivost u svom okruženju",
+      "button": "POSTANITE COERVER® PARTNER KLUB"
+    },
+    "contact": {
+      "badge": "Javite nam se",
+      "title": "Spremni za <green>početak?</green>",
+      "subtitle": "Pridružite se stotinama zadovoljnih igrača i trenera koji su već dio Coerver obitelji.",
+      "info": {
+        "email": "Email",
+        "phone": "Telefon",
+        "location": "Lokacija"
+      },
+      "locationValue": "Zagreb, Hrvatska",
+      "signUpPlayer": "Prijavi igrača",
+      "becomeCoach": "Postani trener",
+      "successTitle": "Hvala na upitu!",
+      "successText": "Vaša poruka je uspješno poslana. Javit ćemo vam se u najkraćem mogućem roku.",
+      "sendAnother": "Pošalji novu poruku",
+      "formTitle": "Kontaktirajte nas",
+      "formSubtitle": "Ispunite obrazac i javit ćemo vam se uskoro.",
+      "nameLabel": "Ime i prezime",
+      "namePlaceholder": "Vaše ime",
+      "emailLabel": "Email",
+      "emailPlaceholder": "vas@email.com",
+      "phoneLabel": "Telefon (opcionalno)",
+      "messageLabel": "Poruka",
+      "messagePlaceholder": "Kako vam možemo pomoći?",
+      "errorMessage": "Došlo je do greške. Molimo pokušajte ponovno.",
+      "privacyConsent": "Slažem se s <link>politikom privatnosti</link> *",
+      "sending": "Slanje...",
+      "send": "Pošalji poruku"
+    },
+    "partners": {
+      "badge": "Naši Partneri",
+      "title": "Klubovi s Kojima Surađujemo",
+      "ctaText": "Želite postati partner? Kontaktirajte nas!",
+      "ctaLink": "Saznajte više o partnerstvu"
+    },
+    "region": {
+      "countries": {
+        "croatia": "Hrvatska",
+        "slovenia": "Slovenija",
+        "bosnia": "Bosna i Hercegovina"
+      },
+      "coachesLabel": "Educiranih trenera",
+      "playersLabel": "Educiranih igrača",
+      "locations": "Lokacije"
+    }
+  },
+  "players": {
+    "index": {
+      "heroAlt": "Mladi igrač u akciji",
+      "badge": "Za Igrače",
+      "heroTitle1": "Razvij svoj",
+      "heroTitle2": "puni potencijal",
+      "heroText": "Bez obzira na tvoj trenutni nivo, imamo program koji će te odvesti na sljedeću razinu. Pridruži se tisućama mladih nogometaša.",
+      "signUp": "Prijavi se",
+      "viewPrograms": "Pogledaj programe",
+      "programs": {
+        "badge": "Programi",
+        "title": "Odaberi svoj put",
+        "text": "Tri načina za razvoj tvoje nogometne karijere - odaberi onaj koji ti najbolje odgovara.",
+        "learnMore": "Saznaj više",
+        "0": {
+          "title": "Akademije",
+          "subtitle": "Redovni treninzi",
+          "description": "Redovni grupni treninzi u vašem gradu. Strukturirani programi za sve dobne skupine od 7 do 14 godina.",
+          "features": {
+            "0": "Male grupe",
+            "1": "Svi gradovi"
+          }
+        },
+        "1": {
+          "title": "Individualni treninzi",
+          "subtitle": "1-na-1 treninzi",
+          "description": "Personalizirani treninzi prilagođeni specifičnim potrebama i ciljevima svakog igrača.",
+          "features": {
+            "0": "Fleksibilno",
+            "1": "Brži napredak",
+            "2": "Osobni plan"
+          }
+        },
+        "2": {
+          "title": "Kampovi",
+          "subtitle": "Intenzivni programi",
+          "description": "Intenzivni nogometni kampovi tijekom školskih praznika. Višednevni programi puni nogometa i zabave.",
+          "features": {
+            "0": "Ljeto & Zima",
+            "1": "Cjelodnevno",
+            "2": "Prijateljstva"
+          }
+        }
+      },
+      "pyramid": {
+        "0": {
+          "title": "Ball Mastery",
+          "description": "Temelj svega - potpuna kontrola lopte u svim dijelovima stopala s obje noge."
+        },
+        "1": {
+          "title": "Primanje & Dodavanja",
+          "description": "Prvi dodir - ekipne vještine."
+        },
+        "2": {
+          "title": "1v1 - napad i obrana",
+          "description": "Change of directions, stops & starts i faints."
+        },
+        "3": {
+          "title": "Brzina",
+          "description": "Brzina sa i bez lopte - brzina donošenja odluka."
+        },
+        "4": {
+          "title": "Završnica",
+          "description": "Kreiranje šansi za pogodak i realizacija."
+        },
+        "5": {
+          "title": "Grupni Napad",
+          "description": "Napad i obrana u manjim grupama."
+        }
+      },
+      "stats": {
+        "0": "Aktivnih igrača",
+        "1": "Trenera",
+        "2": "Zadovoljstvo",
+        "3": "Lokacija"
+      },
+      "ageGroups": {
+        "badge": "Dobne skupine",
+        "title1": "Program za",
+        "title2": "svaku dob",
+        "text": "Naši programi su pažljivo dizajnirani za svaku razvojnu fazu mladog nogometaša.",
+        "imageAlt": "Coerver Player Pathway - program za svaku dob"
+      },
+      "skills": {
+        "badge": "Što ćeš naučiti",
+        "title": "Vještine koje čine razliku",
+        "text": "Naši programi su dizajnirani da razviju kompletnog igrača - tehnički izvrsnog, mentalno jakog i taktički svjesnog.",
+        "imageAlt": "Coerver trening",
+        "recommend1": "Roditelja preporučuje",
+        "recommend2": "Coerver programe",
+        "players1": "500+ igrača",
+        "players2": "aktivno trenira"
+      },
+      "cta": {
+        "badge": "Besplatni probni trening",
+        "title": "Spreman za početak?",
+        "text": "Prijavi se na besplatni probni trening i otkrij zašto tisuće mladih nogometaša biraju Coerver. Bez obaveza.",
+        "signUpNow": "Prijavi se sada",
+        "contactUs": "Kontaktiraj nas"
+      }
+    },
+    "academies": {
+      "heroAlt": "Coerver akademija",
+      "breadcrumbParent": "Za Igrače",
+      "breadcrumbCurrent": "Akademije",
+      "heroTitle": "Akademije",
+      "heroText": "Redovni grupni treninzi po provjerenoj Coerver metodologiji. Pronađi akademiju u svom gradu i započni put prema nogometnoj izvrsnosti.",
+      "signUp": "Prijavi se",
+      "findLocation": "Pronađi lokaciju",
+      "stats": {
+        "locations": "Lokacija",
+        "cities": "Gradova",
+        "maxPlayers": "Max igrača po grupi",
+        "minutes": "Minuta po treningu"
+      },
+      "locations": {
+        "badge": "Lokacije",
+        "title": "Pronađi akademiju",
+        "text": "Coerver akademije su prisutne u svim većim gradovima Hrvatske.",
+        "empty": "Trenutno nema aktivnih akademija.",
+        "schedule": "Raspored",
+        "ageGroups": "Dobne skupine",
+        "years": "{age} god",
+        "signUp": "Prijavi se",
+        "signUpLocation": "Prijavi se na ovu lokaciju"
+      },
+      "structure": {
+        "badge": "Struktura treninga",
+        "title": "Što te čeka na treningu?",
+        "text": "90 minuta strukturiranog treninga po provjerenoj Coerver metodologiji.",
+        "phases": {
+          "0": {
+            "title": "Zagrijavanje",
+            "description": "Dinamičko zagrijavanje kroz ball mastery"
+          },
+          "1": {
+            "title": "Brzina",
+            "description": "Brzina sa i bez lopte"
+          },
+          "2": {
+            "title": "1v1",
+            "description": "Change of directions, stops & starts i faints"
+          },
+          "3": {
+            "title": "Small Group Play",
+            "description": "Vježbe primanja, dodavanja, suradnje i završnice"
+          },
+          "4": {
+            "title": "Small Sided Game",
+            "description": "Igre na skraćenom prostoru"
+          },
+          "5": {
+            "title": "Domaća zadaća",
+            "description": "Potezi za trening u slobodno vrijeme"
+          }
+        }
+      },
+      "inquiry": {
+        "badge": "Prijava",
+        "title": "Prijavi se u akademiju",
+        "text": "Ispuni obrazac i javit ćemo ti se s dostupnim terminima i svim potrebnim informacijama. Možeš doći i na besplatni probni trening!",
+        "email": "Email",
+        "phone": "Telefon",
+        "formTitle": "Pošalji upit"
+      }
+    },
+    "individual": {
+      "heroAlt": "Individualni trening",
+      "breadcrumbParent": "Za Igrače",
+      "breadcrumbCurrent": "Individualni treninzi",
+      "heroTitle1": "1-na-1",
+      "heroTitle2": "Treninzi",
+      "heroText": "Maksimalna pažnja, maksimalni rezultati. Personalizirani treninzi prilagođeni tvojim ciljevima i potrebama.",
+      "bookSlot": "Rezerviraj termin",
+      "benefits": {
+        "badge": "Prednosti",
+        "title": "Zašto individualni trening?",
+        "0": {
+          "title": "Personalizirani Program",
+          "description": "Svaki trening je dizajniran specifično za tvoje potrebe i ciljeve."
+        },
+        "1": {
+          "title": "Fleksibilan Raspored",
+          "description": "Ti biraš vrijeme i mjesto treninga koje ti najbolje odgovara."
+        },
+        "2": {
+          "title": "Brži Napredak",
+          "description": "100% fokus trenera na tebe znači brže usvajanje novih vještina."
+        },
+        "3": {
+          "title": "Kontinuirano Praćenje",
+          "description": "Praćenje igrača kroz utakmice i evaluacije."
+        }
+      },
+      "coaches": {
+        "badge": "Naši treneri",
+        "title": "Certificirani stručnjaci",
+        "text": "Svi naši treneri su prošli rigoroznu Coerver edukaciju i imaju bogato iskustvo u radu s mladim igračima.",
+        "0": {
+          "title": "Direktor Coerver Hrvatska, Slovenija i BiH",
+          "licence": "UEFA A",
+          "experience": "16+ godina iskustva"
+        },
+        "1": {
+          "title": "Direktor Coerver Split",
+          "licence": "UEFA B",
+          "experience": "11+ godina iskustva"
+        },
+        "2": {
+          "title": "Direktor Coerver Varaždin",
+          "licence": "Nacionalna Pro Licenca",
+          "experience": "20+ godina iskustva"
+        }
+      },
+      "process": {
+        "badge": "Kako funkcionira",
+        "title": "4 jednostavna koraka",
+        "0": {
+          "title": "Kontaktiraj Nas",
+          "description": "Pošalji upit s informacijama o igraču i ciljevima."
+        },
+        "1": {
+          "title": "Procjena",
+          "description": "Početni sastanak za procjenu razine i definiranje plana."
+        },
+        "2": {
+          "title": "Dogovor Termina",
+          "description": "Odaberi termine koji ti odgovaraju."
+        },
+        "3": {
+          "title": "Započni Treninge",
+          "description": "Kreni s treninzima i prati svoj napredak."
+        }
+      },
+      "booking": {
+        "badge": "Rezervacija",
+        "title": "Rezerviraj svoj termin",
+        "text": "Ispuni obrazac s osnovnim informacijama i javit ćemo ti se u roku 24 sata s dostupnim terminima.",
+        "needToKnow": "Što trebamo znati:",
+        "items": {
+          "0": "Dob i trenutna razina igrača",
+          "1": "Ciljevi i područja za poboljšanje",
+          "2": "Preferirana lokacija i termini"
+        },
+        "formTitle": "Pošalji upit"
+      }
+    },
+    "camps": {
+      "countdown": {
+        "days": "dana",
+        "hours": "sati",
+        "min": "min",
+        "sec": "sek"
+      },
+      "quickForm": {
+        "thanks": "Hvala na upitu!",
+        "reply": "Javit ćemo vam se u najkraćem roku.",
+        "name": "Ime i prezime",
+        "email": "Email adresa",
+        "phone": "Broj mobitela",
+        "sending": "Šaljem...",
+        "send": "Pošalji upit"
+      },
+      "trustStats": {
+        "0": "Polaznika godišnje",
+        "1": "Godina iskustva",
+        "2": "Zadovoljnih roditelja"
+      },
+      "benefits": {
+        "0": {
+          "title": "Coerver metodologija",
+          "description": "Svjetski priznata metoda razvoja tehničkih vještina"
+        },
+        "1": {
+          "title": "Licencirani treneri",
+          "description": "UEFA licencirani treneri s Coerver certifikatom"
+        },
+        "2": {
+          "title": "Male grupe",
+          "description": "Maksimalno 12 igrača po treneru za individualan pristup"
+        },
+        "3": {
+          "title": "Sve uključeno",
+          "description": "Oprema, obroci, osiguranje i certifikat"
+        }
+      },
+      "testimonials": {
+        "0": {
+          "text": "Moj sin se vratio s kampa pun entuzijazma! Napredak u tehnici je nevjerojatan, a stekao je i nova prijateljstva.",
+          "role": "Mama Luke (9 god)"
+        },
+        "1": {
+          "text": "Profesionalan pristup, izvrsna organizacija. Djeca su stalno aktivna i uče kroz igru. Preporučujem svima!",
+          "role": "Tata Ivana (11 god)"
+        },
+        "2": {
+          "text": "Treći put za redom šaljemo sina na Coerver kamp. Svake godine se vrati s novim vještinama i još većom ljubavi prema nogometu.",
+          "role": "Mama Petra (12 god)"
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Što dijete treba ponijeti na kamp?",
+          "answer": "Nogometne kopačke ili tenisice, štitnike, bocu vode, potrepštine za osobnu higijenu i dobru volju! Coerver opremu dobivate na kampu."
+        },
+        "1": {
+          "question": "Je li uključen ručak?",
+          "answer": "Ovisno o vremenskom trajanju kampa igrači imaju uključen obrok odnosno ručak i/ili užinu."
+        },
+        "2": {
+          "question": "Što ako dijete nema prethodnog iskustva?",
+          "answer": "Naši kampovi su prilagođeni svim razinama - od potpunih početnika do naprednih igrača. Grupe se formiraju po dobi i sposobnosti igrača."
+        },
+        "3": {
+          "question": "Kako mogu otkazati prijavu?",
+          "answer": "Besplatno otkazivanje do 14 dana prije početka kampa. Nakon toga zadržavamo 50% uplaćenog iznosa."
+        }
+      },
+      "card": {
+        "nextCamp": "Sljedeći kamp",
+        "full": "Popunjeno",
+        "spotsLeftUrgent": "{count, plural, one {Još samo # mjesto!} few {Još samo # mjesta!} other {Još samo # mjesta!}}",
+        "viewing": "{count} osoba gleda",
+        "from": "od",
+        "daysUntil": "dana do",
+        "date": "Datum",
+        "location": "Lokacija",
+        "age": "Uzrast",
+        "spots": "Mjesta",
+        "ageValue": "{ages} god",
+        "spotsFree": "{count} slobodnih",
+        "percentFull": "{percent}% popunjeno",
+        "hurry": "Požurite!",
+        "deadline": "Rok za prijavu istječe za:",
+        "signUp": "Prijavi se"
+      },
+      "galleryAlt": "Galerija {num}",
+      "hero": {
+        "imageAlt": "Nogometni kamp",
+        "badge": "Ograničen broj mjesta - Ljeto 2026",
+        "title1": "Osiguraj",
+        "title2": "Mjesto Danas",
+        "text": "Mjesta se brzo pune. Prijavite svoje dijete na nogometni kamp koji razvija tehničke vještine, gradi samopouzdanje i stvara prijateljstva za cijeli život.",
+        "reserve": "Rezerviraj mjesto",
+        "callUs": "Nazovi nas",
+        "questions": "Imate pitanja?",
+        "reply24h": "Javimo se u roku 24h",
+        "emailBtn": "Email",
+        "partners": "Službeni partneri",
+        "quickInquiry": "Brzi upit"
+      },
+      "list": {
+        "badge": "Nadolazeći kampovi",
+        "title": "Rezerviraj svoje mjesto",
+        "text": "Broj mjesta je ograničen - osiguraj svoje mjesto na vrijeme!",
+        "emptyTitle": "Trenutno nema nadolazećih kampova",
+        "emptyText": "Pratite nas na društvenim mrežama ili nam ostavite kontakt za obavijest o novim kampovima.",
+        "notifyMe": "Obavijestite me o novim kampovima",
+        "followUs": "Pratite nas"
+      },
+      "gallery": {
+        "badge": "Galerija",
+        "title": "Pogledajte atmosferu naših kampova",
+        "text": "Svaki kamp je prilika za učenje, zabavu i stvaranje nezaboravnih uspomena. Pogledajte kako to izgleda u praksi.",
+        "instagram": "Više na Instagramu"
+      },
+      "why": {
+        "title": "Zašto odabrati Coerver kamp?",
+        "text": "Više od 35 godina Coerver metodologija razvija tehničke vještine mladih nogometaša diljem svijeta.",
+        "alts": {
+          "0": "Trening na kampu",
+          "1": "Kamp aktivnosti",
+          "2": "Grupni trening",
+          "3": "Zabava na kampu"
+        }
+      },
+      "parents": {
+        "badge": "Iskustva roditelja",
+        "title": "Što kažu roditelji?",
+        "text": "Više od 500 zadovoljnih obitelji godišnje",
+        "googleReviews": "na Google recenzijama"
+      },
+      "faq": {
+        "title": "Česta pitanja",
+        "text": "Imate dodatnih pitanja? Slobodno nas kontaktirajte putem emaila ili telefona.",
+        "cardTitle": "Imate pitanja?",
+        "cardText": "Naš tim je tu za vas. Javite nam se i rado ćemo odgovoriti na sva vaša pitanja.",
+        "email": "Email",
+        "phone": "Telefon"
+      },
+      "finalCta": {
+        "title": "Spremi svoje dijete za nezaboravno ljeto",
+        "text": "Prijavite se danas i osigurajte mjesto na jednom od naših kampova. Broj mjesta je ograničen!",
+        "signUpNow": "Prijavi se sada"
+      },
+      "stickyCta": "Prijavi se na kamp"
+    },
+    "campDetail": {
+      "countdown": {
+        "deadline": "Rok za prijavu istječe za:",
+        "d": "d",
+        "h": "h",
+        "m": "m"
+      },
+      "testimonialsDefault": {
+        "0": {
+          "text": "Moj sin se vratio s kampa pun entuzijazma! Napredak u tehnici je nevjerojatan.",
+          "role": "Mama Luke (9 god)"
+        },
+        "1": {
+          "text": "Profesionalan pristup, izvrsna organizacija. Preporučujem svima!",
+          "role": "Tata Ivana (11 god)"
+        }
+      },
+      "allAges": "Sve uzrasti",
+      "yearsSuffix": "{ages} god",
+      "breadcrumb": "Kampovi",
+      "viewingNow": "{count} gleda sada",
+      "spotsLeft": "{count, plural, one {Još # mjesto!} few {Još # mjesta!} other {Još # mjesta!}}",
+      "full": "Popunjeno",
+      "subtitleFallback": "Pridruži se stotinama mladih nogometaša na nezaboravnom tjednu treninga, igre i novih prijateljstava.",
+      "trust": {
+        "participants": "500+ polaznika",
+        "rating": "4.9 ocjena",
+        "returning": "98% se vraća"
+      },
+      "from": "od",
+      "perPerson": "/osoba",
+      "signUpNow": "Prijavi se odmah",
+      "hurrySpots": "{count, plural, one {Požurite - još samo # mjesto!} few {Požurite - još samo # mjesta!} other {Požurite - još samo # mjesta!}}",
+      "spotsAvailable": "{count} slobodnih mjesta",
+      "info": {
+        "date": "Datum",
+        "location": "Lokacija",
+        "age": "Dob",
+        "spots": "Mjesta",
+        "spotsValue": "{count} slobodnih"
+      },
+      "statsCard": {
+        "soldOut": "Prošle godine rasprodano u 2 tjedna!",
+        "occupancy": "Popunjenost kampa",
+        "spots": "{count} mjesta",
+        "percentFull": "{percent}% popunjeno",
+        "hurry": "Požurite s prijavom!",
+        "insurance": "Osiguranje uključeno",
+        "equipment": "Oprema uključena"
+      },
+      "tiers": {
+        "trainingOnly": {
+          "name": "Samo treninzi",
+          "description": "Za igrače iz okolice koji dolaze samo na treninge",
+          "features": {
+            "0": "Svi Coerver® treninzi",
+            "1": "Službena Coerver oprema",
+            "2": "Osiguranje uključeno"
+          }
+        },
+        "fullDay": {
+          "name": "Cjelodnevni",
+          "description": "Sve dnevne aktivnosti, bez noćenja",
+          "features": {
+            "0": "Svi Coerver® treninzi",
+            "1": "Ručak i užina",
+            "2": "Sve dnevne aktivnosti",
+            "3": "Službena Coerver oprema",
+            "4": "Osiguranje uključeno"
+          }
+        },
+        "accommodation": {
+          "name": "S noćenjem",
+          "description": "Potpuno kamp iskustvo sa smještajem",
+          "features": {
+            "0": "Svi Coerver® treninzi",
+            "1": "Smještaj uključen",
+            "2": "Svi obroci",
+            "3": "Dnevne i večernje aktivnosti",
+            "4": "Službena Coerver oprema",
+            "5": "Osiguranje uključeno"
+          }
+        }
+      },
+      "about": {
+        "badge": "O kampu",
+        "title": "Što vas očekuje?",
+        "whyTitle": "Zašto odabrati ovaj kamp?"
+      },
+      "weekly": {
+        "badge": "Program kampa",
+        "title": "Tjedni raspored",
+        "text": "Svaki dan donosi novu temu i nove vještine",
+        "day": "Dan {num}"
+      },
+      "daily": {
+        "badge": "Dnevni raspored",
+        "title": "Tipičan dan na kampu",
+        "text": "Svaki dan je pažljivo isplaniran da pruži optimalan balans treninga, odmora i zabave.",
+        "alts": {
+          "0": "Trening na kampu",
+          "1": "Kamp aktivnosti",
+          "2": "Grupni trening",
+          "3": "Zabava na kampu"
+        }
+      },
+      "included": {
+        "title": "Što je uključeno",
+        "bringTitle": "Što ponijeti"
+      },
+      "pricing": {
+        "badge": "Cijene",
+        "title": "Odaberi svoj paket",
+        "text": "Tri opcije prilagođene tvojim potrebama - od samo treninga do potpunog kamp iskustva",
+        "popular": "Najpopularnije",
+        "perPerson": "/osoba",
+        "choose": "Odaberi paket"
+      },
+      "gallery": {
+        "badge": "Galerija",
+        "title": "Fotografije s kampova",
+        "alt": "Galerija {num}"
+      },
+      "testimonials": {
+        "badge": "Iskustva",
+        "title": "Što kažu roditelji",
+        "googleReviews": "na Google recenzijama"
+      },
+      "faq": {
+        "title": "Česta pitanja"
+      },
+      "location": {
+        "badge": "Lokacija",
+        "openMaps": "Otvori u Google Maps",
+        "imageAlt": "Lokacija kampa"
+      },
+      "register": {
+        "limited": "Ograničen broj mjesta",
+        "soldOutLastYear": "Prošle godine rasprodano!",
+        "title": "Rezerviraj svoje mjesto",
+        "text": "Ne čekaj - prijave se zatvaraju, a mjesta se brzo pune!",
+        "freeCancel": "Besplatno otkazivanje 14 dana prije",
+        "installments": "Plaćanje na rate",
+        "prices": "Cijene",
+        "accommodationDesc": "Puni kamp sa smještajem",
+        "fullDayDesc": "Sve aktivnosti bez spavanja",
+        "trainingOnlyDesc": "Samo trening sessioni",
+        "included": {
+          "0": "Svi obroci uključeni",
+          "1": "Coerver oprema uključena",
+          "2": "Osiguranje uključeno"
+        },
+        "freeSpots": "Slobodna mjesta",
+        "halfFull": "Više od polovice mjesta već popunjeno!",
+        "signUpToday": "Prijavite se danas i osigurajte mjesto!",
+        "formTitle": "Prijava na kamp"
+      },
+      "back": "Povratak na sve kampove",
+      "stickyMobile": {
+        "priceFrom": "Cijena od",
+        "signUp": "Prijavi se"
+      },
+      "sticky": {
+        "spotsLeft": "{count, plural, one {Još samo # mjesto!} few {Još samo # mjesta!} other {Još samo # mjesta!}}",
+        "closing": "Prijave zatvaraju za {days}d {hours}h",
+        "priceFrom": "Cijena od",
+        "occupancy": "Popunjenost",
+        "spotsFree": "{count} slobodnih",
+        "signUpNow": "Prijavi se odmah",
+        "freeCancel": "Besplatno otkazivanje"
+      }
+    }
+  },
+  "coaches": {
+    "index": {
+      "badge": "Za Trenere",
+      "heroAlt": "Coerver trener",
+      "heroTitleTop": "Nauči tajne",
+      "heroTitleBottom": "metode",
+      "heroText": "Educiraj se po svjetski priznatoj Coerver® metodi i podigne svoje trenerske vještine na novu razinu. Pridruži se mreži od preko 1000+ educiranih trenera u Hrvatskoj, Sloveniji i BiH.",
+      "viewCourses": "Pogledaj tečajeve",
+      "whyCoerver": "Zašto Coerver®?",
+      "stats": {
+        "0": "Educiranih trenera",
+        "1": "Zemalje",
+        "2": "Godina tradicije"
+      },
+      "pathBadge": "Put do diplome",
+      "pathText": "Progresivan sustav edukacije koji te vodi od osnova do ekspertize u Coerver® metodologiji.",
+      "courses": {
+        "0": {
+          "description": "Uvodni tečaj u Coerver metodologiju u kojoj dobivate uvod u ball mastery i 1v1 kurikulum",
+          "duration": "1 dan",
+          "level": "Početni"
+        },
+        "1": {
+          "description": "Tema je kreiranje treninga po Coerver® planeru treninga",
+          "duration": "2 dana",
+          "level": "Srednji"
+        },
+        "2": {
+          "description": "Coerver box/trap kurikulum, kako razvijati ekipni stil igre baziran na posjedu i napadačkom stilu igre.",
+          "duration": "2 dana",
+          "level": "Napredni"
+        }
+      },
+      "learnMore": "Saznaj više",
+      "benefitsBadge": "Prednosti",
+      "benefitsTitlePre": "Zašto se educirati po",
+      "benefitsTitlePost": "metodologiji?",
+      "benefits": {
+        "0": {
+          "title": "Globalno Priznata Metoda",
+          "description": "Coerver® certifikat za stečeno znanje prepoznat u cijelom svijetu."
+        },
+        "1": {
+          "title": "Pristup Materijalima",
+          "description": "Praktična predavanja i Coerver priručnik sa vježbama"
+        },
+        "2": {
+          "title": "Mreža Trenera",
+          "description": "Postani dio globalne mreže Coerver educiranih trenera."
+        },
+        "3": {
+          "title": "Kontinuirani Razvoj",
+          "description": "Pathway koji kreće od temelja i završava s razvojem ekipe."
+        }
+      },
+      "coursesBadge": "Naši tečajevi",
+      "coursesTitle": "Odaberi svoj tečaj",
+      "duration": "Trajanje",
+      "price": "Cijena",
+      "signUp": "Prijavi se",
+      "testimonialsBadge": "Iskustva",
+      "testimonialsTitle": "Što kažu naši treneri?",
+      "testimonials": {
+        "0": {
+          "role": "Trener NK Osijek U15",
+          "content": "Coerver diploma je promijenila način na koji pristupam treningu. Moji igrači su napredovali brže nego ikad."
+        },
+        "1": {
+          "role": "Trenerica NK Hajduk U12",
+          "content": "Strukturirani pristup Ball Masteryju dao mi je alate koje koristim svakodnevno. Nezamjenjivo iskustvo."
+        }
+      },
+      "ctaTitle": "Spreman za sljedeći korak?",
+      "ctaText": "Pridruži se mreži certificiranih Coerver trenera i transformiraj način na koji treniraš mlade igrače.",
+      "startIntro": "Započni s Intro tečajem",
+      "contactUs": "Kontaktiraj nas"
+    },
+    "intro": {
+      "breadcrumb": "Za Trenere",
+      "heroAlt": "Coerver Intro tečaj",
+      "heroText": "Jednodnevni uvod u Coerver metodologiju. Savršen prvi korak za trenere koji žele upoznati Coerver ball mastery i 1v1 kurikulum.",
+      "duration": "Trajanje",
+      "durationValue": "1 dan",
+      "level": "Razina",
+      "levelValue": "Početni",
+      "signUp": "Prijavi se",
+      "learnBadge": "Sadržaj tečaja",
+      "learnTitle": "Što ćeš naučiti?",
+      "learn": {
+        "0": {
+          "title": "Coerver Evolucija",
+          "desc": "Evolucija Coerver vježbi i igara."
+        },
+        "1": {
+          "desc": "Vježbe kontrole lopte za sve dobi i razine, i kako ih implementirati u svoje treninge."
+        },
+        "2": {
+          "desc": "Vještine za svakog igrača, change of directions, starts & stops i feints potezi za sve situacije u igri."
+        }
+      },
+      "scheduleBadge": "Raspored",
+      "scheduleTitle": "Dnevni program",
+      "curriculum": {
+        "0": {
+          "topic": "Uvod u Coerver Metodologiju",
+          "desc": "Povijest, filozofija i principi Coerver Coachinga."
+        },
+        "1": {
+          "topic": "Pauza za kavu"
+        },
+        "2": {
+          "topic": "Ball Mastery - Teorija i Praksa",
+          "desc": "Osnovne vježbe kontrole lopte i njihova primjena."
+        },
+        "3": {
+          "topic": "Ručak"
+        },
+        "4": {
+          "topic": "1v1 - Teorija i Praksa",
+          "desc": "Uvod u temeljne driblinške poteze i metodiku učenja."
+        },
+        "5": {
+          "topic": "Pauza"
+        },
+        "6": {
+          "topic": "Zaključak",
+          "desc": "Recap cijelog dana predavanja."
+        }
+      },
+      "includedBadge": "Što dobivaš",
+      "includedTitle": "Uključeno u cijenu",
+      "included": {
+        "0": "Coerver Intro certifikat",
+        "1": "15+ vježbi i igara sa varijacijama",
+        "2": "Coerver priručnik",
+        "3": "Networking s drugim trenerima"
+      },
+      "altTraining": "Coerver trening",
+      "altEducation": "Coerver edukacija",
+      "altGroup": "Grupni trening",
+      "altMethod": "Coerver metodologija",
+      "datesBadge": "Termini",
+      "datesTitle": "Nadolazeći tečajevi",
+      "noDates": "Trenutno nema zakazanih termina",
+      "noDatesText": "Kontaktirajte nas za informacije o sljedećim terminima.",
+      "sendInquiry": "Pošalji upit",
+      "spots": "{count} mjesta",
+      "nextBadge": "Sljedeći koraci",
+      "nextTitle": "Nastavi svoj put",
+      "nextText": "Nakon Coerver Intro tečaja, možeš nastaviti s Youth Diploma 1 i 2 za potpunu Coerver certifikaciju.",
+      "regBadge": "Prijave otvorene",
+      "regTitle": "Prijavi se na Coerver Intro",
+      "regText": "Ispuni obrazac i rezerviraj svoje mjesto na jednom od nadolazećih termina.",
+      "courseInfo": "Informacije o tečaju:",
+      "info": {
+        "0": {
+          "label": "Max. 20 polaznika",
+          "sublabel": "po terminu"
+        },
+        "1": {
+          "label": "Nema preduvjeta",
+          "sublabel": "otvoren za sve trenere"
+        }
+      },
+      "formTitle": "Prijava"
+    },
+    "yd1": {
+      "breadcrumb": "Za Trenere",
+      "levelBadge": "Srednja razina",
+      "heroText": "Dvodnevni intenzivni program u kojem će treneri naučiti kako kreirati Coerver trening uz pomoć Coerver trening planera. Tečaj je dostupan uživo ili online.",
+      "duration": "Trajanje",
+      "durationValue": "2 dana",
+      "format": "Format",
+      "formatValue": "Uživo ili Online",
+      "signUp": "Prijavi se",
+      "modulesBadge": "Kurikulum",
+      "modulesTitle": "Što ćeš naučiti?",
+      "modulesText": "Youth Diploma 1 pokriva pet ključnih modula Coerver metodologije.",
+      "modules": {
+        "0": {
+          "title": "Zagrijavanje",
+          "desc": "Vježbe kako koristiti ball mastery u zagrijavanju."
+        },
+        "1": {
+          "title": "Brzina",
+          "desc": "Vježbe brzine s loptom."
+        },
+        "2": {
+          "desc": "1v1 potezi i 1v1 i 2v2 igre."
+        },
+        "3": {
+          "desc": "Igre u manjim grupama. Vježbe igre usmjerene na primanja, dodavanja, suradnju i završnicu."
+        },
+        "4": {
+          "title": "Igre na Skraćenom Prostoru",
+          "desc": "Tematske i slobodne igre za razvoj svih vještina pod punim pritiskom."
+        }
+      },
+      "scheduleBadge": "Raspored",
+      "scheduleTitle": "Program po danima",
+      "dayLabel": "Dan {num}",
+      "day1Title": "Teoretska predavanja online",
+      "day2Title": "Praktična predavanja uživo i online",
+      "day1": {
+        "0": "Uvod u edukaciju",
+        "1": "Što je Coerver® Coaching?",
+        "2": "Pauza",
+        "3": "Coerver® Coaching sustav razvoja igrača",
+        "4": "Pauza",
+        "5": "Planiranje treninga kroz sezonu",
+        "6": "Pauza",
+        "7": "Kako postati boljim trenerom",
+        "8": "Pitanja & odgovori"
+      },
+      "day2": {
+        "0": "Primjer Coerver® treninga",
+        "1": "Pauza",
+        "2": "Coerver® temelji – Ball Mastery, Brzina i 1v1",
+        "3": "Ručak",
+        "4": "Small Group Play & Small Sided Game",
+        "5": "Pauza",
+        "6": "Coerver® završnica – igra u \"Zlatnoj zoni\"",
+        "7": "Sažetak edukacije, Pitanja & odgovori"
+      },
+      "includedBadge": "Što dobivaš",
+      "includedTitle": "Uključeno u cijenu",
+      "included": {
+        "0": "Youth Diploma 1 certifikat",
+        "1": "Komplet priručnika i materijala",
+        "2": "Ručak i osvježenja",
+        "3": "25 vježbi sa varijacijama"
+      },
+      "altEducation": "Coerver edukacija",
+      "datesBadge": "Termini",
+      "datesTitle": "Nadolazeći tečajevi",
+      "noDates": "Trenutno nema zakazanih termina",
+      "noDatesText": "Kontaktirajte nas za informacije o sljedećim terminima.",
+      "sendInquiry": "Pošalji upit",
+      "spots": "{count} mjesta",
+      "nextBadge": "Sljedeći korak",
+      "nextTitle": "Nastavi s Youth Diploma 2",
+      "nextText": "Nakon uspješno položenog YD1, možeš nastaviti s Youth Diploma 2 za kompletnu Coerver certifikaciju.",
+      "regTitle": "Prijavi se na Youth Diploma 1",
+      "regText": "Ispuni obrazac i započni svoj put prema Coerver certifikaciji.",
+      "prereqTitle": "Preduvjeti:",
+      "prereq": {
+        "0": "Aktivno iskustvo u trenerskom radu"
+      },
+      "formTitle": "Prijava za YD1"
+    },
+    "yd2": {
+      "breadcrumb": "Za Trenere",
+      "levelBadge": "Napredna razina",
+      "heroText": "Napredna razina Coerver edukacije. Razvoj Coerver ekipnog stila igara (box/trap).",
+      "duration": "Trajanje",
+      "durationValue": "2 dana",
+      "signUp": "Prijavi se",
+      "modulesBadge": "Napredni kurikulum",
+      "modulesTitle": "Što ćeš naučiti?",
+      "modulesText": "YD2 proširuje tvoje znanje s naprednim tehnikama i taktičkim elementima.",
+      "modules": {
+        "0": {
+          "desc": "Coerver timski ball mastery, brzina, 1v1."
+        },
+        "1": {
+          "desc": "Sprečavanje napda i započinjanje napada."
+        },
+        "2": {
+          "desc": "Komibatorika na malom prostoru, brzi protunapad, dubinsko dodavanje"
+        },
+        "3": {
+          "desc": "Kreiranje šansi za pogodak i realizacija."
+        }
+      },
+      "pathwayBadge": "Kompletna edukacija",
+      "pathwayTitle": "Tvoj Coerver Pathway",
+      "levels": {
+        "0": "Početni",
+        "1": "Srednji",
+        "2": "Napredni"
+      },
+      "pathwayText": "Nakon Youth Diploma 2 dobivate kompletan uvid u Coerver sustav razvoja igrača.",
+      "includedBadge": "Što dobivaš",
+      "includedTitle": "Kompletna edukacija",
+      "included": {
+        "0": "Youth Diploma 2 certifikat",
+        "1": "Ručak i osvježenja",
+        "2": "Poziv na godišnju konferenciju",
+        "3": "70+ Coerver vježbi sa varijacijama",
+        "4": "Mogućnost rada na Coerver programima"
+      },
+      "certSubtitle": "Potpuna edukacija",
+      "certRecognized": "Priznato u cijelom svijetu",
+      "datesBadge": "Termini",
+      "datesTitle": "Nadolazeći tečajevi",
+      "noDates": "Trenutno nema zakazanih termina",
+      "noDatesText": "Kontaktirajte nas za informacije o sljedećim terminima.",
+      "sendInquiry": "Pošalji upit",
+      "spots": "{count} mjesta",
+      "regTitle": "Prijavi se na Youth Diploma 2",
+      "regText": "Završi svoju Coerver certifikaciju i postani dio globalne mreže licenciranih trenera.",
+      "prereqTitle": "Preduvjeti:",
+      "prereq": {
+        "0": "Završen Youth Diploma 1 tečaj",
+        "1": "Minimum 6 mjeseci praktičnog iskustva nakon YD1"
+      },
+      "groupDiscount": "Grupni popust",
+      "discountText": "Prijavite se zajedno s kolegom i ostvarite 10% popusta za oboje!",
+      "formTitle": "Prijava za YD2"
+    }
+  },
+  "blog": {
+    "hero": {
+      "badge": "Blog",
+      "title": "Vijesti, savjeti i",
+      "titleHighlight": "inspiracija",
+      "subtitle": "Savjeti za trenere i igrače, vijesti iz Coerver svijeta i priče o uspjehu naše zajednice."
+    },
+    "empty": {
+      "title": "Trenutno nema objavljenih članaka",
+      "subtitle": "Pratite nas za nove sadržaje i vijesti iz svijeta Coerver treninga."
+    },
+    "featured": "Istaknuto",
+    "readMore": "Pročitaj više",
+    "searchPlaceholder": "Pretraži članke...",
+    "allCategories": "Sve",
+    "allArticles": "Svi članci",
+    "articleCount": "{count, plural, one {# članak} other {# članaka}}",
+    "readingTime": "{minutes} min čitanja",
+    "noResults": {
+      "title": "Nema rezultata",
+      "subtitle": "Pokušajte s drugačijim pretraživanjem ili kategorijom."
+    },
+    "loadMore": "Učitaj više članaka",
+    "team": "Coerver Tim",
+    "newsletter": {
+      "badge": "Newsletter",
+      "title": "Ne propusti nove objave",
+      "subtitle": "Pretplati se na naš newsletter i primi najnovije vijesti, savjete i ekskluzivne sadržaje direktno u svoj inbox.",
+      "emailPlaceholder": "Tvoja email adresa",
+      "subscribe": "Pretplati se",
+      "privacy": "Možeš se odjaviti u bilo kojem trenutku. Poštujemo tvoju privatnost."
+    },
+    "cta": {
+      "badge": "Postani dio priče",
+      "title": "Imaš priču za podijeliti?",
+      "subtitle": "Ako si trener, igrač ili roditelj s iskustvom koje želiš podijeliti s našom zajednicom, javi nam se. Uvijek tražimo nove glasove i perspektive.",
+      "contact": "Kontaktiraj nas"
+    },
+    "post": {
+      "tags": "Tagovi:",
+      "share": "Podijeli:",
+      "authorBio": "Coerver trener s dugogodišnjim iskustvom u radu s mladim igračima. Specijalist za Ball Mastery i individualni razvoj.",
+      "related": "Povezani Članci",
+      "viewAll": "Pogledaj Sve Članke"
+    },
+    "comments": {
+      "title": "Komentari ({count})",
+      "placeholder": "Napišite svoj komentar...",
+      "submit": "Objavi Komentar",
+      "loginRequired": "Morate biti prijavljeni za komentiranje.",
+      "error": "Došlo je do greške. Pokušajte ponovno.",
+      "empty": "Nema komentara. Budite prvi koji će komentirati!",
+      "anonymous": "Korisnik"
+    }
+  },
+  "cookies": {
+    "title": "Koristimo kolačiće",
+    "text": "Ova web stranica koristi nužne kolačiće za pravilno funkcioniranje i sigurnost vaše sesije. Ovi kolačići su potrebni za prijavu i korištenje korisničkog računa. Ne koristimo kolačiće za praćenje ili marketing.",
+    "learnMore": "Saznajte više",
+    "accept": "Prihvaćam",
+    "essentialOnly": "Samo nužni",
+    "close": "Zatvori"
+  },
+  "clubs": {
+    "hero": {
+      "badge": "Za Klubove",
+      "titleLine1": "Partnerski",
+      "titleLine2": "Programi",
+      "description": "Pridružite se mreži od preko 1000 partnerskih klubova diljem svijeta. Implementirajte provjerenu Coerver metodologiju u vašu omladinsku školu.",
+      "cta": "Zatražite ponudu",
+      "imageAlt": "Profesionalni trening"
+    },
+    "stats": {
+      "0": {
+        "value": "1,000+",
+        "label": "Partnerskih klubova"
+      },
+      "1": {
+        "value": "60+",
+        "label": "Zemalja"
+      },
+      "2": {
+        "value": "40+",
+        "label": "Godina iskustva"
+      }
+    },
+    "benefits": {
+      "badge": "Zašto Coerver?",
+      "title": "Prednosti partnerstva",
+      "items": {
+        "0": {
+          "title": "Provjerena Metodologija",
+          "description": "40+ godina razvoja i unapređivanja tehničkog treninga."
+        },
+        "1": {
+          "title": "Strukturirani Kurikulum",
+          "description": "Jasna progresija za sve dobne skupine i razine."
+        },
+        "2": {
+          "title": "Kontinuirana Podrška",
+          "description": "Stručna podrška i redovite evaluacije napretka."
+        },
+        "3": {
+          "title": "Globalno Priznanje",
+          "description": "Pridružite se mreži od 3000+ partnerskih klubova."
+        },
+        "4": {
+          "title": "Pristup Coerver Croatia Platformi",
+          "description": "Ekskluzivan pristup digitalnoj platformi s vježbama i materijalima."
+        }
+      }
+    },
+    "partners": {
+      "badge": "Naši partneri",
+      "title": "Klubovi koji nam vjeruju"
+    },
+    "process": {
+      "badge": "Proces",
+      "title": "Kako postati partner?",
+      "steps": {
+        "0": {
+          "title": "Inicijalni razgovor",
+          "description": "Upoznajemo se s vašim klubom i potrebama."
+        },
+        "1": {
+          "title": "Procjena i prijedlog",
+          "description": "Analiziramo situaciju i predlažemo optimalni model."
+        },
+        "2": {
+          "title": "Edukacija trenera",
+          "description": "Vaši treneri prolaze Coerver certifikaciju."
+        },
+        "3": {
+          "title": "Implementacija",
+          "description": "Kontinuirana podrška i praćenje napretka."
+        }
+      }
+    },
+    "testimonials": {
+      "badge": "Iskustva",
+      "title": "Što kažu naši partneri?",
+      "items": {
+        "0": {
+          "quote": "Coerver partnerstvo je transformiralo našu omladinsku školu. Naši igrači su tehnički superiorniji od konkurencije.",
+          "role": "Direktor omladinske škole, NK Dinamo Zagreb"
+        },
+        "1": {
+          "quote": "Strukturirani pristup i kvalitetni materijali su olakšali rad našim trenerima i podigli kvalitetu treninga.",
+          "role": "Sportski direktor, NK Hajduk Split"
+        }
+      }
+    },
+    "contact": {
+      "title": "Kontaktirajte nas",
+      "description": "Zainteresirani za partnerstvo? Ispunite obrazac i naš tim će vas kontaktirati s prilagođenom ponudom.",
+      "emailLabel": "Email",
+      "phoneLabel": "Telefon",
+      "badgesTitle": "Pridružite se vodećim klubovima",
+      "badges": {
+        "0": "1000+ partnera",
+        "1": "60+ zemalja",
+        "2": "40+ godina"
+      },
+      "formTitle": "Zatražite ponudu"
+    }
+  },
+  "about": {
+    "hero": {
+      "badge": "O nama",
+      "titleStart": "Što je Coerver",
+      "titleEnd": "Coaching?",
+      "description": "Globalno priznata metodologija razvoja mladih nogometaša, prisutna u preko 60 zemalja svijeta već više od 40 godina.",
+      "ctaPlayers": "Programi za igrače",
+      "ctaCoaches": "Programi za trenere",
+      "stats": {
+        "0": {
+          "value": "40+",
+          "label": "Godina iskustva"
+        },
+        "1": {
+          "value": "60+",
+          "label": "Zemalja svijeta"
+        },
+        "2": {
+          "value": "1M+",
+          "label": "Igrača globalno"
+        },
+        "3": {
+          "value": "500+",
+          "label": "Aktivnih igrača u HR"
+        }
+      }
+    },
+    "stats": {
+      "0": {
+        "value": "1984.",
+        "label": "Godina osnivanja"
+      },
+      "1": {
+        "value": "60+",
+        "label": "Zemalja svijeta"
+      },
+      "2": {
+        "value": "1M+",
+        "label": "Igrača globalno"
+      },
+      "3": {
+        "value": "40+",
+        "label": "Godina iskustva"
+      }
+    },
+    "story": {
+      "badge": "Naša priča",
+      "titleStart": "Što je Coerver",
+      "titleEnd": "Coaching?",
+      "imageAlt": "Coerver trening",
+      "founderRole": "Osnivač metodologije",
+      "para1": "Coerver® Coaching je globalno priznata metodologija razvoja mladih nogometaša koju je razvio legendarni nizozemski trener <strong>Wiel Coerver</strong>.",
+      "para2": "Prisutni u preko <strong>60 zemalja</strong> svijeta, Coerver® metodologija je postala zlatni standard u razvoju mladih igrača. U Hrvatskoj djelujemo s ciljem podizanja kvalitete tehničke obuke na najvišu razinu.",
+      "features": {
+        "0": "Individualni pristup",
+        "1": "Certificirani treneri",
+        "2": "Dokazana metodologija",
+        "3": "Globalna mreža"
+      }
+    },
+    "values": {
+      "badge": "Naše vrijednosti",
+      "title": "Što nas pokreće",
+      "items": {
+        "0": {
+          "title": "Izvrsnost",
+          "description": "Težimo najvišim standardima u svemu što radimo"
+        },
+        "1": {
+          "title": "Inovacija",
+          "description": "Konstantno unapređujemo metode treninga"
+        },
+        "2": {
+          "title": "Predanost",
+          "description": "Posvećeni smo razvoju svakog pojedinca"
+        },
+        "3": {
+          "title": "Zajednica",
+          "description": "Gradimo snažnu Coerver® obitelj"
+        }
+      }
+    },
+    "timeline": {
+      "badge": "Naša povijest",
+      "title": "Put do izvrsnosti",
+      "items": {
+        "0": {
+          "year": "1984",
+          "title": "Osnivanje Coerver® Coachinga",
+          "description": "Wiel Coerver, legendarni nizozemski trener, razvija revolucionarnu metodologiju treninga fokusiranu na individualnu tehniku. Njegovi suradnici Alf Galustian i Charlie Cooke, osnivaju ono što danas znamo kao Coerver® Coaching."
+        },
+        "1": {
+          "year": "1990",
+          "title": "Globalna Ekspanzija",
+          "description": "Coerver® metodologija se širi na sve kontinente, postajući zlatni standard razvoja mladih igrača. S vremenom Coerver® Coaching se razvija od jednostavne ideje do strukturiranog kurikuluma."
+        },
+        "2": {
+          "year": "2015",
+          "title": "Dolazak u Hrvatsku",
+          "description": "Coerver® Coaching službeno dolazi u Hrvatsku, Sloveniju i BiH donoseći vrhunsku metodologiju našim mladim talentima i trenerima."
+        },
+        "3": {
+          "year": "Danas",
+          "title": "Kontinuirani Rast",
+          "description": "Više od 500 aktivnih igrača i 30+ certificiranih trenera u Hrvatskoj, Sloveniji i BiH."
+        }
+      }
+    },
+    "pyramid": {
+      "badge": "Coerver® sustav",
+      "title": "Piramida razvoja igrača",
+      "description": "Progresivni sustav koji gradi tehničku izvrsnost od temelja. Svaka razina nadograđuje prethodnu, stvarajući kompletnog igrača.",
+      "cards": {
+        "0": {
+          "title": "Coerver® Piramida",
+          "subtitle": "6 razina tehničkog razvoja",
+          "alt": "Coerver Piramida - 6 razina razvoja"
+        },
+        "1": {
+          "title": "1v1 Piramida",
+          "subtitle": "Potezi i fintiranje",
+          "alt": "1v1 Piramida - potezi i fintiranje"
+        },
+        "2": {
+          "title": "Razine Igrača",
+          "subtitle": "Od početnika do majstora",
+          "alt": "Razine igrača - od početnika do majstora"
+        }
+      },
+      "levels": {
+        "0": {
+          "title": "Ball Mastery",
+          "description": "Temelj svega - potpuna kontrola lopte u svim dijelovima stopala s obje noge."
+        },
+        "1": {
+          "title": "Primanje & Dodavanja",
+          "description": "Prvi dodir - ekipne vještine."
+        },
+        "2": {
+          "title": "1v1 - napad i obrana",
+          "description": "Change of directions, stops & starts i faints."
+        },
+        "3": {
+          "title": "Brzina",
+          "description": "Brzina sa i bez lopte - brzina donošenja odluka."
+        },
+        "4": {
+          "title": "Završnica",
+          "description": "Kreiranje šansi za pogodak i realizacija."
+        },
+        "5": {
+          "title": "Grupni Napad",
+          "description": "Napad i obrana u manjim grupama."
+        }
+      }
+    },
+    "cta": {
+      "badge": "Započni danas",
+      "title": "Pridruži se Coerver® obitelji",
+      "description": "Bez obzira jesi li igrač koji želi unaprijediti tehniku ili trener koji želi proširiti znanje, imamo program za tebe.",
+      "ctaPlayers": "Za igrače",
+      "ctaCoaches": "Za trenere"
+    }
+  },
+  "contact": {
+    "hero": {
+      "badge": "Stupite u kontakt",
+      "titleStart": "Kako vam možemo",
+      "titleHighlight": "pomoći?",
+      "description": "Imate pitanje o našim programima? Želite prijaviti dijete na trening? Tu smo za vas - javite nam se!"
+    },
+    "info": {
+      "title": "Kontakt informacije",
+      "email": {
+        "label": "Email",
+        "description": "Pišite nam bilo kada"
+      },
+      "phone": {
+        "label": "Telefon",
+        "description": "Pon - Pet, 9:00 - 17:00"
+      },
+      "address": {
+        "label": "Adresa",
+        "description": "10000 Zagreb, Hrvatska"
+      }
+    },
+    "social": {
+      "title": "Pratite nas"
+    },
+    "form": {
+      "successTitle": "Hvala na poruci!",
+      "successMessage": "Vaša poruka je uspješno poslana. Javit ćemo vam se u najkraćem mogućem roku.",
+      "newMessage": "Pošalji novu poruku",
+      "title": "Pošaljite nam poruku",
+      "subtitle": "Ispunite obrazac i javit ćemo vam se uskoro.",
+      "nameLabel": "Ime i prezime *",
+      "namePlaceholder": "Vaše ime i prezime",
+      "emailLabel": "Email adresa *",
+      "emailPlaceholder": "vas@email.com",
+      "phoneLabel": "Telefon",
+      "subjectLabel": "Tema *",
+      "subjectPlaceholder": "Odaberite temu",
+      "topics": {
+        "0": "Upis igrača",
+        "1": "Edukacija trenera",
+        "2": "Partnerstvo s klubom",
+        "3": "Opći upit",
+        "4": "Ostalo"
+      },
+      "messageLabel": "Poruka *",
+      "messagePlaceholder": "Opišite vaš upit...",
+      "requiredNote": "* Obavezna polja",
+      "submitting": "Slanje...",
+      "submit": "Pošalji poruku",
+      "error": "Došlo je do greške. Molimo pokušajte ponovno."
+    },
+    "faq": {
+      "title": "Često postavljana pitanja",
+      "subtitle": "Pronađite odgovore na najčešća pitanja",
+      "items": {
+        "0": {
+          "question": "Za koje uzraste su namijenjeni Coerver programi?",
+          "answer": "Naši programi su prilagođeni svim uzrastima, i odraslima i mlađima. Svaka dobna skupina ima posebno dizajniran program koji odgovara njihovom razvojnom stupnju."
+        },
+        "1": {
+          "question": "Koliko traju treninzi?",
+          "answer": "Treninzi traju 60-90 minuta, ovisno o dobnoj skupini i vrsti programa. Mlađi polaznici imaju kraće treninge prilagođene njihovoj koncentraciji."
+        },
+        "2": {
+          "question": "Kako se mogu prijaviti?",
+          "answer": "Možete se prijaviti putem kontakt obrasca na ovoj stranici, emailom ili telefonom. Nakon prijave, javit ćemo vam se s detaljima o dostupnim terminima."
+        },
+        "3": {
+          "question": "Trebam li donijeti vlastitu opremu?",
+          "answer": "Ovisno o progamu treneri će naponenuti je li oprema vlastita ili je pružamo mi."
+        }
+      },
+      "notFound": "Niste pronašli odgovor?",
+      "emailUs": "Pošaljite nam email"
+    },
+    "cta": {
+      "title": "Spremni za prvi trening?",
+      "description": "Pridružite se stotinama zadovoljnih igrača koji su već dio Coerver obitelji",
+      "findAcademy": "Pronađi akademiju",
+      "becomeCoach": "Postani trener"
+    }
+  },
+  "privacy": {
+    "hero": {
+      "titleStart": "Politika",
+      "titleHighlight": "Privatnosti",
+      "description": "Vaša privatnost nam je važna. Ovdje možete saznati kako prikupljamo, koristimo i štitimo vaše osobne podatke.",
+      "lastUpdated": "Zadnje ažuriranje: {date}"
+    },
+    "controller": {
+      "title": "1. Voditelj obrade podataka",
+      "intro": "Voditelj obrade vaših osobnih podataka je Coerver Coaching Croatia, sa sjedištem u Zagrebu, Hrvatska. Za sva pitanja vezana uz zaštitu osobnih podataka možete nas kontaktirati na:",
+      "emailLabel": "Email:",
+      "phoneLabel": "Telefon:"
+    },
+    "dataCollected": {
+      "title": "2. Koje podatke prikupljamo",
+      "intro": "Prikupljamo sljedeće vrste osobnih podataka:",
+      "items": {
+        "0": "<strong>Kontaktni podaci:</strong> ime i prezime, email adresa, broj telefona",
+        "1": "<strong>Podaci o djeci:</strong> dob/godište djeteta, veličina dresa, nogometni klub, pozicija (za prijave na kampove i akademije)",
+        "2": "<strong>Podaci o korisničkom računu:</strong> email adresa, lozinka (kriptirana), uloga korisnika",
+        "3": "<strong>Tehnički podaci:</strong> IP adresa, vrsta preglednika, kolačići sesije"
+      }
+    },
+    "purpose": {
+      "title": "3. Svrha obrade podataka",
+      "intro": "Vaše osobne podatke koristimo za:",
+      "items": {
+        "0": "Obradu prijava na kampove, akademije i tečajeve",
+        "1": "Komunikaciju vezanu uz naše programe i usluge",
+        "2": "Upravljanje korisničkim računima",
+        "3": "Slanje obavijesti o novostima i ponudama (uz vašu privolu)",
+        "4": "Poboljšanje naših usluga i web stranice"
+      }
+    },
+    "legalBasis": {
+      "title": "4. Pravna osnova obrade",
+      "intro": "Vaše podatke obrađujemo temeljem:",
+      "items": {
+        "0": "<strong>Privole:</strong> kada nam date izričitu suglasnost za obradu podataka",
+        "1": "<strong>Ugovorne obveze:</strong> kada je obrada nužna za izvršenje ugovora (npr. prijava na kamp)",
+        "2": "<strong>Legitimnog interesa:</strong> za poboljšanje naših usluga i sigurnost sustava",
+        "3": "<strong>Zakonske obveze:</strong> kada smo zakonski obvezni čuvati određene podatke"
+      }
+    },
+    "sharing": {
+      "title": "5. Dijeljenje podataka s trećim stranama",
+      "intro": "Vaše podatke možemo dijeliti sa:",
+      "items": {
+        "0": "<strong>Supabase Inc.</strong> - pružatelj usluge baze podataka i autentifikacije (SAD, uz primjenu standardnih ugovornih klauzula)",
+        "1": "<strong>Vercel Inc.</strong> - pružatelj hosting usluge (SAD, uz primjenu standardnih ugovornih klauzula)",
+        "2": "<strong>Resend</strong> - pružatelj usluge slanja emailova"
+      },
+      "outro": "Ne prodajemo niti iznajmljujemo vaše osobne podatke trećim stranama u marketinške svrhe."
+    },
+    "cookies": {
+      "title": "6. Kolačići (Cookies)",
+      "intro": "Naša web stranica koristi sljedeće vrste kolačića:",
+      "items": {
+        "0": "<strong>Nužni kolačići:</strong> potrebni za funkcioniranje stranice i autentifikaciju korisnika",
+        "1": "<strong>Kolačići sesije:</strong> održavaju vašu prijavu aktivnom tijekom posjeta"
+      },
+      "outro": "Trenutno ne koristimo analitičke niti marketinške kolačiće. Možete upravljati postavkama kolačića putem postavki vašeg preglednika."
+    },
+    "rights": {
+      "title": "7. Vaša prava",
+      "intro": "Sukladno GDPR-u, imate sljedeća prava:",
+      "items": {
+        "0": "<strong>Pravo pristupa:</strong> možete zatražiti kopiju svih podataka koje imamo o vama",
+        "1": "<strong>Pravo na ispravak:</strong> možete zatražiti ispravak netočnih podataka",
+        "2": "<strong>Pravo na brisanje:</strong> možete zatražiti brisanje vaših podataka (\"pravo na zaborav\")",
+        "3": "<strong>Pravo na ograničenje obrade:</strong> možete zatražiti ograničenje načina na koji koristimo vaše podatke",
+        "4": "<strong>Pravo na prenosivost:</strong> možete zatražiti prijenos podataka drugom voditelju obrade",
+        "5": "<strong>Pravo na prigovor:</strong> možete prigovoriti obradi podataka temeljem legitimnog interesa",
+        "6": "<strong>Pravo na povlačenje privole:</strong> možete povući privolu u bilo kojem trenutku"
+      },
+      "outro": "Za ostvarivanje bilo kojeg od navedenih prava, kontaktirajte nas na"
+    },
+    "retention": {
+      "title": "8. Rok čuvanja podataka",
+      "intro": "Vaše osobne podatke čuvamo samo onoliko dugo koliko je potrebno za svrhe za koje su prikupljeni:",
+      "items": {
+        "0": "Podaci o upitima: 2 godine od primitka upita",
+        "1": "Podaci o prijavama na programe: 5 godina od završetka programa",
+        "2": "Korisnički računi: do zatvaranja računa + 30 dana",
+        "3": "Računovodstveni podaci: sukladno zakonskim propisima (11 godina)"
+      }
+    },
+    "security": {
+      "title": "9. Sigurnost podataka",
+      "intro": "Poduzimamo odgovarajuće tehničke i organizacijske mjere za zaštitu vaših osobnih podataka od neovlaštenog pristupa, gubitka ili uništenja. To uključuje:",
+      "items": {
+        "0": "SSL/TLS enkripciju svih komunikacija",
+        "1": "Kriptiranje lozinki",
+        "2": "Redovite sigurnosne provjere",
+        "3": "Ograničen pristup podacima samo ovlaštenim osobama"
+      }
+    },
+    "children": {
+      "title": "10. Podaci o djeci",
+      "text": "S obzirom da naši programi uključuju djecu, posebnu pažnju posvećujemo zaštiti njihovih podataka. Podatke o djeci prikupljamo isključivo uz privolu roditelja ili skrbnika, i to samo one podatke koji su nužni za sudjelovanje u našim programima."
+    },
+    "complaint": {
+      "title": "11. Pravo na pritužbu",
+      "intro": "Ako smatrate da je obrada vaših osobnih podataka u suprotnosti s GDPR-om, imate pravo podnijeti pritužbu nadzornom tijelu - Agenciji za zaštitu osobnih podataka (AZOP):",
+      "webLabel": "Web:",
+      "emailLabel": "Email:",
+      "addressLabel": "Adresa:"
+    },
+    "changes": {
+      "title": "12. Izmjene politike privatnosti",
+      "text": "Zadržavamo pravo izmjene ove politike privatnosti. O svim značajnim izmjenama obavijestit ćemo vas putem naše web stranice ili emaila. Preporučujemo povremeno pregledavanje ove stranice."
+    },
+    "questions": {
+      "title": "Imate pitanja?",
+      "text": "Za sva pitanja vezana uz zaštitu vaših osobnih podataka, slobodno nas kontaktirajte:"
+    }
+  },
+  "forms": {
+    "inquiry": {
+      "title": "Pošalji Upit",
+      "submit": "Pošalji Upit",
+      "error": "Došlo je do greške. Molimo pokušajte ponovno.",
+      "loading": "Učitavanje...",
+      "success": {
+        "title": "Hvala na upitu!",
+        "message": "Vaš upit je uspješno poslan. Javit ćemo vam se u najkraćem mogućem roku.",
+        "newInquiry": "Pošalji novi upit"
+      },
+      "fields": {
+        "name": {
+          "label": "Ime i prezime *",
+          "placeholder": "Unesite vaše ime i prezime"
+        },
+        "childName": {
+          "label": "Ime i prezime djeteta *",
+          "placeholder": "Unesite ime i prezime djeteta"
+        },
+        "email": {
+          "label": "Email adresa *",
+          "placeholder": "vas@email.com"
+        },
+        "phone": {
+          "label": "Telefon"
+        },
+        "academy": {
+          "label": "Odaberite akademiju *",
+          "placeholder": "Odaberite akademiju",
+          "empty": "Nema dostupnih akademija"
+        },
+        "camp": {
+          "label": "Odaberite kamp *",
+          "placeholder": "Odaberite kamp",
+          "empty": "Nema dostupnih kampova"
+        },
+        "course": {
+          "label": "Odaberite tečaj *",
+          "placeholder": "Odaberite tečaj",
+          "empty": "Nema dostupnih tečajeva"
+        },
+        "childAge": {
+          "label": "Dob djeteta",
+          "placeholder": "Odaberite dob",
+          "years": "{range} godina"
+        },
+        "accommodationType": {
+          "label": "Tip prijave *",
+          "placeholder": "Odaberite tip prijave",
+          "withAccommodation": "S noćenjem (puni kamp sa smještajem)",
+          "fullDay": "Cjelodnevni (sve aktivnosti bez spavanja)",
+          "trainingOnly": "Samo treninzi"
+        },
+        "birthYear": {
+          "label": "Godište djeteta *",
+          "placeholder": "Odaberite godište"
+        },
+        "jerseySize": {
+          "label": "Veličina dresa *",
+          "placeholder": "Odaberite veličinu"
+        },
+        "club": {
+          "label": "Klub",
+          "placeholder": "Naziv kluba u kojem igra"
+        },
+        "clubCourse": {
+          "label": "Klub",
+          "placeholder": "Naziv kluba iz kojeg se prijavljujete"
+        },
+        "clubName": {
+          "label": "Naziv kluba *",
+          "placeholder": "Naziv vašeg kluba"
+        },
+        "position": {
+          "label": "Pozicija",
+          "placeholder": "Odaberite poziciju",
+          "goalkeeper": "Golman",
+          "defender": "Branič",
+          "midfielder": "Vezni",
+          "forward": "Napadač"
+        },
+        "note": {
+          "label": "Napomena",
+          "placeholder": "Alergije, zdravstvene napomene ili druge važne informacije..."
+        },
+        "format": {
+          "label": "Format sudjelovanja *",
+          "placeholder": "Odaberite format",
+          "live": "Uživo"
+        },
+        "message": {
+          "label": "Poruka *",
+          "placeholder": "Napišite vašu poruku ili pitanje..."
+        }
+      },
+      "summary": {
+        "type": "Tip",
+        "birthYear": "Godište",
+        "jerseySize": "Veličina dresa",
+        "club": "Klub",
+        "position": "Pozicija",
+        "note": "Napomena",
+        "format": "Format",
+        "program": "Program",
+        "withAccommodation": "S noćenjem",
+        "fullDay": "Cjelodnevni",
+        "trainingOnly": "Samo treninzi",
+        "dayOnly": "Bez noćenja"
+      },
+      "consent": {
+        "textStart": "Pročitao/la sam i slažem se s",
+        "privacyLink": "politikom privatnosti",
+        "textEnd": "te pristajem na obradu mojih osobnih podataka u svrhu obrade ovog upita. *"
+      }
+    }
+  }
+}
