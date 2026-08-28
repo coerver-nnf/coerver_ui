@@ -247,6 +247,17 @@ export function Footer() {
             <p className="text-coerver-gray-500 text-sm">
               &copy; {new Date().getFullYear()} Coerver Coaching Croatia. {t("rights")}
             </p>
+            <p className="text-coerver-gray-500 text-sm">
+              Izrada:{" "}
+              <a
+                href="https://www.ninefold.eu"
+                target="_blank"
+                rel="noopener"
+                className="text-coerver-gray-500 hover:text-coerver-green transition-colors"
+              >
+                Ninefold
+              </a>
+            </p>
             <div className="flex items-center gap-6 text-sm">
               {footerLinks.company.map((link) => (
                 <Link
