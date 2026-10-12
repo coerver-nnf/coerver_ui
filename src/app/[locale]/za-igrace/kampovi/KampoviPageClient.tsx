@@ -7,7 +7,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
-import { Camp } from "@/lib/api/camps";
+import { Camp, getCampTierPrices, TierPrice } from "@/lib/api/camps";
 import { trackEvent, createScrollTracker } from "@/lib/tracking";
 
 if (typeof window !== "undefined") {
@@ -233,9 +233,20 @@ function CampCard({ camp, featured = false }: { camp: Camp; featured?: boolean }
   const isAlmostFull = spotsLeft <= 5 && spotsLeft > 0;
   const isFull = spotsLeft === 0;
 
-  // Show lowest available price for "od X€" display
-  const availablePrices = [camp.price_day_only, camp.price_full_day, camp.price].filter((p): p is number => p !== null && p > 0);
-  const displayPrice = availablePrices.length > 0 ? Math.min(...availablePrices) : null;
+  // Show lowest available price for "od X€" display (early bird applied when active)
+  const tierPrices = getCampTierPrices(camp);
+  const availableTiers = [tierPrices.trainingOnly, tierPrices.fullDay, tierPrices.accommodation]
+    .filter((p): p is TierPrice => p !== null);
+  const displayPrice = availableTiers.length > 0
+    ? Math.min(...availableTiers.map((p) => p.amount))
+    : null;
+  const regularDisplayPrice = availableTiers.length > 0
+    ? Math.min(...availableTiers.map((p) => p.regular ?? p.amount))
+    : null;
+  const strikePrice =
+    displayPrice != null && regularDisplayPrice != null && regularDisplayPrice > displayPrice
+      ? regularDisplayPrice
+      : null;
 
   return (
     <div className={cn(
@@ -289,8 +300,20 @@ function CampCard({ camp, featured = false }: { camp: Camp; featured?: boolean }
           {displayPrice && (
             <div className="absolute bottom-4 left-4">
               <div className="bg-white rounded-2xl px-4 py-2 shadow-lg">
-                <div className="text-xs text-gray-500">{t("card.from")}</div>
-                <div className="text-2xl font-black text-coerver-dark">{displayPrice}€</div>
+                <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                  <span>{t("card.from")}</span>
+                  {strikePrice && (
+                    <span className="bg-orange-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wide">
+                      {t("card.earlyBird")}
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-2xl font-black text-coerver-dark">{displayPrice}€</span>
+                  {strikePrice && (
+                    <span className="text-sm text-gray-400 line-through">{strikePrice}€</span>
+                  )}
+                </div>
               </div>
             </div>
           )}

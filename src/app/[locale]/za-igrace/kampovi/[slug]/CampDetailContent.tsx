@@ -7,7 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { InquiryForm } from "@/components/forms/InquiryForm";
 import { StickyBookingCard } from "@/components/camps/StickyBookingCard";
-import { Camp } from "@/lib/api/camps";
+import { Camp, getCampTierPrices, TierPrice } from "@/lib/api/camps";
 import { format, parseISO } from "date-fns";
 import { hr } from "date-fns/locale";
 import { trackEvent, createScrollTracker } from "@/lib/tracking";
@@ -145,24 +145,34 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
     ? t("yearsSuffix", { ages: `${camp.age_min}-${camp.age_max}` })
     : t("allAges");
 
-  // Determine pricing options available
-  const hasAccommodation = (camp.price ?? 0) > 0;
-  const hasFullDay = (camp.price_full_day ?? 0) > 0;
-  const hasTrainingOnly = (camp.price_day_only ?? 0) > 0;
-  // Build all prices string for display
-  const allPrices = [
-    hasAccommodation ? `${camp.price}€` : null,
-    hasFullDay ? `${camp.price_full_day}€` : null,
-    hasTrainingOnly ? `${camp.price_day_only}€` : null,
-  ].filter(Boolean).join(" / ");
+  // Determine pricing options available (early bird prices applied until their deadline)
+  const tierPrices = getCampTierPrices(camp);
+  const { earlyBirdActive } = tierPrices;
+  const hasAccommodation = tierPrices.accommodation !== null;
+  const hasFullDay = tierPrices.fullDay !== null;
+  const hasTrainingOnly = tierPrices.trainingOnly !== null;
+  const earlyBirdUntil =
+    earlyBirdActive && camp.early_bird_deadline
+      ? formatDate(camp.early_bird_deadline)
+      : null;
 
   // Lowest available price, shown in hero and mobile CTA
-  const availablePrices = [
-    hasAccommodation ? camp.price : null,
-    hasFullDay ? camp.price_full_day : null,
-    hasTrainingOnly ? camp.price_day_only : null,
-  ].filter((p): p is number => p != null);
-  const lowestPrice = availablePrices.length ? Math.min(...availablePrices) : null;
+  const availableTiers = [
+    tierPrices.accommodation,
+    tierPrices.fullDay,
+    tierPrices.trainingOnly,
+  ].filter((p): p is TierPrice => p !== null);
+  const lowestPrice = availableTiers.length
+    ? Math.min(...availableTiers.map((p) => p.amount))
+    : null;
+  const lowestRegularPrice = availableTiers.length
+    ? Math.min(...availableTiers.map((p) => p.regular ?? p.amount))
+    : null;
+  // Crossed-out regular price next to the lowest price while early bird is active
+  const lowestStrikePrice =
+    lowestPrice != null && lowestRegularPrice != null && lowestRegularPrice > lowestPrice
+      ? lowestRegularPrice
+      : null;
 
   // Pricing tiers for the dedicated pricing section (lowest first)
   const pricingTiers = [
@@ -170,7 +180,8 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
       ? {
           key: "samo_treninzi",
           name: t("tiers.trainingOnly.name"),
-          price: camp.price_day_only as number,
+          price: tierPrices.trainingOnly!.amount,
+          regularPrice: tierPrices.trainingOnly!.regular,
           description: t("tiers.trainingOnly.description"),
           features: [
             t("tiers.trainingOnly.features.0"),
@@ -184,7 +195,8 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
       ? {
           key: "cjelodnevni",
           name: t("tiers.fullDay.name"),
-          price: camp.price_full_day as number,
+          price: tierPrices.fullDay!.amount,
+          regularPrice: tierPrices.fullDay!.regular,
           description: t("tiers.fullDay.description"),
           features: [
             t("tiers.fullDay.features.0"),
@@ -200,7 +212,8 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
       ? {
           key: "s_nocenjem",
           name: t("tiers.accommodation.name"),
-          price: camp.price as number,
+          price: tierPrices.accommodation!.amount,
+          regularPrice: tierPrices.accommodation!.regular,
           description: t("tiers.accommodation.description"),
           features: [
             t("tiers.accommodation.features.0"),
@@ -320,10 +333,20 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                   {/* Price - prominent on mobile */}
                   {!isFull && lowestPrice && (
-                    <div className="flex items-baseline gap-1" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                      <span className="text-white/60 text-sm">{t("from")}</span>
-                      <span className="text-3xl sm:text-4xl font-black text-white">{lowestPrice}€</span>
-                      {hasAccommodation && <span className="text-white/50 text-xs">{t("perPerson")}</span>}
+                    <div className="flex flex-col gap-1">
+                      {earlyBirdUntil && lowestStrikePrice && (
+                        <span className="inline-flex items-center gap-1.5 self-start bg-orange-500 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full">
+                          {t("earlyBird.until", { date: earlyBirdUntil })}
+                        </span>
+                      )}
+                      <div className="flex items-baseline gap-1" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                        <span className="text-white/60 text-sm">{t("from")}</span>
+                        <span className="text-3xl sm:text-4xl font-black text-white">{lowestPrice}€</span>
+                        {lowestStrikePrice && (
+                          <span className="text-white/50 text-lg line-through">{lowestStrikePrice}€</span>
+                        )}
+                        {hasAccommodation && <span className="text-white/50 text-xs">{t("perPerson")}</span>}
+                      </div>
                     </div>
                   )}
                   {/* CTA Button */}
@@ -433,23 +456,27 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
 
                 {/* Prices */}
                 <div className="space-y-3 mb-6">
-                  {hasAccommodation && (
-                    <div className="flex justify-between items-center bg-white/5 rounded-xl p-3">
-                      <span className="text-white/70">{t("tiers.accommodation.name")}</span>
-                      <span className="text-white font-bold text-xl">{camp.price}€</span>
+                  {earlyBirdUntil && (
+                    <div className="inline-flex items-center gap-1.5 bg-orange-500/20 border border-orange-500/30 text-orange-300 text-xs font-bold px-3 py-1.5 rounded-full">
+                      {t("earlyBird.until", { date: earlyBirdUntil })}
                     </div>
                   )}
-                  {hasFullDay && (
-                    <div className="flex justify-between items-center bg-white/5 rounded-xl p-3">
-                      <span className="text-white/70">{t("tiers.fullDay.name")}</span>
-                      <span className="text-white font-bold text-xl">{camp.price_full_day}€</span>
-                    </div>
-                  )}
-                  {hasTrainingOnly && (
-                    <div className="flex justify-between items-center bg-white/5 rounded-xl p-3">
-                      <span className="text-white/70">{t("tiers.trainingOnly.name")}</span>
-                      <span className="text-white font-bold text-xl">{camp.price_day_only}€</span>
-                    </div>
+                  {[
+                    { tier: tierPrices.accommodation, name: t("tiers.accommodation.name") },
+                    { tier: tierPrices.fullDay, name: t("tiers.fullDay.name") },
+                    { tier: tierPrices.trainingOnly, name: t("tiers.trainingOnly.name") },
+                  ].map(({ tier, name }) =>
+                    tier ? (
+                      <div key={name} className="flex justify-between items-center bg-white/5 rounded-xl p-3">
+                        <span className="text-white/70">{name}</span>
+                        <span className="flex items-baseline gap-2">
+                          {tier.regular && (
+                            <span className="text-white/40 text-sm line-through">{tier.regular}€</span>
+                          )}
+                          <span className="text-white font-bold text-xl">{tier.amount}€</span>
+                        </span>
+                      </div>
+                    ) : null
                   )}
                 </div>
 
@@ -755,9 +782,24 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
                   <h3 className="text-xl font-bold text-white mb-2">{tier.name}</h3>
                   <p className="text-white/50 text-sm mb-6">{tier.description}</p>
 
-                  <div className="flex items-baseline gap-1 mb-8" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                    <span className="text-5xl font-black text-white">{tier.price}€</span>
-                    <span className="text-white/50 text-sm">{t("pricing.perPerson")}</span>
+                  <div className="mb-8" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                    {tier.regularPrice && earlyBirdUntil && (
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-white/40 text-lg line-through">{tier.regularPrice}€</span>
+                        <span className="bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">
+                          {t("earlyBird.badge")}
+                        </span>
+                      </div>
+                    )}
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-5xl font-black text-white">{tier.price}€</span>
+                      <span className="text-white/50 text-sm">{t("pricing.perPerson")}</span>
+                    </div>
+                    {tier.regularPrice && earlyBirdUntil && (
+                      <div className="text-orange-300 text-xs font-medium mt-1">
+                        {t("earlyBird.until", { date: earlyBirdUntil })}
+                      </div>
+                    )}
                   </div>
 
                   <div className="space-y-3 mb-8 flex-1">
@@ -1044,33 +1086,44 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
               <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 mb-8">
                 <h3 className="text-white font-bold text-xl mb-6">{t("register.prices")}</h3>
 
+                {earlyBirdUntil && (
+                  <div className="inline-flex items-center gap-1.5 bg-orange-500/20 border border-orange-500/30 text-orange-300 text-xs font-bold px-3 py-1.5 rounded-full mb-4">
+                    {t("earlyBird.until", { date: earlyBirdUntil })}
+                  </div>
+                )}
+
                 <div className="space-y-4 mb-6">
-                  {hasAccommodation && (
-                    <div className="flex justify-between items-center bg-white/5 rounded-xl p-4">
-                      <div>
-                        <div className="text-white font-semibold">{t("tiers.accommodation.name")}</div>
-                        <div className="text-white/50 text-sm">{t("register.accommodationDesc")}</div>
+                  {[
+                    {
+                      tier: tierPrices.accommodation,
+                      name: t("tiers.accommodation.name"),
+                      desc: t("register.accommodationDesc"),
+                    },
+                    {
+                      tier: tierPrices.fullDay,
+                      name: t("tiers.fullDay.name"),
+                      desc: t("register.fullDayDesc"),
+                    },
+                    {
+                      tier: tierPrices.trainingOnly,
+                      name: t("tiers.trainingOnly.name"),
+                      desc: t("register.trainingOnlyDesc"),
+                    },
+                  ].map(({ tier, name, desc }) =>
+                    tier ? (
+                      <div key={name} className="flex justify-between items-center bg-white/5 rounded-xl p-4">
+                        <div>
+                          <div className="text-white font-semibold">{name}</div>
+                          <div className="text-white/50 text-sm">{desc}</div>
+                        </div>
+                        <span className="flex items-baseline gap-2">
+                          {tier.regular && (
+                            <span className="text-white/40 text-base line-through">{tier.regular}€</span>
+                          )}
+                          <span className="text-3xl font-black text-white">{tier.amount}€</span>
+                        </span>
                       </div>
-                      <span className="text-3xl font-black text-white">{camp.price}€</span>
-                    </div>
-                  )}
-                  {hasFullDay && (
-                    <div className="flex justify-between items-center bg-white/5 rounded-xl p-4">
-                      <div>
-                        <div className="text-white font-semibold">{t("tiers.fullDay.name")}</div>
-                        <div className="text-white/50 text-sm">{t("register.fullDayDesc")}</div>
-                      </div>
-                      <span className="text-3xl font-black text-white">{camp.price_full_day}€</span>
-                    </div>
-                  )}
-                  {hasTrainingOnly && (
-                    <div className="flex justify-between items-center bg-white/5 rounded-xl p-4">
-                      <div>
-                        <div className="text-white font-semibold">{t("tiers.trainingOnly.name")}</div>
-                        <div className="text-white/50 text-sm">{t("register.trainingOnlyDesc")}</div>
-                      </div>
-                      <span className="text-3xl font-black text-white">{camp.price_day_only}€</span>
-                    </div>
+                    ) : null
                   )}
                 </div>
 
@@ -1153,7 +1206,12 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
           <div className="flex items-center gap-3">
             <div className="flex-shrink-0">
               <div className="text-[10px] sm:text-xs text-gray-500">{t("stickyMobile.priceFrom")}</div>
-              <div className="text-lg sm:text-xl font-black text-coerver-dark" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>{lowestPrice}€</div>
+              <div className="flex items-baseline gap-1.5" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                <span className="text-lg sm:text-xl font-black text-coerver-dark">{lowestPrice}€</span>
+                {lowestStrikePrice && (
+                  <span className="text-xs sm:text-sm text-gray-400 line-through">{lowestStrikePrice}€</span>
+                )}
+              </div>
             </div>
             <a
               href="#prijava"
@@ -1178,6 +1236,7 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
       {/* Sticky Desktop Booking Card */}
       <StickyBookingCard
         lowestPrice={lowestPrice}
+        regularPrice={lowestStrikePrice}
         availableSpots={availableSpots}
         totalSpots={totalSpots}
         isFull={isFull}

@@ -6,6 +6,8 @@ import { trackEvent } from "@/lib/tracking";
 
 interface StickyBookingCardProps {
   lowestPrice: number | null;
+  /** Regular price shown crossed out while an early bird discount is active. */
+  regularPrice?: number | null;
   availableSpots: number;
   totalSpots: number;
   isFull: boolean;
@@ -14,6 +16,7 @@ interface StickyBookingCardProps {
 
 export function StickyBookingCard({
   lowestPrice,
+  regularPrice,
   availableSpots,
   totalSpots,
   isFull,
@@ -87,7 +90,12 @@ export function StickyBookingCard({
           {/* Price */}
           <div className="mb-4">
             <div className="text-sm text-gray-500">Cijena od</div>
-            <div className="text-3xl font-black text-coerver-dark">{lowestPrice}€</div>
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-black text-coerver-dark">{lowestPrice}€</span>
+              {regularPrice != null && (
+                <span className="text-base text-gray-400 line-through">{regularPrice}€</span>
+              )}
+            </div>
           </div>
 
           {/* Spots indicator */}

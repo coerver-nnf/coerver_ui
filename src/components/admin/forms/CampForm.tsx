@@ -46,6 +46,10 @@ const campSchema = z.object({
   price: z.number().optional().nullable(),
   price_full_day: z.number().optional().nullable(),
   price_day_only: z.number().optional().nullable(),
+  early_bird_price: z.number().optional().nullable(),
+  early_bird_price_full_day: z.number().optional().nullable(),
+  early_bird_price_day_only: z.number().optional().nullable(),
+  early_bird_deadline: z.string().optional().nullable(),
   registration_deadline: z.string().optional().nullable(),
   capacity: z.number().optional().nullable(),
   spots: z.number().optional().nullable(),
@@ -135,6 +139,9 @@ export function CampForm({ camp }: CampFormProps) {
   const [registrationDeadline, setRegistrationDeadline] = useState<
     string | null
   >(camp?.registration_deadline ?? null);
+  const [earlyBirdDeadline, setEarlyBirdDeadline] = useState<string | null>(
+    camp?.early_bird_deadline ?? null
+  );
 
   // Array/JSON state (base Croatian content)
   const [gallery, setGallery] = useState<string[]>(camp?.gallery || []);
@@ -188,6 +195,10 @@ export function CampForm({ camp }: CampFormProps) {
           price: camp.price,
           price_full_day: camp.price_full_day,
           price_day_only: camp.price_day_only,
+          early_bird_price: camp.early_bird_price,
+          early_bird_price_full_day: camp.early_bird_price_full_day,
+          early_bird_price_day_only: camp.early_bird_price_day_only,
+          early_bird_deadline: camp.early_bird_deadline,
           registration_deadline: camp.registration_deadline,
           capacity: camp.capacity,
           spots: camp.spots,
@@ -220,7 +231,8 @@ export function CampForm({ camp }: CampFormProps) {
     if (endDate) setValue("end_date", endDate);
     if (registrationDeadline)
       setValue("registration_deadline", registrationDeadline);
-  }, [startDate, endDate, registrationDeadline, setValue]);
+    setValue("early_bird_deadline", earlyBirdDeadline);
+  }, [startDate, endDate, registrationDeadline, earlyBirdDeadline, setValue]);
 
   // Helpers to convert NaN for numeric fields
   const toNumberOrUndefined = (
@@ -280,6 +292,10 @@ export function CampForm({ camp }: CampFormProps) {
           price: toNumberOrUndefined(data.price),
           price_full_day: toNumberOrUndefined(data.price_full_day),
           price_day_only: toNumberOrUndefined(data.price_day_only),
+          early_bird_price: toNumberOrUndefined(data.early_bird_price),
+          early_bird_price_full_day: toNumberOrUndefined(data.early_bird_price_full_day),
+          early_bird_price_day_only: toNumberOrUndefined(data.early_bird_price_day_only),
+          early_bird_deadline: data.early_bird_deadline || undefined,
           registration_deadline: data.registration_deadline || undefined,
           capacity: toNumberOrUndefined(data.capacity),
           spots: toNumberOrUndefined(data.spots),
@@ -304,6 +320,10 @@ export function CampForm({ camp }: CampFormProps) {
           price: toNumberOrNull(data.price),
           price_full_day: toNumberOrNull(data.price_full_day),
           price_day_only: toNumberOrNull(data.price_day_only),
+          early_bird_price: toNumberOrNull(data.early_bird_price),
+          early_bird_price_full_day: toNumberOrNull(data.early_bird_price_full_day),
+          early_bird_price_day_only: toNumberOrNull(data.early_bird_price_day_only),
+          early_bird_deadline: data.early_bird_deadline || null,
           registration_deadline: data.registration_deadline || null,
           capacity: toNumberOrNull(data.capacity),
           spots: toNumberOrNull(data.spots),
@@ -692,6 +712,54 @@ export function CampForm({ camp }: CampFormProps) {
                 {...register("price_day_only", { valueAsNumber: true })}
                 placeholder={isNew ? "250.00" : undefined}
                 helperText="Samo trening sessioni"
+              />
+            </div>
+
+            <div className="border-t border-coerver-gray-200 pt-4 space-y-4">
+              <div>
+                <h3 className="text-sm font-semibold text-coerver-gray-900">
+                  Early bird cijene
+                </h3>
+                <p className="text-sm text-coerver-gray-500">
+                  Prikazuju se umjesto regularnih cijena do zadanog datuma.
+                  Ostavite prazno ako ne želite early bird popust.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-3 gap-4">
+                <Input
+                  label="S noćenjem — early bird (€)"
+                  type="number"
+                  step="0.01"
+                  {...register("early_bird_price", { valueAsNumber: true })}
+                  placeholder={isNew ? "400.00" : undefined}
+                />
+
+                <Input
+                  label="Cjelodnevni — early bird (€)"
+                  type="number"
+                  step="0.01"
+                  {...register("early_bird_price_full_day", {
+                    valueAsNumber: true,
+                  })}
+                  placeholder={isNew ? "300.00" : undefined}
+                />
+
+                <Input
+                  label="Samo treninzi — early bird (€)"
+                  type="number"
+                  step="0.01"
+                  {...register("early_bird_price_day_only", {
+                    valueAsNumber: true,
+                  })}
+                  placeholder={isNew ? "200.00" : undefined}
+                />
+              </div>
+
+              <SingleDatePicker
+                label="Early bird vrijedi do (uključivo)"
+                value={earlyBirdDeadline}
+                onChange={setEarlyBirdDeadline}
               />
             </div>
           </div>

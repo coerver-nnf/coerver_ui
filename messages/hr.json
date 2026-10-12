@@ -569,6 +569,7 @@
         "spotsLeftUrgent": "{count, plural, one {Još samo # mjesto!} few {Još samo # mjesta!} other {Još samo # mjesta!}}",
         "viewing": "{count} osoba gleda",
         "from": "od",
+        "earlyBird": "Early bird",
         "daysUntil": "dana do",
         "date": "Datum",
         "location": "Lokacija",
@@ -648,6 +649,10 @@
         "d": "d",
         "h": "h",
         "m": "m"
+      },
+      "earlyBird": {
+        "badge": "Early bird",
+        "until": "Early bird cijena do {date}"
       },
       "testimonialsDefault": {
         "0": {

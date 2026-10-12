@@ -375,6 +375,7 @@
         "spotsLeftUrgent": "{count, plural, one {Only # spot left!} other {Only # spots left!}}",
         "viewing": "{count, plural, one {# person viewing} other {# people viewing}}",
         "from": "from",
+        "earlyBird": "Early bird",
         "daysUntil": "days to go",
         "date": "Date",
         "location": "Location",
@@ -454,6 +455,10 @@
         "d": "d",
         "h": "h",
         "m": "m"
+      },
+      "earlyBird": {
+        "badge": "Early bird",
+        "until": "Early bird price until {date}"
       },
       "testimonialsDefault": {
         "0": {

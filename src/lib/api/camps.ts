@@ -44,6 +44,10 @@ export interface Camp {
   price: number | null;
   price_full_day: number | null;
   price_day_only: number | null;
+  early_bird_price: number | null;
+  early_bird_price_full_day: number | null;
+  early_bird_price_day_only: number | null;
+  early_bird_deadline: string | null;
   registration_deadline: string | null;
   capacity: number | null;
   spots: number | null;
@@ -80,6 +84,10 @@ export interface CreateCampInput {
   price?: number;
   price_full_day?: number;
   price_day_only?: number;
+  early_bird_price?: number;
+  early_bird_price_full_day?: number;
+  early_bird_price_day_only?: number;
+  early_bird_deadline?: string;
   registration_deadline?: string;
   capacity?: number;
   spots?: number;
@@ -105,6 +113,48 @@ export interface CreateCampInput {
 export interface UpdateCampInput
   extends Partial<{ [K in keyof CreateCampInput]: CreateCampInput[K] | null }> {
   id: string;
+}
+
+/** Early bird prices apply through the end of the deadline day (inclusive). */
+export function isEarlyBirdActive(deadline: string | null | undefined): boolean {
+  if (!deadline) return false;
+  return Date.now() <= new Date(`${deadline}T23:59:59`).getTime();
+}
+
+export interface TierPrice {
+  amount: number;
+  /** Regular price, set only when an early bird discount is currently applied. */
+  regular: number | null;
+}
+
+/** Resolves the price to display for one tier, applying the early bird discount when active. */
+export function getTierPrice(
+  regular: number | null,
+  earlyBird: number | null,
+  earlyBirdActive: boolean
+): TierPrice | null {
+  if (!regular || regular <= 0) return null;
+  if (earlyBirdActive && earlyBird && earlyBird > 0 && earlyBird < regular) {
+    return { amount: earlyBird, regular };
+  }
+  return { amount: regular, regular: null };
+}
+
+/** Effective prices for all three camp tiers (null = tier not offered). */
+export function getCampTierPrices(camp: Camp): {
+  accommodation: TierPrice | null;
+  fullDay: TierPrice | null;
+  trainingOnly: TierPrice | null;
+  earlyBirdActive: boolean;
+} {
+  const active = isEarlyBirdActive(camp.early_bird_deadline);
+  const accommodation = getTierPrice(camp.price, camp.early_bird_price, active);
+  const fullDay = getTierPrice(camp.price_full_day, camp.early_bird_price_full_day, active);
+  const trainingOnly = getTierPrice(camp.price_day_only, camp.early_bird_price_day_only, active);
+  const earlyBirdActive =
+    active &&
+    [accommodation, fullDay, trainingOnly].some((tier) => tier?.regular != null);
+  return { accommodation, fullDay, trainingOnly, earlyBirdActive };
 }
 
 // Camp CRUD
