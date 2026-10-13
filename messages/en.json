@@ -565,8 +565,8 @@
       },
       "pricing": {
         "badge": "Prices",
-        "title": "Choose your package",
-        "text": "Three options tailored to your needs - from training only to the complete camp experience",
+        "title": "{count, plural, =1 {Camp price} other {Choose your package}}",
+        "text": "{count, plural, =1 {Simple and transparent - see everything included in the price} =2 {Two options tailored to your needs} other {Three options tailored to your needs - from training only to the complete camp experience}}",
         "popular": "Most popular",
         "perPerson": "/person",
         "choose": "Choose package"

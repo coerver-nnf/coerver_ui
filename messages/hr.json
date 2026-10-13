@@ -759,8 +759,8 @@
       },
       "pricing": {
         "badge": "Cijene",
-        "title": "Odaberi svoj paket",
-        "text": "Tri opcije prilagođene tvojim potrebama - od samo treninga do potpunog kamp iskustva",
+        "title": "{count, plural, =1 {Cijena kampa} other {Odaberi svoj paket}}",
+        "text": "{count, plural, =1 {Jednostavno i transparentno - pogledaj što je sve uključeno u cijenu} =2 {Dvije opcije prilagođene tvojim potrebama} other {Tri opcije prilagođene tvojim potrebama - od samo treninga do potpunog kamp iskustva}}",
         "popular": "Najpopularnije",
         "perPerson": "/osoba",
         "choose": "Odaberi paket"

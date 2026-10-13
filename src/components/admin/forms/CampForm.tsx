@@ -56,6 +56,8 @@ const campSchema = z.object({
   total_spots: z.number().optional().nullable(),
   age_min: z.number().optional().nullable(),
   age_max: z.number().optional().nullable(),
+  birth_year_min: z.number().optional().nullable(),
+  birth_year_max: z.number().optional().nullable(),
   image_url: z.string().optional(),
   hero_image: z.string().optional(),
   status: z.enum(["draft", "published", "cancelled", "completed"]),
@@ -205,6 +207,8 @@ export function CampForm({ camp }: CampFormProps) {
           total_spots: camp.total_spots,
           age_min: camp.age_min,
           age_max: camp.age_max,
+          birth_year_min: camp.birth_year_min,
+          birth_year_max: camp.birth_year_max,
           image_url: camp.image_url || "",
           hero_image: camp.hero_image || "",
           status: camp.status,
@@ -302,6 +306,8 @@ export function CampForm({ camp }: CampFormProps) {
           total_spots: toNumberOrUndefined(data.total_spots),
           age_min: toNumberOrUndefined(data.age_min),
           age_max: toNumberOrUndefined(data.age_max),
+          birth_year_min: toNumberOrUndefined(data.birth_year_min),
+          birth_year_max: toNumberOrUndefined(data.birth_year_max),
           gallery,
           highlights,
           age_groups: ageGroups,
@@ -330,6 +336,8 @@ export function CampForm({ camp }: CampFormProps) {
           total_spots: toNumberOrNull(data.total_spots),
           age_min: toNumberOrNull(data.age_min),
           age_max: toNumberOrNull(data.age_max),
+          birth_year_min: toNumberOrNull(data.birth_year_min),
+          birth_year_max: toNumberOrNull(data.birth_year_max),
           gallery,
           highlights,
           age_groups: ageGroups,
@@ -806,6 +814,22 @@ export function CampForm({ camp }: CampFormProps) {
                 type="number"
                 {...register("age_max", { valueAsNumber: true })}
                 placeholder={isNew ? "15" : undefined}
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <Input
+                label="Godište od (najstarije)"
+                type="number"
+                {...register("birth_year_min", { valueAsNumber: true })}
+                placeholder={isNew ? "2013" : undefined}
+              />
+
+              <Input
+                label="Godište do (najmlađe)"
+                type="number"
+                {...register("birth_year_max", { valueAsNumber: true })}
+                placeholder={isNew ? "2019" : undefined}
               />
             </div>
 

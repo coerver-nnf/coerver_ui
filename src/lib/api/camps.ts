@@ -55,6 +55,8 @@ export interface Camp {
   age_min: number | null;
   age_max: number | null;
   age_groups: string[] | null;
+  birth_year_min: number | null;
+  birth_year_max: number | null;
   image_url: string | null;
   hero_image: string | null;
   gallery: string[] | null;
@@ -95,6 +97,8 @@ export interface CreateCampInput {
   age_min?: number;
   age_max?: number;
   age_groups?: string[];
+  birth_year_min?: number;
+  birth_year_max?: number;
   image_url?: string;
   hero_image?: string;
   gallery?: string[];

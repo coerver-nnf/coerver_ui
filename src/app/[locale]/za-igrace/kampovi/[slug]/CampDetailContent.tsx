@@ -747,10 +747,10 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
                 <span className="text-coerver-green text-sm font-semibold">{t("pricing.badge")}</span>
               </div>
               <h2 className="text-4xl lg:text-5xl font-black text-white mb-4">
-                {t("pricing.title")}
+                {t("pricing.title", { count: pricingTiers.length })}
               </h2>
               <p className="text-lg text-white/60">
-                {t("pricing.text")}
+                {t("pricing.text", { count: pricingTiers.length })}
               </p>
             </div>
 
@@ -1179,7 +1179,7 @@ export default function CampDetailContent({ camp }: CampDetailContentProps) {
             </div>
 
             <div className="animate-on-scroll">
-              <InquiryForm type="camp" programId={camp.id} programName={camp.title} title={t("register.formTitle")} hasAccommodation={hasAccommodation} hasFullDay={hasFullDay} hasTrainingOnly={hasTrainingOnly} />
+              <InquiryForm type="camp" programId={camp.id} programName={camp.title} title={t("register.formTitle")} hasAccommodation={hasAccommodation} hasFullDay={hasFullDay} hasTrainingOnly={hasTrainingOnly} birthYearMin={camp.birth_year_min} birthYearMax={camp.birth_year_max} />
             </div>
           </div>
         </div>

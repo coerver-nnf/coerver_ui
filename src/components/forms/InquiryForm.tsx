@@ -19,6 +19,8 @@ interface InquiryFormProps {
   hasAccommodation?: boolean; // For camps: true if sleepover option exists
   hasFullDay?: boolean; // For camps: true if full day (no sleep) option exists
   hasTrainingOnly?: boolean; // For camps: true if training-only option exists
+  birthYearMin?: number | null; // For camps: oldest accepted birth year (e.g. 2013)
+  birthYearMax?: number | null; // For camps: youngest accepted birth year (e.g. 2019)
 }
 
 export function InquiryForm({
@@ -30,6 +32,8 @@ export function InquiryForm({
   hasAccommodation = true,
   hasFullDay = false,
   hasTrainingOnly = false,
+  birthYearMin,
+  birthYearMax,
 }: InquiryFormProps) {
   const t = useTranslations("forms.inquiry");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -91,6 +95,28 @@ export function InquiryForm({
     }
     fetchPrograms();
   }, [type, programId]);
+
+  // Birth year options: camp-specific range when set, otherwise a generic
+  // range based on the current year (roughly ages 7-15)
+  const selectedCamp =
+    type === "camp" ? camps.find((c) => c.id === selectedProgramId) : undefined;
+  const currentYear = new Date().getFullYear();
+  const yearMax = birthYearMax ?? selectedCamp?.birth_year_max ?? currentYear - 7;
+  const yearMin = birthYearMin ?? selectedCamp?.birth_year_min ?? currentYear - 15;
+  const birthYearOptions: { value: string; label: string }[] = [];
+  for (let y = Math.max(yearMax, yearMin); y >= yearMin; y--) {
+    birthYearOptions.push({ value: String(y), label: String(y) });
+  }
+
+  // Clear a previously selected birth year if it's outside the current camp's range
+  useEffect(() => {
+    setFormData((prev) => {
+      if (!prev.birthYear) return prev;
+      const year = Number(prev.birthYear);
+      if (year >= yearMin && year <= Math.max(yearMax, yearMin)) return prev;
+      return { ...prev, birthYear: "" };
+    });
+  }, [yearMin, yearMax]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -379,15 +405,7 @@ export function InquiryForm({
               onChange={handleChange}
               options={[
                 { value: "", label: t("fields.birthYear.placeholder") },
-                { value: "2019", label: "2019" },
-                { value: "2018", label: "2018" },
-                { value: "2017", label: "2017" },
-                { value: "2016", label: "2016" },
-                { value: "2015", label: "2015" },
-                { value: "2014", label: "2014" },
-                { value: "2013", label: "2013" },
-                { value: "2012", label: "2012" },
-                { value: "2011", label: "2011" },
+                ...birthYearOptions,
               ]}
               required
             />
