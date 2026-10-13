@@ -15,10 +15,14 @@ interface PageProps {
 
 async function getCamp(slug: string): Promise<Camp | null> {
   const supabase = createStaticClient()
+  // limit(1) je redundantan uz single(), ali mijenja URL upita i time Vercel
+  // data-cache key — keširani odgovor od prije migracije 014 nema
+  // birth_year_min/max stupce
   const { data, error } = await supabase
     .from("camps")
     .select("*")
     .eq("slug", slug)
+    .limit(1)
     .single()
 
   if (error) return null
